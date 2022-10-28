@@ -13,8 +13,8 @@ return new class extends Migration{
             $table->text('problem', 1500);
             $table->text('description', 1500)->nullable();
             $table->text('suggested_solution', 1500);
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('tag_id')->constrained('tags');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();
         });
     }

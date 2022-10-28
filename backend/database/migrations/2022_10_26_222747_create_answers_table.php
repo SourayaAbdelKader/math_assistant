@@ -13,8 +13,8 @@ return new class extends Migration{
             $table->text('description', 1500);
             $table->integer('score')->default(30);
             $table->tinyInteger('accepted')->nullable();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('question_id')->constrained('questions');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,9 +14,9 @@ return new class extends Migration{
             $table->tinyInteger('checked')->nullable();
             $table->text('feedback', 1500)->nullable();
             $table->integer('score')->nullable();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('problem_id')->constrained('problems');
-            $table->foreignId('editor_id')->constrained('users');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('problem_id')->references('id')->on('problems')->onDelete('cascade');
+            $table->foreignId('editor_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

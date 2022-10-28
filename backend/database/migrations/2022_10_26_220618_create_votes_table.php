@@ -9,8 +9,8 @@ return new class extends Migration{
     public function up(){
 
         Schema::create('votes', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('answer_id')->constrained('answers');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('answer_id')->references('id')->on('answers')->onDelete('cascade');
             $table->tinyInteger('vote');
             $table->timestamps();
         });

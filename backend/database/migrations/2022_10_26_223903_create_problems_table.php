@@ -14,8 +14,8 @@ return new class extends Migration{
             $table->text('description', 1500);
             $table->string('picture_url', 250)->nullable();
             $table->enum('level', ['easy', 'medium', 'hard']);
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('tag_id')->constrained('tags');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();
         });
     }

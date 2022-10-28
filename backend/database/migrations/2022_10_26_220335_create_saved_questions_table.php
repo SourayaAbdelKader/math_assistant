@@ -9,8 +9,8 @@ return new class extends Migration{
     public function up(){
 
         Schema::create('saved_questions', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('question_id')->constrained('questions');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->timestamps();
         });
     }
