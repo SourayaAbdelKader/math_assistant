@@ -10,6 +10,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller{
+
     public function validateData(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:5|max:70|unique:tags,name',
@@ -55,7 +56,7 @@ class TagController extends Controller{
         ]);
     }
 
-    // _____________ Updating a user _____________
+    // _____________ Updating a Tag _____________
     public function updateTag(Request $request, $id){
         $tag = Tag::find($id);
         validateData(Request $request)
@@ -72,6 +73,43 @@ class TagController extends Controller{
         return response()->json([
             "status" => "Error",
             "data" => "Error updating a model"
+        ]);
+    }
+
+    // _____________ Getting Tags _____________
+    public function getTags(){ 
+        $tags = Tag::find()->orderBy('created_at', 'DESC')->get(); ;
+       
+        if ($tags->isNotEmpty()) {
+            return response()->json([
+                'data' => $tags,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'No Tags',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Getting Tag by id _____________
+    public function getTagById($id){
+        $tag = Tag::where('id', $id)->get();
+        if ($tag->isNotEmpty()) {
+            return response()->json([
+                'data' => $tag,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Tag Not Found',
+            'status' => Response::HTTP_OK
         ]);
     }
 }
