@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class UserController extends Controller{
 
-    //____________ to get the users joined the current day, week, month, year __________________
+    //_____________ Getting the users joined the current day, week, month, year _____________
     // to get this month joined users
     public function monthUsers(){
         $users = User::where('user_type','user')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
@@ -57,7 +57,7 @@ class UserController extends Controller{
         ]);
     }
 
-    //____________ to get the editos added the current day, week, month, year __________________
+    //_____________ Getting the editos added the current day, week, month, year _____________
     // to get this month added editors
     public function monthEditor(){
         $editors = User::where('user_type','editor')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
@@ -103,7 +103,7 @@ class UserController extends Controller{
         ]);
     }
 
-    //____________ to get the admins added the current day, week, month, year __________________
+    //_____________ Getting the admins added the current day, week, month, year _____________
     // to get this month added admins
     public function monthAdmin(){
         $admins = User::where('user_type','admin')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
@@ -149,7 +149,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // __________ To count the users per user type _______________________
+    // _____________ Counting the users per user type _____________
     public function countUsers(){ 
         $users = User::where('user_type', 'user')->distinct()->count();
         return response()->json([
@@ -175,7 +175,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // _________________ To get the users information ________________________
+    // _____________ Getting the user information _____________
     public function getUsers(){ 
         $users = User::where('user_type', 'user')->orderBy('created_at', 'DESC')->get(); ;
        
@@ -230,7 +230,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to update a user
+    // _____________ Updating a user _____________
     public function updateUser(Request $request, $id){
         //$id= Auth::$id();
         $user = User::find($id);
@@ -292,6 +292,7 @@ class UserController extends Controller{
         ]);
     }
 
+    // _____________ Adding a user _____________
     public function addUser(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -318,6 +319,7 @@ class UserController extends Controller{
 
     }
 
+    // _____________ Deleting a user _____________
     public function deleteUser($id){
         $user = User::find($id);
         if ($user){
