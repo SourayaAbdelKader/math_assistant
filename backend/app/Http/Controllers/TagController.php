@@ -7,10 +7,9 @@ use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Tag;
 
-use Illuminate\Http\Request;
-
 class TagController extends Controller{
 
+    // to validate the request data before adding or editing a tag
     public function validateData(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:5|max:70|unique:tags,name',
@@ -113,7 +112,7 @@ class TagController extends Controller{
         ]);
     }
 
-    // _____________ Searching for a  Tag _____________
+    // _____________ Searching for a Tag _____________
     public function searchTag(Request $request){
         $data = $request->get('data');
         $tags = Tag::where('name', 'like', "%{$data}%")
