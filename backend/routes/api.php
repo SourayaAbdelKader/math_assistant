@@ -28,6 +28,6 @@ Route::prefix('v0')->group(function () {
         Route::get('/yearUSers', [UserController::class, 'yearUSers'])->name('count-editors');
         Route::get('/monthUsers', [UserController::class, 'monthUsers'])->name('count-editors');
         Route::get('/todayUser', [UserController::class, 'todayUser'])->name('count-editors');
-
+        Route::get('/weekUser', [UserController::class, 'weekUser'])->name('count-editors');
     });
 });

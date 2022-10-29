@@ -11,7 +11,8 @@ use Carbon\Carbon;
 
 class UserController extends Controller{
 
-    // to get this month joined user
+    //____________ to get the users joined the current day, month, year __________________
+    // to get this month joined users
     public function monthUsers(){
         $users = User::where('user_type','user')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
@@ -23,7 +24,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this year joined user
+    // to get this year joined users
     public function yearUSers(){
         $users = User::where('user_type','user') // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
@@ -35,16 +36,26 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this day joined user
+    // to get this day joined users
     public function todayUser(){
-        $users = User::whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
+        $users = User::where('user_type','user')->whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
         return response()->json([
             'data' => $users,
             'status' =>  Response::HTTP_OK
         ]);
     }
 
-   
+    // to het this week joined users
+    public function weekUser(){
+        $users = User::where('user_type','user')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')) )
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        return response()->json([
+            'data' => $users,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
 
     // To count the users per user type
     public function countUsers(){ 
