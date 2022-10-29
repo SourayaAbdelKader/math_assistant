@@ -58,8 +58,8 @@ class UserController extends Controller{
     }
 
     //____________ to get the editos added the current day, week, month, year __________________
-    // to get this month joined editos
-    public function monthUsers(){
+    // to get this month added editors
+    public function monthEditor(){
         $editors = User::where('user_type','editor')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
         ->orderBy('created_at', 'DESC')
@@ -70,8 +70,8 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this year joined editos
-    public function yearUSers(){
+    // to get this year added editors
+    public function yearEditor(){
         $editors = User::where('user_type','editor') // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
         ->orderBy('created_at', 'DESC')
@@ -82,8 +82,8 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this day joined editos
-    public function todayUser(){
+    // to get this day added editors
+    public function todayEditor(){
         $editors = User::where('user_type','editor')->whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
         return response()->json([
             'data' => $editors,
@@ -91,8 +91,8 @@ class UserController extends Controller{
         ]);
     }
 
-    // to het this week joined editos
-    public function weekUser(){
+    // to het this week added editors
+    public function weekEditor(){
         $editors = User::where('user_type','editor')
         ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')) )
         ->orderBy('created_at', 'DESC')
@@ -103,7 +103,53 @@ class UserController extends Controller{
         ]);
     }
 
-    // To count the users per user type
+    //____________ to get the admins added the current day, week, month, year __________________
+    // to get this month added admins
+    public function monthAdmin(){
+        $admins = User::where('user_type','admin')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
+        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        return response()->json([
+            'data' => $admins,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to get this year added admins
+    public function yearAdmin(){
+        $admins = User::where('user_type','admin') // checking if the month of created_at is current month
+        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        return response()->json([
+            'data' => $admins,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to get this day added admins
+    public function todayAdmin(){
+        $admins = User::where('user_type','admin')->whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
+        return response()->json([
+            'data' => $admins,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to het this week added admins
+    public function weekAdmin(){
+        $admins = User::where('user_type','admin')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')) )
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        return response()->json([
+            'data' => $admins,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // __________ To count the users per user type _______________________
     public function countUsers(){ 
         $users = User::where('user_type', 'user')->distinct()->count();
         return response()->json([
@@ -129,7 +175,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // To get the users information
+    // _________________ To get the users information ________________________
     public function getUsers(){ 
         $users = User::where('user_type', 'user')->orderBy('created_at', 'DESC')->get(); ;
        
