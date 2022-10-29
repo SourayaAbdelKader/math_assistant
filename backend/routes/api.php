@@ -15,7 +15,7 @@ Route::prefix('v0')->group(function () {
         Route::get('me', 'me');
     });
 
-    Route::prefix('admin')->group(function () {
+    Route::prefix('general')->group(function () {
         Route::get('/users', [UserController::class, 'getUsers'])->name('get-users');
         Route::get('/users/{id?}', [UserController::class, 'getUserInfo'])->name('get-user-info');
         Route::get('/users/email/{email?}', [UserController::class, 'getUserByEmail'])->name('get-user-by-email');
@@ -25,5 +25,9 @@ Route::prefix('v0')->group(function () {
         Route::get('/countAdmins', [UserController::class, 'countAdmins'])->name('count-admin');
         Route::post('/addUser', [UserController::class, 'addUser'])->name('add-user');
         Route::post('/deleteUser/{id?}', [UserController::class, 'deleteUser'])->name('delete-user');
-    }
-}
+        Route::get('/yearUSers', [UserController::class, 'yearUSers'])->name('count-editors');
+        Route::get('/monthUsers', [UserController::class, 'monthUsers'])->name('count-editors');
+        Route::get('/todayUser', [UserController::class, 'todayUser'])->name('count-editors');
+
+    });
+});

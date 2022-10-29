@@ -7,7 +7,44 @@ use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 
+use Carbon\Carbon;
+
 class UserController extends Controller{
+
+    // to get this month joined user
+    public function monthUsers(){
+        $users = User::where('user_type','user')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
+        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        return response()->json([
+            'data' => $users,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to get this year joined user
+    public function yearUSers(){
+        $users = User::where('user_type','user') // checking if the month of created_at is current month
+        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        return response()->json([
+            'data' => $users,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to get this day joined user
+    public function todayUser(){
+        $users = User::whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
+        return response()->json([
+            'data' => $users,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+   
 
     // To count the users per user type
     public function countUsers(){ 
@@ -16,6 +53,7 @@ class UserController extends Controller{
             'data' => $users,
             'status' =>  Response::HTTP_OK
         ]);
+        
     }
 
     public function countAdmins(){ 
@@ -137,6 +175,7 @@ class UserController extends Controller{
             file_put_contents($file, $image_base64);
             $user->$picture_url = $file;
         }
+
         if($user->save()){
             return response()->json([
                 "status" => "Success",
@@ -177,12 +216,19 @@ class UserController extends Controller{
     }
 
     public function deleteUser($id){
-        $delete = User::find($id)->delete();
-        if ($delete) {
-            return response()->json([
-                'status' => 'success'
-            ]);
+        $user = User::find($id);
+        if ($user){
+            $delete = $user->delete();
+            if ($delete) {
+                return response()->json([
+                    'status' => 'success'
+                ]);
+            }
         }
+        return response()->json([
+            'data' => 'User Not Found',
+            'status' => 'success'
+        ]);
     }
 
 }
