@@ -53,6 +53,40 @@ class TagController extends Controller{
         ]);
     }
 
+    // _____________ Updating a user _____________
+    public function updateTag(Request $request, $id){
+        $tag = Tag::find($id);
+
+        // to validate incoming data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:5|max:70|unique:tags,name',
+            'description' => 'required|string|min:30',
+        ]);
+
+        //return the validator errors
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
+        $tag->name = $tag->name ? $tag->name : $tag->name;
+        $tag->description = $tag->description? $tag->description : $tag->description;
+
+        if($tag->save()){
+            return response()->json([
+                "status" => "Success",
+                "data" => $tag
+            ]);
+        }
+
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error updating a model"
+        ]);
+    }
 
     
 
