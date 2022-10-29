@@ -95,6 +95,7 @@ class UserController extends Controller{
         $user = User::find($id);
         //$user = Auth::user();
 
+        // to validate incoming data
         $validator = Validator::make($request->all(), [
             'name' => 'alpha|min:3|max:70',
             'email' => 'email|unique:users,email|regex:/^.+@.+$/i|min:7|max:70',
@@ -123,9 +124,10 @@ class UserController extends Controller{
         $user->birthdate = $request->birthdate ? $request->birthdate  : $user->birthdate ;
         $user->degree = $request->degree ? $request->degree  : $user->degree;
 
+        // for the pictures
         if ($request->picture_url){
             $img = $request->picture_url;
-            $folderPath = "images/users/"; 
+            $folderPath = "backend/public/images/users/"; 
             $image_parts = explode(";base64,", $img);
             $image_type_aux = explode("image/", $image_parts[0]);
             $image_type = $image_type_aux[1];
@@ -147,4 +149,40 @@ class UserController extends Controller{
             "data" => "Error updating a model"
         ]);
     }
+
+    public function addUser(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:5|max:20',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        $user = User::create($data);
+        return response()->json([
+            'data' => $user,
+            'message' => Str::ucfirst($user->role) . ' Registered Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+
+    }
+
+    public function deleteUser($id){
+        $delete = User::find($id)->delete();
+        if ($delete) {
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }
+    }
+
 }
