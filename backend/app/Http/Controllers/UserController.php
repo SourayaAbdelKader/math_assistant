@@ -313,7 +313,7 @@ class UserController extends Controller{
         $user = User::create($data);
         return response()->json([
             'data' => $user,
-            'message' => Str::ucfirst($user->role) . ' Registered Successfully',
+            'message' => 'Added Successfully',
             'status' =>  Response::HTTP_OK
         ]);
 
