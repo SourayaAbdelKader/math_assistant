@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class UserController extends Controller{
 
-    //____________ to get the users joined the current day, month, year __________________
+    //____________ to get the users joined the current day, week, month, year __________________
     // to get this month joined users
     public function monthUsers(){
         $users = User::where('user_type','user')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
@@ -53,6 +53,52 @@ class UserController extends Controller{
         ->get();   
         return response()->json([
             'data' => $users,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    //____________ to get the editos added the current day, week, month, year __________________
+    // to get this month joined editos
+    public function monthUsers(){
+        $editors = User::where('user_type','editor')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
+        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        return response()->json([
+            'data' => $editors,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to get this year joined editos
+    public function yearUSers(){
+        $editors = User::where('user_type','editor') // checking if the month of created_at is current month
+        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        return response()->json([
+            'data' => $editors,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to get this day joined editos
+    public function todayUser(){
+        $editors = User::where('user_type','editor')->whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
+        return response()->json([
+            'data' => $editors,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // to het this week joined editos
+    public function weekUser(){
+        $editors = User::where('user_type','editor')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')) )
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        return response()->json([
+            'data' => $editors,
             'status' =>  Response::HTTP_OK
         ]);
     }
