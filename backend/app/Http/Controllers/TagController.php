@@ -112,4 +112,26 @@ class TagController extends Controller{
             'status' => Response::HTTP_OK
         ]);
     }
+
+    // _____________ Searching for a  Tag _____________
+    public function searchTag(Request $request){
+        $data = $request->get('data');
+        $tags = Tag::where('name', 'like', "%{$data}%")
+        ->orWhere('description', 'like', "%{$data}%")
+        ->get();;
+
+        if ($tags->isNotEmpty()) {
+            return response()->json([
+                'data' => $tags,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Tag Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
 }
