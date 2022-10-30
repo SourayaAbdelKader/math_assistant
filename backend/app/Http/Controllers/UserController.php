@@ -14,7 +14,8 @@ class UserController extends Controller{
     //_____________ Getting the users joined the current day, week, month, year _____________
     // to get this month joined users
     public function monthUsers(){
-        $users = User::where('user_type','user')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
+        $users = User::where('user_type','user')
+        ->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
         ->orderBy('created_at', 'DESC')
         ->get();      
@@ -38,7 +39,10 @@ class UserController extends Controller{
 
     // to get this day joined users
     public function todayUser(){
-        $users = User::where('user_type','user')->whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
+        $users = User::where('user_type','user')
+        ->whereDate('created_at', Carbon::today())
+        ->orderBy('created_at', 'DESC')
+        ->get();   
         return response()->json([
             'data' => $users,
             'status' =>  Response::HTTP_OK
@@ -60,7 +64,8 @@ class UserController extends Controller{
     //_____________ Getting the editos added the current day, week, month, year _____________
     // to get this month added editors
     public function monthEditor(){
-        $editors = User::where('user_type','editor')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
+        $editors = User::where('user_type','editor')
+        ->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
         ->orderBy('created_at', 'DESC')
         ->get();      
@@ -84,7 +89,10 @@ class UserController extends Controller{
 
     // to get this day added editors
     public function todayEditor(){
-        $editors = User::where('user_type','editor')->whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
+        $editors = User::where('user_type','editor')
+        ->whereDate('created_at', Carbon::today())
+        ->orderBy('created_at', 'DESC')
+        ->get();   
         return response()->json([
             'data' => $editors,
             'status' =>  Response::HTTP_OK
@@ -106,7 +114,8 @@ class UserController extends Controller{
     //_____________ Getting the admins added the current day, week, month, year _____________
     // to get this month added admins
     public function monthAdmin(){
-        $admins = User::where('user_type','admin')->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
+        $admins = User::where('user_type','admin')
+        ->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
         ->orderBy('created_at', 'DESC')
         ->get();      
@@ -130,7 +139,10 @@ class UserController extends Controller{
 
     // to get this day added admins
     public function todayAdmin(){
-        $admins = User::where('user_type','admin')->whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();   
+        $admins = User::where('user_type','admin')
+        ->whereDate('created_at', Carbon::today())
+        ->orderBy('created_at', 'DESC')
+        ->get();   
         return response()->json([
             'data' => $admins,
             'status' =>  Response::HTTP_OK
