@@ -106,7 +106,7 @@ class QuestionController extends Controller{
 
     // _____________ Getting questions per tag _____________
     public function getQuestionsPerTag($id){
-        $questions = Question::where('tag_id', $id)->get();
+        $questions = Question::where('tag_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($questions->isNotEmpty()) {
             return response()->json([
                 'data' => $questions,
@@ -122,9 +122,18 @@ class QuestionController extends Controller{
         ]);
     }
 
+    // _____________ Counting questions per tag _____________
+    public function countQuestionsPerTag($id){
+        $number = Question::where('tag_id', $id)->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
     // _____________ Getting questions per user _____________
     public function getQuestionsPerUser($id){
-        $questions = Question::where('user_id', $id)->get();
+        $questions = Question::where('user_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($questions->isNotEmpty()) {
             return response()->json([
                 'data' => $questions,
@@ -137,6 +146,15 @@ class QuestionController extends Controller{
             'data' => null,
             'message' => 'Question Not Found',
             'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Counting questions per user _____________
+    public function countQuestionsPerUser($id){
+        $number = Question::where('user_id', $id)->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
         ]);
     }
 }

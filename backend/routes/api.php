@@ -78,6 +78,9 @@ Route::prefix('v0')->group(function () {
         //Route::get('/search/{data?}', [QuestionController::class, 'searchTag'])->name('search-tag');
         Route::get('/user/{id?}', [QuestionController::class, 'getQuestionsPerUser'])->name('get-question-per-user');
         Route::get('/count', [QuestionController::class, 'countQuestions'])->name('count-questions');
+        Route::get('/countPerTag/{id?}', [QuestionController::class, 'countQuestionsPerTag'])->name('count-questions-per-tag');
+        Route::get('/countPerUser/{id?}', [QuestionController::class, 'countQuestionsPerUser'])->name('count-questions-per-user');
+
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
         //Route::post('/update/{id?}', [QuestionController::class, 'updateTag'])->name('update-tag');
         Route::post('/delete/{id?}', [QuestionController::class, 'deleteQuestion'])->name('delete-question');
