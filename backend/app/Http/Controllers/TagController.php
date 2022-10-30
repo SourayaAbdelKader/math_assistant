@@ -9,7 +9,7 @@ use App\Models\Tag;
 
 class TagController extends Controller{
 
-    // to validate the request data before adding or editing a tag
+    // to validate the request data before adding or editing a tag                        
     public function validateData(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:5|max:70|unique:tags,name',
@@ -113,8 +113,7 @@ class TagController extends Controller{
     }
 
     // _____________ Searching for a Tag _____________
-    public function searchTag(Request $request){
-        $data = $request->get('data');
+    public function searchTag($data){
         $tags = Tag::where('name', 'like', "%{$data}%")
         ->orWhere('description', 'like', "%{$data}%")
         ->get();;
