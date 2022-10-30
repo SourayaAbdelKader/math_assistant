@@ -157,4 +157,26 @@ class QuestionController extends Controller{
             'status' =>  Response::HTTP_OK
         ]);
     }
+
+    // _____________ Searching for a questions _____________
+    public function searchQuestion($data){
+        $questions = Question::where('problem', 'like', "%{$data}%")
+        ->orWhere('description', 'like', "%{$data}%")
+        ->orWhere('suggested_solution', 'like', "%{$data}%")
+        ->get();;
+
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Tag Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
 }
