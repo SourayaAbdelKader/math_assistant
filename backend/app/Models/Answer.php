@@ -16,6 +16,13 @@ use App\Vote;
 class Answer extends Model{
 
     use HasFactory;
+    protected $fillable = [
+        'description',
+        'score',
+        'accepted',
+        'user_id',
+        'question_id',
+    ];
 
     public function users(){
         return $this->belongsTo(User::class);

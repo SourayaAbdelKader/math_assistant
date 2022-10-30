@@ -16,6 +16,12 @@ class Vote extends Model{
 
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'answer_id',
+        'vote',
+    ];
+
     public function users(){
         return $this->belongsTo(User::class);
     }
