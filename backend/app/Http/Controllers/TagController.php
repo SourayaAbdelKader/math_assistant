@@ -59,7 +59,7 @@ class TagController extends Controller{
         ]);
     }
 
-    // _____________ Updating a Tag _____________
+    // _____________ Updating a tag _____________
     public function updateTag(Request $request, $id){
         $tag = Tag::find($id);
         $validator = Validator::make($request->all(), [
@@ -90,7 +90,7 @@ class TagController extends Controller{
         ]);
     }
 
-    // _____________ Getting Tags _____________
+    // _____________ Getting tags _____________
     public function getTags(){ 
         $tags = Tag::orderBy('created_at', 'DESC')->get();
        
@@ -109,7 +109,7 @@ class TagController extends Controller{
         ]);
     }
 
-    // _____________ Getting Tag by id _____________
+    // _____________ Getting tag by id _____________
     public function getTagById($id){
         $tag = Tag::where('id', $id)->get();
         if ($tag->isNotEmpty()) {
@@ -127,7 +127,7 @@ class TagController extends Controller{
         ]);
     }
 
-    // _____________ Getting Tag by name _____________
+    // _____________ Getting tag by name _____________
     public function getTagByName($name){
         $tag = Tag::where('name', $name)->get();
         if ($tag->isNotEmpty()) {
