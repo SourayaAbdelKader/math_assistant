@@ -104,12 +104,12 @@ class QuestionController extends Controller{
         ]);
     }
 
-    // _____________ Getting tag by id _____________
-    public function getQuestionById($id){
-        $question = Question::where('id', $id)->get();
-        if ($question->isNotEmpty()) {
+    // _____________ Getting tag per tag _____________
+    public function getQuestionsPerTag($id){
+        $questions = Question::where('tag_id', $id)->get();
+        if ($questions->isNotEmpty()) {
             return response()->json([
-                'data' => $question,
+                'data' => $questions,
                 'message' => 'Found',
                 'status' =>  Response::HTTP_OK
             ]);
