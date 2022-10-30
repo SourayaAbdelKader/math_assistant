@@ -18,6 +18,8 @@ Route::prefix('v0')->group(function () {
 
     Route::prefix('general')->group(function () {
         Route::get('/users', [UserController::class, 'getUsers'])->name('get-users');
+        Route::get('/editors', [UserController::class, 'getEditors'])->name('get-editors');
+        Route::get('/admins', [UserController::class, 'getAdmins'])->name('get-admins');
         Route::get('/users/{id?}', [UserController::class, 'getUserInfo'])->name('get-user-info');
         Route::get('/users/email/{email?}', [UserController::class, 'getUserByEmail'])->name('get-user-by-email');
         Route::post('/userUpdate/{id?}', [UserController::class, 'updateUser'])->name('update-user');

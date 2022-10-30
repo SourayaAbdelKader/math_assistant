@@ -194,6 +194,42 @@ class UserController extends Controller{
         ]);
     }
 
+    public function getEditors(){ 
+        $editors = User::where('user_type', 'editor')->orderBy('created_at', 'DESC')->get(); ;
+       
+        if ($editors->isNotEmpty()) {
+            return response()->json([
+                'data' => $editors,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'No Users',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    public function getAdmins(){ 
+        $admins = User::where('user_type', 'admin')->orderBy('created_at', 'DESC')->get(); ;
+       
+        if ($admins->isNotEmpty()) {
+            return response()->json([
+                'data' => $admins,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'No Users',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
     public function getUserInfo($id){
         //$id= Auth::$id();
         $user = User::where('id', $id)->get();
