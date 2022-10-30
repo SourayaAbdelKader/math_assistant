@@ -14,6 +14,41 @@ use Carbon\Carbon;
 
 class QuestionController extends Controller{
 
+    // _____________ Saving a question _____________
+    public function saveQuestion(Request $request){
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|integer',
+            'question_id' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $data = $request->all();
+        $question = Saved_question::create($data);
+        return response()->json([
+            'data' => $question,
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Getting saved questions _____________
+    public function getSavedQuestions($id){
+        $question = Saved_question::join('questions', 'questions.id', '=', 'saved_questions.question_id')
+        ->where('saved_questions.user_id','=',$id)
+        ->get();
+        return response()->json([
+            'data' => $question,
+            'message' => 'Found Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
     // _____________ Counting questions _____________
     public function countQuestions(){
         $number = Question::distinct()->count();

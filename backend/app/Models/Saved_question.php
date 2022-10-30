@@ -16,11 +16,16 @@ class Saved_question extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'question_id',
+    ];
+
     public function users(){
         return $this->belongsTo(User::class);
     }
 
-    public function users(){
+    public function questions(){
         return $this->belongsTo(Question::class);
     }
 
