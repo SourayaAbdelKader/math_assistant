@@ -292,7 +292,35 @@ class UserController extends Controller{
         ]);
     }
 
-    // _____________ Adding a user _____________
+    // _____________ Adding an editor _____________
+    public function addEditor(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:5|max:20',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        $user = User::create($data);
+        $user->user_type = 'editor';
+        $user->save();
+        return response()->json([
+            'data' => $user,
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Adding an user _____________
     public function addUser(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -311,12 +339,41 @@ class UserController extends Controller{
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
+        $user->user_type = 'user';
+        $user->save();
         return response()->json([
             'data' => $user,
             'message' => 'Added Successfully',
             'status' =>  Response::HTTP_OK
         ]);
+    }
 
+    // _____________ Adding an admin _____________
+    public function addAdmin(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:5|max:20',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        $user = User::create($data);
+        $user->user_type = 'admin';
+        $user->save();
+        return response()->json([
+            'data' => $user,
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
     }
 
     // _____________ Deleting a user _____________

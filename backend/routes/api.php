@@ -24,7 +24,9 @@ Route::prefix('v0')->group(function () {
         Route::get('/countUsers', [UserController::class, 'countUsers'])->name('count-users');
         Route::get('/countEditors', [UserController::class, 'countEditors'])->name('count-editors');
         Route::get('/countAdmins', [UserController::class, 'countAdmins'])->name('count-admin');
+        Route::post('/addEditor', [UserController::class, 'addEditor'])->name('add-editor');
         Route::post('/addUser', [UserController::class, 'addUser'])->name('add-user');
+        Route::post('/addAdmin', [UserController::class, 'addAdmin'])->name('add-admin');
         Route::post('/deleteUser/{id?}', [UserController::class, 'deleteUser'])->name('delete-user');
         Route::get('/yearUSers', [UserController::class, 'yearUSers'])->name('year-users');
         Route::get('/monthUsers', [UserController::class, 'monthUsers'])->name('month-users');
