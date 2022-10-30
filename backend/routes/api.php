@@ -80,7 +80,9 @@ Route::prefix('v0')->group(function () {
         Route::get('/count', [QuestionController::class, 'countQuestions'])->name('count-questions');
         Route::get('/countPerTag/{id?}', [QuestionController::class, 'countQuestionsPerTag'])->name('count-questions-per-tag');
         Route::get('/countPerUser/{id?}', [QuestionController::class, 'countQuestionsPerUser'])->name('count-questions-per-user');
+        Route::get('/userTags/{id?}', [QuestionController::class, 'getTagsUsedByUser'])->name('count-questions-per-user');
 
+        
         // get questions depending on a certain time
         Route::get('/yearQuestions', [QuestionController::class, 'yearQuestions'])->name('year-questions');
         Route::get('/monthQuestions', [QuestionController::class, 'monthQuestions'])->name('month-questions');

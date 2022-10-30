@@ -97,6 +97,17 @@ class QuestionController extends Controller{
         ]);
     }
 
+    // _____________ Getting tags used by a user _____________
+    public function getTagsUsedByUser($id){
+        $tags = Tag::join('questions', 'tags.id', '=', 'questions.tag_id')
+        ->where('questions.user_id','=',$id)->get();;
+        return response()->json([
+            'data' => $tags,
+            'message' => 'Found Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
     // _____________ Adding a question _____________
     public function addQuestion(Request $request){
         $validator = Validator::make($request->all(), [
