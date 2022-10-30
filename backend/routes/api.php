@@ -40,6 +40,5 @@ Route::prefix('v0')->group(function () {
         Route::post('/add', [TagController::class, 'addTag'])->name('add-tag');
         Route::post('/update/{id?}', [TagController::class, 'updateTag'])->name('update-tag');
         Route::post('/delete/{id?}', [TagController::class, 'deleteTag'])->name('delete-tag');
-        Route::post('/update', [TagController::class, 'searchTag'])->name('update-tag');
     });
 });
