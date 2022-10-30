@@ -92,7 +92,7 @@ Route::prefix('v0')->group(function () {
         Route::post('/removeSavedQuestion', [QuestionController::class, 'removeSavedQuestion'])->name('remove-saved-question');
 
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
-        //Route::post('/update/{id?}', [QuestionController::class, 'updateTag'])->name('update-tag');
+        Route::post('/update/{id?}', [QuestionController::class, 'EditQuestion'])->name('update-question');
         Route::post('/delete/{id?}', [QuestionController::class, 'deleteQuestion'])->name('delete-question');
     });
 });

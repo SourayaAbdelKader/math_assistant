@@ -115,6 +115,44 @@ class QuestionController extends Controller{
 
     }
 
+    // _____________ Editing a question _____________
+    public function EditQuestion(Request $request, $id){
+        $validator = Validator::make($request->all(), [
+            'problem' => 'string|min:10|max:1500',
+            'description' => 'nullable|string|min:10|max:1500',
+            'suggested_solution' => 'string|min:10|max:1500',
+            'tag_id' => 'integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
+        $question = Question::find($id);
+
+        $question->problem = $request->problem ? $request->problem : $question->problem;
+        $question->description = $request->description ? $request->description : $question->description;
+        $question->suggested_solution = $request->suggested_solution ? $request->suggested_solution : $question->suggested_solution;
+        $question->tag_id = $request->tag_id ? $request->tag_id : $question->tag_id;
+
+        if($question->save()){
+            return response()->json([
+                "status" => "Success",
+                "data" => $question
+            ]);
+        }
+
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error updating a model"
+        ]);
+
+    }
+
     // _____________ Deleting a question _____________
     public function deleteQuestion($id){
         $question = Question::find($id);
