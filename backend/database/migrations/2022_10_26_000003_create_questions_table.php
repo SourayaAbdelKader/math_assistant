@@ -10,9 +10,9 @@ return new class extends Migration{
         
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->text('problem', 1500);
+            $table->text('problem', 1500)->nullable();
             $table->text('description', 1500)->nullable();
-            $table->text('suggested_solution', 1500);
+            $table->text('suggested_solution', 1500)->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();

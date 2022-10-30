@@ -19,7 +19,7 @@ class Question extends Model{
     protected $fillable = [
         'problem',
         'description',
-        'suggested_solution	',
+        'suggested_solution',
         'user_id',
         'tag_id',
     ];

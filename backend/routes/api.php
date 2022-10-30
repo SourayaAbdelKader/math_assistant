@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\QuestionController;
 
 Route::prefix('v0')->group(function () {
 
@@ -57,6 +58,7 @@ Route::prefix('v0')->group(function () {
         Route::get('/weekAdmins', [UserController::class, 'weekAdmin'])->name('week-admins');
     });
 
+    // All routes related to the tag model
     Route::prefix('tag')->group(function () {
         Route::get('/', [TagController::class, 'getTags'])->name('get-tags');
         Route::get('/id/{id?}', [TagController::class, 'getTagById'])->name('get-tag-by-id');
@@ -66,5 +68,17 @@ Route::prefix('v0')->group(function () {
         Route::post('/add', [TagController::class, 'addTag'])->name('add-tag');
         Route::post('/update/{id?}', [TagController::class, 'updateTag'])->name('update-tag');
         Route::post('/delete/{id?}', [TagController::class, 'deleteTag'])->name('delete-tag');
+    });
+
+    // All routes related to the question model
+    Route::prefix('question')->group(function () {
+        Route::get('/', [QuestionController::class, 'getTags'])->name('get-tags');
+        Route::get('/id/{id?}', [QuestionController::class, 'getTagById'])->name('get-tag-by-id');
+        Route::get('/search/{data?}', [QuestionController::class, 'searchTag'])->name('search-tag');
+        Route::get('/name/{name?}', [QuestionController::class, 'getTagByName'])->name('get-tag-by-name');
+        Route::get('/count', [QuestionController::class, 'countTags'])->name('count-tags');
+        Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
+        Route::post('/update/{id?}', [QuestionController::class, 'updateTag'])->name('update-tag');
+        Route::post('/delete/{id?}', [QuestionController::class, 'deleteTag'])->name('delete-tag');
     });
 });
