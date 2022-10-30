@@ -54,8 +54,8 @@ class TagController extends Controller{
     public function updateTag(Request $request, $id){
         $tag = Tag::find($id);
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:5|max:70|unique:tags,name',
-            'description' => 'required|string|min:30',
+            'name' => 'string|min:5|max:70|unique:tags,name',
+            'description' => 'string|min:30',
         ]);
 
         if ($validator->fails()) {
@@ -65,8 +65,8 @@ class TagController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        $tag->name = $tag->name ? $tag->name : $tag->name;
-        $tag->description = $tag->description? $tag->description : $tag->description;
+        $tag->name = $request->name ? $requesr->name : $tag->name;
+        $tag->description = $request->description? $request->description : $tag->description;
 
         if($tag->save()){
             return response()->json([
@@ -83,7 +83,7 @@ class TagController extends Controller{
 
     // _____________ Getting Tags _____________
     public function getTags(){ 
-        $tags = Tag::find()->orderBy('created_at', 'DESC')->get(); ;
+        $tags = Tag::orderBy('created_at', 'DESC')->get();
        
         if ($tags->isNotEmpty()) {
             return response()->json([
@@ -103,6 +103,24 @@ class TagController extends Controller{
     // _____________ Getting Tag by id _____________
     public function getTagById($id){
         $tag = Tag::where('id', $id)->get();
+        if ($tag->isNotEmpty()) {
+            return response()->json([
+                'data' => $tag,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Tag Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Getting Tag by name _____________
+    public function getTagByName($name){
+        $tag = Tag::where('name', $name)->get();
         if ($tag->isNotEmpty()) {
             return response()->json([
                 'data' => $tag,

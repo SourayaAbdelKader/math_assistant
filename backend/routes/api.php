@@ -35,7 +35,8 @@ Route::prefix('v0')->group(function () {
     Route::prefix('tag')->group(function () {
         Route::get('/', [TagController::class, 'getTags'])->name('get-tags');
         Route::get('/{id?}', [TagController::class, 'getTagById'])->name('get-tag-by-id');
-        Route::get('/search/{data?}', [TagController::class, 'getUsers'])->name('search-tag');
+        Route::get('/search/{data?}', [TagController::class, 'searchTag'])->name('search-tag');
+        Route::get('/name/{name?}', [TagController::class, 'getTagByName'])->name('get-tag-by-name');
         Route::post('/add', [TagController::class, 'addTag'])->name('add-tag');
         Route::post('/update/{id?}', [TagController::class, 'updateTag'])->name('update-tag');
         Route::post('/delete/{id?}', [TagController::class, 'deleteTag'])->name('delete-tag');
