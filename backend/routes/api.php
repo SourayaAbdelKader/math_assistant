@@ -17,7 +17,9 @@ Route::prefix('v0')->group(function () {
         Route::get('me', 'me');
     });
 
+    // ___________________ Routes related to the users ___________________
     Route::prefix('general')->group(function () {
+
         // getting users info regarding their user type 
         Route::get('/users', [UserController::class, 'getUsers'])->name('get-users');
         Route::get('/editors', [UserController::class, 'getEditors'])->name('get-editors');
@@ -58,7 +60,7 @@ Route::prefix('v0')->group(function () {
         Route::get('/weekAdmins', [UserController::class, 'weekAdmin'])->name('week-admins');
     });
 
-    // All routes related to the tag model
+    // ___________________ Routes related to the tags ___________________
     Route::prefix('tag')->group(function () {
         Route::get('/', [TagController::class, 'getTags'])->name('get-tags');
         Route::get('/id/{id?}', [TagController::class, 'getTagById'])->name('get-tag-by-id');
@@ -70,8 +72,10 @@ Route::prefix('v0')->group(function () {
         Route::post('/delete/{id?}', [TagController::class, 'deleteTag'])->name('delete-tag');
     });
 
-    // All routes related to the question model
+    // ___________________ Routes related to the tags ___________________
     Route::prefix('question')->group(function () {
+
+        // to get informations
         Route::get('/', [QuestionController::class, 'getQuestions'])->name('get-questions');
         Route::get('/id/{id?}', [QuestionController::class, 'getQuestionById'])->name('get-question-by-id');
         Route::get('/tag/{id?}', [QuestionController::class, 'getQuestionsPerTag'])->name('get-question-per-tag');
@@ -89,11 +93,13 @@ Route::prefix('v0')->group(function () {
         Route::get('/todayQuestions', [QuestionController::class, 'todayQuestion'])->name('today-questions');
         Route::get('/weekQuestions', [QuestionController::class, 'weekQuestion'])->name('week-questions');
 
+        // routes related to saved questions
         Route::post('/save', [QuestionController::class, 'saveQuestion'])->name('save-question');
         Route::get('/savedQuestions/{id?}', [QuestionController::class, 'getSavedQuestions'])->name('get-saved-question');
         Route::post('/removeSavedQuestion', [QuestionController::class, 'removeSavedQuestion'])->name('remove-saved-question');
         Route::get('/countSavedQuestions/{id?}', [QuestionController::class, 'countSavedQuestions'])->name('count-saved-question');
 
+        // routes related to manipulate questions
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
         Route::post('/update/{id?}', [QuestionController::class, 'EditQuestion'])->name('update-question');
         Route::post('/delete/{id?}', [QuestionController::class, 'deleteQuestion'])->name('delete-question');
