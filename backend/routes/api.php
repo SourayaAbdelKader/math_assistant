@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TagController;
 
 Route::prefix('v0')->group(function () {
 
@@ -25,9 +26,19 @@ Route::prefix('v0')->group(function () {
         Route::get('/countAdmins', [UserController::class, 'countAdmins'])->name('count-admin');
         Route::post('/addUser', [UserController::class, 'addUser'])->name('add-user');
         Route::post('/deleteUser/{id?}', [UserController::class, 'deleteUser'])->name('delete-user');
-        Route::get('/yearUSers', [UserController::class, 'yearUSers'])->name('count-editors');
-        Route::get('/monthUsers', [UserController::class, 'monthUsers'])->name('count-editors');
-        Route::get('/todayUser', [UserController::class, 'todayUser'])->name('count-editors');
-        Route::get('/weekUser', [UserController::class, 'weekUser'])->name('count-editors');
+        Route::get('/yearUSers', [UserController::class, 'yearUSers'])->name('year-users');
+        Route::get('/monthUsers', [UserController::class, 'monthUsers'])->name('month-users');
+        Route::get('/todayUser', [UserController::class, 'todayUser'])->name('today-users');
+        Route::get('/weekUser', [UserController::class, 'weekUser'])->name('week-users');
+    });
+
+    Route::prefix('tag')->group(function () {
+        Route::get('/', [TagController::class, 'getTags'])->name('get-tags');
+        Route::get('/{id?}', [TagController::class, 'getTagById'])->name('get-tag-by-id');
+        Route::get('/search/{data?}', [TagController::class, 'getUsers'])->name('search-tag');
+        Route::post('/add', [TagController::class, 'addTag'])->name('add-tag');
+        Route::post('/update/{id?}', [TagController::class, 'updateTag'])->name('update-tag');
+        Route::post('/delete/{id?}', [TagController::class, 'deleteTag'])->name('delete-tag');
+        Route::post('/update', [TagController::class, 'searchTag'])->name('update-tag');
     });
 });

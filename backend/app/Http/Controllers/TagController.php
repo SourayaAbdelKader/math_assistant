@@ -9,8 +9,8 @@ use App\Models\Tag;
 
 class TagController extends Controller{
 
-    // to validate the request data before adding or editing a tag                        
-    public function validateData(Request $request){
+    // _____________ Adding a tag _____________
+    public function addTag(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:5|max:70|unique:tags,name',
             'description' => 'required|string|min:30',
@@ -23,11 +23,6 @@ class TagController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-    }
-
-    // _____________ Adding a tag _____________
-    public function addTag(Request $request){
-        validateData(Request $request)
         $data = $request->all();
         $tag = Tag::create($data);
         return response()->json([
@@ -58,7 +53,18 @@ class TagController extends Controller{
     // _____________ Updating a Tag _____________
     public function updateTag(Request $request, $id){
         $tag = Tag::find($id);
-        validateData(Request $request)
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:5|max:70|unique:tags,name',
+            'description' => 'required|string|min:30',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $tag->name = $tag->name ? $tag->name : $tag->name;
         $tag->description = $tag->description? $tag->description : $tag->description;
 
