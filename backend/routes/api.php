@@ -72,13 +72,13 @@ Route::prefix('v0')->group(function () {
 
     // All routes related to the question model
     Route::prefix('question')->group(function () {
-        Route::get('/', [QuestionController::class, 'getTags'])->name('get-tags');
-        Route::get('/id/{id?}', [QuestionController::class, 'getTagById'])->name('get-tag-by-id');
-        Route::get('/search/{data?}', [QuestionController::class, 'searchTag'])->name('search-tag');
-        Route::get('/name/{name?}', [QuestionController::class, 'getTagByName'])->name('get-tag-by-name');
-        Route::get('/count', [QuestionController::class, 'countTags'])->name('count-tags');
+        //Route::get('/', [QuestionController::class, 'getTags'])->name('get-tags');
+        //Route::get('/id/{id?}', [QuestionController::class, 'getTagById'])->name('get-tag-by-id');
+        //Route::get('/search/{data?}', [QuestionController::class, 'searchTag'])->name('search-tag');
+        //Route::get('/name/{name?}', [QuestionController::class, 'getTagByName'])->name('get-tag-by-name');
+        Route::get('/count', [QuestionController::class, 'countQuestions'])->name('count-questions');
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
-        Route::post('/update/{id?}', [QuestionController::class, 'updateTag'])->name('update-tag');
-        Route::post('/delete/{id?}', [QuestionController::class, 'deleteTag'])->name('delete-tag');
+        //Route::post('/update/{id?}', [QuestionController::class, 'updateTag'])->name('update-tag');
+        Route::post('/delete/{id?}', [QuestionController::class, 'deleteQuestion'])->name('delete-question');
     });
 });

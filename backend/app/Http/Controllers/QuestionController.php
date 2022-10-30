@@ -14,7 +14,16 @@ use Carbon\Carbon;
 
 class QuestionController extends Controller{
 
-    // _____________ Adding a Question _____________
+    // _____________ Counting questions _____________
+    public function countQuestions(){
+        $number = Question::distinct()->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Adding a question _____________
     public function addQuestion(Request $request){
         $validator = Validator::make($request->all(), [
             'problem' => 'required|string|min:10|max:1500',
@@ -39,6 +48,23 @@ class QuestionController extends Controller{
             'status' =>  Response::HTTP_OK
         ]);
 
+    }
+
+    // _____________ Deleting a question _____________
+    public function deleteQuestion($id){
+        $question = Question::find($id);
+        if ($question){
+            $delete = $question->delete();
+            if ($delete) {
+                return response()->json([
+                    'status' => 'success'
+                ]);
+            }
+        }
+        return response()->json([
+            'data' => 'Tag Not Found',
+            'status' => 'success'
+        ]);
     }
     
 }
