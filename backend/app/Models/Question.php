@@ -16,6 +16,14 @@ use App\Saved_question;
 
 class Question extends Model{
 
+    protected $fillable = [
+        'problem',
+        'description',
+        'suggested_solution	',
+        'user_id',
+        'tag_id',
+    ];
+
     use HasFactory;
 
     public function users(){
