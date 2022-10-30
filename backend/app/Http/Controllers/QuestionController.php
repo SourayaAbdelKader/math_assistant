@@ -27,7 +27,7 @@ class QuestionController extends Controller{
     public function addQuestion(Request $request){
         $validator = Validator::make($request->all(), [
             'problem' => 'required|string|min:10|max:1500',
-            'description' => 'string|min:10|max:1500',
+            'description' => 'nullable|string|min:10|max:1500',
             'suggested_solution' => 'required|string|min:10|max:1500',
             'user_id' => 'required|integer',
             'tag_id' => 'required|integer',
@@ -62,9 +62,63 @@ class QuestionController extends Controller{
             }
         }
         return response()->json([
-            'data' => 'Tag Not Found',
+            'data' => 'Question Not Found',
             'status' => 'success'
         ]);
     }
     
+    // _____________ Getting questions _____________
+    public function getQuestions(){ 
+        $question = Question::orderBy('created_at', 'DESC')->get();
+       
+        if ($question->isNotEmpty()) {
+            return response()->json([
+                'data' => $question,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'No Questions',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Getting question by id _____________
+    public function getQuestionById($id){
+        $question = Question::where('id', $id)->get();
+        if ($question->isNotEmpty()) {
+            return response()->json([
+                'data' => $question,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Getting tag by id _____________
+    public function getQuestionById($id){
+        $question = Question::where('id', $id)->get();
+        if ($question->isNotEmpty()) {
+            return response()->json([
+                'data' => $question,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
 }

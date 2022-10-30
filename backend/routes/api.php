@@ -72,8 +72,8 @@ Route::prefix('v0')->group(function () {
 
     // All routes related to the question model
     Route::prefix('question')->group(function () {
-        //Route::get('/', [QuestionController::class, 'getTags'])->name('get-tags');
-        //Route::get('/id/{id?}', [QuestionController::class, 'getTagById'])->name('get-tag-by-id');
+        Route::get('/', [QuestionController::class, 'getQuestions'])->name('get-questions');
+        Route::get('/id/{id?}', [QuestionController::class, 'getQuestionById'])->name('get-question-by-id');
         //Route::get('/search/{data?}', [QuestionController::class, 'searchTag'])->name('search-tag');
         //Route::get('/name/{name?}', [QuestionController::class, 'getTagByName'])->name('get-tag-by-name');
         Route::get('/count', [QuestionController::class, 'countQuestions'])->name('count-questions');
