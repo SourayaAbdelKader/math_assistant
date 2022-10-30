@@ -81,6 +81,12 @@ Route::prefix('v0')->group(function () {
         Route::get('/countPerTag/{id?}', [QuestionController::class, 'countQuestionsPerTag'])->name('count-questions-per-tag');
         Route::get('/countPerUser/{id?}', [QuestionController::class, 'countQuestionsPerUser'])->name('count-questions-per-user');
 
+        // get questions depending on a certain time
+        Route::get('/yearQuestions', [QuestionController::class, 'yearQuestions'])->name('year-questions');
+        Route::get('/monthQuestions', [QuestionController::class, 'monthQuestions'])->name('month-questions');
+        Route::get('/todayQuestions', [QuestionController::class, 'todayQuestion'])->name('today-questions');
+        Route::get('/weekQuestions', [QuestionController::class, 'weekQuestion'])->name('week-questions');
+
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
         //Route::post('/update/{id?}', [QuestionController::class, 'updateTag'])->name('update-tag');
         Route::post('/delete/{id?}', [QuestionController::class, 'deleteQuestion'])->name('delete-question');

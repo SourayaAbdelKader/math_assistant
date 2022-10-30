@@ -175,7 +175,89 @@ class QuestionController extends Controller{
 
         return response()->json([
             'data' => null,
-            'message' => 'Tag Not Found',
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    //_____________ Getting the questions asked the current day, week, month, year _____________
+    // to get this month asked questions
+    public function monthQuestions(){
+        $questions = Question::whereMonth('created_at', now()->month) // checking if the month of created_at is current month
+        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // to get this year asked questions
+    public function yearQuestions(){
+        $questions = Question::whereYear('created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('created_at', 'DESC')
+        ->get();      
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // to get this day asked questions
+    public function todayQuestion(){
+        $questions = Question::whereDate('created_at', Carbon::today())
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // to het this week asked questions
+    public function weekQuestion(){
+        $questions = Question::whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
             'status' => Response::HTTP_OK
         ]);
     }
