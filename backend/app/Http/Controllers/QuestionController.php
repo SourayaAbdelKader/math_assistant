@@ -104,9 +104,27 @@ class QuestionController extends Controller{
         ]);
     }
 
-    // _____________ Getting tag per tag _____________
+    // _____________ Getting questions per tag _____________
     public function getQuestionsPerTag($id){
         $questions = Question::where('tag_id', $id)->get();
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Getting questions per user _____________
+    public function getQuestionsPerUser($id){
+        $questions = Question::where('user_id', $id)->get();
         if ($questions->isNotEmpty()) {
             return response()->json([
                 'data' => $questions,
