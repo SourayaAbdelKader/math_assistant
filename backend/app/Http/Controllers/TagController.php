@@ -9,6 +9,15 @@ use App\Models\Tag;
 
 class TagController extends Controller{
 
+    // _____________ Counting tags _____________
+    public function countTags(){
+        $number = Tag::distinct()->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
     // _____________ Adding a tag _____________
     public function addTag(Request $request){
         $validator = Validator::make($request->all(), [
