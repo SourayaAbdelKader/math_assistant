@@ -90,6 +90,7 @@ Route::prefix('v0')->group(function () {
         Route::post('/save', [QuestionController::class, 'saveQuestion'])->name('save-question');
         Route::get('/savedQuestions/{id?}', [QuestionController::class, 'getSavedQuestions'])->name('get-saved-question');
         Route::post('/removeSavedQuestion', [QuestionController::class, 'removeSavedQuestion'])->name('remove-saved-question');
+        Route::get('/countSavedQuestions/{id?}', [QuestionController::class, 'countSavedQuestions'])->name('count-saved-question');
 
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
         Route::post('/update/{id?}', [QuestionController::class, 'EditQuestion'])->name('update-question');

@@ -79,6 +79,15 @@ class QuestionController extends Controller{
         ]);
     }
 
+    // _____________ Counting saved questions for a user _____________
+    public function countSavedQuestions($id){
+        $number = Saved_question::where('user_id', '=', $id)->distinct()->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
     // _____________ Counting questions _____________
     public function countQuestions(){
         $number = Question::distinct()->count();
