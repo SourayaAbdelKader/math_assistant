@@ -49,6 +49,36 @@ class QuestionController extends Controller{
         ]);
     }
 
+    // _____________ Removing a saved question _____________
+    public function removeSavedQuestion(Request $request){
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|integer',
+            'question_id' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $saved_question = Saved_question::where('user_id', '=', $request->user_id)
+        ->where('question_id', '=', $request->question_id);
+        if ($saved_question){
+            $delete = $saved_question->delete();
+            if ($delete) {
+                return response()->json([
+                    'status' => 'success'
+                ]);
+            }
+        }
+        return response()->json([
+            'data' => 'Question Not Found',
+            'status' => 'success'
+        ]);
+    }
+
     // _____________ Counting questions _____________
     public function countQuestions(){
         $number = Question::distinct()->count();
