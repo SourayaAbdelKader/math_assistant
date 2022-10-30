@@ -132,7 +132,6 @@ class QuestionController extends Controller{
             'message' => 'Added Successfully',
             'status' =>  Response::HTTP_OK
         ]);
-
     }
 
     // _____________ Editing a question _____________
@@ -170,7 +169,6 @@ class QuestionController extends Controller{
             "status" => "Error",
             "data" => "Error updating a model"
         ]);
-
     }
 
     // _____________ Deleting a question _____________

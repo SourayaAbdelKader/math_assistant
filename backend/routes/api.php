@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswerController;
 
 Route::prefix('v0')->group(function () {
 
@@ -103,5 +104,11 @@ Route::prefix('v0')->group(function () {
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
         Route::post('/update/{id?}', [QuestionController::class, 'EditQuestion'])->name('update-question');
         Route::post('/delete/{id?}', [QuestionController::class, 'deleteQuestion'])->name('delete-question');
+    });
+
+    // ___________________ Routes related to the answers ___________________
+    Route::prefix('answer')->group(function () {
+        Route::post('/add', [AnswerController::class, 'addAnswer'])->name('add-answer');
+
     });
 });
