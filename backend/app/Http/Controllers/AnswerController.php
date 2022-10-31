@@ -117,33 +117,49 @@ class AnswerController extends Controller{
         ]);
     }
 
-        // _____________ Votinf up an answer _____________
-        public function voteUpAnswer(Request $request){
-            $vote_up_score = 5;
-            // to check if the answer is already accepted
-            $answer = Answer::find($id);
+    // _____________ Voting up an answer _____________
+    public function voteUpAnswer(Request $request){
+        $vote_up_score = 5;
 
-            // change the status and the score
-            $answer->accepted = 1;
-            $answer->score = $answer->score + $accept_score;
-            $answer->save();
-                
-            // to add the new score to the scores table
-            $old_score = Score::where('user_id', $answer->user_id)->get();
-            if ($old_score->isNotEmpty()){
-                $alter_score = Score::where('user_id', $answer->user_id)->orderBy('created_at', 'DESC')->get();
-                $final = $alter_score[0]->score + $accept_score;   
-            } else { $final = $accept_score;};
-            $score = new Score; 
-            $score->user_id = $answer->user_id;
-            $score->score = $final;
-            $score->save();
-        
+        $validator = Validator::make($request->all(), [
+            'answer_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'vote' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
             return response()->json([
-                'data' => $answer, $score,
-                'message' => 'Added Successfully',
-                'status' =>  Response::HTTP_OK
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
+
+        // adding the voting to the table
+        $data = $request->all();
+        $vote = Vote::create($data);
+        
+        $answer = Answer::find($request->answer_id);
+        // change the status and the score
+        $answer->score = $answer->score + $vote_up_score;
+        $answer->save();
+                
+        // to add the new score to the scores table
+        $old_score = Score::where('user_id', $answer->user_id)->get();
+        if ($old_score->isNotEmpty()){
+            $alter_score = Score::where('user_id', $answer->user_id)->orderBy('created_at', 'DESC')->get();
+            $final = $alter_score[0]->score + $vote_up_score;   
+        } else { $final = $vote_up_score;};
+        $score = new Score; 
+        $score->user_id = $answer->user_id;
+        $score->score = $final;
+        $score->save();
+        
+        return response()->json([
+            'data' => $answer, $score,
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
 
 }

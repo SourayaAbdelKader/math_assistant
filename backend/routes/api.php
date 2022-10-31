@@ -110,6 +110,7 @@ Route::prefix('v0')->group(function () {
     Route::prefix('answer')->group(function () {
         Route::post('/add', [AnswerController::class, 'addAnswer'])->name('add-answer');
         Route::post('/accept', [AnswerController::class, 'acceptAnswer'])->name('accept-answer');
+        Route::post('/voteUp', [AnswerController::class, 'voteUpAnswer'])->name('vote-up-answer');
         
     });
 });
