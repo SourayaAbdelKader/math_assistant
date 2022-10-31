@@ -23,6 +23,8 @@ class Problem extends Model{
         'picture_url',
         'user_id',
         'tag_id',
+        'level',
+        'points',
     ];
 
     public function tags(){

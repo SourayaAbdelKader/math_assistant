@@ -21,6 +21,8 @@ class ProblemController extends Controller{
             'picture_url' => 'string|min:10|max:250',
             'user_id' => 'required|integer',
             'tag_id' => 'required|integer',
+            'level' => 'required|string|in:easy,medium,hard',
+            'points' => 'required|integer|min:1|max:15',
         ]);
 
         if ($validator->fails()) {
