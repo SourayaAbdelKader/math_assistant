@@ -220,7 +220,7 @@ class UserController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'No Users',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -238,7 +238,7 @@ class UserController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'No Users',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -256,7 +256,7 @@ class UserController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'User Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -274,7 +274,7 @@ class UserController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'User Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -329,14 +329,14 @@ class UserController extends Controller{
 
         if($user->save()){
             return response()->json([
-                "status" => "Success",
+                "status" => Response::HTTP_OK
                 "data" => $user
             ]);
         }
 
         return response()->json([
             "status" => "Error",
-            "data" => "Error updating a model"
+            "data" => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -431,13 +431,13 @@ class UserController extends Controller{
             $delete = $user->delete();
             if ($delete) {
                 return response()->json([
-                    'status' => 'success'
+                    'status' => Response::HTTP_OK
                 ]);
             }
         }
         return response()->json([
             'data' => 'User Not Found',
-            'status' => 'success'
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
