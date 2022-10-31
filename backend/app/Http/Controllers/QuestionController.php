@@ -75,7 +75,7 @@ class QuestionController extends Controller{
         }
         return response()->json([
             'data' => 'Question Not Found',
-            'status' => 'success'
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -160,13 +160,13 @@ class QuestionController extends Controller{
 
         if($question->save()){
             return response()->json([
-                "status" => "Success",
+                "status" => Response::HTTP_OK,
                 "data" => $question
             ]);
         }
 
         return response()->json([
-            "status" => "Error",
+            "status" => Response::HTTP_INTERNAL_SERVER_ERROR,
             "data" => "Error updating a model"
         ]);
     }
@@ -178,13 +178,13 @@ class QuestionController extends Controller{
             $delete = $question->delete();
             if ($delete) {
                 return response()->json([
-                    'status' => 'success'
+                    'status' => Response::HTTP_OK
                 ]);
             }
         }
         return response()->json([
             'data' => 'Question Not Found',
-            'status' => 'success'
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
     
@@ -202,8 +202,8 @@ class QuestionController extends Controller{
 
         return response()->json([
             'data' => null,
-            'message' => 'No Questions',
-            'status' => Response::HTTP_OK
+            'message' => 'Questions Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -221,7 +221,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -239,7 +239,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -266,7 +266,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -297,7 +297,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -319,7 +319,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -339,7 +339,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -359,7 +359,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -379,7 +379,7 @@ class QuestionController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Question Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 }
