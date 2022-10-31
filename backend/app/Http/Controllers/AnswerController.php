@@ -162,4 +162,52 @@ class AnswerController extends Controller{
         ]);
     }
 
+        // _____________ Voting down an answer _____________
+        public function voteDownAnswer(Request $request){
+            $vote_down_score = -5;
+    
+            $validator = Validator::make($request->all(), [
+                'answer_id' => 'required|integer',
+                'user_id' => 'required|integer',
+                'vote' => 'required|integer',
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'data' => $validator->errors(),
+                    'message' => 'Invalid Data',
+                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            }
+    
+            // adding the voting to the table
+            $data = $request->all();
+            $vote = Vote::create($data);
+            
+            $answer = Answer::find($request->answer_id);
+            // change the status and the score
+            if ($answer->score + $vote_down_score >= 0 ){ // to keep the score positive or null
+                $answer->score = $answer->score + $vote_down_score;
+                $answer->save();
+            } 
+            // to add the new score to the scores table
+            $old_score = Score::where('user_id', $answer->user_id)->get();
+            if ($old_score->isNotEmpty()){
+                $alter_score = Score::where('user_id', $answer->user_id)->orderBy('created_at', 'DESC')->get();
+                $final = $alter_score[0]->score + $vote_down_score;  
+                if ($final >= 0){
+                    $score = new Score; 
+                    $score->user_id = $answer->user_id;
+                    $score->score = $final;
+                $score->save(); 
+                };
+            };
+            
+            return response()->json([
+                'data' => $answer,
+                'message' => 'Added Successfully',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
 }
