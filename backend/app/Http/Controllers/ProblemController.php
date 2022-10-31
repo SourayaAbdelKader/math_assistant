@@ -62,4 +62,21 @@ class ProblemController extends Controller{
         ]);
     }
 
+    // _____________ Deleting a problem _____________
+    public function deleteProblem($id){
+        $problem = Problem::find($id);
+        if ($problem){
+            $delete = $problem->delete();
+            if ($delete) {
+                return response()->json([
+                    'status' => Response::HTTP_OK
+                ]);
+            }
+        }
+        return response()->json([
+            'data' => 'Problem Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
 }
