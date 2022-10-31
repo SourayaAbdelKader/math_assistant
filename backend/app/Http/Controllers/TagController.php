@@ -49,13 +49,13 @@ class TagController extends Controller{
             $delete = $tag->delete();
             if ($delete) {
                 return response()->json([
-                    'status' => 'success'
+                    'status' => Response::HTTP_OK
                 ]);
             }
         }
         return response()->json([
             'data' => 'Tag Not Found',
-            'status' => 'success'
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -79,13 +79,13 @@ class TagController extends Controller{
 
         if($tag->save()){
             return response()->json([
-                "status" => "Success",
-                "data" => $tag
+                "data" => $tag,
+                "status" => Response::HTTP_OK
             ]);
         }
 
         return response()->json([
-            "status" => "Error",
+            "status" => Response::HTTP_INTERNAL_SERVER_ERROR,
             "data" => "Error updating a model"
         ]);
     }
@@ -105,7 +105,7 @@ class TagController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'No Tags',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -123,7 +123,7 @@ class TagController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Tag Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -141,7 +141,7 @@ class TagController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'Tag Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -160,9 +160,9 @@ class TagController extends Controller{
         }
 
         return response()->json([
-            'data' => null,
+            'data' => 'null',
             'message' => 'Tag Not Found',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 }
