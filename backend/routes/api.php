@@ -114,7 +114,9 @@ Route::prefix('v0')->group(function () {
         Route::post('/voteDown', [AnswerController::class, 'voteDownAnswer'])->name('vote-down-answer');
         Route::get('/question/{id?}', [AnswerController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
         Route::post('/delete/{id?}', [AnswerController::class, 'deleteAnswer'])->name('delete-answer');
+        Route::get('/votes/{id?}', [AnswerController::class, 'countVotesPerQuestion'])->name('count-votes-per-answer');
 
+        
         
     });
 });

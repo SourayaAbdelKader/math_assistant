@@ -286,8 +286,25 @@ class AnswerController extends Controller{
 
         return response()->json([
             'data' => null,
-            'message' => 'No Answers',
+            'message' => 'Answers Not Found',
             'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // Counting votes per question
+    public function countVotesPerQuestion($id){
+        $answer = Answer::find($id);
+        if (! $answer){
+            return response()->json([
+                'data' => null,
+                'message' => 'Answer Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $votes = [Vote::where('answer_id','=',$id)->where('vote','=','1')->count(), Vote::where('answer_id','=',$id)->where('vote','=','0')->count()];
+        return response()->json([
+            'data' => $votes,
+            'status' =>  Response::HTTP_OK
         ]);
     }
 
