@@ -210,4 +210,21 @@ class AnswerController extends Controller{
         ]);
     }
 
+    // _____________ getting answers per question _____________
+    public function getAnswersPerQuestion($id){
+        $answers = Answer::where('question_id', '=', $id)
+        ->where('score', '!=', '0') //don't show answers which have 0 as a score 
+        ->orderBy('score', 'DESC') // ordered by score
+        ->orderBy('accepted', 'DESC') // order by accepted or not
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        return response()->json([
+            'data' => $answers,
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+
+    }
+
 }

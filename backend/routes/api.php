@@ -112,6 +112,8 @@ Route::prefix('v0')->group(function () {
         Route::post('/accept', [AnswerController::class, 'acceptAnswer'])->name('accept-answer');
         Route::post('/voteUp', [AnswerController::class, 'voteUpAnswer'])->name('vote-up-answer');
         Route::post('/voteDown', [AnswerController::class, 'voteDownAnswer'])->name('vote-down-answer');
+        Route::get('/question/{id?}', [AnswerController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
 
+        
     });
 });
