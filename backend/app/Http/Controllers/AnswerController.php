@@ -32,7 +32,18 @@ class AnswerController extends Controller{
                 'message' => 'Invalid Data',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
-        }
+        };
+        
+        // to check if the question existed
+        $question = Question::find($request->question_id);
+        if(! $question) {
+            return response()->json([
+                'data' => 'error',
+                'message' => 'Question Not Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        };
+
         $answer = new Answer;
         $answer->description = $request->description;
         $answer->user_id = $request->user_id;
@@ -135,11 +146,19 @@ class AnswerController extends Controller{
             ]);
         }
 
+        $answer = Answer::find($request->answer_id);
+        if (! $answer){
+            return response()->json([
+                'data' => null,
+                'message' => 'Answer Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
+
         // adding the voting to the table
         $data = $request->all();
         $vote = Vote::create($data);
         
-        $answer = Answer::find($request->answer_id);
         // change the status and the score
         $answer->score = $answer->score + $vote_up_score;
         $answer->save();
@@ -185,6 +204,13 @@ class AnswerController extends Controller{
         $vote = Vote::create($data);
             
         $answer = Answer::find($request->answer_id);
+        if (! $answer) {
+            return response()->json([
+                'data' => 'error',
+                'message' => 'Answer Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         // change the status and the score
         if ($answer->score + $vote_down_score >= 0 ){ // to keep the score positive or null
             $answer->score = $answer->score + $vote_down_score;
@@ -230,7 +256,7 @@ class AnswerController extends Controller{
         return response()->json([
             'data' => null,
             'message' => 'No Answers',
-            'status' => Response::HTTP_OK
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
