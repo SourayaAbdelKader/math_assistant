@@ -58,4 +58,39 @@ class AnswerController extends Controller{
         ]);
     }
 
+    // _____________ Accepting an answer _____________
+    public function acceptAnswer($id){
+        $accept_score = 10;
+        // to check if the answer is already accepted
+        $answer = Answer::find($id);
+        if ($answer->accepted == 1) {
+            return response()->json([
+                'data' => 'error',
+                'message' => 'Answer Already Accepted',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]); 
+        };
+        // change the status and the score
+        $answer->accepted = 1;
+        $answer->score = $answer->score + $accept_score;
+        $answer->save();
+            
+        // to add the new score to the scores table
+        $old_score = Score::where('user_id', $answer->user_id)->get();
+        if ($old_score->isNotEmpty()){
+            $alter_score = Score::where('user_id', $answer->user_id)->orderBy('created_at', 'DESC')->get();
+            $final = $alter_score[0]->score + $accept_score;   
+        } else { $final = $accept_score;};
+        $score = new Score; 
+        $score->user_id = $answer->user_id;
+        $score->score = $final;
+        $score->save();
+    
+        return response()->json([
+            'data' => $answer, $score,
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
 }
