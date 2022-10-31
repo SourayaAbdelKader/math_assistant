@@ -291,7 +291,7 @@ class AnswerController extends Controller{
         ]);
     }
 
-    // Counting votes per question
+    // Counting votes per answer
     public function countVotesPerQuestion($id){
         $answer = Answer::find($id);
         if (! $answer){

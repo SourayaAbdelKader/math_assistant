@@ -329,7 +329,7 @@ class UserController extends Controller{
 
         if($user->save()){
             return response()->json([
-                "status" => Response::HTTP_OK
+                "status" => Response::HTTP_OK,
                 "data" => $user
             ]);
         }

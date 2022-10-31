@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\ProblemController;
 
 Route::prefix('v0')->group(function () {
 
@@ -114,9 +115,18 @@ Route::prefix('v0')->group(function () {
         Route::post('/voteDown', [AnswerController::class, 'voteDownAnswer'])->name('vote-down-answer');
         Route::get('/question/{id?}', [AnswerController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
         Route::post('/delete/{id?}', [AnswerController::class, 'deleteAnswer'])->name('delete-answer');
-        Route::get('/votes/{id?}', [AnswerController::class, 'countVotesPerQuestion'])->name('count-votes-per-answer');
-
-        
-        
+        Route::get('/votes/{id?}', [AnswerController::class, 'countVotesPerQuestion'])->name('count-votes-per-answer');  
     });
+
+    // ___________________ Routes related to the problems ___________________
+    Route::prefix('problem')->group(function () {
+        Route::post('/add', [ProblemController::class, 'addProblem'])->name('add-problem');
+        Route::post('/accept', [ProblemController::class, 'acceptAnswer'])->name('accept-answer');
+        Route::post('/voteUp', [ProblemController::class, 'voteUpAnswer'])->name('vote-up-answer');
+        Route::post('/voteDown', [ProblemController::class, 'voteDownAnswer'])->name('vote-down-answer');
+        Route::get('/question/{id?}', [ProblemController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
+        Route::post('/delete/{id?}', [ProblemController::class, 'deleteAnswer'])->name('delete-answer');
+        Route::get('/votes/{id?}', [ProblemController::class, 'countVotesPerQuestion'])->name('count-votes-per-answer');  
+    });
+
 });

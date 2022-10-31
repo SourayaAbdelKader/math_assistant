@@ -17,6 +17,14 @@ class Problem extends Model{
 
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'picture_url',
+        'user_id',
+        'tag_id',
+    ];
+
     public function tags(){
         return $this->belongsTo(Tag::class);
     }
