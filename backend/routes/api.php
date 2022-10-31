@@ -113,6 +113,7 @@ Route::prefix('v0')->group(function () {
         Route::post('/voteUp', [AnswerController::class, 'voteUpAnswer'])->name('vote-up-answer');
         Route::post('/voteDown', [AnswerController::class, 'voteDownAnswer'])->name('vote-down-answer');
         Route::get('/question/{id?}', [AnswerController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
+        Route::post('/delete/{id?}', [AnswerController::class, 'deleteAnswer'])->name('delete-answer');
 
         
     });

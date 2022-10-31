@@ -69,6 +69,37 @@ class AnswerController extends Controller{
         ]);
     }
 
+    // _____________ Deleting an answer _____________
+    public function deleteAnswer($id){
+        $answer = Answer::find($id);
+        $remove_score = $answer->score;
+        // to remove the score from the scores table
+        $old_score = Score::where('user_id', $answer->user_id)->get();
+        if ($old_score->isNotEmpty()){
+            $alter_score = Score::where('user_id', $answer->user_id)->orderBy('created_at', 'DESC')->get();
+            $final = $alter_score[0]->score - $remove_score;  
+            if ($final >= 0){
+                $score = new Score; 
+                $score->user_id = $answer->user_id;
+                $score->score = $final;
+            $score->save(); 
+            };
+        };
+           
+        if ($answer){
+            $delete = $answer->delete();
+            if ($delete) {
+                return response()->json([
+                    'status' => Response::HTTP_OK
+                ]);
+            }
+        }
+        return response()->json([
+            'data' => 'Answer Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
     // _____________ Accepting an answer _____________
     public function acceptAnswer(Request $request){
         $accept_score = 10;
