@@ -109,7 +109,7 @@ Route::prefix('v0')->group(function () {
     // ___________________ Routes related to the answers ___________________
     Route::prefix('answer')->group(function () {
         Route::post('/add', [AnswerController::class, 'addAnswer'])->name('add-answer');
-        Route::post('/accept/{id?}', [AnswerController::class, 'acceptAnswer'])->name('accept-answer');
+        Route::post('/accept', [AnswerController::class, 'acceptAnswer'])->name('accept-answer');
         
     });
 });
