@@ -219,12 +219,19 @@ class AnswerController extends Controller{
         ->orderBy('created_at', 'DESC') // ordered by time
         ->get();
 
-        return response()->json([
-            'data' => $answers,
-            'message' => 'Added Successfully',
-            'status' =>  Response::HTTP_OK
-        ]);
+        if ($answers->isNotEmpty()) {
+            return response()->json([
+                'data' => $answers,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
 
+        return response()->json([
+            'data' => null,
+            'message' => 'No Answers',
+            'status' => Response::HTTP_OK
+        ]);
     }
 
 }
