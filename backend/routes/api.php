@@ -124,7 +124,7 @@ Route::prefix('v0')->group(function () {
         Route::get('/', [ProblemController::class, 'getProblems'])->name('get-problems');
         Route::get('/id/{id?}', [ProblemController::class, 'getProblemById'])->name('get-problem-by-id');
         //Route::post('/voteDown', [ProblemController::class, 'voteDownAnswer'])->name('vote-down-answer');
-        //Route::get('/question/{id?}', [ProblemController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
+        Route::get('/count', [ProblemController::class, 'countProblems'])->name('count-problems');
         Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
         Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem');  
     });

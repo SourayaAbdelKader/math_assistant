@@ -181,4 +181,13 @@ class ProblemController extends Controller{
         ]);
     }
 
+    // _____________ Counting problems _____________
+    public function countProblems(){
+        $number = Problem::distinct()->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
 }
