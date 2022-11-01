@@ -153,6 +153,48 @@ class UserController extends Controller{
         ]);
     }
 
+    // Getting the last 30 days joined editors
+    public function lastMonthUsers(){
+        $editors = User::where('user_type','editor')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-30 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($editors->isNotEmpty()) {
+            return response()->json([
+                'data' => $editors,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Editors Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // Getting the last 365 days joined editors
+    public function lastYearUsers(){
+        $editors = User::where('user_type','editor')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-365 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($editors->isNotEmpty()) {
+            return response()->json([
+                'data' => $editors,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Editors Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
     //_____________ Getting the admins added the current day, week, month, year _____________
     // Getting this month added admins
     public function monthAdmin(){
