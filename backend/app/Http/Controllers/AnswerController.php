@@ -405,12 +405,41 @@ class AnswerController extends Controller{
     }
 
     // _____________ Counting votes per user _____________
-    public function countAcceptedAnswersPerQuestion($id){
-        $accepted_answers = Answer::where('question_id', '=',$id)->where('accepted', '=', 1)->count();
+    public function countVotesPerUSer($id){
+        //checking if the user exists 
+        $user = User::find($id);
+        if ($user){
+            $votes = Vote::where('user_id', '=',$id)->count();
+            return response()->json([
+                'data' => $votes,
+                'message' => 'Found',
+                'status' => Response::HTTP_OK
+            ]);
+        }
         return response()->json([
-            'data' => $accepted_answers,
-            'message' => 'Found',
-            'status' => Response::HTTP_OK
+            'message' => 'User Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+        
+    }
+
+    // _____________ Counting votes per user in the current day _____________
+    public function countVotesPerUSerPerDay($id){
+        //checking if the user exists 
+        $user = User::find($id);
+        if ($user){
+            $votes = Vote::where('user_id', '=',$id)
+            ->whereDate('created_at', Carbon::today())
+            ->count();
+            return response()->json([
+                'data' => $votes,
+                'message' => 'Found',
+                'status' => Response::HTTP_OK
+            ]);
+        }
+        return response()->json([
+            'message' => 'User Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 

@@ -119,7 +119,8 @@ Route::prefix('v0')->group(function () {
         Route::get('/id/{id?}', [AnswerController::class, 'getAnswerById'])->name('get-answer-by-id');  
         Route::get('/accepted/{id?}', [AnswerController::class, 'getAcceptedAnswersPerQuestion'])->name('get-accepted-answers-per-question');  
         Route::get('/countAccepted/{id?}', [AnswerController::class, 'countAcceptedAnswersPerQuestion'])->name('count-accepted-answers-per-question');  
-
+        Route::get('/countUserVotes/{id?}', [AnswerController::class, 'countVotesPerUSer'])->name('count-user-votes');  
+        Route::get('/countVotesPerDay/{id?}', [AnswerController::class, 'countVotesPerUSerPerDay'])->name('count-user-votes');  
     });
 
     // ___________________ Routes related to the problems ___________________
