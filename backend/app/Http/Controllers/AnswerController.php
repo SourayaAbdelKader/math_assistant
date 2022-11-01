@@ -161,11 +161,12 @@ class AnswerController extends Controller{
 
     // _____________ Voting up an answer _____________
     public function voteUpAnswer(Request $request){
+        $user_can_vote = 500;
         $vote_up_score = 5;
 
         $validator = Validator::make($request->all(), [
-            'answer_id' => 'required|integer',
-            'user_id' => 'required|integer',
+            'answer_id' => 'required|integer|exists:answers,id',
+            'user_id' => 'required|integer|exists:users,id',
             'vote' => 'required|integer',
         ]);
 
@@ -176,21 +177,42 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-
-        $answer = Answer::find($request->answer_id);
-        if (! $answer){
+                // checking if the user can vote : have a score > 500
+        $user_score = Score::where('user_id', $request->user_id)->get();
+        if ($user_score->isEmpty()){
             return response()->json([
-                'data' => null,
-                'message' => 'Answer Not Found',
+                'data' => "error",
+                'message' => 'User Can Not Vote',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
-        };
+        } else {
+            $user_scores = Score::where('user_id', $request->user_id)->orderBy('created_at', 'DESC')->get(); 
+            $newest_score = $user_scores[0];
+            if ($newest_score->score < $user_can_vote){
+                return response()->json([
+                    'data' => "error",
+                    'message' => 'User Can Not Vote',
+                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            } 
+        } 
 
+        //checking if the user already voted on this question
+        $old_vote = Vote::where('user_id', '=', $request->user_id)->where('answer_id', '=', $request->answer_id)->get();
+        if ($old_vote->isNotEmpty()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'User Already Voted',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
         // adding the voting to the table
         $data = $request->all();
         $vote = Vote::create($data);
         
         // change the status and the score
+        $answer = Answer::find($request->answer_id);
         $answer->score = $answer->score + $vote_up_score;
         $answer->save();
                 
@@ -231,7 +253,7 @@ class AnswerController extends Controller{
             ]);
         }
 
-        // check if the user can vote : have a score > 500
+        // checking if the user can vote : have a score > 500
         $user_score = Score::where('user_id', $request->user_id)->get();
         if ($user_score->isEmpty()){
             return response()->json([
@@ -264,7 +286,7 @@ class AnswerController extends Controller{
         // adding the voting to the table
         $data = $request->all();
         $vote = Vote::create($data);
-        $answer = Answer::where('id', '=', $request->answer_id)->get();
+        $answer = Answer::find($request->answer_id);
             
         // changing the status and the score
         if ($answer->score + $vote_down_score >= 0 ){ // to keep the score positive or null
