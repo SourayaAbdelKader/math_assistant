@@ -126,7 +126,7 @@ Route::prefix('v0')->group(function () {
         //Route::post('/voteDown', [ProblemController::class, 'voteDownAnswer'])->name('vote-down-answer');
         //Route::get('/question/{id?}', [ProblemController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
         Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
-        //Route::get('/votes/{id?}', [ProblemController::class, 'countVotesPerQuestion'])->name('count-votes-per-answer');  
+        Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem');  
     });
 
 });
