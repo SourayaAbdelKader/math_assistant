@@ -128,6 +128,9 @@ Route::prefix('v0')->group(function () {
         Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem'); 
         Route::get('/count/tag/{id?}', [ProblemController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
         Route::get('/tag/{id?}', [ProblemController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
+        Route::get('/count/level/{id?}', [ProblemController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
+        Route::get('/level/{level?}', [ProblemController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
+
     });
 
 });

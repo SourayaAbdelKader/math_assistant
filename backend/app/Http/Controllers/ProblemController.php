@@ -215,6 +215,33 @@ class ProblemController extends Controller{
             'data' => $number,
             'status' =>  Response::HTTP_OK
         ]);
-    }    
+    } 
+    
+    // _____________ Getting problems per level _____________
+    public function getProblemsPerLevel($level){
+        $problems = Problem::where('level', $level)->orderBy('created_at', 'DESC')->get();
+        if ($problems->isNotEmpty()) {
+            return response()->json([
+                'data' => $problems,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Problem Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Counting problems per level _____________
+    public function countProblemsPerLevel($level){
+        $number = Problem::where('level', $level)->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
+        ]);
+    } 
 
 }
