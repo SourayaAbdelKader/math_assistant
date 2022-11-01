@@ -214,11 +214,12 @@ class AnswerController extends Controller{
 
     // _____________ Voting down an answer _____________
     public function voteDownAnswer(Request $request){
+        $user_can_vote = 500;
         $vote_down_score = -5;
     
         $validator = Validator::make($request->all(), [
-            'answer_id' => 'required|integer',
-            'user_id' => 'required|integer',
+            'answer_id' => 'required|integer|exists:answers,id',
+            'user_id' => 'required|integer|exists:users,id',
             'vote' => 'required|integer',
         ]);
     
@@ -229,25 +230,48 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-    
-        // adding the voting to the table
-        $data = $request->all();
-        $vote = Vote::create($data);
-            
-        $answer = Answer::find($request->answer_id);
-        if (! $answer) {
+
+        // check if the user can vote : have a score > 500
+        $user_score = Score::where('user_id', $request->user_id)->get();
+        if ($user_score->isEmpty()){
             return response()->json([
-                'data' => 'error',
-                'message' => 'Answer Not Found',
+                'data' => "error",
+                'message' => 'User Can Not Vote',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        } else {
+            $user_scores = Score::where('user_id', $request->user_id)->orderBy('created_at', 'DESC')->get(); 
+            $newest_score = $user_scores[0];
+            if ($newest_score->score < 500){
+                return response()->json([
+                    'data' => "error",
+                    'message' => 'User Can Not Vote',
+                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            } 
+        } 
+
+        //checking if the user already voted on this question
+        $old_vote = Vote::where('user_id', '=', $request->user_id)->where('answer_id', '=', $request->answer_id)->get();
+        if ($old_vote->isNotEmpty()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'User Already Voted',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        // change the status and the score
+        
+        // adding the voting to the table
+        $data = $request->all();
+        $vote = Vote::create($data);
+        $answer = Answer::where('id', '=', $request->answer_id)->get();
+            
+        // changing the status and the score
         if ($answer->score + $vote_down_score >= 0 ){ // to keep the score positive or null
             $answer->score = $answer->score + $vote_down_score;
             $answer->save();
         } 
-        // to add the new score to the scores table
+        // adding the new score to the scores table
         $old_score = Score::where('user_id', $answer->user_id)->get();
         if ($old_score->isNotEmpty()){
             $alter_score = Score::where('user_id', $answer->user_id)->orderBy('created_at', 'DESC')->get();
@@ -267,7 +291,7 @@ class AnswerController extends Controller{
         ]);
     }
 
-    // _____________ getting answers per question _____________
+    // _____________ Getting answers per question _____________
     public function getAnswersPerQuestion($id){
         $answers = Answer::where('question_id', '=', $id)
         ->where('score', '!=', '0') //don't show answers which have 0 as a score 
@@ -291,7 +315,26 @@ class AnswerController extends Controller{
         ]);
     }
 
-    // Counting votes per answer
+    // _____________ Getting answer by id _____________
+    public function getAnswerById($id){
+        $answer = Answer::where('id', '=',$id)->get();
+
+        if ($answer->isNotEmpty()) {
+            return response()->json([
+                'data' => $answer,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Answer Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Counting votes per answer _____________
     public function countVotesPerQuestion($id){
         $answer = Answer::find($id);
         if (! $answer){

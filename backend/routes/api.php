@@ -116,6 +116,9 @@ Route::prefix('v0')->group(function () {
         Route::get('/question/{id?}', [AnswerController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
         Route::post('/delete/{id?}', [AnswerController::class, 'deleteAnswer'])->name('delete-answer');
         Route::get('/votes/{id?}', [AnswerController::class, 'countVotesPerQuestion'])->name('count-votes-per-answer');  
+        Route::get('/id/{id?}', [AnswerController::class, 'getAnswerById'])->name('get-answer-by-id');  
+
+        
     });
 
     // ___________________ Routes related to the problems ___________________
