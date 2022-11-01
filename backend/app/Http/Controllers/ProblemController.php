@@ -89,14 +89,17 @@ class ProblemController extends Controller{
             ]);
         }
 
-        //check if the user exists and if an editor or admin
-        if($user->user_type == 'user'){
-            return response()->json([
-                'data' => null,
-                'message' => 'User Not Found',
-                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-           ]);
-        }
+        // Checking if the user exists/ if he is an editor or admin
+        if ($request->user_id){
+            $user = User::find($request->user_id);
+            if($user->user_type == 'user'){
+                return response()->json([
+                    'data' => null,
+                    'message' => 'User Not Found',
+                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+               ]);
+            }
+        };
 
         $problem = Problem::find($id);
 
