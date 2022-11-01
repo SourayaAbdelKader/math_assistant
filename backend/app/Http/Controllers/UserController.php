@@ -189,7 +189,8 @@ class UserController extends Controller{
 
     // _____________ Getting the users information _____________
     public function getUsers(){ 
-        $users = User::where('user_type', 'user')->orderBy('created_at', 'DESC')->get(); ;
+        //dd($request);
+        $users = User::where('user_type', 'user')->orderBy('created_at', 'DESC')->get();
        
         if ($users->isNotEmpty()) {
             return response()->json([
@@ -387,7 +388,11 @@ class UserController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-
+        // $data = User::insert([
+            //'name' => $request->name,
+            //'email' => '' ,
+            //'password' => ,
+        //])
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);

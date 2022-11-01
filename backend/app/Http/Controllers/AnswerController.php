@@ -76,7 +76,9 @@ class AnswerController extends Controller{
         // to remove the score from the scores table
         $old_score = Score::where('user_id', $answer->user_id)->get();
         if ($old_score->isNotEmpty()){
-            $alter_score = Score::where('user_id', $answer->user_id)->orderBy('created_at', 'DESC')->get();
+            $alter_score = Score::where('user_id', $answer->user_id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
             $final = $alter_score[0]->score - $remove_score;  
             if ($final >= 0){
                 $score = new Score; 
@@ -177,7 +179,8 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-                // checking if the user can vote : have a score > 500
+        
+        // checking if the user can vote : have a score > 500  and number of votes per day < 20
         $user_score = Score::where('user_id', $request->user_id)->get();
         if ($user_score->isEmpty()){
             return response()->json([
@@ -186,7 +189,9 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         } else {
-            $user_scores = Score::where('user_id', $request->user_id)->orderBy('created_at', 'DESC')->get(); 
+            $user_scores = Score::where('user_id', $request->user_id)
+            ->orderBy('created_at', 'DESC')
+            ->get(); 
             $newest_score = $user_scores[0];
             if ($newest_score->score < $user_can_vote){
                 return response()->json([
@@ -194,11 +199,23 @@ class AnswerController extends Controller{
                     'message' => 'User Can Not Vote',
                     'status' => Response::HTTP_INTERNAL_SERVER_ERROR
                 ]);
-            } 
-        } 
+            }
+            $votes = Vote::where('user_id', $request->user_id)
+            ->whereDate('created_at', Carbon::today())
+            ->count();
+            if ($votes >= 20){
+                return response()->json([
+                    'data' => "error",
+                    'message' => 'User Exceeded Votes Per Day',
+                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            };
+        };
 
         //checking if the user already voted on this question
-        $old_vote = Vote::where('user_id', '=', $request->user_id)->where('answer_id', '=', $request->answer_id)->get();
+        $old_vote = Vote::where('user_id', $request->user_id)
+        ->where('answer_id', $request->answer_id)
+        ->get();
         if ($old_vote->isNotEmpty()) {
             return response()->json([
                 'data' => $validator->errors(),
@@ -270,11 +287,23 @@ class AnswerController extends Controller{
                     'message' => 'User Can Not Vote',
                     'status' => Response::HTTP_INTERNAL_SERVER_ERROR
                 ]);
-            } 
+            }
+            $votes = Vote::where('user_id', $request->user_id)
+            ->whereDate('created_at', Carbon::today())
+            ->count();
+            if ($votes >= 20){
+                return response()->json([
+                    'data' => "error",
+                    'message' => 'User Exceeded Votes Per Day',
+                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            }; 
         } 
 
         //checking if the user already voted on this question
-        $old_vote = Vote::where('user_id', '=', $request->user_id)->where('answer_id', '=', $request->answer_id)->get();
+        $old_vote = Vote::where('user_id', $request->user_id)
+        ->where('answer_id', $request->answer_id)
+        ->get();
         if ($old_vote->isNotEmpty()) {
             return response()->json([
                 'data' => $validator->errors(),
@@ -286,6 +315,7 @@ class AnswerController extends Controller{
         // adding the voting to the table
         $data = $request->all();
         $vote = Vote::create($data);
+
         $answer = Answer::find($request->answer_id);
             
         // changing the status and the score
@@ -315,7 +345,7 @@ class AnswerController extends Controller{
 
     // _____________ Getting answers per question _____________
     public function getAnswersPerQuestion($id){
-        $answers = Answer::where('question_id', '=', $id)
+        $answers = Answer::where('question_id', $id)
         ->where('score', '!=', '0') //don't show answers which have 0 as a score 
         ->orderBy('score', 'DESC') // ordered by score
         ->orderBy('accepted', 'DESC') // order by accepted or not
@@ -359,14 +389,14 @@ class AnswerController extends Controller{
     // _____________ Counting votes per answer _____________
     public function countVotesPerQuestion($id){
         $answer = Answer::find($id);
-        if ($answer->isEmpty()){
+        if (! $answer){
             return response()->json([
                 'data' => null,
                 'message' => 'Answer Not Found',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        $votes = [Vote::where('answer_id','=',$id)->where('vote','=','1')->count(), Vote::where('answer_id','=',$id)->where('vote','=','0')->count()];
+        $votes = [Vote::where('answer_id', $id)->where('vote', 1)->count(), Vote::where('answer_id', $id)->where('vote', 0)->count()];
         return response()->json([
             'data' => $votes,
             'status' =>  Response::HTTP_OK
@@ -375,8 +405,8 @@ class AnswerController extends Controller{
 
     // _____________ Getting accepted answers per question _____________
     public function getAcceptedAnswersPerQuestion($id){
-        $accepted_answers = Answer::where('question_id', '=',$id)
-        ->where('accepted', '=', 1)
+        $accepted_answers = Answer::where('question_id', $id)
+        ->where('accepted', 1)
         ->orderBy('created_at', 'DESC')
         ->get();
 
@@ -396,7 +426,7 @@ class AnswerController extends Controller{
 
     // _____________ Counting accepted answers per question _____________
     public function countAcceptedAnswersPerQuestion($id){
-        $accepted_answers = Answer::where('question_id', '=',$id)->where('accepted', '=', 1)->count();
+        $accepted_answers = Answer::where('question_id', $id)->where('accepted', 1)->count();
         return response()->json([
             'data' => $accepted_answers,
             'message' => 'Found',
@@ -409,7 +439,7 @@ class AnswerController extends Controller{
         //checking if the user exists 
         $user = User::find($id);
         if ($user){
-            $votes = Vote::where('user_id', '=',$id)->count();
+            $votes = Vote::where('user_id', $id)->count();
             return response()->json([
                 'data' => $votes,
                 'message' => 'Found',
@@ -428,7 +458,7 @@ class AnswerController extends Controller{
         //checking if the user exists 
         $user = User::find($id);
         if ($user){
-            $votes = Vote::where('user_id', '=',$id)
+            $votes = Vote::where('user_id', $id)
             ->whereDate('created_at', Carbon::today())
             ->count();
             return response()->json([
