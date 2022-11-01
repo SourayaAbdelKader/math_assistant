@@ -190,4 +190,31 @@ class ProblemController extends Controller{
         ]);
     }
 
+    // _____________ Getting problems per tag _____________
+    public function getProblemsPerTag($id){
+        $problems = Problem::where('tag_id', $id)->orderBy('created_at', 'DESC')->get();
+        if ($problems->isNotEmpty()) {
+            return response()->json([
+                'data' => $problems,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Problem Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Counting problems per tag _____________
+    public function countProblemsPerTag($id){
+        $number = Problem::where('tag_id', $id)->count();
+        return response()->json([
+            'data' => $number,
+            'status' =>  Response::HTTP_OK
+        ]);
+    }    
+
 }

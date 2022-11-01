@@ -123,10 +123,11 @@ Route::prefix('v0')->group(function () {
         Route::post('/add', [ProblemController::class, 'addProblem'])->name('add-problem');
         Route::get('/', [ProblemController::class, 'getProblems'])->name('get-problems');
         Route::get('/id/{id?}', [ProblemController::class, 'getProblemById'])->name('get-problem-by-id');
-        //Route::post('/voteDown', [ProblemController::class, 'voteDownAnswer'])->name('vote-down-answer');
         Route::get('/count', [ProblemController::class, 'countProblems'])->name('count-problems');
         Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
-        Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem');  
+        Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem'); 
+        Route::get('/count/tag/{id?}', [ProblemController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
+        Route::get('/tag/{id?}', [ProblemController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
     });
 
 });
