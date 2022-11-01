@@ -154,7 +154,7 @@ class UserController extends Controller{
     }
 
     // Getting the last 30 days joined editors
-    public function lastMonthUsers(){
+    public function lastMonthEditors(){
         $editors = User::where('user_type','editor')
         ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-30 days')))
         ->orderBy('created_at', 'DESC')
@@ -175,7 +175,7 @@ class UserController extends Controller{
     }
 
     // Getting the last 365 days joined editors
-    public function lastYearUsers(){
+    public function lastYearEditors(){
         $editors = User::where('user_type','editor')
         ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-365 days')))
         ->orderBy('created_at', 'DESC')
@@ -245,14 +245,55 @@ class UserController extends Controller{
         ]);
     }
 
+    // Getting the last 30 days joined admins
+    public function lastMonthAdmins(){
+        $admins = User::where('user_type','admin')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-30 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($admins->isNotEmpty()) {
+            return response()->json([
+                'data' => $admins,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Admins Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // Getting the last 365 days joined admins
+    public function lastYearAdmins(){
+        $admins = User::where('user_type','admin')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-365 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($admins->isNotEmpty()) {
+            return response()->json([
+                'data' => $admins,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Admins Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
     // _____________ Counting the users per user type _____________
     public function countUsers(){ 
         $users = User::where('user_type', 'user')->distinct()->count();
         return response()->json([
             'data' => $users,
             'status' =>  Response::HTTP_OK
-        ]);
-        
+        ]);  
     }
 
     public function countAdmins(){ 

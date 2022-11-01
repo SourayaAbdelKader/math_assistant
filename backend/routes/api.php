@@ -48,20 +48,24 @@ Route::prefix('v0')->group(function () {
         Route::get('/monthUsers', [UserController::class, 'monthUsers'])->name('month-users');
         Route::get('/todayUser', [UserController::class, 'todayUser'])->name('today-users');
         Route::get('/weekUser', [UserController::class, 'weekUser'])->name('week-users');
-        Route::get('/lastMonthUsers', [QuestionController::class, 'lastMonthUsers'])->name('last-month-users');
-        Route::get('/lastYearUsers', [QuestionController::class, 'lastYearUsers'])->name('last-year-users');
+        Route::get('/lastMonthUsers', [UserController::class, 'lastMonthUsers'])->name('last-month-users');
+        Route::get('/lastYearUsers', [UserController::class, 'lastYearUsers'])->name('last-year-users');
 
         // getting editors depending on a certain time
         Route::get('/yearEditors', [UserController::class, 'yearEditor'])->name('year-editors');
         Route::get('/monthEditors', [UserController::class, 'monthEditor'])->name('month-editors');
         Route::get('/todayEditors', [UserController::class, 'todayEditor'])->name('today-editors');
         Route::get('/weekEditors', [UserController::class, 'weekEditor'])->name('week-editors');
+        Route::get('/lastMonthEditors', [UserController::class, 'lastMonthEditors'])->name('last-month-editors');
+        Route::get('/lastYearEditors', [UserController::class, 'lastYearEditors'])->name('last-year-editors');
 
         // getting admins depending on a certain time
         Route::get('/yearAdmins', [UserController::class, 'yearAdmin'])->name('year-admins');
         Route::get('/monthAdmins', [UserController::class, 'monthAdmin'])->name('month-admins');
         Route::get('/todayAdmins', [UserController::class, 'todayAdmin'])->name('today-admins');
         Route::get('/weekAdmins', [UserController::class, 'weekAdmin'])->name('week-admins');
+        Route::get('/lastMonthAdmins', [UserController::class, 'lastMonthAdmins'])->name('last-month-admins');
+        Route::get('/lastYearAdmins', [UserController::class, 'lastYearAdmins'])->name('last-year-admins');
     });
 
     // ___________________ Routes related to the tags ___________________
