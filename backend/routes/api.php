@@ -164,11 +164,11 @@ Route::prefix('v0')->group(function () {
         Route::post('/check', [SolutionController::class, 'checkSolution'])->name('check-solution'); 
 
         // getting data
-        Route::post('/getProblemSolution', [SolutionController::class, 'getProblemSolution'])->name('get-solution-by-problem-user ');
+        Route::post('/getProblemSolution', [SolutionController::class, 'getUserSolutionForProblem'])->name('get-solution-by-problem-user ');
         //Route::get('/id/{id?}', [SolutionController::class, 'getProblemById'])->name('get-problem-by-id');
         //Route::get('/count', [SolutionController::class, 'countProblems'])->name('count-problems');
         //Route::get('/count/tag/{id?}', [SolutionController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
-        //Route::get('/tag/{id?}', [SolutionController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
+        Route::get('/problem/{id?}', [SolutionController::class, 'getProblemSolution'])->name('get-solutions-per-problem');
         //Route::get('/count/level/{id?}', [SolutionController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
         //Route::get('/level/{level?}', [SolutionController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
     });

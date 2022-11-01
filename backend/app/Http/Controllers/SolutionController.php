@@ -32,8 +32,8 @@ class SolutionController extends Controller{
         };
         
         // Checking if the user already answered the problem
-        $checking = Solution::where('user_id', $request->user_id)->where('problem_id', $request->problem_id);
-        if ($checking){
+        $checking = Solution::where('user_id', $request->user_id)->where('problem_id', $request->problem_id)->get();
+        if ($checking->isNotEmpty()){
             return response()->json([
                 'data' => "error",
                 'message' => 'Solution Already Submitted',
@@ -126,8 +126,8 @@ class SolutionController extends Controller{
         ]);
     }
 
-    // _____________ Getting a solution by problem id and user id _____________
-    public function getProblemSolution(Request $request){
+    // _____________ Getting a user's solution to a problem _____________
+    public function getUserSolutionForProblem(Request $request){
 
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|integer|exists:users,id',
@@ -143,13 +143,117 @@ class SolutionController extends Controller{
         };
         
         $solution = Solution::where('problem_id', $request->problem_id)->where('user_id', $request->user_id)->get();
-        
+        if ($solution->isNotEmpty()) {
+            return response()->json([
+                'data' => $solution,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
         return response()->json([
-            'data' => $solution, 
-            'message' => 'Added Successfully',
-            'status' =>  Response::HTTP_OK
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
+    // _____________ Getting solutions per problem _____________
+    public function getProblemSolution($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
+        $solutions = Solution::where('problem_id', $id)
+        ->orderBy('score', 'DESC') // ordered by score
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Getting checked solutions per problem _____________
+    public function getCheckedProblemSolution($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
+        $solutions = Solution::where('problem_id', $id)
+        ->where('checked', 1)
+        ->orderBy('score', 'DESC') // ordered by score
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Getting unchecked solutions per problem _____________
+    public function getUncheckedProblemSolution($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
+        $solutions = Solution::where('problem_id', $id)
+        ->where('checked', 0)
+        ->orderBy('score', 'DESC') // ordered by score
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
 
 }
