@@ -16,6 +16,16 @@ class Solution extends Model{
 
     use HasFactory;
 
+    protected $fillable = [
+        'description',
+        'checked',
+        'feedback',
+        'score',
+        'user_id',
+        'problem_id',
+        'editor_id'
+    ];
+
     public function problems(){
         return $this->belongsTo(Problem::class);
     }

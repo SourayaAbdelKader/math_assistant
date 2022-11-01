@@ -156,4 +156,21 @@ Route::prefix('v0')->group(function () {
         Route::get('/level/{level?}', [ProblemController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
     });
 
+    // ___________________ Routes related to the Solutions ___________________
+    Route::prefix('solution')->group(function () {
+        // manipulating problems's data
+        //Route::post('/add', [ProblemController::class, 'addProblem'])->name('add-problem');
+        //Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
+        //Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem'); 
+
+        // getting data
+        //Route::get('/', [ProblemController::class, 'getProblems'])->name('get-problems');
+        //Route::get('/id/{id?}', [ProblemController::class, 'getProblemById'])->name('get-problem-by-id');
+        //Route::get('/count', [ProblemController::class, 'countProblems'])->name('count-problems');
+        //Route::get('/count/tag/{id?}', [ProblemController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
+        //Route::get('/tag/{id?}', [ProblemController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
+        //Route::get('/count/level/{id?}', [ProblemController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
+        //Route::get('/level/{level?}', [ProblemController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
+    });
+
 });
