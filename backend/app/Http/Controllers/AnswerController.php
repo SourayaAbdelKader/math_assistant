@@ -373,4 +373,45 @@ class AnswerController extends Controller{
         ]);
     }
 
+    // _____________ Getting accepted answers per question _____________
+    public function getAcceptedAnswersPerQuestion($id){
+        $accepted_answers = Answer::where('question_id', '=',$id)
+        ->where('accepted', '=', 1)
+        ->orderBy('created_at', 'DESC')
+        ->get();
+
+        if ($accepted_answers->isNotEmpty()) {
+            return response()->json([
+                'data' => $accepted_answers,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+        return response()->json([
+            'data' => null,
+            'message' => 'Answer Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Counting accepted answers per question _____________
+    public function countAcceptedAnswersPerQuestion($id){
+        $accepted_answers = Answer::where('question_id', '=',$id)->where('accepted', '=', 1)->count();
+        return response()->json([
+            'data' => $accepted_answers,
+            'message' => 'Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
+    // _____________ Counting votes per user _____________
+    public function countAcceptedAnswersPerQuestion($id){
+        $accepted_answers = Answer::where('question_id', '=',$id)->where('accepted', '=', 1)->count();
+        return response()->json([
+            'data' => $accepted_answers,
+            'message' => 'Found',
+            'status' => Response::HTTP_OK
+        ]);
+    }
+
 }
