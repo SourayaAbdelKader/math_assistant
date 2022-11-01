@@ -179,6 +179,16 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
+
+        // preventing user to vote on his answer 
+        $answer = Answer::find($request->answer_id);
+        if ($answer->user_id == $request->user_id){
+            return response()->json([
+                'data' => 'error',
+                'message' => 'User Can Not Vote His Answer',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         
         // checking if the user can vote : have a score > 500  and number of votes per day < 20
         $user_score = Score::where('user_id', $request->user_id)->get();
@@ -229,7 +239,6 @@ class AnswerController extends Controller{
         $vote = Vote::create($data);
         
         // change the status and the score
-        $answer = Answer::find($request->answer_id);
         $answer->score = $answer->score + $vote_up_score;
         $answer->save();
                 
@@ -266,6 +275,16 @@ class AnswerController extends Controller{
             return response()->json([
                 'data' => $validator->errors(),
                 'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
+        // preventing user to vote on his answer 
+        $answer = Answer::find($request->answer_id);
+        if ($answer->user_id == $request->user_id){
+            return response()->json([
+                'data' => 'error',
+                'message' => 'User Can Not Vote His Answer',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
@@ -315,8 +334,6 @@ class AnswerController extends Controller{
         // adding the voting to the table
         $data = $request->all();
         $vote = Vote::create($data);
-
-        $answer = Answer::find($request->answer_id);
             
         // changing the status and the score
         if ($answer->score + $vote_down_score >= 0 ){ // to keep the score positive or null
