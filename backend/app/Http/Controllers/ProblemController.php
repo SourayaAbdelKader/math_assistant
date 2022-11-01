@@ -19,8 +19,8 @@ class ProblemController extends Controller{
             'name' => 'required|string|min:2|max:70',
             'description' => 'required|string|min:10|max:1500',
             'picture_url' => 'string|min:10|max:250',
-            'user_id' => 'required|integer',
-            'tag_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
+            'tag_id' => 'required|integer|exists:tags,id',
             'level' => 'required|string|in:easy,medium,hard',
             'points' => 'required|integer|min:1|max:15',
         ]);
@@ -85,8 +85,8 @@ class ProblemController extends Controller{
             'name' => 'string|min:2|max:70',
             'description' => 'string|min:10|max:1500',
             'picture_url' => 'string|min:10|max:250',
-            'user_id' => 'integer',
-            'tag_id' => 'integer',
+            'user_id' => 'integer|exists:users,id',
+            'tag_id' => 'integer|exists:tags,id',
             'level' => 'string|in:easy,medium,hard',
             'points' => 'integer|min:1|max:15',
         ]);
@@ -99,28 +99,15 @@ class ProblemController extends Controller{
             ]);
         }
 
-        //check if the tag exists 
-        if ($request->tag_id){
-            $tag = Tag::find($request->tag_id);
-            if(! $tag){
-                return response()->json([
-                    'data' => null,
-                    'message' => 'Tag Not Found',
-                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-                ]);
-            }
-        }
         //check if the user exists and if an editor or admin
-        if ($request->user_id){
-            $user = User::find($request->user_id);
-            if(! $user || $user->user_type == 'user'){
-                return response()->json([
-                    'data' => null,
-                    'message' => 'User Not Found',
-                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-                ]);
-            }
+        if($user->user_type == 'user'){
+            return response()->json([
+                'data' => null,
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+           ]);
         }
+
         $problem = Problem::find($id);
 
         $problem->name = $request->name ? $request->name : $problem->name;

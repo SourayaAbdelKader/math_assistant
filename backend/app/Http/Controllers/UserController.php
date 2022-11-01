@@ -187,7 +187,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // _____________ Getting the user information _____________
+    // _____________ Getting the users information _____________
     public function getUsers(){ 
         $users = User::where('user_type', 'user')->orderBy('created_at', 'DESC')->get(); ;
        
@@ -206,6 +206,7 @@ class UserController extends Controller{
         ]);
     }
 
+    // _____________ Getting the editors information _____________
     public function getEditors(){ 
         $editors = User::where('user_type', 'editor')->orderBy('created_at', 'DESC')->get(); ;
        
@@ -224,6 +225,7 @@ class UserController extends Controller{
         ]);
     }
 
+    // _____________ Getting the admins information _____________
     public function getAdmins(){ 
         $admins = User::where('user_type', 'admin')->orderBy('created_at', 'DESC')->get(); ;
        
@@ -242,6 +244,7 @@ class UserController extends Controller{
         ]);
     }
 
+    // _____________ Getting user information by id _____________
     public function getUserInfo($id){
         //$id= Auth::$id();
         $user = User::where('id', $id)->get();
@@ -260,6 +263,7 @@ class UserController extends Controller{
         ]);
     }
 
+    // _____________ Getting user information by email _____________
     public function getUserByEmail($email){
         //$user = Auth::user();
         $user = User::where('email', $email)->get(); ;

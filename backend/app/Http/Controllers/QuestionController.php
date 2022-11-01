@@ -17,8 +17,8 @@ class QuestionController extends Controller{
     // _____________ Saving a question _____________
     public function saveQuestion(Request $request){
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|integer',
-            'question_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
+            'question_id' => 'required|integer|exists:questions,id',
         ]);
 
         if ($validator->fails()) {
@@ -42,18 +42,24 @@ class QuestionController extends Controller{
         $question = Saved_question::join('questions', 'questions.id', '=', 'saved_questions.question_id')
         ->where('saved_questions.user_id','=',$id)
         ->get();
+        if ($questions->inNotEmpty()){
+            return response()->json([
+                'data' => $question,
+                'message' => 'Found Successfully',
+                'status' =>  Response::HTTP_OK
+            ]);
+        };
         return response()->json([
-            'data' => $question,
-            'message' => 'Found Successfully',
-            'status' =>  Response::HTTP_OK
+            'data' => 'Question Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
     // _____________ Removing a saved question _____________
     public function removeSavedQuestion(Request $request){
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|integer',
-            'question_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
+            'question_id' => 'required|integer|exists:questions,id',
         ]);
 
         if ($validator->fails()) {
@@ -100,11 +106,17 @@ class QuestionController extends Controller{
     // _____________ Getting tags used by a user _____________
     public function getTagsUsedByUser($id){
         $tags = Tag::join('questions', 'tags.id', '=', 'questions.tag_id')
-        ->where('questions.user_id','=',$id)->get();;
+        ->where('questions.user_id','=',$id)->get();
+        if ($tags->isNotreEmpty()){
+            return response()->json([
+                'data' => $tags,
+                'message' => 'Found Successfully',
+                'status' =>  Response::HTTP_OK
+            ]);
+        };
         return response()->json([
-            'data' => $tags,
-            'message' => 'Found Successfully',
-            'status' =>  Response::HTTP_OK
+            'data' => 'Tags Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
     }
 
@@ -114,8 +126,8 @@ class QuestionController extends Controller{
             'problem' => 'required|string|min:10|max:1500',
             'description' => 'nullable|string|min:10|max:1500',
             'suggested_solution' => 'required|string|min:10|max:1500',
-            'user_id' => 'required|integer',
-            'tag_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
+            'tag_id' => 'required|integer|exists:tags,id',
         ]);
 
         if ($validator->fails()) {
@@ -140,7 +152,7 @@ class QuestionController extends Controller{
             'problem' => 'string|min:10|max:1500',
             'description' => 'nullable|string|min:10|max:1500',
             'suggested_solution' => 'string|min:10|max:1500',
-            'tag_id' => 'integer',
+            'tag_id' => 'integer|exists:tags,id',
         ]);
 
         if ($validator->fails()) {

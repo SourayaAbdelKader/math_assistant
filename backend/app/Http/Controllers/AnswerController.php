@@ -22,8 +22,8 @@ class AnswerController extends Controller{
 
         $validator = Validator::make($request->all(), [
             'description' => 'required|string|min:10|max:1500',
-            'user_id' => 'required|integer',
-            'question_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
+            'question_id' => 'required|integer|exists:questions,id',
         ]);
 
         if ($validator->fails()) {
@@ -105,8 +105,8 @@ class AnswerController extends Controller{
         $accept_score = 10;
 
         $validator = Validator::make($request->all(), [
-            'answer_id' => 'required|integer',
-            'user_id' => 'required|integer',
+            'answer_id' => 'required|integer|exists:answers,id',
+            'user_id' => 'required|integer|exists:users,id',
         ]);
 
         if ($validator->fails()) {
@@ -359,7 +359,7 @@ class AnswerController extends Controller{
     // _____________ Counting votes per answer _____________
     public function countVotesPerQuestion($id){
         $answer = Answer::find($id);
-        if (! $answer){
+        if ($answer->isEmpty()){
             return response()->json([
                 'data' => null,
                 'message' => 'Answer Not Found',
