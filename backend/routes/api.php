@@ -8,6 +8,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ProblemController;
+use App\Http\Controllers\SolutionController;
 
 Route::prefix('v0')->group(function () {
 
@@ -159,18 +160,18 @@ Route::prefix('v0')->group(function () {
     // ___________________ Routes related to the Solutions ___________________
     Route::prefix('solution')->group(function () {
         // manipulating problems's data
-        //Route::post('/add', [ProblemController::class, 'addProblem'])->name('add-problem');
-        //Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
-        //Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem'); 
+        Route::post('/add', [SolutionController::class, 'addSolution'])->name('add-solution');
+        //Route::post('/delete/{id?}', [SolutionController::class, 'deleteProblem'])->name('delete-problem');
+        Route::post('/check', [SolutionController::class, 'checkSolution'])->name('check-solution'); 
 
         // getting data
-        //Route::get('/', [ProblemController::class, 'getProblems'])->name('get-problems');
-        //Route::get('/id/{id?}', [ProblemController::class, 'getProblemById'])->name('get-problem-by-id');
-        //Route::get('/count', [ProblemController::class, 'countProblems'])->name('count-problems');
-        //Route::get('/count/tag/{id?}', [ProblemController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
-        //Route::get('/tag/{id?}', [ProblemController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
-        //Route::get('/count/level/{id?}', [ProblemController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
-        //Route::get('/level/{level?}', [ProblemController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
+        //Route::get('/', [SolutionController::class, 'getProblems'])->name('get-problems');
+        //Route::get('/id/{id?}', [SolutionController::class, 'getProblemById'])->name('get-problem-by-id');
+        //Route::get('/count', [SolutionController::class, 'countProblems'])->name('count-problems');
+        //Route::get('/count/tag/{id?}', [SolutionController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
+        //Route::get('/tag/{id?}', [SolutionController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
+        //Route::get('/count/level/{id?}', [SolutionController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
+        //Route::get('/level/{level?}', [SolutionController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
     });
 
 });

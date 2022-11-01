@@ -11,12 +11,12 @@ return new class extends Migration{
         Schema::create('solutions', function (Blueprint $table) {
             $table->id();
             $table->text('description', 1500);
-            $table->tinyInteger('checked')->nullable();
+            $table->tinyInteger('checked')->default('0');
             $table->text('feedback', 1500)->nullable();
             $table->integer('score')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('problem_id')->references('id')->on('problems')->onDelete('cascade');
-            $table->foreignId('editor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('editor_id')->references('id')->on('users')->nullable()->onDelete('cascade');
             $table->timestamps();
         });
     }
