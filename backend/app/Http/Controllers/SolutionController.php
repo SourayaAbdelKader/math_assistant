@@ -44,8 +44,8 @@ class SolutionController extends Controller{
         ]);
     }
 
-      // _____________ Checking a solution _____________
-      public function checkSolution(Request $request){
+    // _____________ Checking a solution _____________
+    public function checkSolution(Request $request){
 
         $validator = Validator::make($request->all(), [
             'solution_id' => 'required|integer|exists:solutions,id',
@@ -115,5 +115,31 @@ class SolutionController extends Controller{
             'status' =>  Response::HTTP_OK
         ]);
     }
+
+    // _____________ Getting a solution by problem id and user id _____________
+    public function getProblemSolution(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|integer|exists:users,id',
+            'problem_id' => 'required|integer|exists:problems,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
+        
+        $solution = Solution::where('problem_id', $request->problem_id)->where('user_id', $request->user_id)->get();
+        
+        return response()->json([
+            'data' => $solution, 
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+    }
+
 
 }

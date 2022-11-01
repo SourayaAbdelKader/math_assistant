@@ -161,11 +161,10 @@ Route::prefix('v0')->group(function () {
     Route::prefix('solution')->group(function () {
         // manipulating problems's data
         Route::post('/add', [SolutionController::class, 'addSolution'])->name('add-solution');
-        //Route::post('/delete/{id?}', [SolutionController::class, 'deleteProblem'])->name('delete-problem');
         Route::post('/check', [SolutionController::class, 'checkSolution'])->name('check-solution'); 
 
         // getting data
-        //Route::get('/', [SolutionController::class, 'getProblems'])->name('get-problems');
+        Route::post('/getProblemSolution', [SolutionController::class, 'getProblemSolution'])->name('get-solution-by-problem-user ');
         //Route::get('/id/{id?}', [SolutionController::class, 'getProblemById'])->name('get-problem-by-id');
         //Route::get('/count', [SolutionController::class, 'countProblems'])->name('count-problems');
         //Route::get('/count/tag/{id?}', [SolutionController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
