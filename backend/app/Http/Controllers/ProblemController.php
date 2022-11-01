@@ -32,20 +32,10 @@ class ProblemController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        
-        //check if the tag exists 
-        $tag = Tag::find($request->tag_id);
-        if(! $tag){
-            return response()->json([
-                'data' => null,
-                'message' => 'Tag Not Found',
-                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
 
-        //check if the user exists and if an editor or admin
+        // Checking if the user exists and if an editor or admin
         $user = User::find($request->user_id);
-        if(! $user || $user->user_type == 'user'){
+        if(!$user->user_type == 'user'){
             return response()->json([
                 'data' => null,
                 'message' => 'User Not Found',
@@ -179,6 +169,15 @@ class ProblemController extends Controller{
 
     // _____________ Getting problems per tag _____________
     public function getProblemsPerTag($id){
+        $tag = Tag::find($id);
+        // Checking if the tag exists
+        if (! $tag){
+            return response()->json([
+                'data' => null,
+                'message' => 'Tag Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $problems = Problem::where('tag_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($problems->isNotEmpty()) {
             return response()->json([
@@ -197,6 +196,15 @@ class ProblemController extends Controller{
 
     // _____________ Counting problems per tag _____________
     public function countProblemsPerTag($id){
+        $tag = Tag::find($id);
+        // Checking if the tag exists
+        if (! $tag){
+            return response()->json([
+                'data' => null,
+                'message' => 'Tag Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $number = Problem::where('tag_id', $id)->count();
         return response()->json([
             'data' => $number,
