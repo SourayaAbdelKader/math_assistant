@@ -451,6 +451,53 @@ class AnswerController extends Controller{
         ]);
     }
 
+    // _____________ Getting accepted answers per user _____________
+    public function getAcceptedAnswersPerUser($id){
+        // checking if the user exists
+        $user = User::find($id);
+        if ($user){
+            $accepted_answers = Answer::where('user_id', $id)
+            ->where('accepted', 1)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+            if ($accepted_answers->isNotEmpty()) {
+                return response()->json([
+                    'data' => $accepted_answers,
+                    'message' => 'Found',
+                    'status' =>  Response::HTTP_OK
+                ]);
+            }
+            return response()->json([
+                'data' => null,
+                'message' => 'Answer Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        return response()->json([
+            'message' => 'User Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Counting accepted answers per user _____________
+    public function countAcceptedAnswersPerUser($id){
+        // Checking if the user exists
+        $user = User::find($id);
+        if ($user){
+            $accepted_answers = Answer::where('user_id', $id)->where('accepted', 1)->count();
+            return response()->json([
+                'data' => $accepted_answers,
+                'message' => 'Found',
+                'status' => Response::HTTP_OK
+            ]);
+        };
+        return response()->json([
+            'message' => 'User Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
     // _____________ Counting votes per user _____________
     public function countVotesPerUSer($id){
         //checking if the user exists 
@@ -462,7 +509,7 @@ class AnswerController extends Controller{
                 'message' => 'Found',
                 'status' => Response::HTTP_OK
             ]);
-        }
+        };
         return response()->json([
             'message' => 'User Not Found',
             'status' => Response::HTTP_INTERNAL_SERVER_ERROR
