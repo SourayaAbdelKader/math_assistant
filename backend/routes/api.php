@@ -36,7 +36,7 @@ Route::prefix('v0')->group(function () {
         Route::get('/countEditors', [UserController::class, 'countEditors'])->name('count-editors');
         Route::get('/countAdmins', [UserController::class, 'countAdmins'])->name('count-admin');
 
-        // users functions
+        // manipulating user's data
         Route::post('/addEditor', [UserController::class, 'addEditor'])->name('add-editor');
         Route::post('/addUser', [UserController::class, 'addUser'])->name('add-user');
         Route::post('/addAdmin', [UserController::class, 'addAdmin'])->name('add-admin');
@@ -75,6 +75,8 @@ Route::prefix('v0')->group(function () {
         Route::get('/search/{data?}', [TagController::class, 'searchTag'])->name('search-tag');
         Route::get('/name/{name?}', [TagController::class, 'getTagByName'])->name('get-tag-by-name');
         Route::get('/count', [TagController::class, 'countTags'])->name('count-tags');
+        
+        // manipulating tag's data
         Route::post('/add', [TagController::class, 'addTag'])->name('add-tag');
         Route::post('/update/{id?}', [TagController::class, 'updateTag'])->name('update-tag');
         Route::post('/delete/{id?}', [TagController::class, 'deleteTag'])->name('delete-tag');
@@ -109,7 +111,7 @@ Route::prefix('v0')->group(function () {
         Route::post('/removeSavedQuestion', [QuestionController::class, 'removeSavedQuestion'])->name('remove-saved-question');
         Route::get('/countSavedQuestions/{id?}', [QuestionController::class, 'countSavedQuestions'])->name('count-saved-question');
 
-        // routes related to manipulate questions
+        // manipulating question's data
         Route::post('/add', [QuestionController::class, 'addQuestion'])->name('add-question');
         Route::post('/update/{id?}', [QuestionController::class, 'EditQuestion'])->name('update-question');
         Route::post('/delete/{id?}', [QuestionController::class, 'deleteQuestion'])->name('delete-question');
@@ -117,12 +119,16 @@ Route::prefix('v0')->group(function () {
 
     // ___________________ Routes related to the answers ___________________
     Route::prefix('answer')->group(function () {
+        // manipulating answers's data
         Route::post('/add', [AnswerController::class, 'addAnswer'])->name('add-answer');
+        Route::post('/delete/{id?}', [AnswerController::class, 'deleteAnswer'])->name('delete-answer');
+
+        // routes for accepting and voting for answers
         Route::post('/accept', [AnswerController::class, 'acceptAnswer'])->name('accept-answer');
         Route::post('/voteUp', [AnswerController::class, 'voteUpAnswer'])->name('vote-up-answer');
         Route::post('/voteDown', [AnswerController::class, 'voteDownAnswer'])->name('vote-down-answer');
+        
         Route::get('/question/{id?}', [AnswerController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
-        Route::post('/delete/{id?}', [AnswerController::class, 'deleteAnswer'])->name('delete-answer');
         Route::get('/votes/{id?}', [AnswerController::class, 'countVotesPerQuestion'])->name('count-votes-per-answer');  
         Route::get('/id/{id?}', [AnswerController::class, 'getAnswerById'])->name('get-answer-by-id');  
         Route::get('/accepted/{id?}', [AnswerController::class, 'getAcceptedAnswersPerQuestion'])->name('get-accepted-answers-per-question');  
@@ -135,17 +141,19 @@ Route::prefix('v0')->group(function () {
 
     // ___________________ Routes related to the problems ___________________
     Route::prefix('problem')->group(function () {
+        // manipulating problems's data
         Route::post('/add', [ProblemController::class, 'addProblem'])->name('add-problem');
+        Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
+        Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem'); 
+
+        // getting data
         Route::get('/', [ProblemController::class, 'getProblems'])->name('get-problems');
         Route::get('/id/{id?}', [ProblemController::class, 'getProblemById'])->name('get-problem-by-id');
         Route::get('/count', [ProblemController::class, 'countProblems'])->name('count-problems');
-        Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
-        Route::post('/update/{id?}', [ProblemController::class, 'EditProblem'])->name('edit-problem'); 
         Route::get('/count/tag/{id?}', [ProblemController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
         Route::get('/tag/{id?}', [ProblemController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
         Route::get('/count/level/{id?}', [ProblemController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
         Route::get('/level/{level?}', [ProblemController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
-
     });
 
 });
