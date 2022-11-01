@@ -144,4 +144,41 @@ class ProblemController extends Controller{
         ]);
     }
 
+    // _____________ Getting problems _____________
+    public function getProblems(){ 
+        $problems = Problem::orderBy('created_at', 'DESC')->get();
+       
+        if ($problems->isNotEmpty()) {
+            return response()->json([
+                'data' => $problems,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Problems Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Getting problem by id _____________
+    public function getProblemById($id){
+        $problem = Problem::where('id', $id)->get();
+        if ($problem->isNotEmpty()) {
+            return response()->json([
+                'data' => $problem,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Problem Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
 }

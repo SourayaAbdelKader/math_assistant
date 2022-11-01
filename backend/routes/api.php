@@ -121,8 +121,8 @@ Route::prefix('v0')->group(function () {
     // ___________________ Routes related to the problems ___________________
     Route::prefix('problem')->group(function () {
         Route::post('/add', [ProblemController::class, 'addProblem'])->name('add-problem');
-        //Route::post('/accept', [ProblemController::class, 'acceptAnswer'])->name('accept-answer');
-        //Route::post('/voteUp', [ProblemController::class, 'voteUpAnswer'])->name('vote-up-answer');
+        Route::get('/', [ProblemController::class, 'getProblems'])->name('get-problems');
+        Route::get('/id/{id?}', [ProblemController::class, 'getProblemById'])->name('get-problem-by-id');
         //Route::post('/voteDown', [ProblemController::class, 'voteDownAnswer'])->name('vote-down-answer');
         //Route::get('/question/{id?}', [ProblemController::class, 'getAnswersPerQuestion'])->name('get-answers-per-question');
         Route::post('/delete/{id?}', [ProblemController::class, 'deleteProblem'])->name('delete-problem');
