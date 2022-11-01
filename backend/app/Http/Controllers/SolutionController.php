@@ -31,6 +31,16 @@ class SolutionController extends Controller{
             ]);
         };
         
+        // Checking if the user already answered the problem
+        $checking = Solution::where('user_id', $request->user_id)->where('problem_id', $request->problem_id);
+        if ($checking){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Solution Already Submitted',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
         $solution = new Solution;
         $solution->description = $request->description;
         $solution->user_id = $request->user_id;
