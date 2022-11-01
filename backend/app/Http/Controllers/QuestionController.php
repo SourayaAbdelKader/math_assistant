@@ -28,6 +28,18 @@ class QuestionController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
+
+        // Checking if the question is saved 
+        $is_question = Saved_question::where('user_id', $request->user_id)
+        ->where('question_id', $request->question_id);
+        if($is_question){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Saved The Question',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
         $data = $request->all();
         $question = Saved_question::create($data);
         return response()->json([
@@ -39,12 +51,22 @@ class QuestionController extends Controller{
 
     // _____________ Getting saved questions _____________
     public function getSavedQuestions($id){
-        $question = Saved_question::join('questions', 'questions.id', '=', 'saved_questions.question_id')
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
+
+        $questions = Saved_question::join('questions', 'questions.id', '=', 'saved_questions.question_id')
         ->where('saved_questions.user_id','=',$id)
         ->get();
-        if ($questions->inNotEmpty()){
+        if ($questions->isNotEmpty()){
             return response()->json([
-                'data' => $question,
+                'data' => $questions,
                 'message' => 'Found Successfully',
                 'status' =>  Response::HTTP_OK
             ]);
@@ -68,7 +90,8 @@ class QuestionController extends Controller{
                 'message' => 'Invalid Data',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
-        }
+        };
+
         $saved_question = Saved_question::where('user_id', '=', $request->user_id)
         ->where('question_id', '=', $request->question_id);
         if ($saved_question){
@@ -78,7 +101,8 @@ class QuestionController extends Controller{
                     'status' => 'success'
                 ]);
             }
-        }
+        };
+
         return response()->json([
             'data' => 'Question Not Found',
             'status' => Response::HTTP_INTERNAL_SERVER_ERROR
@@ -87,6 +111,15 @@ class QuestionController extends Controller{
 
     // _____________ Counting saved questions for a user _____________
     public function countSavedQuestions($id){
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
         $number = Saved_question::where('user_id', '=', $id)->distinct()->count();
         return response()->json([
             'data' => $number,
@@ -105,9 +138,19 @@ class QuestionController extends Controller{
 
     // _____________ Getting tags used by a user _____________
     public function getTagsUsedByUser($id){
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
+
         $tags = Tag::join('questions', 'tags.id', '=', 'questions.tag_id')
         ->where('questions.user_id','=',$id)->get();
-        if ($tags->isNotreEmpty()){
+        if ($tags->isNotEmpty()){
             return response()->json([
                 'data' => $tags,
                 'message' => 'Found Successfully',
@@ -136,7 +179,8 @@ class QuestionController extends Controller{
                 'message' => 'Invalid Data',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
-        }
+        };
+
         $data = $request->all();
         $question = Question::create($data);
         return response()->json([
@@ -239,6 +283,16 @@ class QuestionController extends Controller{
 
     // _____________ Getting questions per tag _____________
     public function getQuestionsPerTag($id){
+        // Checking if the tag exists
+        $tag = Tag::find($id);
+        if (! $tag){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Tag Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
+
         $questions = Question::where('tag_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($questions->isNotEmpty()) {
             return response()->json([
@@ -257,6 +311,16 @@ class QuestionController extends Controller{
 
     // _____________ Counting questions per tag _____________
     public function countQuestionsPerTag($id){
+        // Checking if the tag exists
+        $tag = Tag::find($id);
+        if (! $tag){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Tag Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
+
         $number = Question::where('tag_id', $id)->count();
         return response()->json([
             'data' => $number,
@@ -266,6 +330,16 @@ class QuestionController extends Controller{
 
     // _____________ Getting questions per user _____________
     public function getQuestionsPerUser($id){
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
+
         $questions = Question::where('user_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($questions->isNotEmpty()) {
             return response()->json([
@@ -284,6 +358,15 @@ class QuestionController extends Controller{
 
     // _____________ Counting questions per user _____________
     public function countQuestionsPerUser($id){
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        };
         $number = Question::where('user_id', $id)->count();
         return response()->json([
             'data' => $number,
@@ -314,7 +397,7 @@ class QuestionController extends Controller{
     }
 
     //_____________ Getting the questions asked the current day, week, month, year _____________
-    // to get this month asked questions
+    // Getting this month asked questions
     public function monthQuestions(){
         $questions = Question::whereMonth('created_at', now()->month) // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
@@ -335,7 +418,7 @@ class QuestionController extends Controller{
         ]);
     }
 
-    // to get this year asked questions
+    // Getting this year asked questions
     public function yearQuestions(){
         $questions = Question::whereYear('created_at', now()->year) // checking if the year of created_at is current year
         ->orderBy('created_at', 'DESC')
@@ -355,7 +438,7 @@ class QuestionController extends Controller{
         ]);
     }
 
-    // to get this day asked questions
+    // Getting this day asked questions
     public function todayQuestion(){
         $questions = Question::whereDate('created_at', Carbon::today())
         ->orderBy('created_at', 'DESC')
@@ -375,9 +458,49 @@ class QuestionController extends Controller{
         ]);
     }
 
-    // to het this week asked questions
+    // Getting this week asked questions
     public function weekQuestion(){
         $questions = Question::whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // Getting the last 30 days asked questions
+    public function lastMonthQuestion(){
+        $questions = Question::whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-30 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($questions->isNotEmpty()) {
+            return response()->json([
+                'data' => $questions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Question Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // Getting the last 365 days asked questions
+    public function lastYearQuestion(){
+        $questions = Question::whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-365 days')))
         ->orderBy('created_at', 'DESC')
         ->get();   
         if ($questions->isNotEmpty()) {

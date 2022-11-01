@@ -94,6 +94,8 @@ Route::prefix('v0')->group(function () {
         Route::get('/monthQuestions', [QuestionController::class, 'monthQuestions'])->name('month-questions');
         Route::get('/todayQuestions', [QuestionController::class, 'todayQuestion'])->name('today-questions');
         Route::get('/weekQuestions', [QuestionController::class, 'weekQuestion'])->name('week-questions');
+        Route::get('/lastMonthQuestions', [QuestionController::class, 'lastMonthQuestion'])->name('last-month-questions');
+        Route::get('/lastYearQuestion', [QuestionController::class, 'lastYearQuestion'])->name('last-year-questions');
 
         // routes related to saved questions
         Route::post('/save', [QuestionController::class, 'saveQuestion'])->name('save-question');

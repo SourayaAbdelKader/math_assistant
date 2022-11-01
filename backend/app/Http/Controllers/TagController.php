@@ -62,6 +62,14 @@ class TagController extends Controller{
     // _____________ Updating a tag _____________
     public function updateTag(Request $request, $id){
         $tag = Tag::find($id);
+        // Checking if the tag exists
+        if (! $tag){
+            return response()->json([
+                'data' => null,
+                'message' => 'Tag Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $validator = Validator::make($request->all(), [
             'name' => 'string|min:5|max:70|unique:tags,name',
             'description' => 'string|min:30',
@@ -73,8 +81,8 @@ class TagController extends Controller{
                 'message' => 'Invalid Data',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
-        }
-        $tag->name = $request->name ? $requesr->name : $tag->name;
+        };
+        $tag->name = $request->name ? $request->name : $tag->name;
         $tag->description = $request->description? $request->description : $tag->description;
 
         if($tag->save()){
