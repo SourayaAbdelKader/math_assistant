@@ -23,7 +23,7 @@ Route::prefix('v0')->group(function () {
     Route::prefix('general')->group(function () {
 
         // getting users info regarding their user type 
-        Route::get('/users', [UserController::class, 'getUsers'])->name('get-users');
+        Route::get('/getUsers', [UserController::class, 'getUsers'])->name('get-users');
         Route::get('/editors', [UserController::class, 'getEditors'])->name('get-editors');
         Route::get('/admins', [UserController::class, 'getAdmins'])->name('get-admins');
         
@@ -43,19 +43,21 @@ Route::prefix('v0')->group(function () {
         Route::post('/deleteUser/{id?}', [UserController::class, 'deleteUser'])->name('delete-user');
         Route::post('/userUpdate/{id?}', [UserController::class, 'updateUser'])->name('update-user');
 
-        // get users depending on a certain time
+        // getting users depending on a certain time
         Route::get('/yearUSers', [UserController::class, 'yearUSers'])->name('year-users');
         Route::get('/monthUsers', [UserController::class, 'monthUsers'])->name('month-users');
         Route::get('/todayUser', [UserController::class, 'todayUser'])->name('today-users');
         Route::get('/weekUser', [UserController::class, 'weekUser'])->name('week-users');
+        Route::get('/lastMonthUsers', [QuestionController::class, 'lastMonthUsers'])->name('last-month-users');
+        Route::get('/lastYearUsers', [QuestionController::class, 'lastYearUsers'])->name('last-year-users');
 
-        // get editors depending on a certain time
+        // getting editors depending on a certain time
         Route::get('/yearEditors', [UserController::class, 'yearEditor'])->name('year-editors');
         Route::get('/monthEditors', [UserController::class, 'monthEditor'])->name('month-editors');
         Route::get('/todayEditors', [UserController::class, 'todayEditor'])->name('today-editors');
         Route::get('/weekEditors', [UserController::class, 'weekEditor'])->name('week-editors');
 
-        // get admins depending on a certain time
+        // getting admins depending on a certain time
         Route::get('/yearAdmins', [UserController::class, 'yearAdmin'])->name('year-admins');
         Route::get('/monthAdmins', [UserController::class, 'monthAdmin'])->name('month-admins');
         Route::get('/todayAdmins', [UserController::class, 'todayAdmin'])->name('today-admins');
@@ -77,7 +79,7 @@ Route::prefix('v0')->group(function () {
     // ___________________ Routes related to the tags ___________________
     Route::prefix('question')->group(function () {
 
-        // to get informations
+        // getting informations
         Route::get('/', [QuestionController::class, 'getQuestions'])->name('get-questions');
         Route::get('/id/{id?}', [QuestionController::class, 'getQuestionById'])->name('get-question-by-id');
         Route::get('/tag/{id?}', [QuestionController::class, 'getQuestionsPerTag'])->name('get-question-per-tag');
@@ -89,7 +91,7 @@ Route::prefix('v0')->group(function () {
         Route::get('/userTags/{id?}', [QuestionController::class, 'getTagsUsedByUser'])->name('count-questions-per-user');
 
         
-        // get questions depending on a certain time
+        // getting questions depending on a certain time
         Route::get('/yearQuestions', [QuestionController::class, 'yearQuestions'])->name('year-questions');
         Route::get('/monthQuestions', [QuestionController::class, 'monthQuestions'])->name('month-questions');
         Route::get('/todayQuestions', [QuestionController::class, 'todayQuestion'])->name('today-questions');

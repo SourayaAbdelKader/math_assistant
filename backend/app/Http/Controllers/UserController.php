@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class UserController extends Controller{
 
     //_____________ Getting the users joined the current day, week, month, year _____________
-    // to get this month joined users
+    // Getting this month joined users
     public function monthUsers(){
         $users = User::where('user_type','user')
         ->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
@@ -25,7 +25,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this year joined users
+    // Getting this year joined users
     public function yearUSers(){
         $users = User::where('user_type','user') // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
@@ -37,7 +37,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this day joined users
+    // Getting this day joined users
     public function todayUser(){
         $users = User::where('user_type','user')
         ->whereDate('created_at', Carbon::today())
@@ -49,7 +49,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to het this week joined users
+    // Getting this week joined users
     public function weekUser(){
         $users = User::where('user_type','user')
         ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')) )
@@ -61,8 +61,50 @@ class UserController extends Controller{
         ]);
     }
 
+    // Getting the last 30 days joined users
+    public function lastMonthUsers(){
+        $users = User::where('user_type','user')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-30 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($users->isNotEmpty()) {
+            return response()->json([
+                'data' => $users,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Users Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // Getting the last 365 days joined users
+    public function lastYearUsers(){
+        $users = User::where('user_type','user')
+        ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-365 days')))
+        ->orderBy('created_at', 'DESC')
+        ->get();   
+        if ($users->isNotEmpty()) {
+            return response()->json([
+                'data' => $users,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Users Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
     //_____________ Getting the editos added the current day, week, month, year _____________
-    // to get this month added editors
+    // Getting this month added editors
     public function monthEditor(){
         $editors = User::where('user_type','editor')
         ->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
@@ -75,7 +117,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this year added editors
+    // Getting this year added editors
     public function yearEditor(){
         $editors = User::where('user_type','editor') // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
@@ -87,7 +129,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this day added editors
+    // Getting this day added editors
     public function todayEditor(){
         $editors = User::where('user_type','editor')
         ->whereDate('created_at', Carbon::today())
@@ -99,7 +141,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to het this week added editors
+    // Getting this week added editors
     public function weekEditor(){
         $editors = User::where('user_type','editor')
         ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')) )
@@ -112,7 +154,7 @@ class UserController extends Controller{
     }
 
     //_____________ Getting the admins added the current day, week, month, year _____________
-    // to get this month added admins
+    // Getting this month added admins
     public function monthAdmin(){
         $admins = User::where('user_type','admin')
         ->whereMonth('created_at', now()->month) // checking if the month of created_at is current month
@@ -125,7 +167,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this year added admins
+    // Getting this year added admins
     public function yearAdmin(){
         $admins = User::where('user_type','admin') // checking if the month of created_at is current month
         ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
@@ -137,7 +179,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to get this day added admins
+    // Getting this day added admins
     public function todayAdmin(){
         $admins = User::where('user_type','admin')
         ->whereDate('created_at', Carbon::today())
@@ -149,7 +191,7 @@ class UserController extends Controller{
         ]);
     }
 
-    // to het this week added admins
+    // Getting this week added admins
     public function weekAdmin(){
         $admins = User::where('user_type','admin')
         ->whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')) )
@@ -388,11 +430,6 @@ class UserController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        // $data = User::insert([
-            //'name' => $request->name,
-            //'email' => '' ,
-            //'password' => ,
-        //])
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
