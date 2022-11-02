@@ -9,6 +9,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\SolutionController;
+use App\Http\Controllers\ScoreController;
 
 Route::prefix('v0')->group(function () {
 
@@ -67,6 +68,13 @@ Route::prefix('v0')->group(function () {
         Route::get('/weekAdmins', [UserController::class, 'weekAdmin'])->name('week-admins');
         Route::get('/lastMonthAdmins', [UserController::class, 'lastMonthAdmins'])->name('last-month-admins');
         Route::get('/lastYearAdmins', [UserController::class, 'lastYearAdmins'])->name('last-year-admins');
+    });
+
+    // ___________________ Routes related to scores ___________________
+    Route::prefix('score')->group(function () {
+        Route::get('/id/{id?}', [ScoreController::class, 'score'])->name('get-user-score');
+        Route::get('/asnwers/{id?}', [ScoreController::class, 'answerScore'])->name('get-user-score-for-answers');
+
     });
 
     // ___________________ Routes related to the tags ___________________
