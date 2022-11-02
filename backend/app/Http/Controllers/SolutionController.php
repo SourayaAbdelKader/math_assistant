@@ -225,7 +225,8 @@ class SolutionController extends Controller{
             ]);
         }
         
-        $solutions = Solution::where('problem_id', $id)
+        $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
+        ->where('problem_id', $id)
         ->where('checked', 1)
         ->orderBy('score', 'DESC') // ordered by score
         ->orderBy('created_at', 'DESC') // ordered by time
@@ -281,7 +282,8 @@ class SolutionController extends Controller{
             ]);
         }
         
-        $solutions = Solution::where('problem_id', $id)
+        $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
+        ->where('problem_id', $id)
         ->where('checked', 0)
         ->orderBy('created_at', 'DESC') // ordered by time
         ->get();
@@ -336,7 +338,8 @@ class SolutionController extends Controller{
             ]);
         }
         $points = $problem->points;
-        $solutions = Solution::where('problem_id', $id)
+        $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
+        ->where('problem_id', $id)
         ->where('checked', 1)
         ->where('score', $points)
         ->orderBy('created_at', 'DESC') // ordered by time
@@ -373,6 +376,80 @@ class SolutionController extends Controller{
         ->where('checked', 1)
         ->where('score', $points)
         ->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Getting checked solutions with users per problem by order _____________
+    public function getOrderedSolutions($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
+        $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
+        ->where('problem_id', $id)
+        ->where('checked', 1)
+        ->orderBy('score', 'DESC') // ordered by score
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Getting solutions per user _____________
+    public function getUserSolutions($id) {
+        // Checking if the problem exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('user_id', $id)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Counting solutions per user _____________
+    public function countUserSolutions($id) {
+        // Checking if the problem exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('user_id', $id)->count();
 
         if ($solutions->isNotEmpty()) {
             return response()->json([
