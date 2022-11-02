@@ -158,6 +158,24 @@ class SolutionController extends Controller{
         ]);
     }
 
+    // _____________ Getting solution by id _____________
+    public function getSolution($id) {
+        $solution = Solution::find($id);
+        if ($solution) {
+            return response()->json([
+                'data' => $solution,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
     // _____________ Getting solutions per problem _____________
     public function getProblemSolution($id) {
         // Checking if the problem exists
@@ -688,6 +706,7 @@ class SolutionController extends Controller{
             ]);
         }
         $problems = Problem::join('solutions', 'problems.id', 'solutions.problem_id')
+        ->select('problems.*')
         ->where('solutions.user_id', $id)
         ->where('solutions.checked', 1)
         ->orderBy('created_at', 'DESC') // ordered by time
@@ -700,6 +719,12 @@ class SolutionController extends Controller{
                 'status' =>  Response::HTTP_OK
             ]);
         }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
     }
 
     // _____________ Counting checked problems per user _____________
@@ -718,13 +743,19 @@ class SolutionController extends Controller{
         ->where('solutions.checked', 1)
         ->count();
 
-        if ($problems->isNotEmpty()) {
+        if ($problems) {
             return response()->json([
                 'data' => $problems,
                 'message' => 'Found',
                 'status' =>  Response::HTTP_OK
             ]);
         }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
     }
 
     // _____________ Getting unchecked problems per user _____________
@@ -739,6 +770,7 @@ class SolutionController extends Controller{
             ]);
         }
         $problems = Problem::join('solutions', 'problems.id', 'solutions.problem_id')
+        ->select('problems.*')
         ->where('solutions.user_id', $id)
         ->where('solutions.checked', 0)
         ->orderBy('created_at', 'DESC') // ordered by time
@@ -751,6 +783,12 @@ class SolutionController extends Controller{
                 'status' =>  Response::HTTP_OK
             ]);
         }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
     }
 
     // _____________ Counting unchecked problems per user _____________
@@ -767,15 +805,21 @@ class SolutionController extends Controller{
         $problems = Problem::join('solutions', 'problems.id', 'solutions.problem_id')
         ->where('solutions.user_id', $id)
         ->where('solutions.checked', 0)
-        ->get();
+        ->count();
 
-        if ($problems->isNotEmpty()) {
+        if ($problems) {
             return response()->json([
                 'data' => $problems,
                 'message' => 'Found',
                 'status' =>  Response::HTTP_OK
             ]);
         }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
     }
 
 }
