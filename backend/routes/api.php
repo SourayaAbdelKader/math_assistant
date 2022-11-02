@@ -169,8 +169,8 @@ Route::prefix('v0')->group(function () {
         //Route::get('/count', [SolutionController::class, 'countProblems'])->name('count-problems');
         //Route::get('/count/tag/{id?}', [SolutionController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
         Route::get('/problem/{id?}', [SolutionController::class, 'getProblemSolution'])->name('get-solutions-per-problem');
-        //Route::get('/count/level/{id?}', [SolutionController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
-        //Route::get('/level/{level?}', [SolutionController::class, 'getProblemsPerLevel'])->name('get-problems-per-level');
+        Route::get('/problems/checked/{id?}', [SolutionController::class, 'getCheckedProblemSolution'])->name('get-checked-solutions-per-problem');
+        Route::get('/problems/unchecked/{id?}', [SolutionController::class, 'getUncheckedProblemSolution'])->name('get-unchecked-solutions-per-problem');
     });
 
 });

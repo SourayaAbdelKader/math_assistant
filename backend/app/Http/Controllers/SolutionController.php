@@ -190,6 +190,29 @@ class SolutionController extends Controller{
         ]);
     }
 
+    // _____________ Counting solutions per problem _____________
+    public function countProblemSolution($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
+        $solutions = Solution::where('problem_id', $id)->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
     // _____________ Getting checked solutions per problem _____________
     public function getCheckedProblemSolution($id) {
         // Checking if the problem exists
@@ -223,6 +246,29 @@ class SolutionController extends Controller{
         ]);
     }
 
+    // _____________ Counting checked solutions per problem _____________
+    public function countCheckedProblemSolution($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
+        $solutions = Solution::where('problem_id', $id)->where('checked', 1)->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
     // _____________ Getting unchecked solutions per problem _____________
     public function getUncheckedProblemSolution($id) {
         // Checking if the problem exists
@@ -237,7 +283,6 @@ class SolutionController extends Controller{
         
         $solutions = Solution::where('problem_id', $id)
         ->where('checked', 0)
-        ->orderBy('score', 'DESC') // ordered by score
         ->orderBy('created_at', 'DESC') // ordered by time
         ->get();
 
@@ -254,6 +299,55 @@ class SolutionController extends Controller{
             'message' => 'Solution Not Found',
             'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
+    }
+
+    // _____________ Counting unchecked solutions per problem _____________
+    public function countUncheckedProblemSolution($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        
+        $solutions = Solution::where('problem_id', $id)->where('checked', 0)->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Counting fullmarked solutions per problem _____________
+    public function countFullmarkedSolutions($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $points = $problem->points;
+        $solutions = Solution::where('problem_id', $id)
+        ->where('checked', 1)
+        ->where('score', $points)
+        ->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
     }
 
 }
