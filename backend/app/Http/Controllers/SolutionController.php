@@ -226,10 +226,10 @@ class SolutionController extends Controller{
         }
         
         $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
-        ->where('problem_id', $id)
-        ->where('checked', 1)
-        ->orderBy('score', 'DESC') // ordered by score
-        ->orderBy('created_at', 'DESC') // ordered by time
+        ->where('solutions.problem_id', $id)
+        ->where('solutions.checked', 1)
+        ->orderBy('solutions.score', 'DESC') // ordered by score
+        ->orderBy('solutions.created_at', 'DESC') // ordered by time
         ->get();
 
         if ($solutions->isNotEmpty()) {
@@ -283,9 +283,9 @@ class SolutionController extends Controller{
         }
         
         $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
-        ->where('problem_id', $id)
-        ->where('checked', 0)
-        ->orderBy('created_at', 'DESC') // ordered by time
+        ->where('solutions.problem_id', $id)
+        ->where('solutions.checked', 0)
+        ->orderBy('solutions.created_at', 'DESC') // ordered by time
         ->get();
 
         if ($solutions->isNotEmpty()) {
@@ -339,10 +339,10 @@ class SolutionController extends Controller{
         }
         $points = $problem->points;
         $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
-        ->where('problem_id', $id)
-        ->where('checked', 1)
-        ->where('score', $points)
-        ->orderBy('created_at', 'DESC') // ordered by time
+        ->where('solutions.problem_id', $id)
+        ->where('solutions.checked', 1)
+        ->where('solutions.score', $points)
+        ->orderBy('solutions.created_at', 'DESC') // ordered by time
         ->get();
 
         if ($solutions->isNotEmpty()) {
@@ -399,10 +399,10 @@ class SolutionController extends Controller{
         }
 
         $solutions = Solution::join('users', 'users.id', 'solutions.user_id')
-        ->where('problem_id', $id)
-        ->where('checked', 1)
-        ->orderBy('score', 'DESC') // ordered by score
-        ->orderBy('created_at', 'DESC') // ordered by time
+        ->where('solutions.problem_id', $id)
+        ->where('solutions.checked', 1)
+        ->orderBy('solutions.score', 'DESC') // ordered by score
+        ->orderBy('solutions.created_at', 'DESC') // ordered by time
         ->get();
 
         if ($solutions->isNotEmpty()) {
