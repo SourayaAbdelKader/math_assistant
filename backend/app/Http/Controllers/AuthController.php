@@ -6,23 +6,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller{
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
+    public function login(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|exists:users,email',
+            'password' => 'required|string|min:6',
 
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $token = Auth::attempt($credentials);
         if (!$token) {
             return response()->json([
@@ -44,16 +51,25 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3|max:70',
+            'email' => 'required|string|email|max:70|unique:users',
             'password' => 'required|string|min:6',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_type' => 'user',
         ]);
 
         $token = Auth::login($user);
@@ -68,8 +84,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
-    {
+    public function logout(){
         Auth::logout();
         return response()->json([
             'status' => 'success',
@@ -77,16 +92,14 @@ class AuthController extends Controller
         ]);
     }
 
-    public function me()
-    {
+    public function me(){
         return response()->json([
             'status' => 'success',
             'user' => Auth::user(),
         ]);
     }
 
-    public function refresh()
-    {
+    public function refresh(){
         return response()->json([
             'status' => 'success',
             'user' => Auth::user(),

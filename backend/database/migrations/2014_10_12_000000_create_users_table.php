@@ -19,7 +19,7 @@ return new class extends Migration{
             $table->date('birthdate', 70)->nullable();
             $table->string('picture_url', 250)->nullable();
             $table->string('degree', 70)->nullable();
-            $table->enum('user_type', ['admin', 'editor', 'user']);
+            $table->enum('user_type', ['admin', 'editor', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });
