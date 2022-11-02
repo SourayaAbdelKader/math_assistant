@@ -462,7 +462,7 @@ class SolutionController extends Controller{
 
     // _____________ Getting checked solutions per user _____________
     public function getCheckedSolutions($id) {
-        // Checking if the problem exists
+        // Checking if the user exists
         $user = User::find($id);
         if (! $user){
             return response()->json([
@@ -487,7 +487,7 @@ class SolutionController extends Controller{
 
     // _____________ Counting checked solutions per user _____________
     public function countCheckedSolutions($id) {
-        // Checking if the problem exists
+        // Checking if the user exists
         $user = User::find($id);
         if (! $user){
             return response()->json([
@@ -509,7 +509,7 @@ class SolutionController extends Controller{
 
     // _____________ Getting unchecked solutions per user _____________
     public function getUncheckedSolutions($id) {
-        // Checking if the problem exists
+        // Checking if the user exists
         $user = User::find($id);
         if (! $user){
             return response()->json([
@@ -534,7 +534,7 @@ class SolutionController extends Controller{
 
     // _____________ Counting unchecked solutions per user _____________
     public function countUncheckedSolutions($id) {
-        // Checking if the problem exists
+        // Checking if the user exists
         $user = User::find($id);
         if (! $user){
             return response()->json([
@@ -544,6 +544,65 @@ class SolutionController extends Controller{
             ]);
         }
         $solutions = Solution::where('user_id', $id)->where('checked', 0)->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Getting fullmarked solutions per user _____________
+    public function getFullmarkedSolutionUser($id) {
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $points = $problem->points;
+        $solutions = Solution::where('user_id', $id)
+        ->where('checked', 1)
+        ->where('score', $points)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Counting fullmarked solutions per user _____________
+    public function countFullmarkedSolutionUser($id) {
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $points = $problem->points;
+        $solutions = Solution::where('user_id', $id)
+        ->where('checked', 1)
+        ->where('score', $points)
+        ->count();
 
         if ($solutions->isNotEmpty()) {
             return response()->json([
