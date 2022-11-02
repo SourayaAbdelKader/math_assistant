@@ -159,6 +159,16 @@ Route::prefix('v0')->group(function () {
 
     // ___________________ Routes related to the Solutions ___________________
     Route::prefix('solution')->group(function () {
+        // getting all data
+        Route::get('/all', [SolutionController::class, 'getAllSolutions'])->name('get-solutions');
+        Route::get('/countAll', [SolutionController::class, 'countAllSolutions'])->name('count-solutions');
+        Route::get('/allChecked', [SolutionController::class, 'getAllCheckedSolutions'])->name('get-checked-solutions');
+        Route::get('/countAllChecked', [SolutionController::class, 'countAllCheckedSolutions'])->name('count-checked-solutions');
+        Route::get('/allUnchecked', [SolutionController::class, 'getAllUncheckedSolutions'])->name('get-unchecked-solutions');
+        Route::get('/countAllUnchecked', [SolutionController::class, 'countAllUncheckedSolutions'])->name('count-unchecked-solutions');
+        Route::get('/getFullmarked', [SolutionController::class, 'getAllFullmarkedSolutions'])->name('get-fullmarked-solutions');
+        Route::get('/countFullmarked', [SolutionController::class, 'countAllFullmarkedSolutions'])->name('count-fullmarked-solutions');
+        
         // manipulating problems's data
         Route::post('/add', [SolutionController::class, 'addSolution'])->name('add-solution');
         Route::post('/check', [SolutionController::class, 'checkSolution'])->name('check-solution'); 
