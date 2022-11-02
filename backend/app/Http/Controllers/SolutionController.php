@@ -324,6 +324,39 @@ class SolutionController extends Controller{
         }
     }
 
+    // _____________ Getting fullmarked solutions per problem _____________
+    public function getFullmarkedProblemSolution($id) {
+        // Checking if the problem exists
+        $problem = Problem::find($id);
+        if (! $problem){
+            return response()->json([
+                'data' => "error",
+                'message' => 'Problem Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $points = $problem->points;
+        $solutions = Solution::where('problem_id', $id)
+        ->where('checked', 1)
+        ->where('score', $points)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
     // _____________ Counting fullmarked solutions per problem _____________
     public function countFullmarkedSolutions($id) {
         // Checking if the problem exists
