@@ -416,7 +416,7 @@ class SolutionController extends Controller{
 
     // _____________ Getting solutions per user _____________
     public function getUserSolutions($id) {
-        // Checking if the problem exists
+        // Checking if the user exists
         $user = User::find($id);
         if (! $user){
             return response()->json([
@@ -440,7 +440,7 @@ class SolutionController extends Controller{
 
     // _____________ Counting solutions per user _____________
     public function countUserSolutions($id) {
-        // Checking if the problem exists
+        // Checking if the user exists
         $user = User::find($id);
         if (! $user){
             return response()->json([
@@ -450,6 +450,100 @@ class SolutionController extends Controller{
             ]);
         }
         $solutions = Solution::where('user_id', $id)->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Getting checked solutions per user _____________
+    public function getCheckedSolutions($id) {
+        // Checking if the problem exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('user_id', $id)
+        ->where('checked', 1)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Counting checked solutions per user _____________
+    public function countCheckedSolutions($id) {
+        // Checking if the problem exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('user_id', $id)->where('checked', 1)->count();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Getting unchecked solutions per user _____________
+    public function getUncheckedSolutions($id) {
+        // Checking if the problem exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('user_id', $id)
+        ->where('checked', 0)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Counting unchecked solutions per user _____________
+    public function countUncheckedSolutions($id) {
+        // Checking if the problem exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('user_id', $id)->where('checked', 0)->count();
 
         if ($solutions->isNotEmpty()) {
             return response()->json([
