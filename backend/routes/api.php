@@ -195,6 +195,9 @@ Route::prefix('v0')->group(function () {
         Route::get('/user/problem/unchecked/{id?}', [SolutionController::class, 'getUncheckedProblems'])->name('get-unchecked-problems-per-user');
         Route::get('/user/problem/countUnchecked/{id?}', [SolutionController::class, 'countUncheckedProblems'])->name('count-unchecked-problems-per-user');
 
+        // getting data per editor
+        Route::get('/editor/{id?}', [SolutionController::class, 'getCheckedSolutionsByEditor'])->name('get-solutions-checked-by-editor');
+        Route::get('/countEditor/{id?}', [SolutionController::class, 'countCheckedSolutionsByEditor'])->name('count-solutions-checked-by-editor');
 
     });
 

@@ -822,4 +822,65 @@ class SolutionController extends Controller{
         ]);
     }
 
+    // _____________ Getting checked problems by an editor _____________
+    public function getCheckedSolutionsByEditor($id) {
+        // Checking if the editor exists
+        $user = User::find($id);
+        if (! $user || $user->user_type != 'editor'){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('editor_id', $id)
+        ->where('checked', 1)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($solutions->isNotEmpty()) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
+    // _____________ Counting checked solutions by an editor _____________
+    public function countCheckedSolutionsByEditor($id) {
+        // Checking if the editor exists
+        $user = User::find($id);
+        if (! $user || $user->user_type != 'editor'){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $solutions = Solution::where('editor_id', $id)
+        ->where('checked', 1)
+        ->count();
+
+        if ($solutions) {
+            return response()->json([
+                'data' => $solutions,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'Solution Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+    }
+
 }
