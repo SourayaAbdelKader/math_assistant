@@ -613,4 +613,106 @@ class SolutionController extends Controller{
         }
     }
 
+    // _____________ Getting checked problems per user _____________
+    public function getCheckedProblems($id) {
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $problems = Problem::join('solutions', 'problems.id', 'solutions.problem_id')
+        ->where('solutions.user_id', $id)
+        ->where('solutions.checked', 1)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($problems->isNotEmpty()) {
+            return response()->json([
+                'data' => $problems,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Counting checked problems per user _____________
+    public function countCheckedSolutions($id) {
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $problems = Problem::join('solutions', 'problems.id', 'solutions.problem_id')
+        ->where('solutions.user_id', $id)
+        ->where('solutions.checked', 1)
+        ->count();
+
+        if ($problems->isNotEmpty()) {
+            return response()->json([
+                'data' => $problems,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Getting unchecked problems per user _____________
+    public function getUncheckedProblems($id) {
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $problems = Problem::join('solutions', 'problems.id', 'solutions.problem_id')
+        ->where('solutions.user_id', $id)
+        ->where('solutions.checked', 0)
+        ->orderBy('created_at', 'DESC') // ordered by time
+        ->get();
+
+        if ($problems->isNotEmpty()) {
+            return response()->json([
+                'data' => $problems,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
+    // _____________ Counting unchecked problems per user _____________
+    public function countUncheckedProblems($id) {
+        // Checking if the user exists
+        $user = User::find($id);
+        if (! $user){
+            return response()->json([
+                'data' => "error",
+                'message' => 'User Not Found',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $problems = Problem::join('solutions', 'problems.id', 'solutions.problem_id')
+        ->where('solutions.user_id', $id)
+        ->where('solutions.checked', 0)
+        ->get();
+
+        if ($problems->isNotEmpty()) {
+            return response()->json([
+                'data' => $problems,
+                'message' => 'Found',
+                'status' =>  Response::HTTP_OK
+            ]);
+        }
+    }
+
 }
