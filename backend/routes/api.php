@@ -163,14 +163,34 @@ Route::prefix('v0')->group(function () {
         Route::post('/add', [SolutionController::class, 'addSolution'])->name('add-solution');
         Route::post('/check', [SolutionController::class, 'checkSolution'])->name('check-solution'); 
 
-        // getting data
-        Route::post('/getProblemSolution', [SolutionController::class, 'getUserSolutionForProblem'])->name('get-solution-by-problem-user ');
-        //Route::get('/id/{id?}', [SolutionController::class, 'getProblemById'])->name('get-problem-by-id');
-        //Route::get('/count', [SolutionController::class, 'countProblems'])->name('count-problems');
-        //Route::get('/count/tag/{id?}', [SolutionController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
+        // getting data per problem
+        Route::post('/getProblemSolution', [SolutionController::class, 'getUserSolutionForProblem'])->name('get-user-solution-for-problem');
         Route::get('/problem/{id?}', [SolutionController::class, 'getProblemSolution'])->name('get-solutions-per-problem');
+        Route::get('/countProblem/{id?}', [SolutionController::class, 'countProblemSolution'])->name('count-solutions-per-problem');
+        
+        // getting data per problem depending on it's status : checked/unchecked/fullmarked
         Route::get('/problems/checked/{id?}', [SolutionController::class, 'getCheckedProblemSolution'])->name('get-checked-solutions-per-problem');
+        Route::get('/problems/countChecked/{id?}', [SolutionController::class, 'countCheckedProblemSolution'])->name('count-checked-solutions-per-problem');
+
         Route::get('/problems/unchecked/{id?}', [SolutionController::class, 'getUncheckedProblemSolution'])->name('get-unchecked-solutions-per-problem');
+        Route::get('/problems/countUnchecked/{id?}', [SolutionController::class, 'countUncheckedProblemSolution'])->name('count-unchecked-solutions-per-problem');
+
+        Route::get('/problems/fullmarked/{id?}', [SolutionController::class, 'getFullmarkedProblemSolution'])->name('get-fullmarked-solutions-per-problem');
+        Route::get('/problems/countFullmarked/{id?}', [SolutionController::class, 'countFullmarkedSolutions'])->name('count-fullmarked-solutions-per-problem');
+        Route::get('/problems/order/{id?}', [SolutionController::class, 'getOrderedSolutions'])->name('get-ordered-solutions-per-problem');
+        
+        // getting data per user
+        Route::get('/user/{id?}', [SolutionController::class, 'getUserSolutions'])->name('get-solutions-per-user');
+        Route::get('/countUser/{id?}', [SolutionController::class, 'countUserSolutions'])->name('count-solutions-per-user');
+        Route::get('/user/checked/{id?}', [SolutionController::class, 'getCheckedSolutions'])->name('get-checked-solutions-per-user');
+        Route::get('/user/countChecked/{id?}', [SolutionController::class, 'countCheckedSolutions'])->name('count-checked-solutions-per-user');
+        Route::get('/user/unchecked/{id?}', [SolutionController::class, 'getUncheckedSolutions'])->name('get-unchecked-solutions-per-user');
+        Route::get('/user/countUnchecked/{id?}', [SolutionController::class, 'countUncheckedSolutions'])->name('count-unchecked-solutions-per-user');
+        Route::get('/user/fullmarked/{id?}', [SolutionController::class, 'getFullmarkedSolutionUser'])->name('get-fullmarked-solutions-per-user');
+        Route::get('/user/countFullmarked/{id?}', [SolutionController::class, 'countFullmarkedSolutionUser'])->name('count-fullmarked-solutions-per-user');
+
+        
+
     });
 
 });
