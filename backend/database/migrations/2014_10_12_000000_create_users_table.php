@@ -17,7 +17,7 @@ return new class extends Migration{
             $table->string('gender', 45)->nullable();
             $table->string('location', 70)->nullable();
             $table->date('birthdate', 70)->nullable();
-            $table->string('picture_url', 250)->nullable();
+            $table->string('picture_url', 50000)->nullable();
             $table->string('degree', 70)->nullable();
             $table->enum('user_type', ['admin', 'editor', 'user'])->default('user');
             $table->rememberToken();

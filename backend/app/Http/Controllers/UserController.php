@@ -422,7 +422,7 @@ class UserController extends Controller{
             'gender' => 'min:2|max:45|alpha',
             'location' => 'min:2|max:70',
             'birthday' => 'date|after:1912-01-01',
-            'picture_url' => 'string|max:250',
+            'picture_url' => 'string|max:50000|mimes:jpeg,bmp,png,jpg',
             'degree' => 'string|min:5|max:70',
         ]);
 
@@ -444,18 +444,28 @@ class UserController extends Controller{
         $user->degree = $request->degree ? $request->degree  : $user->degree;
 
         // for the pictures
-        if ($request->picture_url){
-            $img = $request->picture_url;
-            $folderPath = "backend/public/images/users/"; 
-            $image_parts = explode(";base64,", $img);
-            $image_type_aux = explode("image/", $image_parts[0]);
-            $image_type = $image_type_aux[1];
-            $image_base64 = base64_decode($image_parts[1]);
-            $uniqid = $id;
-            $file = $folderPath . $uniqid . '.png';
+        if ($request->picture_url) {
+            $folderPath = public_path()."/images/users/";
+
+            $base64Image = explode(";base64,", $request->picture_url);
+            $explodeImage = explode("image/", $base64Image[0]);
+            $imageType = $explodeImage[1];
+            $image_base64 = base64_decode($base64Image[1]);
+            $file = $folderPath . uniqid() .'.'. $imageType;
+
             file_put_contents($file, $image_base64);
-            $user->$picture_url = $file;
+            $user->picture_url = $file;
+        
+        if ($request->hasFile('file')) {
+
+            // Save the file locally in the storage/public/ folder under a new folder named /product
+            $request->file->store('users', 'public');
+            $user->picture_url = $request->file->hashName();
+
         }
+    }
+
+
 
         if($user->save()){
             return response()->json([
