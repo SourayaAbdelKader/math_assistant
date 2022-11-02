@@ -75,6 +75,7 @@ Route::prefix('v0')->group(function () {
         Route::get('/id/{id?}', [ScoreController::class, 'score'])->name('get-user-score');
         Route::get('/asnwers/{id?}', [ScoreController::class, 'answerScore'])->name('get-user-score-for-answers');
         Route::get('/practice/{id?}', [ScoreController::class, 'practiceScore'])->name('get-user-score-for-practice');
+        
     });
 
     // ___________________ Routes related to the tags ___________________
