@@ -30,7 +30,9 @@ class AuthController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
+        
         $token = Auth::attempt($credentials);
+        
         if (!$token) {
             return response()->json([
                 'status' => 'error',

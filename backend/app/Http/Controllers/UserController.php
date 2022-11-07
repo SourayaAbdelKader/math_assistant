@@ -6,10 +6,52 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use Carbon\Carbon;
 
 class UserController extends Controller{
+
+    public function sendNotification(Request $request)
+    {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $DeviceToekn = User::whereNotNull('device_token')->pluck('device_token')->all();
+          
+        $FcmKey = 'AAAAWeIs1N0:APA91bHHId9gYKEEJNKv4T0BuxFh7LA7NgXDxBuVGIL9DVwNx4HRVOQEsxnGCQ83gOqYaahQxFlaRBQS8rKh29NQp14y3FzJUCNjhy-hqk0mL4jTLSE9hDh2xNSb4McuyFnARezxdRd4';
+  
+        $data = [
+            "registration_ids" => $DeviceToekn,
+            "notification" => [
+                "title" => $request->title,
+                "body" => $request->body,  
+            ]
+        ];
+
+        $RESPONSE = json_encode($data);
+    
+        $headers = [
+            'Authorization:key=' . $FcmKey,
+            'Content-Type: application/json',
+        ];
+    
+        // CURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $RESPONSE);
+
+        $output = curl_exec($ch);
+        if ($output === FALSE) {
+            die('Curl error: ' . curl_error($ch));
+        }        
+        curl_close($ch);
+        dd($output);        
+    }
 
     //_____________ Getting the users joined the current day, week, month, year _____________
     // Getting this month joined users
@@ -391,8 +433,8 @@ class UserController extends Controller{
 
     // _____________ Getting user information by email _____________
     public function getUserByEmail($email){
+        $user = User::where('email', $email)->get(); 
         //$user = Auth::user();
-        $user = User::where('email', $email)->get(); ;
         if ($user->isNotEmpty()) {
             return response()->json([
                 'data' => $user,
@@ -410,8 +452,8 @@ class UserController extends Controller{
 
     // _____________ Updating a user _____________
     public function updateUser(Request $request, $id){
-        //$id= Auth::$id();
         $user = User::find($id);
+        //$id= Auth::$id();
         //$user = Auth::user();
 
         // to validate incoming data
@@ -422,7 +464,7 @@ class UserController extends Controller{
             'gender' => 'min:2|max:45|alpha',
             'location' => 'min:2|max:70',
             'birthday' => 'date|after:1912-01-01',
-            'picture_url' => 'string|max:50000|mimes:jpeg,bmp,png,jpg',
+            'picture_url' => 'string|max:50000',
             'degree' => 'string|min:5|max:70',
         ]);
 
@@ -445,27 +487,16 @@ class UserController extends Controller{
 
         // for the pictures
         if ($request->picture_url) {
-            $folderPath = public_path()."/images/users/";
-
+            $folderPath = public_path("images\users");
             $base64Image = explode(";base64,", $request->picture_url);
             $explodeImage = explode("image/", $base64Image[0]);
             $imageType = $explodeImage[1];
             $image_base64 = base64_decode($base64Image[1]);
-            $file = $folderPath . uniqid() .'.'. $imageType;
-
+            $file_name = $user->id.".".uniqid().'.'.$imageType;
+            $file = $folderPath.'\.'.$file_name ;
             file_put_contents($file, $image_base64);
             $user->picture_url = $file;
-        
-        if ($request->hasFile('file')) {
-
-            // Save the file locally in the storage/public/ folder under a new folder named /product
-            $request->file->store('users', 'public');
-            $user->picture_url = $request->file->hashName();
-
         }
-    }
-
-
 
         if($user->save()){
             return response()->json([

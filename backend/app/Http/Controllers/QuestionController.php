@@ -246,7 +246,10 @@ class QuestionController extends Controller{
     
     // _____________ Getting questions _____________
     public function getQuestions(){ 
-        $question = Question::orderBy('created_at', 'DESC')->get();
+        $question = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->orderBy('questions.created_at', 'DESC')->get();
        
         if ($question->isNotEmpty()) {
             return response()->json([
@@ -265,7 +268,10 @@ class QuestionController extends Controller{
 
     // _____________ Getting question by id _____________
     public function getQuestionById($id){
-        $question = Question::where('id', $id)->get();
+        $question = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->where('questions.id', $id)->get();
         if ($question->isNotEmpty()) {
             return response()->json([
                 'data' => $question,
@@ -293,7 +299,12 @@ class QuestionController extends Controller{
             ]);
         };
 
-        $questions = Question::where('tag_id', $id)->orderBy('created_at', 'DESC')->get();
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->where('questions.tag_id', $id)
+        ->orderBy('questions.created_at', 'DESC')
+        ->get();
         if ($questions->isNotEmpty()) {
             return response()->json([
                 'data' => $questions,
@@ -340,7 +351,12 @@ class QuestionController extends Controller{
             ]);
         };
 
-        $questions = Question::where('user_id', $id)->orderBy('created_at', 'DESC')->get();
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->where('questions.user_id', $id)
+        ->orderBy('questions.created_at', 'DESC')
+        ->get();
         if ($questions->isNotEmpty()) {
             return response()->json([
                 'data' => $questions,
@@ -376,9 +392,12 @@ class QuestionController extends Controller{
 
     // _____________ Searching for a questions _____________
     public function searchQuestion($data){
-        $questions = Question::where('problem', 'like', "%{$data}%")
-        ->orWhere('description', 'like', "%{$data}%")
-        ->orWhere('suggested_solution', 'like', "%{$data}%")
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->orWhere('questions.description', 'like', "%{$data}%")
+        ->orWhere('questions.suggested_solution', 'like', "%{$data}%")
+        ->orWhere('questions.problem', 'like', '%{$data}%')
         ->get();;
 
         if ($questions->isNotEmpty()) {
@@ -399,9 +418,12 @@ class QuestionController extends Controller{
     //_____________ Getting the questions asked the current day, week, month, year _____________
     // Getting this month asked questions
     public function monthQuestions(){
-        $questions = Question::whereMonth('created_at', now()->month) // checking if the month of created_at is current month
-        ->whereYear('created_at', now()->year) // checking if the year of created_at is current year
-        ->orderBy('created_at', 'DESC')
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->whereMonth('questions.created_at', now()->month) // checking if the month of created_at is current month
+        ->whereYear('questions.created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('questions.created_at', 'DESC')
         ->get();      
         if ($questions->isNotEmpty()) {
             return response()->json([
@@ -420,8 +442,11 @@ class QuestionController extends Controller{
 
     // Getting this year asked questions
     public function yearQuestions(){
-        $questions = Question::whereYear('created_at', now()->year) // checking if the year of created_at is current year
-        ->orderBy('created_at', 'DESC')
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->whereYear('questions.created_at', now()->year) // checking if the year of created_at is current year
+        ->orderBy('questions.created_at', 'DESC')
         ->get();      
         if ($questions->isNotEmpty()) {
             return response()->json([
@@ -440,8 +465,11 @@ class QuestionController extends Controller{
 
     // Getting this day asked questions
     public function todayQuestion(){
-        $questions = Question::whereDate('created_at', Carbon::today())
-        ->orderBy('created_at', 'DESC')
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->whereDate('questions.created_at', Carbon::today())
+        ->orderBy('questions.created_at', 'DESC')
         ->get();   
         if ($questions->isNotEmpty()) {
             return response()->json([
@@ -460,8 +488,11 @@ class QuestionController extends Controller{
 
     // Getting this week asked questions
     public function weekQuestion(){
-        $questions = Question::whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')))
-        ->orderBy('created_at', 'DESC')
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->whereDate('questions.created_at', '>=', date('Y-m-d H:i:s',strtotime('-7 days')))
+        ->orderBy('questions.created_at', 'DESC')
         ->get();   
         if ($questions->isNotEmpty()) {
             return response()->json([
@@ -480,8 +511,11 @@ class QuestionController extends Controller{
 
     // Getting the last 30 days asked questions
     public function lastMonthQuestion(){
-        $questions = Question::whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-30 days')))
-        ->orderBy('created_at', 'DESC')
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->whereDate('questions.created_at', '>=', date('Y-m-d H:i:s',strtotime('-30 days')))
+        ->orderBy('questions.created_at', 'DESC')
         ->get();   
         if ($questions->isNotEmpty()) {
             return response()->json([
@@ -500,8 +534,11 @@ class QuestionController extends Controller{
 
     // Getting the last 365 days asked questions
     public function lastYearQuestion(){
-        $questions = Question::whereDate('created_at', '>=', date('Y-m-d H:i:s',strtotime('-365 days')))
-        ->orderBy('created_at', 'DESC')
+        $questions = Question::join('users', 'users.id', 'questions.user_id')
+        ->join('tags', 'tags.id','questions.tag_id')
+        ->select('questions.*', 'users.name', 'tags.title')
+        ->whereDate('questions.created_at', '>=', date('Y-m-d H:i:s',strtotime('-365 days')))
+        ->orderBy('questions.created_at', 'DESC')
         ->get();   
         if ($questions->isNotEmpty()) {
             return response()->json([

@@ -17,6 +17,11 @@ Route::prefix('v0')->group(function () {
 
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/send-notification', [UserController::class, 'sendNotification'])->name('send.notification');
+    Route::get('/countUsers', [UserController::class, 'countUsers'])->name('count-users');
+    Route::get('/countEditors', [UserController::class, 'countEditors'])->name('count-editors');
+    Route::get('/countQuestions', [QuestionController::class, 'countQuestions'])->name('count-questions');
+    Route::get('/countProblems', [ProblemController::class, 'countProblems'])->name('count-problems');
 
     Route::group(["middleware" => 'jwt.verify'], function(){
 
@@ -35,8 +40,6 @@ Route::prefix('v0')->group(function () {
                 Route::get('/users/email/{email?}', [UserController::class, 'getUserByEmail'])->name('get-user-by-email');
                 
                 // counting users info regarding their user type
-                Route::get('/countUsers', [UserController::class, 'countUsers'])->name('count-users');
-                Route::get('/countEditors', [UserController::class, 'countEditors'])->name('count-editors');
                 Route::get('/countAdmins', [UserController::class, 'countAdmins'])->name('count-admin');
             });
 
@@ -116,7 +119,6 @@ Route::prefix('v0')->group(function () {
                 Route::get('/tag/{id?}', [QuestionController::class, 'getQuestionsPerTag'])->name('get-question-per-tag');
                 Route::get('/search/{data?}', [QuestionController::class, 'searchQuestion'])->name('search-question');
                 Route::get('/user/{id?}', [QuestionController::class, 'getQuestionsPerUser'])->name('get-question-per-user');
-                Route::get('/count', [QuestionController::class, 'countQuestions'])->name('count-questions');
                 Route::get('/countPerTag/{id?}', [QuestionController::class, 'countQuestionsPerTag'])->name('count-questions-per-tag');
                 Route::get('/countPerUser/{id?}', [QuestionController::class, 'countQuestionsPerUser'])->name('count-questions-per-user');
                 Route::get('/userTags/{id?}', [QuestionController::class, 'getTagsUsedByUser'])->name('count-questions-per-user');
@@ -185,7 +187,6 @@ Route::prefix('v0')->group(function () {
             Route::group(['middleware' => 'role:admin,editor,user'], function () {
                 Route::get('/', [ProblemController::class, 'getProblems'])->name('get-problems');
                 Route::get('/id/{id?}', [ProblemController::class, 'getProblemById'])->name('get-problem-by-id');
-                Route::get('/count', [ProblemController::class, 'countProblems'])->name('count-problems');
                 Route::get('/count/tag/{id?}', [ProblemController::class, 'countProblemsPerTag'])->name('count-problems-per-tag');
                 Route::get('/tag/{id?}', [ProblemController::class, 'getProblemsPerTag'])->name('get-problems-per-tag');
                 Route::get('/count/level/{id?}', [ProblemController::class, 'countProblemsPerLevel'])->name('count-problems-per-level');
