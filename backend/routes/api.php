@@ -34,7 +34,11 @@ Route::prefix('v0')->group(function () {
                 Route::get('/getUsers', [UserController::class, 'getUsers'])->name('get-users');
                 Route::get('/editors', [UserController::class, 'getEditors'])->name('get-editors');
                 Route::get('/admins', [UserController::class, 'getAdmins'])->name('get-admins');
-                
+
+                // dealing with notifications
+                Route::post('/saveToken', [UserController::class, 'saveDeviceToken'])->name('save-device-token');
+                Route::post('/sendNotification', [UserController::class, 'sendNotification'])->name('get-users');
+
                 // getting user info
                 Route::get('/users/{id?}', [UserController::class, 'getUserInfo'])->name('get-user-info');
                 Route::get('/users/email/{email?}', [UserController::class, 'getUserByEmail'])->name('get-user-by-email');

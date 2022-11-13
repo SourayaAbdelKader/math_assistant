@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Question;
@@ -29,16 +30,8 @@ class QuestionController extends Controller{
             ]);
         }
 
-        // Checking if the question is saved 
-        $is_question = Saved_question::where('user_id', $request->user_id)
-        ->where('question_id', $request->question_id);
-        if($is_question){
-            return response()->json([
-                'data' => "error",
-                'message' => 'User Saved The Question',
-                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
 
         $data = $request->all();
         $question = Saved_question::create($data);
@@ -91,6 +84,9 @@ class QuestionController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         };
+
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
 
         $saved_question = Saved_question::where('user_id', '=', $request->user_id)
         ->where('question_id', '=', $request->question_id);
@@ -172,6 +168,9 @@ class QuestionController extends Controller{
             'user_id' => 'required|integer|exists:users,id',
             'tag_id' => 'required|integer|exists:tags,id',
         ]);
+
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
 
         if ($validator->fails()) {
             return response()->json([

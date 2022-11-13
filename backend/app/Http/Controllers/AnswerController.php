@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Question;
@@ -33,7 +34,8 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         };
-        
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
         $answer = new Answer;
         $answer->description = $request->description;
         $answer->user_id = $request->user_id;
@@ -52,15 +54,19 @@ class AnswerController extends Controller{
         $score->score = $final;
         $score->save();
 
-        return response()->json([
-            'data' => $answer, $score,
-            'message' => 'Added Successfully',
-            'status' =>  Response::HTTP_OK
-        ]);
+        if ($answer){
+            return response()->json([
+                'status' => Response::HTTP_OK,
+                'message' => 'Answer sent',
+            ]);
+        }
+        
     }
 
     // _____________ Deleting an answer _____________
     public function deleteAnswer($id){
+        $user = User::where('id', $id);
+        $user = Auth::user();
         $answer = Answer::find($id);
         $remove_score = $answer->score;
         // to remove the score from the scores table
@@ -100,6 +106,9 @@ class AnswerController extends Controller{
             'answer_id' => 'required|integer|exists:answers,id',
             'user_id' => 'required|integer|exists:users,id',
         ]);
+
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
 
         if ($validator->fails()) {
             return response()->json([
@@ -162,6 +171,9 @@ class AnswerController extends Controller{
             'user_id' => 'required|integer|exists:users,id',
             'vote' => 'required|integer',
         ]);
+
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
 
         if ($validator->fails()) {
             return response()->json([
@@ -268,7 +280,10 @@ class AnswerController extends Controller{
                 'message' => 'Invalid Data',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
-        }
+        };
+
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
 
         // Preventing user to vote on his answer 
         $answer = Answer::find($request->answer_id);

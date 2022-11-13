@@ -126,7 +126,7 @@ class ProblemController extends Controller{
 
     // _____________ Getting problems _____________
     public function getProblems(){ 
-        $problems = Problem::orderBy('created_at', 'DESC')->get();
+        $problems = Problem::orderBy('created_at', 'ASC')->get();
        
         if ($problems->isNotEmpty()) {
             return response()->json([

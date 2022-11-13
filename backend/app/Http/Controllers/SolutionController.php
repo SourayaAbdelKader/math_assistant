@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Problem;
 use App\Models\Score;
@@ -30,6 +31,9 @@ class SolutionController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         };
+
+        $user = User::where('id', $request->user_id);
+        $user = Auth::user();
         
         // Checking if the user already answered the problem
         $checking = Solution::where('user_id', $request->user_id)->where('problem_id', $request->problem_id)->get();
@@ -71,6 +75,9 @@ class SolutionController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         };
+
+        $user = User::where('id', $request->editor_id);
+        $user = Auth::user();
 
         $solution = Solution::find($request->solution_id);
         // Checking if the solution is checked

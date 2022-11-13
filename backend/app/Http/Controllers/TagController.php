@@ -155,7 +155,7 @@ class TagController extends Controller{
 
     // _____________ Searching for a tag _____________
     public function searchTag($data){
-        $tags = Tag::where('name', 'like', "%{$data}%")
+        $tags = Tag::where('title', 'like', "%{$data}%")
         ->orWhere('description', 'like', "%{$data}%")
         ->get();;
 

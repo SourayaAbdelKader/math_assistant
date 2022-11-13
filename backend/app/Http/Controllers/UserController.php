@@ -12,18 +12,22 @@ use Carbon\Carbon;
 
 class UserController extends Controller{
 
-    public function sendNotification(Request $request)
-    {
+    public function saveDeviceToken(Request $request){
+        auth()->user()->update(['device_token'=>$request->device_token]);
+        return response()->json(['Token stored.']);
+    }
+
+    public function sendNotification(Request $id){
         $url = 'https://fcm.googleapis.com/fcm/send';
-        $DeviceToekn = User::whereNotNull('device_token')->pluck('device_token')->all();
+        $DeviceToekn = User::where('id', $id->id)->pluck('device_token')->all();
           
         $FcmKey = 'AAAAWeIs1N0:APA91bHHId9gYKEEJNKv4T0BuxFh7LA7NgXDxBuVGIL9DVwNx4HRVOQEsxnGCQ83gOqYaahQxFlaRBQS8rKh29NQp14y3FzJUCNjhy-hqk0mL4jTLSE9hDh2xNSb4McuyFnARezxdRd4';
   
         $data = [
             "registration_ids" => $DeviceToekn,
             "notification" => [
-                "title" => $request->title,
-                "body" => $request->body,  
+                "title" => "hola",
+                "body" => "ya Gamalo",  
             ]
         ];
 
@@ -356,7 +360,6 @@ class UserController extends Controller{
 
     // _____________ Getting the users information _____________
     public function getUsers(){ 
-        //dd($request);
         $users = User::where('user_type', 'user')->orderBy('created_at', 'DESC')->get();
        
         if ($users->isNotEmpty()) {
@@ -413,8 +416,7 @@ class UserController extends Controller{
     }
 
     // _____________ Getting user information by id _____________
-    public function getUserInfo($id){
-        //$id= Auth::$id();
+    public function getUserInfo($id){      
         $user = User::where('id', $id)->get();
         if ($user->isNotEmpty()) {
             return response()->json([
@@ -434,7 +436,6 @@ class UserController extends Controller{
     // _____________ Getting user information by email _____________
     public function getUserByEmail($email){
         $user = User::where('email', $email)->get(); 
-        //$user = Auth::user();
         if ($user->isNotEmpty()) {
             return response()->json([
                 'data' => $user,
@@ -453,8 +454,8 @@ class UserController extends Controller{
     // _____________ Updating a user _____________
     public function updateUser(Request $request, $id){
         $user = User::find($id);
-        //$id= Auth::$id();
-        //$user = Auth::user();
+        $id= Auth::$id();
+        $user = Auth::user();
 
         // to validate incoming data
         $validator = Validator::make($request->all(), [
