@@ -211,4 +211,17 @@
 .view_question_container {
     padding: 2vw 5vw 2vw 2vw;
     width: 80vw;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.404);
+}
+
+/* For the answer widget*/
+.answer_container {
+    padding: 2vw 5vw 2vw 7vw;
+    border-top: 2px solid rgba(0, 0, 0, 0.404);
+    width: 80vw;
+
+}
+
+.space_left {
+    margin-left: 2vw;
 }

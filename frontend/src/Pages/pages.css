@@ -297,3 +297,8 @@ textarea {
 .modal {
     padding: 1vw;
 }
+
+/* View Question Page */
+.page_break {
+    padding: 0.5vw 2vw;
+}

@@ -12,6 +12,7 @@ import Header from '../Components/Headers/Headers';
 import SubHeader from '../Components/Headers/SubHeader';
 import QuestionsSidebar from '../Components/Sidebars/QuestionSidebar';
 import ViewQuestionWidget from '../Widgets/ViewQuestionWidget';
+import AnswerWidget from '../Widgets/AnswerWidget';
 
 // Importing hooks
 import QuestionAPI from '../hooks/questionsAPI';
@@ -48,10 +49,15 @@ const ViewQuestion = () => {
                 </div>
                 <div className='question_page_container'>
                     <ViewQuestionWidget key={getQuestion.id} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
-                    <div> 
-                        <p> Answers </p>
+                    <div className='page_break'> 
+                        <h3> Answers </h3>
                     </div>
                     <div className='answers_container'>
+                    { 
+                        answers?.map((e) => {
+                            return (<AnswerWidget id={e.id} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
+                        }) 
+                    }
 
                     </div> 
                 </div>
