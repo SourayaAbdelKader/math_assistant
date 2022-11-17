@@ -126,12 +126,12 @@
 .tag_page_container {
     width: 80vw;
     height: 100%;
-    padding: 1em 5em;
+    padding: 1vw 5vw;
     border-left: 2px solid rgba(0, 0, 0, 0.404);
 }
 
-.search_part {
-    margin: 2vw 5vw;
+.tag_search_part {
+    margin: 1vw 0vw 0vw 0vw;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -189,6 +189,13 @@
     width: 80vw;
     height: 100%;
     border-left: 2px solid rgba(0, 0, 0, 0.404);
+}
+
+.search_part {
+    margin: 1vw 5vw 1vw 0vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .input_box {

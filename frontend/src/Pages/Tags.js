@@ -46,20 +46,18 @@ const Tags = () => {
             <div  className='flex'>
                 <div className='tag_side_container'> <TagSidebar> </TagSidebar></div>
                 <div className='tag_page_container'> 
-                    <div className='search_part'> <input className="input"  type="text" placeholder="Search" /> </div>                        
+                    <div className='tag_search_part'> <input className="input"  type="text" placeholder="Search" /> </div>                        
                         {
                             empty?.map((e) => {
                                 return (<div className='empty_state'> <img src={tags_empty_state} alt="empty_state"/> </div>)
                             })
                         }
                     <div className='tags_grid'>
-                        <div className='tags_grid'>
                         { 
                             getTagsData?.map((e) => {
                                 return (<TagCard id={e.id} title={e.title} description={e.description}></TagCard>)
                             })  
                         }
-                         </div>
                     </div>
                 </div>
             </div>
