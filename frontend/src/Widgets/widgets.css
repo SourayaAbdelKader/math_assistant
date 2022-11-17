@@ -135,7 +135,7 @@
 /* Question component styling */
 
 .question_container {
-    padding: 2vw 2vw;
+    padding: 2vw 5vw 2vw 2vw;
     border-top: 1px solid;
     width: 80vw;
 }
@@ -180,7 +180,7 @@
 }
 
 .question_content {
-    padding: 0vw 0vw 0vw 5vw;
+    padding: 0vw 0vw 0vw 6vw;
 }
 
 .popup_textarea{
@@ -197,4 +197,13 @@
 .answer_sent > img {
     width: 10vw;
     height: auto;
+}
+
+.text {
+    margin-top: 1vw;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 600;
 }

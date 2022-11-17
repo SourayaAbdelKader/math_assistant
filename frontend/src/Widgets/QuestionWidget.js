@@ -94,7 +94,7 @@ const QuestionWidget = (question) => {
             <div className="flex_between space">
                 <div className="flex">
                     <div> <img className='profile_pic' src={picture} alt=''/> </div>
-                    <div> {question.name} </div>
+                    <div> <p className='name'> {question.name}</p> </div>
                 </div>
                 <div>
                     <div className='tag_name'> {question.title} </div>
@@ -103,15 +103,15 @@ const QuestionWidget = (question) => {
             <div className='question_content'>
                 <div className='part space'> 
                     <p className='subtitle'> Problem </p>
-                    <p> <Latex>{question.problem}</Latex> </p>
+                    <p className='text'> <Latex>{question.problem}</Latex> </p>
                 </div>
                 <div className='part space'> 
                     <p className='subtitle'> Description </p>
-                    <p> {question.description} </p>
+                    <p className='text'> {question.description} </p>
                 </div>
                 <div className='part space'> 
-                    <p className='subtitle space'> Suggested solution </p>
-                    <p> <Latex>{question.suggested_solution}</Latex></p>
+                    <p className='subtitle'> Suggested solution </p>
+                    <p className='text'> <Latex>{question.suggested_solution}</Latex></p>
                 </div>
             </div>
             <div className="flex_end">
