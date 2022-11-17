@@ -207,3 +207,8 @@
     font-size: 20px;
     font-weight: 600;
 }
+
+.view_question_container {
+    padding: 2vw 5vw 2vw 2vw;
+    width: 80vw;
+}

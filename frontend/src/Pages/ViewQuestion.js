@@ -11,7 +11,7 @@ import UpperFooter from '../Components/Footers/UpperFooter';
 import Header from '../Components/Headers/Headers';
 import SubHeader from '../Components/Headers/SubHeader';
 import QuestionsSidebar from '../Components/Sidebars/QuestionSidebar';
-import QuestionWidget from '../Widgets/QuestionWidget';
+import ViewQuestionWidget from '../Widgets/ViewQuestionWidget';
 
 // Importing hooks
 import QuestionAPI from '../hooks/questionsAPI';
@@ -47,7 +47,7 @@ const ViewQuestion = () => {
                     <QuestionsSidebar></QuestionsSidebar>
                 </div>
                 <div className='question_page_container'>
-                    <QuestionWidget key={getQuestion.id} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></QuestionWidget>
+                    <ViewQuestionWidget key={getQuestion.id} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
                     <div> 
                         <p> Answers </p>
                     </div>
