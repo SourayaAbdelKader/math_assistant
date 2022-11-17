@@ -1,0 +1,46 @@
+.side_container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.questions_side_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 1vw 1vw;
+}
+
+.ask {
+    padding: 1vw 1vw;
+    border: 0cm;
+    background: #E09E50;
+    box-shadow: 0px 4px 4px #b1b6bb, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 1vw;
+}
+
+.s_icon {
+    width: auto;
+    height: 20px;
+    margin-right: 0.5vw;
+}
+
+.button_side {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 50vw;
+}
