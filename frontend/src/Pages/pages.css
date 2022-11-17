@@ -1,0 +1,285 @@
+@font-face {
+    font-family: 'Bangers';
+    src: url('../fonts/Bangers-Regular.ttf') format('ttf');
+}
+/* For login and signup pages*/
+.login_page{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.lower{
+    position: fixed;
+    bottom: 0cm;
+    width: 100%;
+}
+
+/* For the home page*/
+.hero {
+    margin-top: 1px;
+    height: 85vh;
+    background-image: url('../images/hero.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+}
+
+.white_text {
+    color: white;
+}
+
+.flex_row {
+    display: flex;
+}
+
+.main {
+    width: 34vw;
+    height: auto;
+}
+
+.home_container {
+    padding: 3vw 5vw;
+}
+
+.chat {
+    height: 48vh;
+    width: auto;
+}
+
+.flex_inbetween {
+    justify-content: space-between;
+}
+
+.center {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-on-image {
+  position: absolute;
+  z-index: 100;
+}
+
+.data {
+    background: #E8ECEB;
+    padding: 5em 5em;
+}
+
+.data_box {
+    background: white;
+    border-radius: 15px;
+    width: 15em;
+    padding: 2vw 2vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.data_numbers {
+    font-family: 'Bangers';
+    font-weight: bolder;
+    font-size: 3em;
+    font-style: italic;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+}
+
+.home_logo {
+    width: 6em;
+    height: auto;
+}
+
+.description_image {
+    width: 100%;
+    height: 10em;
+}
+
+/* For the tag page */
+.tag_side_container {
+    height: 100%;
+    width: 20vw;
+    padding: 3em 2em;
+    display: flex;
+    align-self: flex-start;
+}
+
+.tag_page_container {
+    width: 80vw;
+    height: 100%;
+    padding: 1em 5em;
+    border-left: 2px solid rgba(0, 0, 0, 0.404);
+}
+
+.search_part {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tags_grid {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    justify-content: space-between;
+    padding: 2vw 0vw;
+}
+
+.tags_empty_state {
+    width: 20vw;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hide {
+    visibility: hidden;
+    display: none;
+}
+
+/* For the profile page */
+.Profile_container {
+    padding: 1vw 5vw;
+}
+
+.Profile_container > div {
+    margin-bottom: 2vw;
+}
+
+.empty_state {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.empty_state > img {
+    height: 250px;
+    width: auto;
+}
+
+
+/* Ask Question Page */
+
+.input_box {
+    width: 100%;
+    background: #E8ECEB;
+    padding: 1vw 2vw;
+    border-radius: 25px;
+    margin-bottom: 2vw;
+    box-shadow: 2px 3px 3px #797c7cd2, inset 0px 4px 4px rgb(232, 240, 243);
+}
+
+.input_container {
+    width: 80vw;
+    padding: 2vw 2vw;
+}
+
+.flex_inbetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.full_container {
+    width: 100%;
+    height: 100%;
+}
+
+.tags_input_container {
+    height: 100%;
+    width: 20vw;
+    padding: 6vw 0vw;
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+}
+
+.medium_icon {
+    margin-right: 0cm;
+    width: 30px;
+    height: auto;
+}
+
+.page_title {
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 2vw;
+}
+
+.sections_title{
+   font-size: 18px;
+}
+
+textarea {
+    margin-top: 1vw;
+    width: 100%;
+    border-radius: 15px;
+    min-height: 6vw;
+    max-height: fit-content;
+    border: 0cm;
+    resize: none;
+    padding: 1vw;
+    font-size: 13px;
+}
+
+.flex_end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 2vw 0vw 0vw 0vw;
+}
+
+.tag_menu {
+    padding: 1vw 0vw;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-shadow: 2px 3px 3px #797c7c81, inset 0px 0px 0px rgb(232, 240, 243);
+    border-radius: 25px;
+}
+
+.menu_title {
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 1vw;
+}
+
+.center {
+    text-align: center;
+}
+
+.close {
+    width: 30px;
+    height: auto;
+    color: #E09E50;
+    background: white;
+    border: 0cm;
+}
+
+.modal {
+    padding: 1vw;
+}
