@@ -1,25 +1,53 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route}
+	from 'react-router-dom';
+import Home from './Pages/Home';
+import Tags from './Pages/Tags';
+import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+import Questions from './Pages/Questions';
+import SearchPage from './Pages/SearchPage';
+import AskQuestion from './Pages/AskQuestion';
+import Practice from './Pages/Practice';
+import Profile from './Pages/Profile';
+import ViewSolve from './Pages/ViewSolved';
+
+import { useState, useEffect } from 'react';
+import {  onMessageListener, getTokens } from './firebase';
+import { getMessaging, onMessage, getToken } from "firebase/messaging";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+  const [notification, setNotification] = useState({title: '', body: ''});
+  const [isTokenFound, setTokenFound] = useState(false);
+
+  getTokens(setTokenFound)
+  onMessageListener().then(payload => {
+    setNotification({title: payload.notification.title, body: payload.notification.body})
+  }).catch(err => console.log('failed: ', err));
+  
+  return (
+          <div>
+          <Router>
+            <Routes>
+              <Route exact path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/tags' element={<Tags />} />
+              <Route path='/questions' element={<Questions />} />
+              <Route path='/search' element={<SearchPage />} />
+              <Route path='/askQuestion' element={<AskQuestion />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/practice' element={<Practice />} />
+              <Route path='/practice/exercice' element={<Practice />} />
+              <Route path='/practice/solved' element={<ViewSolve />} />
+            </Routes>
+          </Router>
+        </div>
+      );
+    }
+ export default App;
+
