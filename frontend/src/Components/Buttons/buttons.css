@@ -1,0 +1,105 @@
+button {
+    border-radius: 500px;
+    font-weight: 600;
+    font-size: 0.9em;
+    line-height: 1.2em;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease; 
+}
+
+.small_icon {
+    height: 20px;
+    width: auto;
+    margin-right: 0.5vw;
+}
+
+.login {
+    width: 10em;
+    height: 3em;
+    border: 0cm;
+    background: #E09E50;
+    box-shadow: 0px 3px 3px #2D3E4E, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    color: #FFFFFF;
+}
+
+.login:hover {
+    background: rgba(195, 231, 247);
+    box-shadow: 0px 4px 4px #797c7c, inset 10px 10px 4px rgb(232, 240, 243);
+    color: #2D3E4E;
+}
+
+.search {
+    background: #E8ECEB;
+    width: 10em;
+    height: 3em;
+    border: 0cm;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search:hover {
+    background: #E09E50;
+    box-shadow: 0px 2px 2px #b1b6bb, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    color: white;
+}
+
+.signout {
+    width: 10em;
+    height: 3em;
+    border: 0cm;
+    background: white;
+}
+
+.signout:hover {
+    background: #E09E50;
+    box-shadow: 0px 2px 2px #b1b6bb, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    color: white;
+}
+
+.mail {
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    padding: 1vw 2vw;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.mail:hover {
+    background: linear-gradient(#E09E50, #e2ad6b);
+    box-shadow: 0px 2px 2px #2d3e4e7e, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    color: white;
+    border: 1px solid #E09E50;
+}
+
+.solve {
+    padding: 1vw 2vw;
+    border: 0cm;
+    background: #E09E50;
+    box-shadow: 0px 4px 4px #b1b6bb, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ask_button {
+    padding: 1vw 1.5vw;
+    border: 0cm;
+    background: #E09E50;
+    box-shadow: 0px 4px 4px #b1b6bb, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
