@@ -2,13 +2,9 @@ import Base from "./axios";
 
 class AnswerAPI extends Base {
 
-    async getAnswers () {
-        return await this.get('Answer/');
+    async getAnswersPerQuestion (id) {
+        return await this.get('answer/question/'+id);
     }
-
-    async saveAnswer (body) {
-        return await this.post('Answer/save', body);
-    } 
 
     async addAnswer (body) {
         return await this.post('answer/add', body);

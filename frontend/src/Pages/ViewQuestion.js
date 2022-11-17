@@ -15,10 +15,13 @@ import QuestionWidget from '../Widgets/QuestionWidget';
 
 // Importing hooks
 import QuestionAPI from '../hooks/questionsAPI';
+import AnswerAPI from '../hooks/answersApi';
 
 const ViewQuestion = () => {
     const [getQuestion, setQuestion] = useState([]);
+    const [answers, getAnswers] = useState([]);
     const id = localStorage.getItem('choosed_question');
+
     useEffect(() =>{
         const getQuestion = async () =>{
             const question = await QuestionAPI.getQuestionById(id);
@@ -26,7 +29,15 @@ const ViewQuestion = () => {
                 const get = question.data.data;
                 setQuestion(get[0])
             } 
-    }; getQuestion();}, []);
+    }
+        const getAnswersQuestion = async () => {
+            const getAnswersPerQuestion = await AnswerAPI.getAnswersPerQuestion(id);
+            if (getAnswersPerQuestion.data.message === 'Found'){
+                const answer_array = getAnswersPerQuestion.data.data;
+                getAnswers(answer_array)
+            } 
+    }; getQuestion(); getAnswersQuestion()}, []);
+
     return (
         <div>
             <Header></Header>
@@ -36,7 +47,13 @@ const ViewQuestion = () => {
                     <QuestionsSidebar></QuestionsSidebar>
                 </div>
                 <div className='question_page_container'>
-                <QuestionWidget key={getQuestion.id} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></QuestionWidget>
+                    <QuestionWidget key={getQuestion.id} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></QuestionWidget>
+                    <div> 
+                        <p> Answers </p>
+                    </div>
+                    <div className='answers_container'>
+
+                    </div> 
                 </div>
             </div>
             <UpperFooter></UpperFooter>
