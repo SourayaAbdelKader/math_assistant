@@ -26,6 +26,8 @@ const QuestionWidget = (question) => {
 
     const componentRef = React.useRef();
 
+    const navigate = useNavigate();
+
     const [description, setDescription] = useState("");
 
     function handleChange(event){
@@ -43,6 +45,8 @@ const QuestionWidget = (question) => {
         }
         setDescription(description);
     };
+
+    const navigateQuestion= () => {navigate('/question');};
     
     const handleClick = (e) => {
         localStorage.setItem('choosed_question', question.id);
@@ -100,7 +104,7 @@ const QuestionWidget = (question) => {
                     <div className='tag_name'> {question.title} </div>
                 </div>
             </div>
-            <div className='question_content'>
+            <div onClick={navigateQuestion} className='question_content pointer'>
                 <div className='part space'> 
                     <p className='subtitle'> Problem </p>
                     <p className='text'> <Latex>{question.problem}</Latex> </p>

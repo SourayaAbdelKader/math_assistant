@@ -12,6 +12,7 @@ import AskQuestion from './Pages/AskQuestion';
 import Practice from './Pages/Practice';
 import Profile from './Pages/Profile';
 import ViewSolve from './Pages/ViewSolved';
+import ViewQuestion from './Pages/ViewQuestion';
 
 import { useState, useEffect } from 'react';
 // import {  onMessageListener, getTokens } from './firebase';
@@ -44,6 +45,7 @@ function App() {
               <Route path='/practice' element={<Practice />} />
               <Route path='/practice/exercice' element={<Practice />} />
               <Route path='/practice/solved' element={<ViewSolve />} />
+              <Route path='/question' element={<ViewQuestion />} />
             </Routes>
           </Router>
         </div>

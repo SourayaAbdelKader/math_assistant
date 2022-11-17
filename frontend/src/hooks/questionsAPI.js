@@ -13,5 +13,9 @@ class QuestionAPI extends Base {
     async unsaveQuestion (body) {
         return await this.post('question/removeSavedQuestion', body);
     } 
+
+    async getQuestionById (id) {
+        return await this.get('question/id/'+id);
+    }
 }
 export default new  QuestionAPI();
