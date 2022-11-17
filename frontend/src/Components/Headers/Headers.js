@@ -20,7 +20,7 @@ const Header = () => {
         <div className="headercontainer">
             <div className="flex">
                 <div> <img className="pointer" onClick={navigateHome} src={logo} alt="logo" /> </div>
-                <div> <h3 className="white_text pointer" onClick={navigateHome}> Math Assistant </h3> </div>
+                <div> <h1 className="white_text pointer" onClick={navigateHome}> Math Assistant </h1> </div>
             </div>
             <div className="flex"> 
                 <div> <img className="icon cursor" src={notification} alt="notification"/> </div>

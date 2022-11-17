@@ -15,7 +15,7 @@ const LoginHeader = () => {
         <div className="headercontainer">
             <div className="flex">
                 <div> <img className="pointer" onClick={navigateHome} src={logo} alt="logo" /> </div>
-                <div> <h3  onClick={navigateHome} className="white_text pointer"> Math Assistant </h3> </div>
+                <div> <h1  onClick={navigateHome} className="white_text pointer"> Math Assistant </h1> </div>
             </div>
             <div> 
                 <LoginButton></LoginButton>

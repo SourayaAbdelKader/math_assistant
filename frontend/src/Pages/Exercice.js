@@ -37,7 +37,7 @@ const Exercice = () => {
             <div className='flex'>
                 <div className='question_section'>
                     <div className='flex space'> 
-                       <img className='medium_icon' src={back} alt="back" />
+                       <img className='medium_icon cursor' src={back} alt="back" />
                        <h3 className='white_text space_left'> Question </h3>
                     </div>
                     <div className='bold white_text space'> Title</div>
