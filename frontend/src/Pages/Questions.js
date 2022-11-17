@@ -37,11 +37,11 @@ const Questions = () => {
                 <div className="tag_side_container">
                     <QuestionsSidebar></QuestionsSidebar>
                 </div>
-                <div className=''>
+                <div className='question_page_container'>
                     <div className='search_part'> 
                         <SearchButton></SearchButton>
                     </div>
-                    <div>
+                    <div className=''>
                     { 
                         getQuestionsData?.map((e) => {
                             return (<QuestionWidget key={e.id} id={e.id} name={e.name}  title={e.title} problem={e.problem} description={e.description} suggested_solution={e.suggested_solution}></QuestionWidget>)
