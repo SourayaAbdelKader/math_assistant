@@ -302,3 +302,29 @@ textarea {
 .page_break {
     padding: 0.5vw 2vw;
 }
+
+/* Exercice Page */
+.practice_section {
+    background: #E8ECEB;
+    width: 75vw;
+    min-height: 86vh;
+    padding: 2vw 5vw 2vw 2vw;
+}
+
+.excercise_textarea {
+    height: 50vh;
+}
+
+.flex_bottom {
+    position: fixed;
+    bottom: 2vw;
+    right: 5vw;
+}
+
+.question_section {
+    border-top: 4px solid #E8ECEB;
+    width: 25vw;
+    min-height: 86vh;
+    padding: 2vw 2vw 2vw 5vw;
+    background: linear-gradient(180deg, rgba(45, 62, 78, 0.581) 33.85%, rgba(45, 62, 78, 0.105) 100%);
+}
