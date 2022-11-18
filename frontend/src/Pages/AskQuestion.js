@@ -34,8 +34,8 @@ const SearchPage = () => {
     const [problem, setProblem] = useState();
     const [desciption, setDescription] = useState();
     const [suggestedSolution, setSuggestedSolution] = useState();
-    const [tagSelected, setTagSelected] = useState();
 
+    // Getting the tags from the db
     useEffect(() =>{
         const getTag  = async () =>{
             const tags = await tagsApi.getTags();
@@ -46,6 +46,7 @@ const SearchPage = () => {
             }
     }; getTag();}, [])
 
+    // Handeling all the inputs
     function handleProblemChange(event){
         let problem = event.target.value;
         console.log(event.target.value);
@@ -85,6 +86,7 @@ const SearchPage = () => {
         setSuggestedSolution(suggestion);
     };
 
+    // Validating all the inputs
     function validInputs(){
         if (!localStorage.getItem('selected_tag')){
             componentRef.current.classList.remove('hide');
@@ -115,7 +117,7 @@ const SearchPage = () => {
             const user_id = localStorage.getItem('user_id');
             const tag_id = localStorage.getItem('selected_tag');
             if (problem && localStorage.getItem('problem')){
-                final_problem = problem + ' ${'+localStorage.getItem('problem')+'}$';
+                final_problem = problem + ' ${'+localStorage.getItem('problem')+'}$'; // to get both parts from text and scaning
             } else if (problem){
                 final_problem = problem;
             } else {final_problem = '${'+localStorage.getItem('problem')+'}$'}
@@ -131,6 +133,7 @@ const SearchPage = () => {
         } else {componentRef.current.classList.remove('hide');}
     }
 
+    // Adding question API and clearing storage
     const addQuestion = async (user_id, tag_id, problem, description, suggestedSolution) => {
         const add_question = await QuestionAPI.addQuestion({
             "user_id":user_id,
@@ -146,6 +149,7 @@ const SearchPage = () => {
         }
     }
 
+    // There are 2 type of dropezone to handle the two scaning inputs, one for the problem and one for the suggested solution
     return (
         <> 
             <div>

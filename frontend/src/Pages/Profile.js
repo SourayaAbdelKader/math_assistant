@@ -49,14 +49,23 @@ const Profile = () => {
                 const user_saved_questions = await QuestionAPI.countSavedQuestionPerUSer(localStorage.getItem('user_id'));
                 const user_tags = await QuestionAPI.countTagsPerUSer(localStorage.getItem('user_id'));
                 const user_practice = await PracticeAPI.countPracticePerUSer(localStorage.getItem('user_id'));
-                setDetails(get)
+                setDetails(get);
                 setScore(user_score.data.data);
                 setAnswerScore(user_answer_score.data.data);
                 setPracticeScore(user_practice_score.data.data);
                 setFullmarked(user_fullmarked.data.data);
                 setQuestions(user_questions.data.data);
                 setSaved(user_saved_questions.data.data);
-                setTags(user_tags.data.data.length);
+                let count = 0;
+                let ids = []
+                for (let i=0; i<user_tags.data.data.length; i++) {
+                    console.log(user_tags.data.data[i].tag_id)
+                    if (!ids.includes(user_tags.data.data[i].tag_id)){
+                        count += 1;
+                        ids.push(user_tags.data.data[i].tag_id)
+                    }
+                }
+                setTags(count);
                 setPractice(user_practice.data.data)
     }; getUserData();}, []); 
 

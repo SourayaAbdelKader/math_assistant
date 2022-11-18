@@ -3,6 +3,7 @@ import Dropzone from 'react-dropzone';
 import Latex from 'react-latex';
 
 class Previews extends Component{
+  
   constructor(props){
     super(props);
     this.accepted = this.accepted.bind(this);
