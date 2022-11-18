@@ -6,6 +6,10 @@ class QuestionAPI extends Base {
         return await this.get('question/');
     }
 
+    async addQuestion (body) {
+        return await this.post('question/add', body);
+    } 
+
     async saveQuestion (body) {
         return await this.post('question/save', body);
     } 

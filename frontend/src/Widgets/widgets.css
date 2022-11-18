@@ -225,3 +225,12 @@
 .space_left {
     margin-left: 2vw;
 }
+
+/* For the dropezone widget */
+.dropezone {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E8ECEB;
+}

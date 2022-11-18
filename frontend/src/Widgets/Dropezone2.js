@@ -2,14 +2,14 @@ import React, {Component, useEffect, useState} from 'react';
 import Dropzone from 'react-dropzone';
 import Latex from 'react-latex';
 
-class Previews extends Component{
+class Previews2 extends Component{
   constructor(props){
     super(props);
     this.accepted = this.accepted.bind(this);
     this.getBase64 = this.getBase64.bind(this);
     this.fileUpload = this.fileUpload.bind(this);
     this.state = {
-      problem: ""
+      suggested_solution: ""
     }
   }
 
@@ -44,7 +44,7 @@ class Previews extends Component{
         .then((res) => res.json())
         .then((response) => {
           console.log(response)
-          localStorage.setItem('problem', response.data[1].value);
+          localStorage.setItem('suggested_solution', response.data[1].value);
           this.state.problem = response.data[1].value;
         })
       })
@@ -77,10 +77,10 @@ class Previews extends Component{
               </div>
             )}
         </Dropzone>
-        <div>{localStorage.getItem('problem') && (<Latex>{'${'+localStorage.getItem('problem')+'}$'}</Latex>)}</div>
+        <div>{localStorage.getItem('suggested_solution') && (<Latex>{'${'+localStorage.getItem('suggested_solution')+'}$'}</Latex>)}</div>
       </div>
     );
   }
 } 
 
-export default Previews;
+export default Previews2;
