@@ -22,7 +22,8 @@ const AnswerWidget = (answer) => {
 
     const componentRef = React.useRef();
 
-    const [description, setDescription] = useState("");
+    const [voteUp, setVoteUp] = useState("");
+    const [message, setMessage] = useState('');
   
     const handleClick = (e) => {
         localStorage.setItem('choosed_answer', answer.id);
@@ -35,6 +36,25 @@ const AnswerWidget = (answer) => {
         }
     }
 
+    const handleAccept = (e) => {
+        e.preventDefault();
+        if (answer.accepted == 0){
+            acceptAnAnswer(localStorage.getItem('user_id'), answer.id)
+            if (message == 'Added Successfully'){
+                e.target.src = accepted_image;
+            }  
+        }
+    }
+
+    const acceptAnAnswer = async (user_id, answer_id) => {
+        const accept_answer = await AnswerAPI.acceptAnswer({
+            "user_id":user_id,
+            "answer_id":answer_id,
+        });
+        console.log(accept_answer.data.message)
+        setMessage(accept_answer.data.message);    
+    }
+    console.log(message.length)
     const image_source = handleAcceptance();
     
     return(
@@ -45,7 +65,9 @@ const AnswerWidget = (answer) => {
                     <div> <p className='name'> {answer.name} </p> </div>
                 </div>
                 <div>
-                    <div> <img className="medium_icon cursor" src={image_source} alt="accept" /> </div>
+                <div>
+                    <img onClick={handleAccept} className="medium_icon cursor" src={image_source} alt="accept" />
+                </div>
                 </div>
             </div>
             <div className='question_content pointer'>
