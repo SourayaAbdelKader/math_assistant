@@ -33,8 +33,10 @@ const ViewQuestion = () => {
     }
         const getAnswersQuestion = async () => {
             const getAnswersPerQuestion = await AnswerAPI.getAnswersPerQuestion(id);
+            console.log(getAnswersPerQuestion)
             if (getAnswersPerQuestion.data.message === 'Found'){
                 const answer_array = getAnswersPerQuestion.data.data;
+                
                 getAnswers(answer_array)
             } 
     }; getQuestion(); getAnswersQuestion()}, []);
@@ -48,17 +50,16 @@ const ViewQuestion = () => {
                     <QuestionsSidebar></QuestionsSidebar>
                 </div>
                 <div className='question_page_container'>
-                    <ViewQuestionWidget key={getQuestion.id} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
+                    <ViewQuestionWidget key={getQuestion.id} name={getQuestion.name} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
                     <div className='page_break'> 
                         <h3> Answers </h3>
                     </div>
                     <div className='answers_container'>
                     { 
                         answers?.map((e) => {
-                            return (<AnswerWidget id={e.id} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
+                            return (<AnswerWidget id={e.id} name={e.name} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
                         }) 
                     }
-
                     </div> 
                 </div>
             </div>

@@ -37,13 +37,12 @@ const AnswerWidget = (answer) => {
 
     const image_source = handleAcceptance();
     
-
     return(
         <div onClick={handleClick} id={answer.id} className="answer_container">
             <div className="flex_between space">
                 <div className="flex">
                     <div> <img className='profile_pic' src={picture} alt=''/> </div>
-                    <div> <p className='name'> </p> </div>
+                    <div> <p className='name'> {answer.name} </p> </div>
                 </div>
                 <div>
                     <div> <img className="medium_icon cursor" src={image_source} alt="accept" /> </div>
@@ -51,7 +50,7 @@ const AnswerWidget = (answer) => {
             </div>
             <div className='question_content pointer'>
                 <div className='part space'> 
-                    <p className='text'>{answer.description} </p>
+                    <p className='text'> {answer.description} </p>
                 </div>
             </div>
             <div className="flex_end">
