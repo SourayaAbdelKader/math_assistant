@@ -525,7 +525,7 @@ class SolutionController extends Controller{
         }
 
         return response()->json([
-            'data' => null,
+            'data' => 0,
             'message' => 'Solution Not Found',
             'status' => Response::HTTP_INTERNAL_SERVER_ERROR
         ]);
