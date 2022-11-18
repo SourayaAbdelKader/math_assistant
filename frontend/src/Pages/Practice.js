@@ -27,7 +27,9 @@ const Practice = () => {
             } 
     }; getPractice();}, []);
 
-    const handleClick = (e) => {localStorage.setItem("selected_practice", e.target.id);}
+    const handleClick = (e) => {
+        console.log(e.target.id);
+        localStorage.setItem("selected_practice", e.target.id);}
     
     return (     
         <div>

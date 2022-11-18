@@ -20,7 +20,7 @@ const QuestionForEx = (props) => {
             <div className='white_text space'> 
             {props.description} 
             </div>
-            <div className="space"> <img src="" alt="" /> </div>
+            <div className="space"> <img src={props.picture_url} alt="" /> </div>
             <div> 
                 <p className='white_text'> Level: {props.level}</p>
                 <p className='white_text'> {props.points} points</p> 

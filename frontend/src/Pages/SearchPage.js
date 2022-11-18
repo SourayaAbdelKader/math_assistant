@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import LowerFooter from '../Components/Footers/LowerFooter';
 import UpperFooter from '../Components/Footers/UpperFooter';
 import Header from '../Components/Headers/Headers';
-import TagSubHeader from '../Components/Headers/TagSubHeader';
+import SubHeader from '../Components/Headers/SubHeader';
 
 import '../App.css';
 
@@ -14,7 +14,7 @@ const SearchPage = () => {
         <> 
             <div>
                 <Header></Header>
-                <TagSubHeader></TagSubHeader>
+                <SubHeader></SubHeader>
                 <div  className='flex'>
                     <div className='tag_side_container'> </div>
                     <div className='tag_page_container'> 

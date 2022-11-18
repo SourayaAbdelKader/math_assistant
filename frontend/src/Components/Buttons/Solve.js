@@ -5,7 +5,7 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import './buttons.css';
 import solve from '../../images/submit.png';
 
-const Solve = () => {
+const Solve = (props) => {
 
     const navigate = useNavigate();
     const navigateExercice = () => {navigate('/practice/exercice');};

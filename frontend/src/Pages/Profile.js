@@ -31,11 +31,12 @@ const Profile = () => {
 
     useEffect(() =>{
         const getUserData  = async () =>{
-                const user_score = await scoreAPI.getUSerScore(1);
-                const user_answer_score = await scoreAPI.getUserAnswersScore(1);
-                const user_practice_score = await scoreAPI.getUsePracticeScore(1);
-                const user_fullmarked = await scoreAPI.getFullmarkedNumber(1);
-                const user_data = await userAPI.getUserById(1);
+                console.log(localStorage.getItem('user_id'))
+                const user_score = await scoreAPI.getUSerScore(localStorage.getItem('user_id'));
+                const user_answer_score = await scoreAPI.getUserAnswersScore(localStorage.getItem('user_id'));
+                const user_practice_score = await scoreAPI.getUsePracticeScore(localStorage.getItem('user_id'));
+                const user_fullmarked = await scoreAPI.getFullmarkedNumber(localStorage.getItem('user_id'));
+                const user_data = await userAPI.getUserById(localStorage.getItem('user_id'));
                 const get = user_data.data.data[0];
                 
                 setDetails(get)
@@ -65,11 +66,9 @@ const Profile = () => {
                     </UserInfo> 
                 </div>
                 <div>
-                    <div>
+                    <div className='flex_inbetween'>
+                        <ScoreCard total={score} answers={answerScore} practice={practiceScore}></ScoreCard>
                         <ScoreCard></ScoreCard>
-                        <div> Score: {score} </div>
-                        <div> {answerScore} </div>
-                        <div> {practiceScore} </div>
                     </div>  
                     <div>
                         <div> Fulled Marked Practice </div>

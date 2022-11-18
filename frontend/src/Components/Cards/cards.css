@@ -2,10 +2,30 @@
 .score_box {
     border: 1px solid;
     border-radius: 15px;
+    height: 30vh;
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 2px 3px 3px #797c7cd2, inset 0px 0px 4px rgb(232, 240, 243);
+
 }
 
-.score_box > img {
-    height: 10vw;
+.trapezoid {
+    height: 29.8vh;
+    width: auto;
+    margin-right: 0cm;
+}
+
+.content {
+    padding: 2vw;
+}
+
+.line_space {
+    margin-bottom: 1vw;
+}
+
+.small_line_space {
+    margin-bottom: 0.5vw;
 }
 
 /* For the problem Card*/
