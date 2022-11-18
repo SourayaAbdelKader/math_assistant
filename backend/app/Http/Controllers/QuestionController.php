@@ -144,7 +144,7 @@ class QuestionController extends Controller{
             ]);
         };
 
-        $tags = Tag::join('questions', 'tags.id', '=', 'questions.tag_id')
+        $tags = Tag::join('questions', 'tags.id', '=', 'questions.tag_id')->distinct()
         ->where('questions.user_id','=',$id)->get();
         if ($tags->isNotEmpty()){
             return response()->json([
