@@ -13,6 +13,7 @@ use App\Models\Question;
 use App\Models\Vote;
 use App\Models\Score;
 use App\Models\Answer;
+use App\Models\Notification;
 use Carbon\Carbon;
 
 class AnswerController extends Controller{
@@ -34,6 +35,7 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         };
+
         $user = User::where('id', $request->user_id);
         $user = Auth::user();
         $answer = new Answer;
@@ -60,7 +62,6 @@ class AnswerController extends Controller{
                 'message' => 'Answer sent',
             ]);
         }
-        
     }
 
     // _____________ Deleting an answer _____________
@@ -377,11 +378,13 @@ class AnswerController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         };
-        $answers = Answer::where('question_id', $id)
-        ->where('score', '!=', '0') //don't show answers which have 0 as a score 
-        ->orderBy('score', 'DESC') // ordered by score
-        ->orderBy('accepted', 'DESC') // order by accepted or not
-        ->orderBy('created_at', 'DESC') // ordered by time
+        $answers = Answer::join('users', 'users.id', 'answers.user_id')
+        ->select('answers.*', 'users.name')
+        ->where('answers.question_id', $id)
+        ->where('answers.score', '!=', '0') //don't show answers which have 0 as a score 
+        ->orderBy('answers.score', 'DESC') // ordered by score
+        ->orderBy('answers.accepted', 'DESC') // order by accepted or not
+        ->orderBy('answers.created_at', 'DESC') // ordered by time
         ->get();
 
         if ($answers->isNotEmpty()) {

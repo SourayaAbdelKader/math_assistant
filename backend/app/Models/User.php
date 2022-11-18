@@ -18,6 +18,7 @@ use App\Answer;
 use App\Vote;
 use App\Score;
 use App\Saved_question;
+use App\Notification;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -53,6 +54,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function problems(){
         return $this->hasMany(Problem::class);
+    }
+
+    public function notifications(){
+        return $this->hasMany(Notification::class);
     }
 
     public function solutions(){

@@ -53,8 +53,7 @@ class UserController extends Controller{
         if ($output === FALSE) {
             die('Curl error: ' . curl_error($ch));
         }        
-        curl_close($ch);
-        dd($output);        
+        curl_close($ch);       
     }
 
     //_____________ Getting the users joined the current day, week, month, year _____________
@@ -487,6 +486,7 @@ class UserController extends Controller{
         $user->degree = $request->degree ? $request->degree  : $user->degree;
 
         // for the pictures
+        
         if ($request->picture_url) {
             $folderPath = public_path("images\users");
             $base64Image = explode(";base64,", $request->picture_url);
