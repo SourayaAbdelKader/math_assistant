@@ -3,9 +3,6 @@ import React from "react";
 // Importing style
 import './cards.css';
 
-// Importing buttons
-import Solve from '../Buttons/Solve';
-
 const DataCard = (props) => {    
     return(
         <div className='data_box'> 

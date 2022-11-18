@@ -26,10 +26,6 @@ const Practice = () => {
                 setPractice(get)
             } 
     }; getPractice();}, []);
-
-    const handleClick = (e) => {
-        console.log(e.target.id);
-        localStorage.setItem("selected_practice", e.target.id);}
     
     return (     
         <div>
@@ -41,7 +37,7 @@ const Practice = () => {
                     <div className='tags_grid'>
                         {                  
                         getPractice?.map((e) => {
-                            return (<ProblemCard onClick={handleClick} id={e.id} name={e.name}></ProblemCard>)     
+                            return (<ProblemCard id={e.id} name={e.name}></ProblemCard>)     
                         }) 
                         }
                     </div>
