@@ -12,6 +12,7 @@ import SubHeader from '../Components/Headers/SubHeader';
 import UserInfo from '../Components/Cards/UserInfo';
 import ScoreCard from '../Components/Cards/ScoreCard';
 import DataCard from '../Components/Cards/DataCard';
+import FullMark from '../Components/Cards/FullMark';
 
 // Importing images
 import saved_questions from '../images/saved.png';
@@ -22,29 +23,41 @@ import tags_icon from '../images/tags_icon.png';
 // Importing hooks
 import userAPI from "../hooks/userAPI";
 import scoreAPI from '../hooks/scoreAPI';
+import QuestionAPI from '../hooks/questionsAPI';
+import PracticeAPI from '../hooks/practiceAPI';
 
 const Profile = () => {
     const [score, setScore] =useState(0);
     const [answerScore, setAnswerScore] =useState(0);
     const [practiceScore, setPracticeScore] =useState(0);
     const [fullmarked, setFullmarked] = useState(0);
+    const [questions, setQuestions] = useState(0);
+    const [saved, setSaved] = useState(0);
+    const [tags, setTags] = useState(0);
+    const [practice, setPractice] = useState(0);
     const [details, setDetails] =useState([]);
 
     useEffect(() =>{
         const getUserData  = async () =>{
-                console.log(localStorage.getItem('user_id'))
                 const user_score = await scoreAPI.getUSerScore(localStorage.getItem('user_id'));
                 const user_answer_score = await scoreAPI.getUserAnswersScore(localStorage.getItem('user_id'));
                 const user_practice_score = await scoreAPI.getUsePracticeScore(localStorage.getItem('user_id'));
                 const user_fullmarked = await scoreAPI.getFullmarkedNumber(localStorage.getItem('user_id'));
                 const user_data = await userAPI.getUserById(localStorage.getItem('user_id'));
                 const get = user_data.data.data[0];
-                
+                const user_questions = await QuestionAPI.countQuestionPerUSer(localStorage.getItem('user_id'));
+                const user_saved_questions = await QuestionAPI.countSavedQuestionPerUSer(localStorage.getItem('user_id'));
+                const user_tags = await QuestionAPI.countTagsPerUSer(localStorage.getItem('user_id'));
+                const user_practice = await PracticeAPI.countPracticePerUSer(localStorage.getItem('user_id'));
                 setDetails(get)
                 setScore(user_score.data.data);
                 setAnswerScore(user_answer_score.data.data);
-                setPracticeScore(user_practice_score.data.data)
+                setPracticeScore(user_practice_score.data.data);
                 setFullmarked(user_fullmarked.data.data);
+                setQuestions(user_questions.data.data);
+                setSaved(user_saved_questions.data.data);
+                setTags(user_tags.data.data.length);
+                setPractice(user_practice.data.data)
     }; getUserData();}, []); 
 
     return (
@@ -66,21 +79,15 @@ const Profile = () => {
                     > 
                     </UserInfo> 
                 </div>
-                <div>
-                    <div className='flex_inbetween'>
-                        <ScoreCard total={score} answers={answerScore} practice={practiceScore}></ScoreCard>
-                        <ScoreCard></ScoreCard>
-                    </div>  
-                    <div>
-                        <div> Fulled Marked Practice </div>
-                        <div> {fullmarked} </div>
-                    </div>  
+                <div className='flex_inbetween'>
+                    <ScoreCard total={score} answers={answerScore} practice={practiceScore}></ScoreCard>
+                    <FullMark total={fullmarked}></FullMark>
                 </div>
                 <div className='flex_row flex_inbetween borders'>
-                    <DataCard pic={saved_questions} number={''} type={'Saved Questions'}></DataCard>
-                    <DataCard pic={practice_icon} number={''} type={'Practice'}></DataCard>
-                    <DataCard pic={questions_icon} number={''} type={'Questions'}></DataCard>
-                    <DataCard pic={tags_icon} number={''} type={'Tags Used'}></DataCard>
+                    <DataCard pic={saved_questions} number={saved} type={'Saved Questions'}></DataCard>
+                    <DataCard pic={practice_icon} number={practice} type={'Practice'}></DataCard>
+                    <DataCard pic={questions_icon} number={questions} type={'Questions'}></DataCard>
+                    <DataCard pic={tags_icon} number={tags} type={'Tags Used'}></DataCard>
                 </div>
             </div>
             <UpperFooter></UpperFooter>

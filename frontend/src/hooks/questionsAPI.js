@@ -17,5 +17,17 @@ class QuestionAPI extends Base {
     async getQuestionById (id) {
         return await this.get('question/id/'+id);
     }
+
+    async countQuestionPerUSer (id) {
+        return await this.get('question/countPerUser/'+id);
+    }
+
+    async countSavedQuestionPerUSer (id) {
+        return await this.get('question/countSavedQuestions/'+id);
+    }
+
+    async countTagsPerUSer (id) {
+        return await this.get('question/userTags/'+id);
+    }
 }
 export default new  QuestionAPI();

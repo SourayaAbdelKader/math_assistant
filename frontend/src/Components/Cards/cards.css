@@ -1,17 +1,20 @@
 /* For the score card */
 .score_box {
     border: 1px solid;
-    border-radius: 15px;
-    height: 30vh;
+    border-radius: 25px;
+    height: 25vh;
     width: 40vw;
     display: flex;
     justify-content: space-between;
     box-shadow: 2px 3px 3px #797c7cd2, inset 0px 0px 4px rgb(232, 240, 243);
+}
 
+.space_right {
+    margin-right: 1vw;
 }
 
 .trapezoid {
-    height: 29.8vh;
+    height: 24.8vh;
     width: auto;
     margin-right: 0cm;
 }

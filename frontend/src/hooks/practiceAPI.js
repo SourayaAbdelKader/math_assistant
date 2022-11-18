@@ -13,5 +13,9 @@ class PracticeAPI extends Base {
     async getUncheckedProblems (id) {
         return await this.get('solution/user/problem/unchecked/'+id);
     } 
+
+    async countPracticePerUSer (id) {
+        return await this.get('solution/countUser/'+id);
+    } 
 }
 export default new  PracticeAPI();
