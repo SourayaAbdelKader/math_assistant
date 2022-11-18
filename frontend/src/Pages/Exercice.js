@@ -49,6 +49,20 @@ const Exercice = () => {
             } 
     }; getPractice();}, []);
 
+    const submitAnswer = (e) => {
+        e.preventDefault();
+        addSolution(description, id, localStorage.getItem('user_id'));
+    }
+
+    const addSolution = async (description,  problem_id, user_id) => {
+        const add_solution = await PracticeAPI.addSolution({
+            "description":description,
+            "user_id":user_id,
+            "problem_id": problem_id
+        });
+        console.log(add_solution)
+    }
+
     return (     
         <div>
             <Header></Header>
@@ -58,7 +72,7 @@ const Exercice = () => {
                     <div> <h3> Your Answer </h3> </div>
                     <div> <textarea onChange={handleChange} className='excercise_textarea' placeholder='Type your answer here...'></textarea></div>
                     <div> <p ref={node => componentRef.current = node} className="error_text hide space"> The solution must be a minimum of 30 character. </p> </div>
-                    <div> <button className='solve flex_bottom'> <img className="small_icon" src={submit} alt='submit' /> Submit </button></div>
+                    <div> <button onClick={submitAnswer} className='solve flex_bottom'> <img className="small_icon" src={submit} alt='submit' /> Submit </button></div>
                 </div>
             </div>
         </div>

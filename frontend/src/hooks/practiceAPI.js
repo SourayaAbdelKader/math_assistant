@@ -21,5 +21,9 @@ class PracticeAPI extends Base {
     async countPracticePerUSer (id) {
         return await this.get('solution/countUser/'+id);
     } 
+
+    async addSolution (body) {
+        return await this.post('solution/add', body)
+    }
 }
 export default new  PracticeAPI();

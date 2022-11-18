@@ -107,7 +107,9 @@ const QuestionWidget = (question) => {
             <div onClick={navigateQuestion} className='question_content pointer'>
                 <div className='part space'> 
                     <p className='subtitle'> Problem </p>
-                    <p className='text'> <Latex>{question.problem}</Latex> </p>
+                    <p className='text'>
+                     <Latex>{question.problem}</Latex> 
+                     </p>
                 </div>
                 <div className='part space'> 
                     <p className='subtitle'> Description </p>

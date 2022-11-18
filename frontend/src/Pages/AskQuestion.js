@@ -27,10 +27,9 @@ import tagsApi from '../hooks/tagsApi';
 const SearchPage = () => {
     const [getTags, setTags] = useState([]);
     const [problem, setProblem] = useState();
-    const [ desciption, setDescription] = useState();
-    const [ suggestedSolution, setSuggestedSolution] = useState();
+    const [desciption, setDescription] = useState();
+    const [suggestedSolution, setSuggestedSolution] = useState();
     const [tagSelected, setTagSelected] = useState();
-    const [isActive, setIsActive] = useState(false);
 
     useEffect(() =>{
         const getTag  = async () =>{
@@ -41,11 +40,6 @@ const SearchPage = () => {
                 setTags(get);
             }
     }; getTag();}, [])
-
-    const selectATag = (e) => {
-        setTagSelected(e.target.id);
-        setIsActive(!isActive);     
-    }
 
     return (
         <> 
@@ -58,8 +52,7 @@ const SearchPage = () => {
                             <div className='menu_title'> Pick a tag </div>
                             { 
                                 getTags?.map((e) => {
-                                    return (<SmallTagBox  active={isActive}
-                                        onClick={selectATag} key={e.id} id={e.id} title={e.title}> </SmallTagBox>)
+                                    return (<SmallTagBox key={e.id} id={e.id} title={e.title}> </SmallTagBox>)
                                 })  
                             }
                         </div>

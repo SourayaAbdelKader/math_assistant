@@ -1,99 +1,83 @@
-import React, {useEffect, useState} from 'react';
-import {useDropzone} from 'react-dropzone';
+import React, {Component, useEffect, useState} from 'react';
+import Dropzone from 'react-dropzone';
+import Latex from 'react-latex';
 
-const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'column',
-  flexWrap: 'wrap',
-  marginTop: 20
-};
+class Previews extends Component{
+  constructor(props){
+    super(props);
+    this.accepted = this.accepted.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
+    this.fileUpload = this.fileUpload.bind(this);
+    this.state = {
+      base64: ""
+    }
+  }
 
-const thumb = {
-  display: 'inline-flex',
-  borderRadius: 2,
-  border: '1px solid #eaeaea',
-  marginBottom: 8,
-  marginRight: 8,
-  padding: 4,
-  boxSizing: 'border-box'
-};
+  async getBase64(file, cb){
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(){
+      cb(reader.result);
+    }
+    reader.onerror = function(err){ console.log(err)}
+  }
 
-const thumbInner = {
-  display: 'flex',
-  minWidth: 0,
-  overflow: 'hidden'
-};
+  async fileUpload(file){
+    try{
+      await this.getBase64(file, (base64string) => {
+        fetch('https://api.mathpix.com/v3/text', {
+          method: 'POST',
+          headers: {
+              "app_id": "sourayaabdelkader_gmail_com_4cedcd_a3d246",
+              "app_key": "22141cd5a3437fbc618f29f0a8e39b914a56e80750616a549a39f59b0391acf2",
+              "content-type": "application/json"
+          },
+          body: JSON.stringify({
+            src: base64string,
+            formats: ["text", "data", "html"],
+            data_options: {
+              include_asciimath: true,
+              include_latex: true
+            }
+          })
+        })
+        .then((res) => res.json())
+        .then((response) => {
+          localStorage.setItem('problem', response.data[1].value)
+        })
+      })
+    } catch(e){console.log(e.message)}
+  }
 
-const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%'
-};
-
-
-const Previews = (props) => {
-  const [files, setFiles] = useState([]);
-  const [base64, setBase64] = useState('')
-
-  const {getRootProps, getInputProps} = useDropzone({
-    accept: {
-      'image/png': [".jpeg",".jpg",'.png',".wepb"],
-    },
-    onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })));
-      // handleDrop();
-    },     
-  });
-// console.log(files)
-// console.log(files[0].preview)
-// console.log(base64)
-//     const handleDrop = React.useCallback((acceptedFiles) => {
-//         const file = acceptedFiles
-//         let reader = new FileReader()
-//         reader.readAsDataURL(files[0].preview)
-//         console.log("hi")
-//         reader.onload = () => {
-//           console.log("preview")
-//           console.log({
-//             src: files.preview,
-//             data: reader.result
-//           })
-//           setBase64(reader.result)
-//          }
-//      }, []);
-
-
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
-          src={file.preview}
-          style={img}
-          // Revoke data uri after image is loaded
-          onLoad={() => { URL.revokeObjectURL(file.preview) }}
-        />
+  async accepted(acceptedFile){
+    await this.fileUpload(acceptedFile[0])
+  }
+  render(){
+    return(
+      <div> 
+        <div> <Latex>{}</Latex></div>
+        <Dropzone
+          maxFiles = {1}
+          multiple = {false}
+          canCancel = {false}
+          acceptFiles = 'image/jpeg,image/png,image/gif,image/jpg'
+          acceptedMimeTypes =  'image/jpeg,image/png,image/gif,image/jpg'
+          noKeyboard= {true}
+          onDropAccepted={this.accepted}
+          onDropRejected={() => {console.log('rejected')}}
+          > 
+            {({getRootProps, getInputProps, isDragActive, isDragReject}) => (
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {!isDragActive && (<p> Drag 'n' drop some files here, or click to select files </p>)}
+                {isDragActive && !isDragReject && <p> File accepted </p>}
+                {isDragActive && isDragReject && <p> File rejected </p>}
+              </div>
+            )}
+        </Dropzone>
       </div>
-    </div>
-  ));
-
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, []);
-
-  return (
-    <section className="container">
-      <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} />
-        <p>Drag & drop an image here, or click to select an image</p>
-      </div>
-      <aside style={thumbsContainer}>
-        {thumbs}
-      </aside>
-    </section>
-  );
-}
+    );
+  }
+} 
 
 export default Previews;

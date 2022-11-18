@@ -70,7 +70,6 @@ const LoginWidget = () => {
 
     // Calling the API
     const login = async(email, password) => {
-        console.log(email, password)
         const login_user = await SetUser.login({
             "email":email,
             "password":password,
