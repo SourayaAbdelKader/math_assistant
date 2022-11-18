@@ -137,6 +137,10 @@
     padding: 1vw 5vw;
 }
 
+.borders > div {
+    border: 1px solid;
+}
+
 .Profile_container > div {
     margin-bottom: 2vw;
 }

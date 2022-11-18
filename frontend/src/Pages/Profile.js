@@ -11,6 +11,7 @@ import ProfileHeader from '../Components/Headers/ProfileHeader';
 import SubHeader from '../Components/Headers/SubHeader';
 import UserInfo from '../Components/Cards/UserInfo';
 import ScoreCard from '../Components/Cards/ScoreCard';
+import DataCard from '../Components/Cards/DataCard';
 
 // Importing images
 import saved_questions from '../images/saved.png';
@@ -75,27 +76,11 @@ const Profile = () => {
                         <div> {fullmarked} </div>
                     </div>  
                 </div>
-                <div>
-                    <div className='saved_questions'> 
-                        <div> <img src={saved_questions} alt="saved" /> </div>
-                        <div> Saved Questions </div>
-                        <div> </div>
-                    </div>
-                    <div className='Practices'> 
-                        <div> <img src={practice_icon} alt=" " /> </div>
-                        <div> Practice </div>
-                        <div> </div>
-                    </div>
-                    <div className='Questions'>
-                        <div> <img src={questions_icon} alt=" " /> </div>
-                        <div> Questions </div>
-                        <div> </div> 
-                    </div>
-                    <div className='tags_per_user'> 
-                        <div> <img src={tags_icon} alt=" " /> </div>
-                        <div> Tags Used </div> 
-                        <div> </div> 
-                    </div>
+                <div className='flex_row flex_inbetween borders'>
+                    <DataCard pic={saved_questions} number={''} type={'Saved Questions'}></DataCard>
+                    <DataCard pic={practice_icon} number={''} type={'Practice'}></DataCard>
+                    <DataCard pic={questions_icon} number={''} type={'Questions'}></DataCard>
+                    <DataCard pic={tags_icon} number={''} type={'Tags Used'}></DataCard>
                 </div>
             </div>
             <UpperFooter></UpperFooter>
