@@ -19,7 +19,7 @@ const ViewSolve = () => {
 
     const [getChecked, setChecked] = useState([]);
     const [getUnchecked, setUnchecked] = useState([]);
-    const[empty, setEmpty] = useState([]);
+    const [empty, setEmpty] = useState();
 
     useEffect(() =>{
         const getPractice  = async () =>{
@@ -31,8 +31,6 @@ const ViewSolve = () => {
             if (unchecked.data.message === 'Found'){
                 const getUnchecked = unchecked.data.data;
                 setUnchecked(getUnchecked);} 
-            if (unchecked.data.message !== 'Found' && checked.data.message !== 'Found'){
-                setEmpty(["empty"])}
             if (getUnchecked.length == 0  && getChecked.length == 0){
                 setEmpty(["empty"])}
     }; getPractice();}, []);

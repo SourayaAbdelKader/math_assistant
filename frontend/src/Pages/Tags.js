@@ -34,7 +34,7 @@ const Tags = () => {
                 setTags(get);
                 setLoading(false);
             }
-            if (tags.data.message ==! 'Found' || getTagsData.length == 0){
+            if (getTagsData.length == 0 || !loading){
                 setEmpty([]);
             }
     }; getTag();}, [])

@@ -43,6 +43,7 @@ class Previews extends Component{
         })
         .then((res) => res.json())
         .then((response) => {
+          console.log(response)
           localStorage.setItem('problem', response.data[1].value)
         })
       })
@@ -75,6 +76,7 @@ class Previews extends Component{
               </div>
             )}
         </Dropzone>
+        <div><Latex>{'${'+localStorage.getItem('problem')+'}$'}</Latex></div>
       </div>
     );
   }

@@ -92,7 +92,7 @@ const QuestionWidget = (question) => {
         }
         setDescription("")
     }
-    
+
     return(
         <div onClick={handleClick} id={question.id} className="question_container">
             <div className="flex_between space">

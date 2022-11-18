@@ -25,6 +25,8 @@ import save from '../images/input_image.png';
 import tagsApi from '../hooks/tagsApi';
 
 const SearchPage = () => {
+    const componentRef = React.useRef();
+
     const [getTags, setTags] = useState([]);
     const [problem, setProblem] = useState();
     const [desciption, setDescription] = useState();
@@ -41,6 +43,58 @@ const SearchPage = () => {
             }
     }; getTag();}, [])
 
+    function handleProblemChange(event){
+        let problem = event.target.value;
+        console.log(event.target.value);
+        if(problem.length < 30){ 
+            componentRef.current.classList.remove('hide');
+            event.target.classList.add('error_box');
+        } else { 
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');         
+        }
+        if (problem.length == 0) {
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');
+        }
+        setProblem(problem);
+    };
+
+    function handleDescriptionChange(event){
+        let description = event.target.value;
+        console.log(event.target.value);
+        if(description.length < 30){ 
+            componentRef.current.classList.remove('hide');
+            event.target.classList.add('error_box');
+        } else { 
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');         
+        }
+        if (description.length == 0) {
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');
+        }
+        setDescription(description);
+    };
+
+    function handleSuggestionChange(event){
+        let suggestion = event.target.value;
+        console.log(event.target.value);
+        if(suggestion.length < 30){ 
+            componentRef.current.classList.remove('hide');
+            event.target.classList.add('error_box');
+        } else { 
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');         
+        }
+        if (suggestion.length == 0) {
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');
+        }
+        setSuggestedSolution(suggestion);
+    };
+
+    console.log(problem, desciption, suggestedSolution)
     return (
         <> 
             <div>
@@ -60,6 +114,7 @@ const SearchPage = () => {
                     <div className=''> 
                         <div className='input_container'>
                             <div> <h4 className='page_title'> Ask a question </h4></div>
+                            <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Some informtation are missing... </p> </div>
                             <div className='input_box'> 
                                 <div className='flex_inbetween'> 
                                     <div className='bold sections_title'> Problem </div> 
@@ -82,14 +137,14 @@ const SearchPage = () => {
                                     </Popup>
                                     </div>
                                 </div>
-                                <div> <textarea placeholder="Enter your problem..."></textarea></div>
+                                <div> <textarea onChange={handleProblemChange} placeholder="Enter your problem..."></textarea></div>
                             </div>
                             <div className='input_box'> 
                                 <div className='flex'> 
                                     <div className='bold sections_title'> Description </div> 
                                     <div>  </div>
                                 </div>
-                                <div> <textarea placeholder="Enter a description..."></textarea></div>
+                                <div> <textarea onChange={handleDescriptionChange} placeholder="Enter a description..."></textarea></div>
                             </div>
                             <div className='input_box'> 
                                 <div className='flex_inbetween'> 
@@ -113,7 +168,7 @@ const SearchPage = () => {
                                     </Popup>
                                     </div>
                                 </div>
-                                <div> <textarea placeholder="Enter your solution..."></textarea></div>
+                                <div> <textarea onChange={handleSuggestionChange} placeholder="Enter your solution..."></textarea></div>
                             </div>
                             <div className='flex_end'> <AskButton></AskButton> </div>
                         </div>
