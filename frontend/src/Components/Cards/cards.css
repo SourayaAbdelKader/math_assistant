@@ -88,3 +88,35 @@
     padding: 2vw 2vw 2vw 5vw;
     background: linear-gradient(180deg, rgba(45, 62, 78, 0.581) 33.85%, rgba(45, 62, 78, 0.105) 100%);
 }
+
+/* For the data card*/
+.data {
+    background: #E8ECEB;
+    padding: 5em 5em;
+}
+
+.data_box {
+    background: white;
+    border-radius: 15px;
+    width: 15em;
+    padding: 2vw 2vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.data_image {
+    margin-right: 0cm;
+}
+
+.data_numbers {
+    font-family: 'Bangers';
+    font-weight: bolder;
+    font-size: 3em;
+    font-style: italic;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+}

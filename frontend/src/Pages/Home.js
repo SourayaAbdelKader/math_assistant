@@ -6,6 +6,7 @@ import HomeAPI from '../hooks/homeApi';
 import LowerFooter from '../Components/Footers/LowerFooter';
 import LoginHeader from '../Components/Headers/LoginHeader';
 import HomeFooter from '../Components/Footers/HomeFooter';
+import DataCard from '../Components/Cards/DataCard';
 
 // Importing images
 import main from '../images/main.png';
@@ -67,26 +68,10 @@ const Home = () => {
                         </section>
                         <section>
                                 <div className='home_container data flex_row flex_inbetween'>
-                                        <div className='data_box'>
-                                                <div> <img src={questions_pic} alt="questions" /> </div>
-                                                <div> <p className='data_numbers'> {questions} </p> </div>
-                                                <div> Asked questions </div>
-                                        </div>
-                                        <div className='data_box'>
-                                                <div> <img src={users_pic} alt="questions" /> </div>
-                                                <div> <p className='data_numbers'> {users} </p> </div>
-                                                <div> Users </div>
-                                        </div>
-                                        <div className='data_box'> 
-                                                <div> <img src={answers_pic} alt="questions" /> </div>
-                                                <div> <p className='data_numbers'> {problems}  </p> </div>
-                                                <div> Problems </div>
-                                        </div>
-                                        <div className='data_box'> 
-                                                <div> <img src={editors_pic} alt="questions" /> </div>
-                                                <div> <p className='data_numbers'> {editors}</p></div>
-                                                <div> Editors </div>
-                                        </div>
+                                        <DataCard pic={questions_pic} number={questions}  type={'Asked questions'}></DataCard>
+                                        <DataCard pic={users_pic} number={users}  type={'Users'}></DataCard>
+                                        <DataCard pic={answers_pic} number={problems}  type={'Problems'}></DataCard>
+                                        <DataCard pic={editors_pic} number={editors}  type={'Editors'}></DataCard>
                                 </div>
                         </section>
                         <section>
