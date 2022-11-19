@@ -1,5 +1,5 @@
 import React from 'react';
-import './pages.css'
+import './pages.css';
 
 // Importing Components
 import LowerFooter from '../Components/LowerFooter';
@@ -7,6 +7,7 @@ import Header from '../Components/Headers/Header';
 import TagNav from '../Components/Navbar/TagNav';
 
 const Tags = () => {
+
     return (
         <div>
             <Header></Header>
