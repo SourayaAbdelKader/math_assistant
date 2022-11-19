@@ -39,7 +39,7 @@ const Practice = () => {
                         <div className='bold'> Points </div>
                         <div className='bold'> Edit </div>
                         <div className='bold'> Delete </div>
-                    </div>
+                </div>
                     { 
                             practice?.map((e) => {                            
                                 return (
