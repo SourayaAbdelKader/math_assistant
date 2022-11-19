@@ -13,8 +13,6 @@ const Editors = () => {
             <div className='page_content flex'>
                 <div className='navbar'> <Navbar></Navbar></div>
                 <div className='content'>
-                    <div className='chart'>  
-                </div>
                 </div> 
             </div>
             <LowerFooter></LowerFooter>
