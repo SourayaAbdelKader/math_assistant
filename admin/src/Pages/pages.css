@@ -1,6 +1,6 @@
 .hero {
     margin-top: 1px;
-    height: 80vh;
+    height: 83vh;
     background-image: url('../images/hero.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -44,4 +44,12 @@
 
 .page_content {
     background: #E8ECEB;
+}
+
+.chart {
+    width: 25vw;
+}
+
+.content {
+    padding: 2vw;
 }
