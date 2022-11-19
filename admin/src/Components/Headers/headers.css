@@ -1,0 +1,37 @@
+img {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 2vw;
+}
+
+.flex{
+    display: flex;
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.unerline {
+    padding: 0.2em;
+    border-bottom: 1px solid #2D3E4E;
+}
+
+.white_text {
+    color: white;
+}
+
+.headercontainer {
+    padding: 1vw 5vw;
+    background:#2D3E4E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

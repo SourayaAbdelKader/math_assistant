@@ -1,0 +1,43 @@
+.hero {
+    margin-top: 1px;
+    height: 80vh;
+    background-image: url('../images/hero.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+}
+
+.white_text {
+    color: white;
+}
+
+.space {
+    margin-bottom: 2vw;
+}
+
+/* For login and signup pages*/
+.login_page{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.lower{
+    position: fixed;
+    bottom: 0cm;
+    width: 100%;
+}
