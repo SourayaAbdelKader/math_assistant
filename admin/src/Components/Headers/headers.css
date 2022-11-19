@@ -35,3 +35,27 @@ img {
     justify-content: space-between;
     align-items: center;
 }
+
+.icon {
+    height: 1.7em;
+    width: auto;
+    position: relative;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease; 
+}
+
+.icon:hoover{
+    transform: scale(3); 
+}
+
+.cursor {
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease; 
+}
+
+.cursor:hover {
+    transform: scale(1.1);
+}

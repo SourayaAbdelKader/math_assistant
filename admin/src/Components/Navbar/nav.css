@@ -1,0 +1,20 @@
+.nav_container{
+    width: 20vw;
+    height: auto;
+    padding: 1vw 4vw;
+    background-color: white;
+}
+
+.part {
+    margin-bottom: 1vw;
+    padding: 1vw;
+}
+
+.choosen {
+    background: #E09E50;
+    border-radius: 15px;
+}
+
+.button_container {
+    margin-top: 4vw;
+}
