@@ -108,3 +108,14 @@
 .disabeled {
     opacity: 0.5
 }
+
+.icon_table {
+    margin: 0cm;
+    height: 2vw;
+    width: auto;
+}
+
+.flex_end {
+    display: flex;
+    justify-content: end;
+}

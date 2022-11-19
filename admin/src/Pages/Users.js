@@ -8,10 +8,10 @@ import UsersAPI from '../hooks/UsersAPI';
 import LowerFooter from '../Components/LowerFooter';
 import Header from '../Components/Headers/Header';
 import UserNav from '../Components/Navbar/UserNav';
+
 const Users = () => {
 
     const [users, setUsers] = useState([]);
-    const [score, setScore] = useState(0);
     useEffect(() =>{
         const getUsers  = async () =>{
             const get_users = await UsersAPI.getUser();
