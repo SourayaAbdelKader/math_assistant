@@ -43,6 +43,7 @@
 }
 
 .page_content {
+    display: flex;
     background: #E8ECEB;
 }
 
@@ -51,5 +52,24 @@
 }
 
 .content {
+    width: 80vw;
     padding: 2vw;
+}
+
+.column {
+    min-width: 20vw;
+}
+
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.row {
+    background: white;
+    padding: 1vw;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.582);
+    box-shadow: 2px 2px 2px #b1b6bb;
 }

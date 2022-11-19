@@ -10,9 +10,10 @@ const Tags = () => {
     return (
         <div>
             <Header></Header>
-            <div className='page_content flex'>
+            <div className='page_content '>
                 <div className='navbar'> <TagNav></TagNav></div>
                 <div className='content'>
+                <div> <h3>Tags</h3></div>
                 </div> 
             </div>
             <LowerFooter></LowerFooter>
