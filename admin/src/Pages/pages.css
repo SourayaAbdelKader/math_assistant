@@ -88,3 +88,74 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.582);
     box-shadow: 2px 2px 2px #b1b6bb;
 }
+
+/* Exercice Page */
+.practice_section {
+    background: #E8ECEB;
+    width: 75vw;
+    min-height: 86vh;
+    padding: 2vw 5vw 2vw 2vw;
+}
+
+.excercise_textarea {
+    height: 50vh;
+}
+
+.flex_bottom {
+    position: fixed;
+    bottom: 2vw;
+    right: 5vw;
+}
+
+.textarea {
+    margin-top: 1vw;
+    width: 100%;
+    border-radius: 15px;
+    min-height: 6vw;
+    max-height: fit-content;
+    border: 0cm;
+    resize: none;
+    padding: 1vw;
+    font-size: 13px;
+}
+
+.solve {
+    padding: 1vw 2vw;
+    border: 0cm;
+    background: #E09E50;
+    box-shadow: 0px 4px 4px #b1b6bb, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small_icon {
+    height: 20px;
+    width: auto;
+    margin-right: 0.5vw;
+}
+
+.points_textarea{
+    margin-top: 1vw;
+    width: 100%;
+    border-radius: 15px;
+    height: 3vw;
+    max-height: fit-content;
+    border: 0cm;
+    resize: none;
+    padding: 1vw;
+    font-size: 12px;
+}
+
+.answer {
+    margin-top: 1vw;
+    width: 100%;
+    background: white;
+    height: 6vw;
+    border-radius: 15px;
+}

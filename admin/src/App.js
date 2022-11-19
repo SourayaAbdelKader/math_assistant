@@ -12,6 +12,7 @@ import Questions from './Pages/Questions';
 import Tags from './Pages/Tags';
 import Practice from './Pages/Practice';
 import Solutions from './Pages/Solutions';
+import CheckSolution from './Pages/CheckSolution';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path='/tags' element={<Tags />} />
               <Route path='/practice' element={<Practice />} />
               <Route path='/solutions' element={<Solutions />} />
+              <Route path='/checkSolution' element={<CheckSolution />} />
             </Routes>
           </Router>
         </div>
