@@ -10,10 +10,14 @@ import delete_icon from '../images/delete.png';
 import edit_icon from '../images/edit.png';
 
 const PracticeWidget = (props) => {
+
+    // Handeling navigation
+    const navigate = useNavigate();
+    const navigateSolutions= () => {navigate('/solutions'); localStorage.setItem('choosed_practice', props.id)};
     
     return(
         <div key={props.id} id={props.id} className='flex_between row_table'> 
-            <div className='cell'> {props.title} </div>
+            <div onClick={navigateSolutions} className='cell pointer'> {props.title} </div>
             <div className='cell'> {props.description} </div>
             <div className='cell'> {props.level} </div>
             <div className='cell'> {props.points} </div>

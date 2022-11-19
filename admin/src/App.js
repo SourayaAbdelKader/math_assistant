@@ -11,6 +11,7 @@ import Editors from './Pages/Editors';
 import Questions from './Pages/Questions';
 import Tags from './Pages/Tags';
 import Practice from './Pages/Practice';
+import Solutions from './Pages/Solutions';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path='/questions' element={<Questions />} />
               <Route path='/tags' element={<Tags />} />
               <Route path='/practice' element={<Practice />} />
+              <Route path='/solutions' element={<Solutions />} />
             </Routes>
           </Router>
         </div>

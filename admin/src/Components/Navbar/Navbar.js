@@ -14,7 +14,6 @@ import './nav.css';
 const Navbar = () => {
     
     const navigate = useNavigate();
-    const navigateHome = () => {navigate('/');};
     const navigateDashboard = () => {navigate('/dashboard');};
     const navigateUsers = () => {navigate('/users');};
     const navigateEditors = () => {navigate('/editors')};

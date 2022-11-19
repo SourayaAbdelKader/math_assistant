@@ -32,19 +32,19 @@ const Users = () => {
                 <div className='content'>
                     <div> <h3 className='space'>Users</h3></div>
                     <div className='flex_between row_table'> 
-                        <div className='column bold'> Name </div>
-                        <div className='column bold'> Email </div>
-                        <div className='column bold'> Phone </div>
-                        <div className='column bold'> Degree </div>
+                        <div className='user_column bold'> Name </div>
+                        <div className='user_column bold'> Email </div>
+                        <div className='user_column bold'> Phone </div>
+                        <div className='user_column bold'> Degree </div>
                     </div>
                     { 
                             users?.map((e) => {                            
                                 return (
                                     <div key={e.id} className='flex_between row_table'> 
-                                    <div className='column'> {e.name} </div>
-                                    <div className='column'> {e.email} </div>
-                                    <div className='column'> {e.phone}  </div>
-                                    <div className='column'> {e.degree}  </div>
+                                    <div className='user_column'> {e.name} </div>
+                                    <div className='user_column'> {e.email} </div>
+                                    <div className='user_column'> {e.phone}  </div>
+                                    <div className='user_column'> {e.degree}  </div>
                                     </div>
                                 )
                             })  
