@@ -2,16 +2,16 @@ import React from "react";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 import dashboard from '../../images/dash.png';
-import user from '../../images/dash_users_selected.png';
+import user from '../../images/dash_users.png';
 import tags from '../../images/dash_tags.png';
-import editors from '../../images/dash_editors.png';
+import editors from '../../images/dash_editors_selected.png';
 import practice from '../../images/dash_practice.png';
 import questions from '../../images/dash_questions.png';
 import Signout from "../Buttons/Signout";
 
 import './nav.css';
 
-const UserNav = () => {
+const EditorNav = () => {
     
     const navigate = useNavigate();
     const navigateHome = () => {navigate('/');};
@@ -28,13 +28,13 @@ const UserNav = () => {
                 <div> <img className="icon" src={dashboard} alt="" /> </div>
                 <div className="bold"> Dashboard </div>
             </div>
-            <div onClick={navigateUsers} className="flex part choosen cursor">
+            <div onClick={navigateUsers} className="flex part cursor">
                 <div> <img className="icon" src={user} alt="" /> </div>
-                <div className="bold white_text"> Users </div>
+                <div className="bold"> Users </div>
             </div>
-            <div onClick={navigateEditors} className="flex part cursor">
+            <div onClick={navigateEditors} className="flex choosen part cursor">
                 <div> <img className="icon" src={editors} alt="" /> </div>
-                <div className="bold"> Editors </div>
+                <div className="bold white_text"> Editors </div>
             </div>
             <div onClick={navigateQuestions} className="flex part cursor">
                 <div> <img className="icon" src={questions} alt="" /> </div>
@@ -55,4 +55,4 @@ const UserNav = () => {
     )
 }
 
-export default UserNav;
+export default EditorNav;
