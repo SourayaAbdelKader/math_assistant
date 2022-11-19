@@ -1,7 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import './pages.css';
-import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // Importing Components
 import LowerFooter from '../Components/LowerFooter';
@@ -28,11 +27,6 @@ const Solutions = () => {
             }  
     }; getQuestion();}, []);
 
-    const onClick = (e) => {
-        e.preventDefault();
-        console.log(e.target.id)
-    }
-
     return (
         <div>
             <div className='header'>
@@ -41,7 +35,7 @@ const Solutions = () => {
             <div className='page_content'>
                 <div className='navbar'> <PracticeNav></PracticeNav></div>
                 <div className='content'>
-                    <div> <h3 className='space'>Solutions</h3></div>
+                    <div> <h3 className='space'>Solutions For Practice #{localStorage.getItem('choosed_practice')}</h3></div>
                     <div className='flex_between row_table'> 
                         <div className='column bold'> Solution Number </div>
                         <div className='column bold'> Status </div>

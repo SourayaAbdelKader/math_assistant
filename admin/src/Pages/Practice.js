@@ -30,15 +30,14 @@ const Practice = () => {
                 <div className='content'>
                 <div className='flex_between space'> 
                     <h3>Practice</h3>
-                    <button className='login bold'>ADD TAG</button>
+                    <button className='login bold'>ADD PRACTICE</button>
                 </div>
                 <div className='flex_between row_table'> 
-                        <div className='column bold'> Title </div>
-                        <div className='column bold'> Description </div>
-                        <div className='bold'> Level </div>
-                        <div className='bold'> Points </div>
-                        <div className='bold'> Edit </div>
-                        <div className='bold'> Delete </div>
+                        <div className='cell bold'> Title </div>
+                        <div className='cell bold'> Level </div>
+                        <div className='cell bold'> Points </div>
+                        <div className='small_cell bold'> Edit </div>
+                        <div className=' small_cell bold'> Delete </div>
                 </div>
                     { 
                             practice?.map((e) => {                            

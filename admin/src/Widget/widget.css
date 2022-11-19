@@ -123,8 +123,8 @@
 }
 
 .cell {
-    min-width: 3vw;
-    max-width: 24vw;
+    min-width: 0vw;
+    max-width: 2vw;
 }
 
 .ask {
