@@ -50,8 +50,9 @@ const Profile = () => {
                 const user_tags = await QuestionAPI.countTagsPerUSer(localStorage.getItem('user_id'));
                 const user_practice = await PracticeAPI.countPracticePerUSer(localStorage.getItem('user_id'));
                 setDetails(get);
-                setScore(user_score.data.data);
-                if (user_score.data.data == 'null') { setScore('0')}
+                if (user_score.data.data == 'null') { 
+                    setScore('0');
+                } else {setScore(user_score.data.data);}
                 setAnswerScore(user_answer_score.data.data);
                 setPracticeScore(user_practice_score.data.data);
                 setFullmarked(user_fullmarked.data.data);
@@ -89,8 +90,8 @@ const Profile = () => {
                     </UserInfo> 
                 </div>
                 <div className='flex_inbetween'>
-                    <ScoreCard key={score} total={score} answers={answerScore} practice={practiceScore}></ScoreCard>
-                    <FullMark key={fullmarked} total={fullmarked}></FullMark>
+                    <ScoreCard  total={answerScore+practiceScore} answers={answerScore} practice={practiceScore}></ScoreCard>
+                    <FullMark  total={fullmarked}></FullMark>
                 </div>
                 <div className='flex_row flex_inbetween borders'>
                     <DataCard pic={saved_questions} number={saved} type={'Saved Questions'}></DataCard>

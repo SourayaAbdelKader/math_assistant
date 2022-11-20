@@ -9,5 +9,13 @@ class UserAPI extends Base {
     async searchTags (data) {
         return await this.get('tag/search/'+data);
     }
+
+    async deviceToken (data) {
+        return await this.post('general/saveToken',data);
+    }
+
+    async sendNotification (body) {
+        return await this.post('general/sendNotification',body);
+    }
 }
 export default new  UserAPI();

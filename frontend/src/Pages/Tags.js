@@ -21,23 +21,41 @@ import tagsApi from '../hooks/tagsApi';
 const Tags = () => {
     const componentRef = React.useRef();
     const [getTagsData, setTags] = useState([]);
-    const[empty, setEmpty] = useState(["empty"]);
+    const [empty, setEmpty] = useState(false);
+    const [isSearching, setIsSearching] = useState(false)
+    const [searchResult, setSearchResult] = useState([])
+    const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(false);
 
     useEffect(() =>{
         const getTag  = async () =>{
             setLoading(true);
             const tags = await tagsApi.getTags();
-            console.log(tags)
+            console.log(tags.data.message)
             if (tags.data.message === 'Found'){
                 const get = tags.data.data;
                 setTags(get);
                 setLoading(false);
-            }
-            if (getTagsData.length == 0 || !loading){
-                setEmpty([]);
-            }
-    }; getTag();}, [])
+            } else {setEmpty(true)}
+    }; getTag();
+}, [])
+
+    function handleSearch(event){
+        let search_word = event.target.value;
+        if (search_word.length > 3){
+            setIsSearching(true)
+            setSearch(search_word);
+            searching(search)
+        } else {setIsSearching(false); setEmpty(false) }
+    }
+
+    const searching = async(search) => {
+        const search_tag = await tagsApi.searchTags(search);
+        if (search_tag.data.message == 'Tag Not Found'){
+            setEmpty(true)
+        } else {setSearchResult(search_tag.data.data)}
+        console.log(search_tag.data.message)
+     };
 
     return (     
         <div>
@@ -46,15 +64,18 @@ const Tags = () => {
             <div  className='flex'>
                 <div className='tag_side_container'> <TagSidebar> </TagSidebar></div>
                 <div className='tag_page_container'> 
-                    <div className='tag_search_part'> <input className="input"  type="text" placeholder="Search" /> </div>                        
+                    <div className='tag_search_part'> <input onChange={handleSearch} className="input"  type="text" placeholder="Search" /> </div>                        
                         {
-                            empty?.map((e) => {
-                                return (<div className='empty_state'> <img src={tags_empty_state} alt="empty_state"/> </div>)
-                            })
+                            empty && (<div className='empty_state'> <img src={tags_empty_state} alt="empty_state"/> </div>)    
                         }
                     <div className='tags_grid'>
+                        {
+                            !empty && isSearching && (searchResult?.map((e) => {
+                                return (<TagCard id={e.id} title={e.title} description={e.description}></TagCard>)
+                            }))
+                        }
                         { 
-                            getTagsData?.map((e) => {
+                            !empty && !isSearching && getTagsData?.map((e) => {
                                 return (<TagCard id={e.id} title={e.title} description={e.description}></TagCard>)
                             })  
                         }
