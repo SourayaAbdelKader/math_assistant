@@ -4,7 +4,8 @@ import  secureLocalStorage  from  "react-secure-storage";
 axios.defaults.baseURL = "http://127.0.0.1:8000/api/v0/" ;
 axios.defaults.headers = {
   Authorization : secureLocalStorage.getItem('token')?'Bearer '+secureLocalStorage.getItem('token').trim():undefined,
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*'
 }
 
 class Base {

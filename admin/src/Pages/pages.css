@@ -164,3 +164,27 @@
 .page_break {
     padding: 0.5vw 2vw;
 }
+
+.close {
+    width: 30px;
+    height: auto;
+    color: #E09E50;
+    background: white;
+    border: 0cm;
+}
+
+.modal {
+    padding: 2vw;
+}
+
+.modal_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex_around {
+    display: flex;
+    justify-content: space-around;
+}

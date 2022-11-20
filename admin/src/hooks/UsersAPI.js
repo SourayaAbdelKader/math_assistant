@@ -18,5 +18,9 @@ class UserAPI extends Base {
         return await this.get('/score/id/'+id);
     }
 
+    async addEditor (body) {
+        return await this.post('general/addEditor', body);
+    }
+
 }
 export default new  UserAPI();
