@@ -14,6 +14,7 @@ import Practice from './Pages/Practice';
 import Solutions from './Pages/Solutions';
 import CheckSolution from './Pages/CheckSolution';
 import ViewFeedback from './Pages/ViewFeedback';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path='/solutions' element={<Solutions />} />
               <Route path='/checkSolution' element={<CheckSolution />} />
               <Route path='/view/checkSolution' element={<ViewFeedback />} />
+              <Route path='/profile' element={<Profile />} />
             </Routes>
           </Router>
         </div>

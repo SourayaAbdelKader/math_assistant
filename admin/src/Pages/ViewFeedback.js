@@ -92,11 +92,11 @@ const ViewFeedback = () => {
                 <QuestionForEx id={practice.id} name={practice.name} description={practice.description} picture_url={practice.picture_url} level={practice.level} points={practice.points}></QuestionForEx>
                 <div className='practice_section'>
                     <div> <h3 className=''> The Answer </h3> </div>
-                    <div className='answer space'> <p>{userSolution.description} </p> </div>
+                    <div className='answer space'> <p>{userSolution.description}</p> </div>
                     <div> <h3 className=''> Feedback </h3> </div>
-                    <div className='answer space'> <p>{userSolution.feedback} </p> </div>                    
+                    <div className='answer space'> <p>{userSolution.feedback}</p> </div>                    
                     <div> <h3> Points </h3> </div>
-                    <div className='answer space'> <p>{userSolution.score} </p> </div>                    <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
+                    <div className='answer space'> <p>{userSolution.score}</p> </div>                    <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
                 </div>
             </div>
             <LowerFooter></LowerFooter>

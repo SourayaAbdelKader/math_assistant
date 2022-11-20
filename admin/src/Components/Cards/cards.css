@@ -48,3 +48,32 @@
 .space_right {
     margin-right: 1vw;
 }
+
+/* For the profile info box */
+.info_box {
+    padding: 2vw 3vw;
+    border: 2px solid #5B4D4D;
+    border-radius: 25px;
+}
+
+.user_profile_picture {
+    border-radius: 200px;
+    width: 70px;
+    height: auto;
+    max-height: 70px;
+}
+
+.details {
+    padding: 2vw 15vw 2vw 7vw;
+}
+
+.detail_title {
+    font-weight: 600;
+    text-decoration: underline;
+    margin-right: 1vw;
+}
+
+.user_name {
+    font-size: 1.2em;
+    font-weight: 600;
+}

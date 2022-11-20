@@ -6,6 +6,10 @@ class UserAPI extends Base {
         return await this.get('/general/getUsers');
     }
 
+    async getUserById (id) {
+        return await this.get('/general/users/'+id);
+    }
+
     async getEditors () {
         return await this.get('/general/editors');
     }
