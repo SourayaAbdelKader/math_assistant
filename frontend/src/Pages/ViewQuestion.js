@@ -52,7 +52,7 @@ const ViewQuestion = () => {
                     <QuestionsSidebar></QuestionsSidebar>
                 </div>
                 <div className='question_page_container'>
-                    <ViewQuestionWidget key={getQuestion.id} name={getQuestion.name} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
+                    <ViewQuestionWidget key={getQuestion.id} picture_url={getQuestion.picture_url} name={getQuestion.name} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
                     <div className='page_break'> 
                         <h3> Answers </h3>
                     </div>
