@@ -10,10 +10,10 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100%;
-    padding: 1vw 1vw;
+    height: 35vw;
+    padding: 1vw;
 }
 
 .ask {

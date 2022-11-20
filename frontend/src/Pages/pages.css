@@ -91,7 +91,7 @@
 .tag_side_container {
     height: 100%;
     width: 20vw;
-    padding: 3em 2em;
+    padding: 1vw;
     display: flex;
     align-self: flex-start;
 }

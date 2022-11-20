@@ -38,7 +38,7 @@ const ViewQuestion = () => {
             console.log(getAnswersPerQuestion)
             if (getAnswersPerQuestion.data.message === 'Found'){
                 const answer_array = getAnswersPerQuestion.data.data;
-                console.log(answer_array.data.data.data)
+                console.log(answer_array.data)
                 getAnswers(answer_array)
             } else {console.log('hi'); setEmpty(true)}
     }; getQuestion(); getAnswersQuestion()}, []);

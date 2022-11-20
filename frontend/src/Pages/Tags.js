@@ -19,6 +19,7 @@ import tags_empty_state from '../images/tag_empty_state.png'
 import tagsApi from '../hooks/tagsApi';
 
 const Tags = () => {
+
     const componentRef = React.useRef();
     const [getTagsData, setTags] = useState([]);
     const [empty, setEmpty] = useState(false);
@@ -27,6 +28,7 @@ const Tags = () => {
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(false);
 
+    // Handeling the data
     useEffect(() =>{
         const getTag  = async () =>{
             setLoading(true);
@@ -37,9 +39,9 @@ const Tags = () => {
                 setTags(get);
                 setLoading(false);
             } else {setEmpty(true)}
-    }; getTag();
-}, [])
+    }; getTag();}, [])
 
+    // Handeling the search
     function handleSearch(event){
         let search_word = event.target.value;
         if (search_word.length > 3){

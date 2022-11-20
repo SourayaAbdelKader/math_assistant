@@ -29,6 +29,28 @@ const QuestionWidget = (question) => {
     const navigate = useNavigate();
 
     const [description, setDescription] = useState("");
+    const [savedQuestions, setSavedQuestions] = useState([]);
+
+    useEffect(() =>{
+        const getSavedQuestions  = async () =>{
+            const questions = await QuestionAPI.savedQuestions(localStorage.getItem('user_id'));
+            console.log(questions)
+            if (questions.data.message === 'Found Successfully'){
+                const get = questions.data.data;
+                setSavedQuestions(get);
+            }
+    }; getSavedQuestions();}, [])
+
+    const handleSaved = () => {
+        if (savedQuestions.length > 0){
+            for (let i = 0; i < savedQuestions.length; i++){
+                if (question.id === savedQuestions[i].question_id){
+                    return saved
+                }
+            } 
+        } return save
+    }
+    const icon = handleSaved()
 
     function handleChange(event){
         let description = event.target.value;
@@ -121,7 +143,7 @@ const QuestionWidget = (question) => {
                 </div>
             </div>
             <div className="flex_end">
-                <div> <img className="s_icon cursor" onClick={saveQuestion} src={save} alt="save" /> </div>
+                <div> <img className="s_icon cursor" onClick={saveQuestion} src={icon} alt="save" /> </div>
                 <div> 
                     <Popup trigger={<img className="s_icon cursor" src={answer} alt="answer" />} modal nested >
                         {close => (
