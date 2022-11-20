@@ -32,16 +32,15 @@ const ViewQuestion = () => {
                 const get = question.data.data;
                 setQuestion(get[0])
             } 
-    }
+    };
         const getAnswersQuestion = async () => {
             const getAnswersPerQuestion = await AnswerAPI.getAnswersPerQuestion(id);
-            console.log(getAnswersPerQuestion)
             if (getAnswersPerQuestion.data.message === 'Found'){
                 const answer_array = getAnswersPerQuestion.data.data;
-                console.log(answer_array.data)
                 getAnswers(answer_array)
-            } else {console.log('hi'); setEmpty(true)}
-    }; getQuestion(); getAnswersQuestion()}, []);
+            } else { setEmpty(true)}
+    } 
+    getAnswersQuestion();getQuestion()}, []);
 
     return (
         <div>
@@ -62,7 +61,7 @@ const ViewQuestion = () => {
                         }
                     { 
                         answers?.map((e) => {
-                            return (<AnswerWidget id={e.id} name={e.name} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
+                            return (<AnswerWidget id={e.id} picture_url={e.picture_url} name={e.name} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
                         }) 
                     }
                     </div> 

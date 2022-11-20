@@ -41,7 +41,6 @@ const QuestionWidget = (question) => {
     useEffect(() =>{
         const getSavedQuestions  = async () =>{
             const questions = await QuestionAPI.savedQuestions(localStorage.getItem('user_id'));
-            console.log(questions)
             if (questions.data.message === 'Found Successfully'){
                 const get = questions.data.data;
                 setSavedQuestions(get);
