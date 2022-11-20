@@ -12,7 +12,6 @@ import messageSent from '../images/sent.png';
 
 
 // Importing libraries related to Latex
-import ReactToPrint from "react-to-print";
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex';
 import Popup from 'reactjs-popup';
@@ -28,11 +27,17 @@ const QuestionWidget = (question) => {
     const componentRef = React.useRef();
 
     const navigate = useNavigate();
+    const navigateQuestion= () => {navigate('/question');};
+    
+    const handleClick = (e) => {
+        localStorage.setItem('choosed_question', question.id);
+    }
 
     const [description, setDescription] = useState("");
     const [savedQuestions, setSavedQuestions] = useState([]);
     const [open, setOpen] = useState(false);
-
+    
+    // Getting saved questions (to set the appropriate icon)
     useEffect(() =>{
         const getSavedQuestions  = async () =>{
             const questions = await QuestionAPI.savedQuestions(localStorage.getItem('user_id'));
@@ -52,7 +57,9 @@ const QuestionWidget = (question) => {
             } 
         } return save
     }
+    const icon = handleSaved()
 
+    // Handeling profile picture
     const handlePicture = () => {
         if (question.picture_url == null){
             return picture;
@@ -61,30 +68,8 @@ const QuestionWidget = (question) => {
     }
 
     const profile_picture = handlePicture()
-    const icon = handleSaved()
-
-    function handleChange(event){
-        let description = event.target.value;
-        if(description.length < 30){ 
-            componentRef.current.classList.remove('hide');
-            event.target.classList.add('error_box');
-        } else { 
-            componentRef.current.classList.add('hide');
-            event.target.classList.remove('error_box');         
-        }
-        if (description.length == 0) {
-            componentRef.current.classList.add('hide');
-            event.target.classList.remove('error_box');
-        }
-        setDescription(description);
-    };
-
-    const navigateQuestion= () => {navigate('/question');};
     
-    const handleClick = (e) => {
-        localStorage.setItem('choosed_question', question.id);
-    }
-    
+    // Handelong the save and unsave functions
     const saveQuestion = (e) => {
         e.preventDefault();
         if (e.target.src === save) {
@@ -108,6 +93,23 @@ const QuestionWidget = (question) => {
             "question_id":question_id,
         });
     }
+
+    // Adding an answer to the question
+    function handleChange(event){
+        let description = event.target.value;
+        if(description.length < 30){ 
+            componentRef.current.classList.remove('hide');
+            event.target.classList.add('error_box');
+        } else { 
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');         
+        }
+        if (description.length == 0) {
+            componentRef.current.classList.add('hide');
+            event.target.classList.remove('error_box');
+        }
+        setDescription(description);
+    };
 
     const addAnswer = async (user_id, questionid, description) => {
         const add_answer = await AnswerAPI.addAnswer({
