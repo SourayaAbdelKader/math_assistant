@@ -9,7 +9,8 @@ class Previews2 extends Component{
     this.getBase64 = this.getBase64.bind(this);
     this.fileUpload = this.fileUpload.bind(this);
     this.state = {
-      suggested_solution: ""
+      base64: '',
+      isProblem: false
     }
   }
 
@@ -25,6 +26,10 @@ class Previews2 extends Component{
   async fileUpload(file){
     try{
       await this.getBase64(file, (base64string) => {
+        this.setState({
+          base64: base64string,
+          isProblem: true
+        })
         fetch('https://api.mathpix.com/v3/text', {
           method: 'POST',
           headers: {
@@ -77,7 +82,7 @@ class Previews2 extends Component{
               </div>
             )}
         </Dropzone>
-        <div>{localStorage.getItem('suggested_solution') && (<Latex>{'${'+localStorage.getItem('suggested_solution')+'}$'}</Latex>)}</div>
+        <div className='center'>{this.state.isProblem && (<img src={this.state.base64} alt='prb' />)}</div>
       </div>
     );
   }

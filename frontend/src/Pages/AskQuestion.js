@@ -9,6 +9,7 @@ import 'reactjs-popup/dist/index.css';
 import './pages.css';
 import '../App.css';
 import ask from '../images/ask.png';
+import sent from '../images/sent.png'
 
 // Importing components
 import LowerFooter from '../Components/Footers/LowerFooter';
@@ -34,6 +35,7 @@ const SearchPage = () => {
     const [problem, setProblem] = useState();
     const [desciption, setDescription] = useState();
     const [suggestedSolution, setSuggestedSolution] = useState();
+    const [open, setOpen] = useState(false);
 
     // Getting the tags from the db
     useEffect(() =>{
@@ -96,11 +98,11 @@ const SearchPage = () => {
             componentRef.current.classList.remove('hide');
             return false;
         }
-        if (!problem && !localStorage.getItem('problem')){ 
+        if (!problem || !localStorage.getItem('problem')){ 
             componentRef.current.classList.remove('hide');
             return false;
         }
-        if (!suggestedSolution && !localStorage.getItem('suggested_solution')){
+        if (!suggestedSolution || !localStorage.getItem('suggested_solution')){
             componentRef.current.classList.remove('hide');
             return false;
         }
@@ -130,6 +132,7 @@ const SearchPage = () => {
                 final_solution = suggestedSolution;
             } else {final_solution = '${'+localStorage.getItem('suggested_solution')+'}$'}
             addQuestion(user_id, tag_id, final_problem, final_description, final_solution);
+            setOpen(true);
         } else {componentRef.current.classList.remove('hide');}
     }
 
@@ -182,9 +185,8 @@ const SearchPage = () => {
                                             </button>
                                             <div className="header center space"> <h3> Insert an image </h3> </div>
                                             <div className='space'> <Previews></Previews> </div>
-                                            
                                             <div className="actions flex_inbetween">
-                                            <button className="login"> Submit </button>
+                                            <button className="login" onClick={() => {close();}}> Submit </button>
                                             <button className="login" onClick={() => {close();}}> Cancel </button>
                                             </div>
                                         </div>
@@ -215,7 +217,7 @@ const SearchPage = () => {
                                             <div className='space'> <Previews2></Previews2> </div>
                                             
                                             <div className="actions flex_inbetween">
-                                            <button className="login"> Submit </button>
+                                            <button className="login" onClick={() => {close();}}> Submit </button>
                                             <button className="login" onClick={() => {close();}}> Cancel </button>
                                             </div>
                                         </div>
@@ -225,6 +227,16 @@ const SearchPage = () => {
                                 </div>
                                 <div> <textarea onChange={handleSuggestionChange} placeholder="Enter your solution..."></textarea></div>
                             </div>
+                            <Popup open={open} modal nested >
+                                {close => (
+                                    <div className="modal flex">
+                                        <button className="close space_right" onClick={close}>
+                                        &times;
+                                        </button>
+                                        <div className='flex'> <img className='medium_icon' src={sent} alt='sent' /> <h3> Question Added Successfully </h3></div>
+                                    </div>
+                                )}
+                            </Popup>
                             <div className='flex_end'> <div> <button onClick={submitQuestion} className="ask_button"> <img className="s_icon" src={ask} alt="ask" /> ASK </button> </div> </div>
                         </div>
                     </div>
