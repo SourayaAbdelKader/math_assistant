@@ -37,5 +37,10 @@ class QuestionAPI extends Base {
     async savedQuestions (id) {
         return await this.get('question/savedQuestions/'+id);
     }
+
+    async searchQuestion (word) {
+        return await this.get('question/search/'+word);
+    }
+
 }
 export default new  QuestionAPI();

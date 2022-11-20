@@ -13,7 +13,7 @@ import TagSidebar from '../Components/Sidebars/TagSidebar';
 import TagCard from '../Components/Tags/TagCard';
 
 // Importing assets 
-import tags_empty_state from '../images/tag_empty_state.png'
+import tags_empty_state from '../images/search_empty_state.png'
 
 // Importing hooks
 import tagsApi from '../hooks/tagsApi';

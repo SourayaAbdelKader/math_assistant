@@ -19,20 +19,22 @@ const ViewSolve = () => {
 
     const [getChecked, setChecked] = useState([]);
     const [getUnchecked, setUnchecked] = useState([]);
-    const [empty, setEmpty] = useState();
+    const [empty, setEmpty] = useState(false);
 
     useEffect(() =>{
         const getPractice  = async () =>{
             const checked = await PracticeAPI.getCheckedProblems(localStorage.getItem("user_id"));
+            console.log(checked.data.message)
             const unchecked = await PracticeAPI.getUncheckedProblems(localStorage.getItem("user_id"));
             if (checked.data.message === 'Found'){
                 const get = checked.data.data;
-                setChecked(get)}
+                console.log(checked)
+                setChecked(get)} 
             if (unchecked.data.message === 'Found'){
                 const getUn = unchecked.data.data;
                 setUnchecked(getUn);} 
-            if (!unchecked.data  && !checked.data.length ){
-                setEmpty(["empty"])}
+            if (checked.data.message == 'Solution Not Found' && unchecked.data.message == 'Solution Not Found'){
+                setEmpty(true)}
     }; getPractice();}, []);
 
     const onSubmit = (e) => {
@@ -59,9 +61,7 @@ const ViewSolve = () => {
                         }) 
                     }
                     {
-                        empty?.map((e) => {
-                            return (<div className='empty_state'> <img src={noProblemsFound} alt="empty_state"/> </div>)
-                        })
+                        empty && (<div className='empty_state'> <img src={noProblemsFound} alt="empty_state"/> </div>)
                     }
                     </div>
                 </div>
