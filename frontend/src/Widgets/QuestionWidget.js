@@ -8,7 +8,8 @@ import answer from '../images//answer.png';
 import save from '../images/save.png';
 import saved from '../images/saved.png';
 import picture from '../images/profileSelected.png';
-import messageSent from '../images/answer_sent.webp';
+import messageSent from '../images/sent.png';
+
 
 // Importing libraries related to Latex
 import ReactToPrint from "react-to-print";
@@ -30,6 +31,7 @@ const QuestionWidget = (question) => {
 
     const [description, setDescription] = useState("");
     const [savedQuestions, setSavedQuestions] = useState([]);
+    const [open, setOpen] = useState(false);
 
     useEffect(() =>{
         const getSavedQuestions  = async () =>{
@@ -50,6 +52,15 @@ const QuestionWidget = (question) => {
             } 
         } return save
     }
+
+    const handlePicture = () => {
+        if (question.picture_url == null){
+            return picture;
+        } 
+        return question.picture_url;
+    }
+
+    const profile_picture = handlePicture()
     const icon = handleSaved()
 
     function handleChange(event){
@@ -103,14 +114,15 @@ const QuestionWidget = (question) => {
             "description":description,
             "user_id":user_id,
             "question_id":questionid,
-        })
+        }) 
+        if (add_answer){setOpen(true);}
     }
 
     const submitAnswer = (e) => {
         e.preventDefault();
         if (description.length > 30){
             e.target.disabled = false;
-            addAnswer(localStorage.getItem('user_id'), question.id, description);
+            addAnswer(localStorage.getItem('user_id'), question.id, description);      
         }
         setDescription("")
     }
@@ -119,7 +131,7 @@ const QuestionWidget = (question) => {
         <div onClick={handleClick} id={question.id} className="question_container">
             <div className="flex_between space">
                 <div className="flex">
-                    <div> <img className='profile_pic' src={picture} alt=''/> </div>
+                    <div> <img className='profile_pic' src={profile_picture} alt=''/> </div>
                     <div> <p className='name'> {question.name}</p> </div>
                 </div>
                 <div>
@@ -153,9 +165,10 @@ const QuestionWidget = (question) => {
                                 </button>
                                 <div className="header center space"> <h3> Enter Your Answer </h3> </div>
                                 <div className='space'> <textarea onChange={handleChange} className='popup_textarea' placeholder='Type your answer here...'></textarea> </div>
+                                { open && (<div className='message_sent'> <img className='medium_icon' src={messageSent} alt='sent'/> Answer Sent Successfully </div>)}
                                 <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Input can't be empty and must be more than 30 character </p> </div>
                                 <div className="actions flex_inbetween">
-                                    <button disabled={description.length < 30} className="login" onClick={(e) => {submitAnswer(e); close();}}> Submit </button>  
+                                    <button disabled={description.length < 30} className="login" onClick={(e) => {submitAnswer(e); setTimeout(() => close(), 2000);}}> Submit </button>  
                                     <button className="login" onClick={() => {close();}}> Cancel </button>
                                 </div>
                             </div>

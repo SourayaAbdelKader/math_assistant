@@ -234,3 +234,12 @@
     align-items: center;
     background: #E8ECEB;
 }
+
+.message_sent {
+    padding: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: rgba(0, 128, 0, 0.664);
+}
