@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 // Importing style and assets
 import '../App.css';
 import submit from '../images/submit.png';
+import sent from '../images/sent.png';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 // Importing Components
 import Header from '../Components/Headers/Headers';
@@ -18,8 +21,9 @@ const Exercice = () => {
     const id = localStorage.getItem('selected_practice');
 
     const [practice, setPractice] = useState([]);
-
+    const [open, setOpen] = useState(false);
     const [description, setDescription] = useState("");
+    const [message, setMessage] = useState("");
 
     function handleChange(event){
         console.log(event.target.value);
@@ -60,7 +64,9 @@ const Exercice = () => {
             "user_id":user_id,
             "problem_id": problem_id
         });
-        console.log(add_solution)
+        if (add_solution.data.message == 'Added Successfully'){ setOpen(true); setMessage('Solution Added Successfully')}
+        else if (add_solution.data.message == 'Solution Already Submitted'){ setOpen(true); setMessage('Solution Already Submited')}
+        console.log(add_solution.data.message)
     }
 
     return (     
@@ -74,6 +80,16 @@ const Exercice = () => {
                     <div> <p ref={node => componentRef.current = node} className="error_text hide space"> The solution must be a minimum of 30 character. </p> </div>
                     <div> <button onClick={submitAnswer} className='solve flex_bottom'> <img className="small_icon" src={submit} alt='submit' /> Submit </button></div>
                 </div>
+                <Popup open={open} modal nested >
+                    {close => (
+                        <div className="modal flex">
+                            <button className="close space_right" onClick={close}>
+                                &times;
+                            </button>
+                            <div className='flex'> <h3> {message} </h3></div>
+                        </div>
+                    )}
+                </Popup>
             </div>
         </div>
     );

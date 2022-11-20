@@ -99,7 +99,8 @@
 .tag_page_container {
     width: 80vw;
     height: 100%;
-    padding: 1vw 0vw;
+    min-height: 80vh;
+    padding: 1vw 5vw;
     border-left: 2px solid rgba(0, 0, 0, 0.404);
 }
 
