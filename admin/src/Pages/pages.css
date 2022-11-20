@@ -153,9 +153,10 @@
 }
 
 .answer {
+    padding: 1vw;
     margin-top: 1vw;
     width: 100%;
     background: white;
-    height: 6vw;
+    min-height: 6vw;
     border-radius: 15px;
 }

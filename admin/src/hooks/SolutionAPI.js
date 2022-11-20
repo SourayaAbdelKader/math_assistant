@@ -9,6 +9,10 @@ class SolutionAPI extends Base {
     async getCheckedProblems () {
         return await this.get('solution/allChecked');
     } 
+
+    async getAnswerById (id) {
+        return await this.get('solution/id/'+id);
+    }  
 }
 
 export default new  SolutionAPI();

@@ -11,7 +11,9 @@ const SolutionWidget = (props) => {
     const onClick =(e) =>{
         e.preventDefault();
         localStorage.setItem('choosed_solution', props.id);
-        navigate('/checkSolution')
+        if (props.status == 'Unchecked'){
+            navigate('/checkSolution')
+        } else {navigate('/view/checkSolution')}
     }
 
     return(
