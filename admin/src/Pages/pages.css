@@ -160,3 +160,7 @@
     min-height: 3vw;
     border-radius: 15px;
 }
+
+.page_break {
+    padding: 0.5vw 2vw;
+}

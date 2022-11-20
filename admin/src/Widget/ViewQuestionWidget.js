@@ -4,31 +4,36 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // Importing styling and assets
 import './widget.css';
-import answer from '../images/answer.png';
 import delete_icon from '../images/delete.png';
 import picture from '../images/profileSelected.png';
 
 // Importing libraries related to Latex
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 // Importing API
 import QuestionAPI from '../hooks/QuestionAPI';
+import AnswerAPI from '../hooks/AnswerAPI';
 
-const QuestionWidget = (question) => {
+
+const ViewQuestionWidget = (question) => {
 
     const componentRef = React.useRef();
 
     const navigate = useNavigate();
+
+    const [description, setDescription] = useState("");
 
     const navigateQuestion= () => {navigate('/question');};
     
     const handleClick = (e) => {
         localStorage.setItem('choosed_question', question.id);
     }
-
+    
     return(
-        <div onClick={handleClick} id={question.id} className="question_container">
+        <div onClick={handleClick} id={question.id} className="view_question_container">
             <div className="flex_between space">
                 <div className="flex">
                     <div> <img className='profile_pic' src={picture} alt=''/> </div>
@@ -41,9 +46,7 @@ const QuestionWidget = (question) => {
             <div onClick={navigateQuestion} className='question_content pointer'>
                 <div className='part space'> 
                     <p className='subtitle'> Problem </p>
-                    <p className='text'>
-                     <Latex>{question.problem}</Latex> 
-                     </p>
+                    <p className='text'> <Latex>{question.problem}</Latex> </p>
                 </div>
                 <div className='part space'> 
                     <p className='subtitle'> Description </p>
@@ -55,10 +58,10 @@ const QuestionWidget = (question) => {
                 </div>
             </div>
             <div className="flex_end">
-                <div> <img className="small_icon cursor" src={delete_icon} alt="save" /> </div>
+                <div> <img className="s_icon cursor" src={delete_icon} alt="save" /> </div>
             </div>
         </div>        
     )
 }
 
-export default QuestionWidget;
+export default ViewQuestionWidget;

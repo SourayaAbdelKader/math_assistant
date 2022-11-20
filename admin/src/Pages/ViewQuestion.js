@@ -7,14 +7,14 @@ import './pages.css';
 
 // Importing components
 import LowerFooter from '../Components/LowerFooter';
-import Header from '../Components/Headers/Headers';
+import Header from '../Components/Headers/Header';
 import QuestionNav from '../Components/Navbar/QuestionNav';
-import ViewQuestionWidget from '../Widgets/ViewQuestionWidget';
-import AnswerWidget from '../Widgets/AnswerWidget';
+import ViewQuestionWidget from '../Widget/ViewQuestionWidget';
+import AnswerWidget from '../Widget/AnswerWidget';
 
 // Importing hooks
-import QuestionAPI from '../hooks/questionsAPI';
-import AnswerAPI from '../hooks/answersApi';
+import QuestionAPI from '../hooks/QuestionAPI';
+import AnswerAPI from '../hooks/AnswerAPI';
 
 const ViewQuestion = () => {
     const [getQuestion, setQuestion] = useState([]);
@@ -45,7 +45,7 @@ const ViewQuestion = () => {
             <div className='page_content'>
                 <div className='navbar'> <QuestionNav></QuestionNav></div>
                 <div className='content'>
-                <div> <h3 className='space'>Questions</h3></div>
+                <div> <h3 className='space'>Question</h3></div>
                     <ViewQuestionWidget key={getQuestion.id} name={getQuestion.name} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
                         <div className='page_break'> 
                             <h3> Answers </h3>

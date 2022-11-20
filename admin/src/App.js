@@ -15,6 +15,7 @@ import Solutions from './Pages/Solutions';
 import CheckSolution from './Pages/CheckSolution';
 import ViewFeedback from './Pages/ViewFeedback';
 import Profile from './Pages/Profile';
+import ViewQuestion from './Pages/ViewQuestion';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path='/checkSolution' element={<CheckSolution />} />
               <Route path='/view/checkSolution' element={<ViewFeedback />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/question' element={<ViewQuestion />} />
             </Routes>
           </Router>
         </div>
