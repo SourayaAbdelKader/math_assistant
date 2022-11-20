@@ -29,9 +29,9 @@ const ViewSolve = () => {
                 const get = checked.data.data;
                 setChecked(get)}
             if (unchecked.data.message === 'Found'){
-                const getUnchecked = unchecked.data.data;
-                setUnchecked(getUnchecked);} 
-            if (getUnchecked.length == 0  && getChecked.length == 0){
+                const getUn = unchecked.data.data;
+                setUnchecked(getUn);} 
+            if (!unchecked.data  && !checked.data.length ){
                 setEmpty(["empty"])}
     }; getPractice();}, []);
 

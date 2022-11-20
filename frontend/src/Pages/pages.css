@@ -213,12 +213,6 @@
     justify-content: center;
 }
 
-.medium_icon {
-    margin-right: 0cm;
-    width: 30px;
-    height: auto;
-}
-
 .page_title {
     font-weight: 600;
     font-size: 22px;
@@ -239,6 +233,20 @@ textarea {
     resize: none;
     padding: 1vw;
     font-size: 13px;
+}
+
+.medium_icon {
+    width: 2vw;
+    height: auto;
+    margin-right: 1vw;
+}
+
+.center_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw;
+    border-top: 2px solid rgba(0, 0, 0, 0.404);
 }
 
 .flex_end {

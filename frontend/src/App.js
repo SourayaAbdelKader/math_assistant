@@ -16,20 +16,20 @@ import ViewQuestion from './Pages/ViewQuestion';
 import Exercice from './Pages/Exercice';
 
 import { useState, useEffect } from 'react';
-// import {  onMessageListener, getTokens } from './firebase';
-// import { getMessaging, onMessage, getToken } from "firebase/messaging";
+import {  onMessageListener, getTokens } from './firebase';
+import { getMessaging, onMessage, getToken } from "firebase/messaging";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from "react-toastify";
 
 function App() {
 
-  // const [notification, setNotification] = useState({title: '', body: ''});
-  // const [isTokenFound, setTokenFound] = useState(false);
+  const [notification, setNotification] = useState({title: '', body: ''});
+  const [isTokenFound, setTokenFound] = useState(false);
 
-  // getTokens(setTokenFound)
-  // onMessageListener().then(payload => {
-  //   setNotification({title: payload.notification.title, body: payload.notification.body})
-  // }).catch(err => console.log('failed: ', err));
+  getTokens(setTokenFound)
+  onMessageListener().then(payload => {
+    setNotification({title: payload.notification.title, body: payload.notification.body})
+  }).catch(err => console.log('failed: ', err));
   
   return (
           <div>

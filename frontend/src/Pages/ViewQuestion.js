@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 // Importing styling
 import '../App.css';
 import './pages.css';
+import empty_picture from '../images/no_answer.webp';
 
 // Importing components
 import LowerFooter from '../Components/Footers/LowerFooter';
@@ -19,6 +20,7 @@ import QuestionAPI from '../hooks/questionsAPI';
 import AnswerAPI from '../hooks/answersApi';
 
 const ViewQuestion = () => {
+    const [empty, setEmpty] = useState(false);
     const [getQuestion, setQuestion] = useState([]);
     const [answers, getAnswers] = useState([]);
     const id = localStorage.getItem('choosed_question');
@@ -36,9 +38,9 @@ const ViewQuestion = () => {
             console.log(getAnswersPerQuestion)
             if (getAnswersPerQuestion.data.message === 'Found'){
                 const answer_array = getAnswersPerQuestion.data.data;
-                
+                console.log(answer_array.data.data.data)
                 getAnswers(answer_array)
-            } 
+            } else {console.log('hi'); setEmpty(true)}
     }; getQuestion(); getAnswersQuestion()}, []);
 
     return (
@@ -55,6 +57,9 @@ const ViewQuestion = () => {
                         <h3> Answers </h3>
                     </div>
                     <div className='answers_container'>
+                        {
+                            empty && (<div className='center_empty'> <img src={empty_picture} alt='no answers' /> <h3> No Answers</h3> </div> )
+                        }
                     { 
                         answers?.map((e) => {
                             return (<AnswerWidget id={e.id} name={e.name} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            

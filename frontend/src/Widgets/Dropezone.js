@@ -10,7 +10,7 @@ class Previews extends Component{
     this.getBase64 = this.getBase64.bind(this);
     this.fileUpload = this.fileUpload.bind(this);
     this.state = {
-      problem: ""
+      problem: false
     }
   }
 
@@ -46,7 +46,7 @@ class Previews extends Component{
         .then((response) => {
           console.log(response)
           localStorage.setItem('problem', response.data[1].value);
-          this.state.problem = response.data[1].value;
+          this.state.problem = true;
         })
       })
     } catch(e){console.log(e.message)}
@@ -78,7 +78,7 @@ class Previews extends Component{
               </div>
             )}
         </Dropzone>
-        <div>{localStorage.getItem('problem') && (<Latex>{'${'+localStorage.getItem('problem')+'}$'}</Latex>)}</div>
+        <div>{this.state.problem && (<Latex>{'${'+localStorage.getItem('problem')+'}$'}</Latex>)}</div>
       </div>
     );
   }
