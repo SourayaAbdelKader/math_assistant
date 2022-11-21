@@ -123,26 +123,24 @@ const Editors = () => {
                                                 <div className="space row"> <input onChange={handlePassword} className="input"  type="password" placeholder="Password" /></div>
                                                 <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
                                                 {open && (
-        <div
-          className="modal fade"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          ADDEDDDDDDDDDDDDDDDDDDDDDD
-        </div>
-      )}
+                                                <div
+                                                        className="modal fade"
+                                                        tabIndex="-1"
+                                                        role="dialog"
+                                                        aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true"
+                                                        >
+                                                        ADDED
+                                                        </div>
+                                                    )}
                                                 <div className="actions flex_around">
                                                 <button onClick={onSubmit} className="login space_right"> Submit </button>
                                                 <button className="login" onClick={() => {close();}}> Cancel </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        )}
-                                    </Popup>
-                                    
-
+                        )}
+                    </Popup>
                     </div>
                     <div className='flex_between row_table'> 
                         <div className='column bold'> Name </div>

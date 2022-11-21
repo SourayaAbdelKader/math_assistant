@@ -7,7 +7,7 @@ class PracticeAPI extends Base {
     }
 
     async getPracticeById (id) {
-        return await this.get('problem/id/'+id);
+        return await this.get('solution/getProblemSolution'+id);
     }
 
     async getCheckedProblems (id) {
@@ -25,5 +25,10 @@ class PracticeAPI extends Base {
     async addSolution (body) {
         return await this.post('solution/add', body)
     }
+
+    async addPractice (body) {
+        return await this.post('problem/add', body)
+    }   
 }
+
 export default new  PracticeAPI();

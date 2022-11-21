@@ -30,8 +30,8 @@ const Dashboard = () => {
                             chartType="PieChart"
                             data={data}
                             options={options}
-                            width={"50%"}
-                            height={"400px"}
+                            width={"100%"}
+                            height={"300px"}
                         />
                 </div>
                 </div> 
