@@ -64,7 +64,7 @@ class SolutionController extends Controller{
         $validator = Validator::make($request->all(), [
             'solution_id' => 'required|integer|exists:solutions,id',
             'feedback' => 'required|string|min:10|max:1500',
-            'score' => 'required|integer|min:0|max:15',
+            'score' => 'required',
             'editor_id' => 'required|integer|exists:users,id',
         ]);
 
@@ -95,16 +95,6 @@ class SolutionController extends Controller{
             return response()->json([
                 'data' => "error",
                 'message' => 'Not Authorized',
-                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
-
-        $problem = Problem::find($solution->problem_id);
-        // Checking the value of the score
-        if ($request->score > $problem->points){
-            return response()->json([
-                'data' => "error",
-                'message' => 'Invalid Score',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
