@@ -132,7 +132,6 @@ const SearchPage = () => {
                 final_solution = suggestedSolution;
             } else {final_solution = '${'+localStorage.getItem('suggested_solution')+'}$'}
             addQuestion(user_id, tag_id, final_problem, final_description, final_solution);
-            setOpen(true);
         } else {componentRef.current.classList.remove('hide');}
     }
 
@@ -146,6 +145,7 @@ const SearchPage = () => {
             "suggested_solution": suggestedSolution
         });
         if (add_question.status === 200) {
+            setOpen(true);
             localStorage.removeItem('suggested_solution');
             localStorage.removeItem('problem');
             localStorage.removeItem('selected_tag');

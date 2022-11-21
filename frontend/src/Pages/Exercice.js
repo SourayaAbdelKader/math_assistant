@@ -65,7 +65,7 @@ const Exercice = () => {
             "problem_id": problem_id
         });
         if (add_solution.data.message == 'Added Successfully'){ setOpen(true); setMessage('Solution Added Successfully')}
-        else if (add_solution.data.message == 'Solution Already Submitted'){ setOpen(true); setMessage('Solution Already Submited')}
+        else if (add_solution.data.message == 'Solution Already Submitted'){ setOpen(true); setMessage('Solution Already Submitted')}
         console.log(add_solution.data.message)
     }
 

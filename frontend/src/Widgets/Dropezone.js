@@ -82,7 +82,7 @@ class Previews extends Component{
               </div>
             )}
         </Dropzone>
-        <div className='center'>{this.state.isProblem && (<img src={this.state.base64} alt='prb' />)}</div>
+        <div className='center'>{this.state.isProblem && (<img className='dropezone_image' src={this.state.base64} alt='prb' />)}</div>
       </div>
     );
   }
