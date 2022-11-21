@@ -35,11 +35,17 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
-| Landing                          | Login                        |
-| -------------------------------- | ---------------------------- |
-| ![Landing](./readme/hero.PNG)    | ![Login](./readme/login.PNG) |
-| Sign Up                          | Tags                         |
-| ![Sign up](./readme/sign_up.PNG) | ![Tags](./readme/tags.PNG)   |
+| Landing                                 | Login                              |
+| --------------------------------------- | ---------------------------------- |
+| ![Landing](./readme/hero.PNG)           | ![Login](./readme/login.PNG)       |
+| Sign Up                                 | Tags                               |
+| ![Sign up](./readme/sign_up.PNG)        | ![Tags](./readme/tags.PNG)         |
+| Question                                | Ask Question                       |
+| ![Question](./readme/questions.PNG)     | ![Ask Question](./readme/ask.PNG)  |
+| Practice                                | Exercice                           |
+| ![Practice](./readme/practice.PNG)      | ![Exercice](./readme/exercice.PNG) |
+| Solved Practice                         | Profile                            |
+| ![Solved Practice](./readme/solved.PNG) | ![Feedback](./readme/profile.PNG)  |
 
 <br><br>
 
