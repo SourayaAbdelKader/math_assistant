@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import './pages.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 // Importing Components
 import LowerFooter from '../Components/LowerFooter';
@@ -15,11 +17,12 @@ const CheckSolution = () => {
     const componentRef = React.useRef();
 
     const id = localStorage.getItem('choosed_practice');
-
+    const [open, setOpen] = useState(false);
     const [practice, setPractice] = useState([]);
     const [userSolution, setUserSolution] = useState('')
     const [description, setDescription] = useState("");
     const [points, setPoints] = useState();
+    const [message, setMessage] = useState('')
 
     function handlePoints(event){
         let number = event.target.value;
@@ -71,16 +74,27 @@ const CheckSolution = () => {
 
     const submitAnswer = (e) => {
         e.preventDefault();
-        addFeedback(description, id, localStorage.getItem('user_id'));
+        addFeedback(id, description, points, localStorage.getItem('user_id'));
+        console.log(points)
     }
 
-    const addFeedback = async (editor_id, solution_id, description, points) => {
-        const add_solution = await PracticeAPI.addSolution({
-            "description":description,
-            "user_id":'',
-            "problem_id": ''
+    const addFeedback = async ( solution_id, feedback, score, editor_id) => {
+        const add_solution = await PracticeAPI.addFeedback({
+            "feedback":feedback,
+            "solution_id":solution_id,
+            "score": score,
+            "editor_id": editor_id
+
         });
-        console.log(add_solution)
+        if (add_solution.data.message == 'Solution Already Checked'){
+            setMessage('Solution Already Checked')
+        } else if (add_solution.data.message == 'Added Successfully'){
+            setMessage('Added Successfully')
+        } else {
+            setMessage('There is an error submitting your feedback...')
+        }
+        setOpen(true)
+        console.log(add_solution.data.message)
     }
 
     return (
@@ -100,6 +114,16 @@ const CheckSolution = () => {
                     <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
                     <div> <button onClick={submitAnswer} className='solve flex_bottom'> <img className="small_icon" src={submit} alt='submit' /> Submit </button></div>
                 </div>
+                <Popup open={open} modal nested >
+                    {close => (
+                        <div className="modal flex">
+                            <button className="close space_right" onClick={close}>
+                                &times;
+                            </button>
+                            <div className='flex'> <h3> {message} </h3></div>
+                        </div>
+                    )}
+                </Popup>
             </div>
             <LowerFooter></LowerFooter>
         </div>
