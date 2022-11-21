@@ -60,9 +60,12 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Landing              | Home/Search              |
-| -------------------- | ------------------------ |
-| ![Landing](https://) | ![Home/Search](https://) |
+| Landing                          | Login                        |
+| -------------------------------- | ---------------------------- |
+| ![Landing](./readme/hero.PNG)    | ![Login](./readme/login.PNG) |
+| Sign Up                          | Tags                         |
+| --------------------             | ------------------------     |
+| ![Sign up](./readme/sign_up.PNG) | ![Tags](./readme/tags.PNG)   |
 
 <br><br>
 <img src="./readme/title6.svg"/>
@@ -81,7 +84,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Below is an example of how you can instruct your audience on installing and setting up your app._
 
 1. Get a free API Key at [Firebase](https://firebase.google.com/)
 2. Clone the repo
