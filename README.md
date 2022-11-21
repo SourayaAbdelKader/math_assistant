@@ -35,13 +35,17 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
-| Landing      | Home/Search      |
-| ------------ | ---------------- |
-| ![Landing]() | ![Home/Search]() |
-
-| Artists results              | Artist's Albums            |
-| ---------------------------- | -------------------------- |
-| ![Artists results](https://) | ![Artist's Albums](https:) |
+| Landing                                 | Login                              |
+| --------------------------------------- | ---------------------------------- |
+| ![Landing](./readme/hero.PNG)           | ![Login](./readme/login.PNG)       |
+| Sign Up                                 | Tags                               |
+| ![Sign up](./readme/sign_up.PNG)        | ![Tags](./readme/tags.PNG)         |
+| Question                                | Ask Question                       |
+| ![Question](./readme/questions.PNG)     | ![Ask Question](./readme/ask.PNG)  |
+| Practice                                | Exercice                           |
+| ![Practice](./readme/practice.PNG)      | ![Exercice](./readme/exercice.PNG) |
+| Solved Practice                         | Profile                            |
+| ![Solved Practice](./readme/solved.PNG) | ![Feedback](./readme/profile.PNG)  |
 
 <br><br>
 
@@ -60,9 +64,12 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Landing              | Home/Search              |
+| Landing              | Login                    |
 | -------------------- | ------------------------ |
-| ![Landing](https://) | ![Home/Search](https://) |
+| ![Landing](./)       | ![Login](./)             |
+| Sign Up              | Tags                     |
+| -------------------- | ------------------------ |
+| ![Sign up](./)       | ![Tags](./)              |
 
 <br><br>
 <img src="./readme/title6.svg"/>
@@ -81,7 +88,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Below is an example of how you can instruct your audience on installing and setting up your app._
 
 1. Get a free API Key at [Firebase](https://firebase.google.com/)
 2. Clone the repo
