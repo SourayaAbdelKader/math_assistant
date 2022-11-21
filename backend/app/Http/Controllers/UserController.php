@@ -17,17 +17,17 @@ class UserController extends Controller{
         return response()->json(['Token stored.']);
     }
 
-    public function sendNotification(Request $id){
+    public function sendNotification(Request $request){
         $url = 'https://fcm.googleapis.com/fcm/send';
-        $DeviceToekn = User::where('id', $id->id)->pluck('device_token')->all();
+        $DeviceToekn = User::where('id', $request->id)->pluck('device_token')->all();
           
         $FcmKey = 'AAAAWeIs1N0:APA91bHHId9gYKEEJNKv4T0BuxFh7LA7NgXDxBuVGIL9DVwNx4HRVOQEsxnGCQ83gOqYaahQxFlaRBQS8rKh29NQp14y3FzJUCNjhy-hqk0mL4jTLSE9hDh2xNSb4McuyFnARezxdRd4';
   
         $data = [
             "registration_ids" => $DeviceToekn,
             "notification" => [
-                "title" => "hola",
-                "body" => "ya Gamalo",  
+                "title" => $request->title,
+                "body" => $request->body,  
             ]
         ];
 

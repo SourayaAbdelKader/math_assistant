@@ -48,7 +48,7 @@ Route::prefix('v0')->group(function () {
             });
 
             // manipulating user's data
-            Route::group(['middleware' => 'role:admin'], function () {
+            Route::group(['middleware' => 'role:admin,editor'], function () {
 
                 Route::post('/addEditor', [UserController::class, 'addEditor'])->name('add-editor');
                 Route::post('/addUser', [UserController::class, 'addUser'])->name('add-user');
@@ -159,6 +159,7 @@ Route::prefix('v0')->group(function () {
             Route::group(['middleware' => 'role:user'], function () {
                 Route::post('/add', [AnswerController::class, 'addAnswer'])->name('add-answer');
                 Route::post('/delete/{id?}', [AnswerController::class, 'deleteAnswer'])->name('delete-answer');
+                Route::get('/user/vote/{id?}', [AnswerController::class, 'getVotesPerUser'])->name('get-user-votes');
 
                 // routes for accepting and voting for answers
                 Route::post('/accept', [AnswerController::class, 'acceptAnswer'])->name('accept-answer');

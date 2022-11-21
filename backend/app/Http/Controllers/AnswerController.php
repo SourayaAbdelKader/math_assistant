@@ -67,7 +67,6 @@ class AnswerController extends Controller{
     // _____________ Deleting an answer _____________
     public function deleteAnswer($id){
         $user = User::where('id', $id);
-        $user = Auth::user();
         $answer = Answer::find($id);
         $remove_score = $answer->score;
         // to remove the score from the scores table
@@ -379,7 +378,7 @@ class AnswerController extends Controller{
             ]);
         };
         $answers = Answer::join('users', 'users.id', 'answers.user_id')
-        ->select('answers.*', 'users.name')
+        ->select('answers.*', 'users.name', 'users.picture_url')
         ->where('answers.question_id', $id)
         ->where('answers.score', '!=', '0') //don't show answers which have 0 as a score 
         ->orderBy('answers.score', 'DESC') // ordered by score
@@ -539,6 +538,25 @@ class AnswerController extends Controller{
         $user = User::find($id);
         if ($user){
             $votes = Vote::where('user_id', $id)->count();
+            return response()->json([
+                'data' => $votes,
+                'message' => 'Found',
+                'status' => Response::HTTP_OK
+            ]);
+        };
+        return response()->json([
+            'message' => 'User Not Found',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
+        
+    }
+
+     // _____________ Getting votes per user _____________
+     public function getVotesPerUser($id){
+        //checking if the user exists 
+        $user = User::find($id);
+        if ($user){
+            $votes = Vote::where('user_id', $id)->get();
             return response()->json([
                 'data' => $votes,
                 'message' => 'Found',
