@@ -6,8 +6,8 @@ class PracticeAPI extends Base {
         return await this.get('problem/');
     }
 
-    async getSolutions () {
-        return await this.get('solution/all');
+    async getSolutionforUser (body) {
+        return await this.post('solution/getProblemSolution', body);
     }
 
     async getPracticeById (id) {

@@ -243,3 +243,9 @@
     font-weight: 600;
     color: rgba(0, 128, 0, 0.664);
 }
+
+.dropezone_image {
+    min-height: 7vw;
+    width: auto;
+    padding: 1vw;
+}
