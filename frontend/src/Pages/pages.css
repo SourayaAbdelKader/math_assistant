@@ -314,3 +314,25 @@ textarea {
 .wide {
     min-height: 70vh;
 }
+
+.answer {
+    padding: 1vw;
+    margin-top: 1vw;
+    width: 100%;
+    background: white;
+    min-height: 3vw;
+    border-radius: 15px;
+}
+
+.feedback_empty{
+    min-height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback_empty > img {
+    width: 15vw;
+    height: auto;
+}
+

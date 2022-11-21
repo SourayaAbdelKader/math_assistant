@@ -123,3 +123,8 @@
     margin-bottom: 1vw;
     margin-top: 1vw;
 }
+
+.button_bottom {
+    position: fixed;
+    bottom: 2vw;
+}

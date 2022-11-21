@@ -4,6 +4,7 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 // Importing style and assets
 import './cards.css';
 import back from '../../images/back.png';
+import SendEmail from "../Buttons/SendEmail";
 
 const QuestionForEx = (props) => {  
     
@@ -27,6 +28,7 @@ const QuestionForEx = (props) => {
                 <p className='white_text'> Level: {props.level}</p>
                 <p className='white_text'> {props.points} points</p> 
             </div>
+            {props.button && (<div className="button_bottom"> <SendEmail></SendEmail> </div>)}
     </div>
     )
 }

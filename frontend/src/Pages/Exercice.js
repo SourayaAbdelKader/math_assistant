@@ -73,7 +73,7 @@ const Exercice = () => {
         <div>
             <Header></Header>
             <div className='flex'>
-                <QuestionForEx id={practice.id} name={practice.name} description={practice.description} picture_url={practice.picture_url} level={practice.level} points={practice.points}></QuestionForEx>
+                <QuestionForEx button={false} id={practice.id} name={practice.name} description={practice.description} picture_url={practice.picture_url} level={practice.level} points={practice.points}></QuestionForEx>
                 <div className='practice_section'>
                     <div> <h3> Your Answer </h3> </div>
                     <div> <textarea onChange={handleChange} className='excercise_textarea' placeholder='Type your answer here...'></textarea></div>
