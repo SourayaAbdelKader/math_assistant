@@ -96,7 +96,7 @@ const ViewFeedback = () => {
                     <div> <h3 className=''> Feedback </h3> </div>
                     <div className='answer space'> <p>{userSolution.feedback}</p> </div>                    
                     <div> <h3> Points </h3> </div>
-                    <div className='answer space'> <p>{userSolution.score}</p> </div>                    <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
+                    <div className='answer space'> <p>{userSolution.score}</p> </div>                    
                 </div>
             </div>
             <LowerFooter></LowerFooter>

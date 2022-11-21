@@ -152,9 +152,9 @@
 /* Question component styling */
 
 .question_container {
-    padding: 2vw 0vw 2vw 2vw;
+    padding: 2vw 2vw 2vw 2vw;
     border-top: 2px solid rgba(0, 0, 0, 0.404);
-    width: 70vw;
+    width: 100%;
 }
 
 .profile_pic {
@@ -227,19 +227,25 @@
 
 .view_question_container {
     padding: 2vw 2vw 2vw 2vw;
-    width: 70vw;
-    border-top: 2px solid rgba(0, 0, 0, 0.404);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.404);
+    width: 100%;
+    border: 2px solid rgba(0, 0, 0, 0.404);
+    background-color: white;
 }
 
 /* For the answer widget*/
 .answer_container {
-    padding: 2vw 2vw;
+    padding: 2vw 2vw 2vw 8vw;
     border-top: 2px solid rgba(0, 0, 0, 0.404);
-    width: 98%;
+    width: 100%;
 
 }
 
 .space_left {
     margin-left: 2vw;
+}
+
+.answers_container {
+    border: 2px solid rgba(0, 0, 0, 0.404);
+    width: 100%;
+    background: white;
 }

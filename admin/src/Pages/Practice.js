@@ -1,6 +1,8 @@
 import React from 'react';
 import './pages.css';
 import {useState, useEffect} from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 // Importing Components
 import LowerFooter from '../Components/LowerFooter';
@@ -11,6 +13,8 @@ import PracticeAPI from '../hooks/PracticeAPI';
 
 const Practice = () => {
 
+    const componentRef = React.useRef();
+
     const [practice, setPractice] = useState([]);
     useEffect(() =>{
         const getUsers  = async () =>{
@@ -20,7 +24,21 @@ const Practice = () => {
                 const get = get_users.data.data;
                 setPractice(get);
             }
-    }; getUsers();}, [])
+    }; getUsers();}, []);
+
+     // Calling the API
+     const addPractice = async (title, description, points, level, picture_url, user_id, tag_id) => {
+        const add_practice = await PracticeAPI.addPractice({
+            "title":title,
+            "description":description,
+            "points":points,
+            "level":level,
+            "picture_url": picture_url,
+            "user_id": user_id,
+            "tag_id":tag_id, 
+        });
+        componentRef.current.classList.add('hide');
+     };
 
     return (
         <div>
@@ -30,7 +48,29 @@ const Practice = () => {
                 <div className='content'>
                 <div className='flex_between space'> 
                     <h3>Practice</h3>
-                    <button className='login bold'>ADD PRACTICE</button>
+                    <Popup trigger={<button className='login bold'>ADD PRACTICE</button>} modal nested >
+                                        {close => (
+                                        <div className="modal">
+                                            <button className="close" onClick={close}>
+                                            &times;
+                                            </button>
+                                            <div className='modal_content'>
+                                                <div className="header center space"> <h3> Add Practice </h3> </div>
+                                                <div className="space row"> <input className="input"  type="text" placeholder="Title" /></div>
+                                                <div className="space row"> <input className="input" type="text" placeholder="Description" /></div>
+                                                <div className="space row"> <input className="input"  type="text" placeholder="Points" /></div>
+                                                <div className="space row"> <input className="input"  type="text" placeholder="Level" /></div>
+                                                <div className="space row"> <input className="input"  type="text" placeholder="Tag Number" /></div>
+                                                <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>                                                
+                                                <div className="space row"> <input className="input"  type="file" placeholder="picture" /></div>
+                                                <div className="actions flex_around">
+                                                <button  className="login space_right"> Submit </button>
+                                                <button className="login" onClick={() => {close();}}> Cancel </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                        )}
+                    </Popup>
                 </div>
                 <div className='flex_between row_table'> 
                         <div className='cell bold'> Title </div>
