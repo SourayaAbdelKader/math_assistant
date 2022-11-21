@@ -1,0 +1,27 @@
+* {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  color: #2D3E4E;
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 1.7em;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.flex {
+  display: flex;
+}

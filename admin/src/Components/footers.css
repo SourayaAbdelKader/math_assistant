@@ -1,0 +1,15 @@
+/* for the lower footer */
+.footer_container {
+    height: 1em;
+    background-color: #2D3E4E;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.label {
+    font-weight: 600;
+    font-size: 0.75em;
+    color: white;
+    padding-right: 1vw;
+}

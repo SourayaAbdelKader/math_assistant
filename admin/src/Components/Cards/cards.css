@@ -1,0 +1,80 @@
+/* For the question for exercice card */
+.question_section {
+    border-top: 4px solid #E8ECEB;
+    width: 25vw;
+    min-height: 86vh;
+    padding: 2vw 2vw 2vw 5vw;
+    background: linear-gradient(180deg, rgba(45, 62, 78, 0.581) 33.85%, rgba(45, 62, 78, 0.105) 100%);
+}
+
+/* For the data card*/
+.data {
+    background: #E8ECEB;
+    padding: 5em 5em;
+}
+
+.data_box {
+    background: white;
+    border-radius: 15px;
+    width: 15em;
+    padding: 2vw 2vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.data_image {
+    margin-right: 0cm;
+}
+
+.data_numbers {
+    font-family: 'Bangers';
+    font-weight: bolder;
+    font-size: 3em;
+    font-style: italic;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+}
+
+.medium_icon {
+    margin-right: 0cm;
+    width: 30px;
+    height: auto;
+}
+
+.space_right {
+    margin-right: 1vw;
+}
+
+/* For the profile info box */
+.info_box {
+    padding: 2vw 3vw;
+    border: 2px solid #5B4D4D;
+    border-radius: 25px;
+    background: white;
+}
+
+.user_profile_picture {
+    border-radius: 200px;
+    width: 70px;
+    height: auto;
+    max-height: 70px;
+}
+
+.details {
+    padding: 2vw 15vw 2vw 7vw;
+}
+
+.detail_title {
+    font-weight: 600;
+    text-decoration: underline;
+    margin-right: 1vw;
+}
+
+.user_name {
+    font-size: 1.2em;
+    font-weight: 600;
+}

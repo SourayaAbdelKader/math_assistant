@@ -1,0 +1,79 @@
+/* for the lower footer */
+.footer_container {
+    height: 1em;
+    background-color: #2D3E4E;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.label {
+    font-weight: 600;
+    font-size: 0.75em;
+    color: white;
+    padding-right: 1vw;
+}
+
+/* for the upper footer */
+.container {
+    padding: 1vw 5vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: #E8ECEB;
+}
+
+.tiny_text {
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.message {
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  
+    align-items: center;
+    justify-content:center ;
+
+}
+
+.box > div {
+    padding: 1.5vw 0vw;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 10em;
+    height: 10em;
+    margin-right: 2vw;
+}
+
+.phrase {
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
+p{
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.cursor {
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease; 
+}
+
+.cursor:hover{
+    transform: scale(1.1);
+}

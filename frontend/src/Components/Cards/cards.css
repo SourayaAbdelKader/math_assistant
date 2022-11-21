@@ -1,0 +1,130 @@
+/* For the score card */
+.score_box {
+    border: 1px solid;
+    border-radius: 25px;
+    height: 25vh;
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 2px 3px 3px #797c7cd2, inset 0px 0px 4px rgb(232, 240, 243);
+}
+
+.space_right {
+    margin-right: 1vw;
+}
+
+.trapezoid {
+    height: 24.8vh;
+    width: auto;
+    margin-right: 0cm;
+}
+
+.content {
+    padding: 2vw;
+}
+
+.line_space {
+    margin-bottom: 1vw;
+}
+
+.small_line_space {
+    margin-bottom: 0.5vw;
+}
+
+/* For the problem Card*/
+.problem_card {
+    padding: 2vw 3vw;
+    box-shadow: 0px 3px 3px #797c7cd2, inset 0px 0px 4px rgb(232, 240, 243);
+    box-sizing: border-box;
+    border: 1px solid #9A9393;
+    border-radius: 25px;
+    width: 100%;
+    justify-content: space-between;
+    color: white;
+}
+
+.question_title {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 1vw;
+}
+
+.question_name {
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/* For the profile info box */
+.info_box {
+    padding: 2vw 3vw;
+    border: 2px solid #5B4D4D;
+    border-radius: 25px;
+}
+
+.user_profile_picture {
+    border-radius: 200px;
+    width: 70px;
+    height: auto;
+    height: 70px;
+}
+
+.details {
+    padding: 2vw 15vw 2vw 7vw;
+}
+
+.detail_title {
+    font-weight: 600;
+    text-decoration: underline;
+    margin-right: 1vw;
+}
+
+.user_name {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* For the question for exercice card */
+.question_section {
+    border-top: 4px solid #E8ECEB;
+    width: 25vw;
+    min-height: 86vh;
+    padding: 2vw 2vw 2vw 5vw;
+    background: linear-gradient(180deg, rgba(45, 62, 78, 0.581) 33.85%, rgba(45, 62, 78, 0.105) 100%);
+}
+
+/* For the data card*/
+.data {
+    background: #E8ECEB;
+    padding: 5em 5em;
+}
+
+.data_box {
+    background: white;
+    border-radius: 15px;
+    width: 15em;
+    padding: 2vw 2vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.data_image {
+    margin-right: 0cm;
+}
+
+.data_numbers {
+    font-family: 'Bangers';
+    font-weight: bolder;
+    font-size: 3em;
+    font-style: italic;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+}
+
+.button_bottom {
+    position: fixed;
+    bottom: 2vw;
+}

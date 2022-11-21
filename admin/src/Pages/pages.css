@@ -1,0 +1,201 @@
+* {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    color: #2D3E4E;
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+  }
+
+.hero {
+    margin-top: 1px;
+    height: 83vh;
+    background-image: url('../images/hero.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+}
+
+.white_text {
+    color: white;
+}
+
+.space {
+    margin-bottom: 2vw;
+}
+
+/* For login and signup pages*/
+.login_page{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.lower{
+    position: fixed;
+    bottom: 0cm;
+    width: 100%;
+}
+
+.page_content {
+    display: flex;
+    background: #E8ECEB;
+}
+
+.chart {
+    width: 25vw;
+}
+
+.content {
+    width: 80vw;
+    padding: 2vw 5vw 2vw 2vw;
+}
+
+.column {
+    min-width: 13vw;
+    max-width: 25vw;
+}
+
+.user_column {
+    min-width: 5vw;
+    max-width: 10vw;
+}
+
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.row_table {
+    background: white;
+    padding: 1vw;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.582);
+    box-shadow: 2px 2px 2px #b1b6bb;
+}
+
+/* Exercice Page */
+.practice_section {
+    background: #E8ECEB;
+    width: 75vw;
+    min-height: 86vh;
+    padding: 2vw 5vw 2vw 2vw;
+}
+
+.excercise_textarea {
+    height: 50vh;
+}
+
+.flex_bottom {
+    position: fixed;
+    bottom: 2vw;
+    right: 5vw;
+}
+
+.textarea {
+    margin-top: 1vw;
+    width: 100%;
+    border-radius: 15px;
+    min-height: 6vw;
+    max-height: fit-content;
+    border: 0cm;
+    resize: none;
+    padding: 1vw;
+    font-size: 13px;
+}
+
+.solve {
+    padding: 1vw 2vw;
+    border: 0cm;
+    background: #E09E50;
+    box-shadow: 0px 4px 4px #b1b6bb, inset 10px 10px 4px rgba(252, 178, 90, 0.47);
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small_icon {
+    height: 20px;
+    width: auto;
+    margin-right: 0.5vw;
+}
+
+.points_textarea{
+    margin-top: 1vw;
+    width: 100%;
+    border-radius: 15px;
+    height: 3vw;
+    max-height: fit-content;
+    border: 0cm;
+    resize: none;
+    padding: 1vw;
+    font-size: 12px;
+}
+
+.answer {
+    padding: 1vw;
+    margin-top: 1vw;
+    width: 100%;
+    background: white;
+    min-height: 3vw;
+    border-radius: 15px;
+}
+
+.page_break {
+    padding: 0.5vw 2vw;
+}
+
+.close {
+    width: 30px;
+    height: auto;
+    color: #E09E50;
+    background: white;
+    border: 0cm;
+}
+
+.modal {
+    padding: 2vw;
+}
+
+.modal_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex_around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.question_page_container {
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.404); 
+}
+
+.center_text {
+    padding: 2vw 10vw;
+    text-align: center;
+    line-height: 30px;
+}
