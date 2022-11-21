@@ -2,6 +2,19 @@
     font-family: 'Bangers';
     src: url('../fonts/Bangers-Regular.ttf') format('ttf');
 }
+
+.center_text {
+    padding: 2vw 10vw;
+    text-align: center;
+    line-height: 30px;
+}
+
+.paragraph {
+    padding: 2vw 0vw;
+    line-height: 30px;
+    font-size: 18px;
+}
+
 /* For login and signup pages*/
 .login_page{
     width: 100vw;
@@ -83,8 +96,13 @@
 }
 
 .description_image {
+    width: 35vw;
+    height: auto;
+}
+
+.long_description_image {
     width: 100%;
-    height: 10em;
+    height: auto;
 }
 
 /* For the tag page */
@@ -139,7 +157,7 @@
 }
 
 .Profile_container >div{
-    margin: 3vw 0vw;
+    margin: 2vw 0vw;
 }
 
 .borders > div {

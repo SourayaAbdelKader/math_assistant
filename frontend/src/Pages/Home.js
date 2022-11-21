@@ -12,12 +12,14 @@ import DataCard from '../Components/Cards/DataCard';
 import main from '../images/main.png';
 import logo from '../images/logo.png';
 import left_chat from '../images/chat-left.png';
-import right_chat from '../images/chat-right.png';
+import right_chat from '../images/chat-right1.png';
 import questions_pic from '../images/questions.png';
 import users_pic from '../images/users.png';
 import answers_pic from '../images/answers_numb.png';
 import editors_pic from '../images/editors.png';
-import description_short_box from '../images/description_short_box.png';
+import box1 from '../images/box1.png';
+import box2 from '../images/box2.png';
+import box3 from '../images/box3.png';
 import description_long_box from '../images/description_long_box.png';
 
 const Home = () => {
@@ -44,16 +46,18 @@ const Home = () => {
                         <LoginHeader></LoginHeader>
                         <section>
                                 <div className='hero'> 
-                                        <h3 className="white_text space"> Math Assistant</h3>
-                                        <p className='white_text'> Description right here </p>
+                                        <h3 className="white_text space"> Math Assistant </h3>
+                                        <p className='white_text center_text'> Share your problem by scanning it. Help other by ansswering their questions, and voting for suitable solutions. You can also enhance your math knowledge by practicing and getting feedback. </p>
                                 </div>
                         </section>
                         <section>
                                 <div className='flex_row home_container'>
                                         <div> <img className='main' src={main} alt="main"/> </div>
                                         <div>
-                                                <div> Title </div>
-                                                <div> Description </div>
+                                                <div> <h3> Why Math Assistant? </h3></div>
+                                                <div className='paragraph'> It's your place to get to share your problems by simply entering it or scaning it from images. The others will help by ansswering 
+                                                        your question. You can accept and vote answers for a better experience. Moreover, check our practice part, where you can solve math problems
+                                                        and get feedback from our editors to enhance your score. </div>
                                         </div>
                                 </div>
                         </section>
@@ -79,14 +83,14 @@ const Home = () => {
                                         <div className='center space'> <h3> Scoring System </h3> </div>
                                         <div className='flex_row flex_inbetween space'> 
                                                 <div className='description_box'> 
-                                                        <div> <img className='description_image' src={description_short_box} alt="shape"/> </div>
+                                                        <div> <img className='description_image' src={box1} alt="shape"/> </div>
                                                 </div>
                                                 <div className='description_box'>
-                                                        <div> <img className='description_image' src={description_short_box} alt="shape"/> </div>
+                                                        <div> <img className='description_image' src={box2} alt="shape"/> </div>
                                                 </div>
                                         </div>
                                         <div className='description_box'> 
-                                                <div> <img className='description_image' src={description_long_box} alt="shape"/> </div>
+                                                <div> <img className='long_description_image' src={box3} alt="shape"/> </div>
                                         </div>
                                 </div>
                         </section>

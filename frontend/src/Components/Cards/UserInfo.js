@@ -8,11 +8,21 @@ import profileSelected from '../../images/profileSelected.png';
 import EditProfile from "../Buttons/EditProfile";
 
 const UserInfo = (details) => {
+
+    const handleProfilePic = () => {
+        if (details.picture_url){
+            return details.picture_url;
+        }
+        return profileSelected;
+    }
+
+    const selected = handleProfilePic();
+
     return(
         <div id={details.id} className="info_box">
             <div className="flex_between">
                 <div className="flex"> 
-                    <img className="user_profile_picture" src={profileSelected} alt="" />
+                    <img className="user_profile_picture" src={selected} alt="" />
                     <div> <h4 className="user_name"> {details.name} </h4> </div>
                 </div>
                 <div> <EditProfile></EditProfile></div>
