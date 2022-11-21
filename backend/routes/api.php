@@ -219,7 +219,7 @@ Route::prefix('v0')->group(function () {
                 Route::post('/add', [SolutionController::class, 'addSolution'])->name('add-solution');
             });
 
-            Route::group(['middleware' => 'role:editor'], function () {
+            Route::group(['middleware' => 'role:editor,admin,user'], function () {
                 Route::post('/check', [SolutionController::class, 'checkSolution'])->name('check-solution'); 
             });
 
