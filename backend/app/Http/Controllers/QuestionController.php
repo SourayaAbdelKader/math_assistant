@@ -247,7 +247,7 @@ class QuestionController extends Controller{
     public function getQuestions(){ 
         $question = Question::join('users', 'users.id', 'questions.user_id')
         ->join('tags', 'tags.id','questions.tag_id')
-        ->select('questions.*', 'users.name', 'tags.title')
+        ->select('questions.*', 'users.name', 'tags.title', 'users.picture_url')
         ->orderBy('questions.created_at', 'DESC')->get();
        
         if ($question->isNotEmpty()) {
@@ -269,7 +269,7 @@ class QuestionController extends Controller{
     public function getQuestionById($id){
         $question = Question::join('users', 'users.id', 'questions.user_id')
         ->join('tags', 'tags.id','questions.tag_id')
-        ->select('questions.*', 'users.name', 'tags.title')
+        ->select('questions.*', 'users.name', 'tags.title', 'users.picture_url')
         ->where('questions.id', $id)->get();
         if ($question->isNotEmpty()) {
             return response()->json([
