@@ -10,7 +10,7 @@ const ProblemCard = (props) => {
     const handleClick = (e) => {
         e.preventDefault();
         localStorage.setItem("selected_practice", props.id);
-        navigate('/practice/exercice');}
+    navigate('/practice/exercice');}
     
     return(
         <div id={props.id} className="problem_card flex"> 

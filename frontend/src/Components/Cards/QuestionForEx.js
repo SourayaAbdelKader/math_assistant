@@ -8,7 +8,7 @@ import back from '../../images/back.png';
 const QuestionForEx = (props) => {  
     
     const [img, setimg] = useState(false)
-    if (props.picture_url !== null){ setimg(true)}
+    if (props.picture_url){ setimg(true)}
     const navigate = useNavigate();
     const navigatePractice = () => {navigate('/practice');};
 
