@@ -1,0 +1,63 @@
+/* For the tag Card */
+.tag_container {
+    background: white;
+    border: 2px solid #5B4D4D;
+    border-radius: 25px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.274);
+    padding: 2vw 2vw;
+    width: 30vw;
+    min-height: 15vw;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.description {
+    font-size: 0.9em;
+    margin-top: 1vw;
+    line-height: 1.3em;
+}
+
+.tag_logo {
+    width: 25px;
+    height: auto;
+}
+
+.tag_flex {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.cursor_tag {
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease; 
+}
+
+.cursor_tag:hover {
+    transform: scale(1.02);
+    background: #E8ECEB;
+}
+
+/* For the small tag card*/
+.tag_name_box {
+    box-shadow: 2px 2px 1px #797c7c62, inset 0px 0px 0px rgb(232, 240, 243);
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5vw 3vw;
+    margin-bottom: 0.5vw;
+    cursor: pointer;
+}
+
+.tag_name_box:hover {
+    background: #E09E50;
+    color: white;
+    font-weight: 600;
+}
