@@ -16,7 +16,7 @@ const CheckSolution = () => {
 
     const componentRef = React.useRef();
 
-    const id = localStorage.getItem('choosed_practice');
+    const id = localStorage.getItem('choosed_solution');
     const [open, setOpen] = useState(false);
     const [practice, setPractice] = useState([]);
     const [userSolution, setUserSolution] = useState('')
@@ -56,7 +56,7 @@ const CheckSolution = () => {
 
     useEffect(() =>{
         const getPractice  = async () =>{
-            const exercice = await PracticeAPI.getPracticeById(id);
+            const exercice = await PracticeAPI.getPracticeById(localStorage.getItem('choosed_practice'));
             console.log(exercice)
             if (exercice.data.message === 'Found'){
                 const get = exercice.data.data[0];
@@ -84,11 +84,16 @@ const CheckSolution = () => {
             "solution_id":solution_id,
             "score": score,
             "editor_id": editor_id
-
         });
         if (add_solution.data.message == 'Solution Already Checked'){
             setMessage('Solution Already Checked')
         } else if (add_solution.data.message == 'Added Successfully'){
+            const sendNotification = await PracticeAPI.sendNotification({
+                'user_id': userSolution.user_id,
+                'title': 'New Notification',
+                'body': 'You received a feedback on your solution./'+userSolution.id +'/'+practice.id,
+                'info': 0,
+            })
             setMessage('Added Successfully')
         } else {
             setMessage('There is an error submitting your feedback...')
@@ -112,7 +117,7 @@ const CheckSolution = () => {
                     <div> <h3> Points </h3> </div>
                     <div> <textarea onChange={handlePoints} className='points_textarea' placeholder='Points...'></textarea></div>
                     <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
-                    <div> <button onClick={submitAnswer} className='solve flex_bottom'> <img className="small_icon" src={submit} alt='submit' /> Submit </button></div>
+                    <div> <button onClick={submitAnswer} className='solve pointer flex_bottom'> <img className="small_icon" src={submit} alt='submit' /> Submit </button></div>
                 </div>
                 <Popup open={open} modal nested >
                     {close => (
