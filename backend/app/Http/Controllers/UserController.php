@@ -15,7 +15,7 @@ class UserController extends Controller{
     
     //_____________ Getting the users joined the current day, week, month, year _____________
     // Adding a notification to the table
-    public function AddNotification (Request $request) {
+    public function addNotification (Request $request) {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'body' => 'required',
@@ -42,7 +42,7 @@ class UserController extends Controller{
     }
 
     // Updating a notification
-    public function UpdateNotification (Request $request) {
+    public function updateNotification (Request $request) {
         $notification = Notification::find($request->id);
         $notification->info = '1';
         $notification->save();
@@ -50,6 +50,22 @@ class UserController extends Controller{
                 "status" => Response::HTTP_OK,
                 "data" => $notification
             ]);
+    }
+
+    // Getting notifications
+    public function getUserNotifications ($id) {
+        $notifications = Notification::where('user_id', $id)->get();
+        if ($notifications){
+            return response()->json([
+                "status" => Response::HTTP_OK,
+                "message" => 'Found',
+                "data" => $notifications
+            ]);
+        }
+        return response()->json([
+            "status" => Response::HTTP_OK,
+            "message" => 'Not Found',
+        ]);
     }
 
     // Adding the device token
