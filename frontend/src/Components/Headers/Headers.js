@@ -9,7 +9,7 @@ import profile from '../../images/profile.png';
 
 // Importing components
 import Signout from "../Buttons/Signout";
-
+import NotificationWidget from "../../Widgets/NotificationWidget";
 const Header = () => {
     
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Header = () => {
                 <div> <h1 className="white_text pointer" onClick={navigateHome}> Math Assistant </h1> </div>
             </div>
             <div className="flex"> 
-                <div> <img className="icon cursor" src={notification} alt="notification"/> </div>
+                <div> <NotificationWidget></NotificationWidget> </div>
                 <div> <img className="icon cursor" onClick={navigateProfile} src={profile} alt="profile"/> </div>
                 <Signout></Signout>
             </div>

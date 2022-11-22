@@ -6,6 +6,10 @@ class UserAPI extends Base {
         return await this.get('/general/users/'+id);
     }
 
+    async getNotificationForUser (id) {
+        return await this.get('general/notification/id/'+id);
+    }
+
     async searchTags (data) {
         return await this.get('tag/search/'+data);
     }
