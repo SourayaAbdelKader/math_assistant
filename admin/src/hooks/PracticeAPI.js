@@ -33,6 +33,10 @@ class PracticeAPI extends Base {
     async addFeedback (body) {
         return await this.post('solution/check', body)
     } 
+
+    async sendNotification (body) {
+        return await this.post('general/add/notification', body)
+    }
     
 }
 
