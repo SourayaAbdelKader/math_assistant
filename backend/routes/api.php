@@ -30,6 +30,10 @@ Route::prefix('v0')->group(function () {
 
             Route::group(['middleware' => 'role:admin,editor,user'], function () {
 
+                // For the notifications 
+                Route::post('/add/notification', [UserController::class, 'AddNotification'])->name('add-notificaiton');
+
+
                 // getting users info regarding their user type 
                 Route::get('/getUsers', [UserController::class, 'getUsers'])->name('get-users');
                 Route::get('/editors', [UserController::class, 'getEditors'])->name('get-editors');
@@ -219,7 +223,7 @@ Route::prefix('v0')->group(function () {
                 Route::post('/add', [SolutionController::class, 'addSolution'])->name('add-solution');
             });
 
-            Route::group(['middleware' => 'role:editor,admin,user'], function () {
+            Route::group(['middleware' => 'role:editor'], function () {
                 Route::post('/check', [SolutionController::class, 'checkSolution'])->name('check-solution'); 
             });
 
