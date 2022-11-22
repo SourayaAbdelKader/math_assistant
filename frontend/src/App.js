@@ -16,34 +16,7 @@ import ViewQuestion from './Pages/ViewQuestion';
 import Exercice from './Pages/Exercice';
 import Feedback from './Pages/Feedback';
 
-import { useState, useEffect } from 'react';
-import {  onMessageListener, getTokens } from './firebase';
-import { getMessaging, onMessage, getToken } from "firebase/messaging";
-import 'react-toastify/dist/ReactToastify.css';
-import { toast, ToastContainer } from "react-toastify";
-import UserAPI from './hooks/userAPI';
-
 function App() {
-
-  const [notification, setNotification] = useState({title: '', body: ''});
-  const [isTokenFound, setTokenFound] = useState(false);
-  useEffect(() =>{
-    const sendDeviceToken  = async () =>{
-        const token = await UserAPI.deviceToken({
-          "id":localStorage.getItem("user_id"),
-          "device_token":localStorage.getItem("device_token"),
-      });
-    //   const notification = await UserAPI.sendNotification({
-    //     "id": 15,
-    //     "title": "testing ",
-    //     "body": 'my limits'
-    // });
-    console.log(notification)
-    getTokens(setTokenFound)
-    onMessageListener().then(payload => {
-          setNotification({title: payload.notification.title, body: payload.notification.body})
-    }).catch(err => console.log('failed: ', err));
-}; sendDeviceToken();}, []);
 
   return (
           <div>

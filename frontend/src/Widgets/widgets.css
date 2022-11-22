@@ -249,3 +249,10 @@
     width: auto;
     padding: 1vw;
 }
+
+.notification {
+    padding: 1vw;
+    border-radius: 7px;
+    border: 1px solid ;
+    margin-bottom: 0.5vw;
+}
