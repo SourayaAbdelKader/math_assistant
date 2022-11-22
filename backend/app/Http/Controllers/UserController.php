@@ -12,8 +12,10 @@ use Carbon\Carbon;
 use App\Models\Notification;
 
 class UserController extends Controller{
-
-    public function AddNotification (Request $request) {
+    
+    //_____________ Getting the users joined the current day, week, month, year _____________
+    // Adding a notification to the table
+    public function addNotification (Request $request) {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'body' => 'required',
@@ -39,11 +41,40 @@ class UserController extends Controller{
 
     }
 
+    // Updating a notification
+    public function updateNotification (Request $request) {
+        $notification = Notification::find($request->id);
+        $notification->info = '1';
+        $notification->save();
+            return response()->json([
+                "status" => Response::HTTP_OK,
+                "data" => $notification
+            ]);
+    }
+
+    // Getting notifications
+    public function getUserNotifications ($id) {
+        $notifications = Notification::where('user_id', $id)->get();
+        if ($notifications){
+            return response()->json([
+                "status" => Response::HTTP_OK,
+                "message" => 'Found',
+                "data" => $notifications
+            ]);
+        }
+        return response()->json([
+            "status" => Response::HTTP_OK,
+            "message" => 'Not Found',
+        ]);
+    }
+
+    // Adding the device token
     public function saveDeviceToken(Request $request){
         auth()->user()->update(['device_token'=>$request->device_token]);
         return response()->json(['Token stored.']);
     }
 
+    // Sending a notification with firebase
     public function sendNotification(Request $request){
         $url = 'https://fcm.googleapis.com/fcm/send';
         $DeviceToekn = User::where('id', $request->id)->pluck('device_token')->all();

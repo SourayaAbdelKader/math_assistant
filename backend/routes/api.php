@@ -31,8 +31,9 @@ Route::prefix('v0')->group(function () {
             Route::group(['middleware' => 'role:admin,editor,user'], function () {
 
                 // For the notifications 
-                Route::post('/add/notification', [UserController::class, 'AddNotification'])->name('add-notificaiton');
-
+                Route::post('/add/notification', [UserController::class, 'addNotification'])->name('add-notificaiton');
+                Route::post('/update/notification', [UserController::class, 'updateNotification'])->name('update-notificaiton');
+                Route::get('/notification/id/{id?}', [UserController::class, 'getUserNotifications'])->name('get-notificaiton');
 
                 // getting users info regarding their user type 
                 Route::get('/getUsers', [UserController::class, 'getUsers'])->name('get-users');
