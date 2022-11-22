@@ -21,5 +21,9 @@ class UserAPI extends Base {
     async sendNotification (body) {
         return await this.post('general/sendNotification',body);
     }
+    
+    async updateNotification (body) {
+        return await this.post('general/update/notification',body);
+    }
 }
 export default new  UserAPI();

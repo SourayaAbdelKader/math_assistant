@@ -1,12 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // Importing styling and assets
 import './widgets.css';
 
-import {  onMessageListener, getTokens } from '../firebase';
-import { getMessaging, onMessage, getToken } from "firebase/messaging";
 import UserAPI from '../hooks/userAPI';
 
 const NotificationItem = (props) => {
@@ -14,12 +11,15 @@ const NotificationItem = (props) => {
 
     const navigatePractice = () => {navigate('/practice/feedback');};
     
-    const seeFeedback = () => {
+    const seeFeedback = async () => {
         console.log(props.body);
-        localStorage.setItem('selected_practice', props.body.split('/')[2]);        
+        localStorage.setItem('selected_practice', props.body.split('/')[2]);
+        const update_notification = await UserAPI.updateNotification({
+            "id": props.id,
+        }); 
+        console.log(update_notification)       
     }
 
-    
     return(
         <div className='notification pointer' id={props.id} onClick={() => {seeFeedback(); navigatePractice()}}> 
             <p className='bold'>{props.title}</p>
