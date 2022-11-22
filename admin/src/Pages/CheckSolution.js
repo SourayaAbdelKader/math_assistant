@@ -102,7 +102,7 @@ const CheckSolution = () => {
             <div className='header'>
             <Header></Header>
             </div>
-            <div className='flex'>
+            <div className='flex exercice_container'>
                 <QuestionForEx id={practice.id} name={practice.name} description={practice.description} picture_url={practice.picture_url} level={practice.level} points={practice.points}></QuestionForEx>
                 <div className='practice_section'>
                     <div> <h3 className=''> The Answer </h3> </div>

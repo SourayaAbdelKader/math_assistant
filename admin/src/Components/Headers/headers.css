@@ -29,11 +29,16 @@ img {
 }
 
 .headercontainer {
+    width:100%;
+    position: fixed;
+    top: 0cm;
+    right: 0cm;
     padding: 1vw 5vw;
     background:#2D3E4E;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 }
 
 .icon {
