@@ -11,7 +11,7 @@ return new class extends Migration{
             $table->id();
             $table->string('title')->nullable();
             $table->string('body')->nullable();
-            $table->string('info')->nullable();
+            $table->tinyInteger('info')->default('0');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
