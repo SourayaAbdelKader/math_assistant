@@ -32,7 +32,7 @@ Route::prefix('v0')->group(function () {
 
                 // For the notifications 
                 Route::post('/add/notification', [UserController::class, 'AddNotification'])->name('add-notificaiton');
-
+                Route::post('/update/notification', [UserController::class, 'UpdateNotification'])->name('update-notificaiton');
 
                 // getting users info regarding their user type 
                 Route::get('/getUsers', [UserController::class, 'getUsers'])->name('get-users');

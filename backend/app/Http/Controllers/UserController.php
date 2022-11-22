@@ -12,7 +12,9 @@ use Carbon\Carbon;
 use App\Models\Notification;
 
 class UserController extends Controller{
-
+    
+    //_____________ Getting the users joined the current day, week, month, year _____________
+    // Adding a notification to the table
     public function AddNotification (Request $request) {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
@@ -39,11 +41,24 @@ class UserController extends Controller{
 
     }
 
+    // Updating a notification
+    public function UpdateNotification (Request $request) {
+        $notification = Notification::find($request->id);
+        $notification->info = '1';
+        $notification->save();
+            return response()->json([
+                "status" => Response::HTTP_OK,
+                "data" => $notification
+            ]);
+    }
+
+    // Adding the device token
     public function saveDeviceToken(Request $request){
         auth()->user()->update(['device_token'=>$request->device_token]);
         return response()->json(['Token stored.']);
     }
 
+    // Sending a notification with firebase
     public function sendNotification(Request $request){
         $url = 'https://fcm.googleapis.com/fcm/send';
         $DeviceToekn = User::where('id', $request->id)->pluck('device_token')->all();
