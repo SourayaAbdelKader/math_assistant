@@ -28,24 +28,25 @@ const NotificationWidget = (answer) => {
             const token = await UserAPI.deviceToken({
             "id":localStorage.getItem("user_id"),
             "device_token":localStorage.getItem("device_token"),
-        });
+        });}
 
-      const notification = await UserAPI.sendNotification({
-        "id": 15,
-        "title": "testing ",
-        "body": 'my limits'
-    });
-        getTokens(setTokenFound)
-        onMessageListener().then(payload => {
-            setNotification({title: payload.notification.title, body: payload.notification.body})
-        }).catch(err => console.log('failed: ', err));
-    }
+        
+    
         const getNotifications  = async () =>{
             const notification = await UserAPI.getNotificationForUser(localStorage.getItem('user_id'));
             console.log(notification.data.data)
             if (notification.data.message == 'Found' && notification.data.data.length > 0){
                 setMessages(notification.data.data);
-                setImage(full_notifiation)
+                setImage(full_notifiation);
+                getTokens(setTokenFound)
+                onMessageListener().then(payload => {
+                        setNotification({title: payload.notification.title, body: payload.notification.body})
+                }).catch(err => console.log('failed: ', err));
+                const push_notification = await UserAPI.sendNotification({
+                    "id": 15,
+                    "title": "Math Assistant",
+                    "body": 'You got a new notification.',
+                });
             }
         };
     ; sendDeviceToken(); getNotifications();}, []);

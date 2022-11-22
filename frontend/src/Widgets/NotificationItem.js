@@ -19,15 +19,6 @@ const NotificationItem = (props) => {
         localStorage.setItem('selected_practice', props.body.split('/')[2]);        
     }
 
-    useEffect(() =>{
-        const sendPushNotification = async () => {
-            const notification = await UserAPI.sendNotification({
-                "id": 15,
-                "title": 'hi',
-                "body": 'ho'
-            });
-        }; sendPushNotification ()
-    }, [])
     
     return(
         <div className='notification pointer' id={props.id} onClick={() => {seeFeedback(); navigatePractice()}}> 
