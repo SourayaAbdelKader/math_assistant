@@ -256,3 +256,7 @@
     border: 1px solid ;
     margin-bottom: 0.5vw;
 }
+
+.notification > p {
+    margin-bottom: 0.5vw;
+}
