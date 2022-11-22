@@ -54,7 +54,7 @@ class UserController extends Controller{
 
     // Getting notifications
     public function getUserNotifications ($id) {
-        $notifications = Notification::where('user_id', $id)->get();
+        $notifications = Notification::where('user_id', $id)->where('info', '0')->get();
         if ($notifications){
             return response()->json([
                 "status" => Response::HTTP_OK,
