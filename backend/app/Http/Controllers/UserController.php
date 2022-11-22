@@ -9,8 +9,35 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Carbon\Carbon;
+use App\Models\Notification;
 
 class UserController extends Controller{
+
+    public function AddNotification (Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'body' => 'required',
+            'info' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => $validator->errors(),
+                'message' => 'Invalid Data',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+
+        $data = $request->all();
+        $notification = Notification::create($data);
+        return response()->json([
+            'data' => $notification,
+            'message' => 'Added Successfully',
+            'status' =>  Response::HTTP_OK
+        ]);
+
+    }
 
     public function saveDeviceToken(Request $request){
         auth()->user()->update(['device_token'=>$request->device_token]);
@@ -148,7 +175,7 @@ class UserController extends Controller{
         ]);
     }
 
-    //_____________ Getting the editos added the current day, week, month, year _____________
+    //_____________ Getting the editors added the current day, week, month, year _____________
     // Getting this month added editors
     public function monthEditor(){
         $editors = User::where('user_type','editor')
