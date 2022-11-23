@@ -28,3 +28,20 @@ export function validName(name){
     return valid;
 };
 
+export function checkEmptyInput(input){
+    if (input.length < 3){
+        return true
+    }; return false;
+}
+
+export function checkInputIsNumber(input){
+    if (input.length == 0 && isNaN(input)){
+        return true
+    }; return false;
+}
+
+export function checkInputIsLevel(input){
+    if (input == 'hard' || input == 'easy' || input == 'medium'){
+        return true
+    }; return false;
+}
