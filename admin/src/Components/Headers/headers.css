@@ -29,7 +29,7 @@ img {
 }
 
 .headercontainer {
-    width:100%;
+    width:100vw;
     position: fixed;
     top: 0cm;
     right: 0cm;
@@ -39,6 +39,7 @@ img {
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    height: 15vh;
 }
 
 .icon {

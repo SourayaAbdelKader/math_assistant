@@ -36,12 +36,21 @@ export function checkEmptyInput(input){
 
 export function checkInputIsNumber(input){
     if (input.length == 0 && isNaN(input)){
-        return true
-    }; return false;
+        return false
+    }; return true;
 }
 
 export function checkInputIsLevel(input){
     if (input == 'hard' || input == 'easy' || input == 'medium'){
         return true
     }; return false;
+}
+
+export function getBase64(file, cb){
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(){
+      cb(reader.result);
+    }
+    reader.onerror = function(err){ console.log(err)}
 }

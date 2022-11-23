@@ -54,7 +54,7 @@ const ProfileNav = () => {
                 <div> <img className="icon" src={profile} alt="" /> </div>
                 <div className="bold white_text"> Profile </div>
             </div>
-            <div className="">
+            <div className="signout">
                 <Signout></Signout> 
             </div>         
         </div>      

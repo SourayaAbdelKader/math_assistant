@@ -54,7 +54,7 @@ const EditorNav = () => {
                 <div> <img className="icon" src={profile} alt="" /> </div>
                 <div className="bold"> Profile </div>
             </div>
-            <div className="">
+            <div className="signout">
                 <Signout></Signout> 
             </div>         
         </div>      
