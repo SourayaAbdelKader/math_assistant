@@ -15,6 +15,13 @@ const Practice = () => {
 
     const componentRef = React.useRef();
 
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [level, setLevel] = useState('');
+    const [points, setPoints] = useState('');
+    const [image, setImage] = useState('');
+    const [tagNumber, setTagNumber] = useState('');
+
     const [practice, setPractice] = useState([]);
     useEffect(() =>{
         const getUsers  = async () =>{
@@ -63,7 +70,7 @@ const Practice = () => {
                                         <div className="space row"> <input className="input"  type="text" placeholder="Tag Number" /></div>
                                         <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>                                                
                                         <div className="parent-div">
-                                        <button className="btn-upload"></button>
+                                        <button className="btn-upload"> Add Picture </button>
                                         <input type="file" name="upfile" />
                                         </div>
                                         <div className="actions flex_around">

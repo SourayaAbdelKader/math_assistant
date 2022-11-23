@@ -1,5 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
+import empty_picture from '../images/no_answer.webp';
 
 // Importing styling
 import '../App.css';
@@ -17,6 +18,8 @@ import QuestionAPI from '../hooks/QuestionAPI';
 import AnswerAPI from '../hooks/AnswerAPI';
 
 const ViewQuestion = () => {
+
+    const [empty, setEmpty] = useState(false);
     const [getQuestion, setQuestion] = useState([]);
     const [answers, getAnswers] = useState([]);
     const id = localStorage.getItem('choosed_question');
@@ -36,7 +39,7 @@ const ViewQuestion = () => {
                 const answer_array = getAnswersPerQuestion.data.data;
                 
                 getAnswers(answer_array)
-            } 
+            } else { setEmpty(true)}
     }; getQuestion(); getAnswersQuestion()}, []);
 
     return (
@@ -51,6 +54,9 @@ const ViewQuestion = () => {
                             <h3> Answers </h3>
                         </div>
                         <div className='answers_container'>
+                        {
+                            empty && (<div className='center_empty'> <img src={empty_picture} alt='no answers' /> <h3> No Answers</h3> </div> )
+                        }
                         { 
                             answers?.map((e) => {
                                 return (<AnswerWidget id={e.id} name={e.name} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
