@@ -10,6 +10,10 @@ class TagAPI extends Base {
         return await this.get('tag/search/'+data);
     }
 
+    async deleteTag (data) {
+        return await this.post('tag/delete/'+data);
+    }
+
     async addTag (body) {
         return await this.post('tag/add', body);
     }

@@ -68,7 +68,7 @@ const Tags = () => {
 
     // Calling the API
     const addTag = async (title, description) => {
-         const add_tag = await TagAPI.addTag({
+        const add_tag = await TagAPI.addTag({
             "title":title,
             "description":description,
         });
