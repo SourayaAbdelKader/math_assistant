@@ -7,6 +7,7 @@ import tags from '../../images/dash_tags.png';
 import editors from '../../images/dash_editors.png';
 import practice from '../../images/dash_practice.png';
 import questions from '../../images/dash_questions.png';
+import profile from '../../images/profile_dash.png'
 import Signout from "../Buttons/Signout";
 
 import './nav.css';
@@ -14,6 +15,7 @@ import './nav.css';
 const Navbar = () => {
     
     const navigate = useNavigate();
+    const navigateProfile = () => {navigate('/profile');};
     const navigateDashboard = () => {navigate('/dashboard');};
     const navigateUsers = () => {navigate('/users');};
     const navigateEditors = () => {navigate('/editors')};
@@ -47,7 +49,11 @@ const Navbar = () => {
                 <div> <img className="icon" src={tags} alt="" /> </div>
                 <div className="bold"> Tags </div>
             </div>
-            <div className="button_container">
+            <div onClick={navigateProfile} className="flex part cursor">
+                <div> <img className="icon" src={profile} alt="" /> </div>
+                <div className="bold"> Profile </div>
+            </div>
+            <div className="">
                 <Signout></Signout> 
             </div>         
         </div>      
