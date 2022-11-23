@@ -5,7 +5,6 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 // Importing styling and assets
 import './widget.css';
 import answer from '../images/answer.png';
-import delete_icon from '../images/delete.png';
 import picture from '../images/profileSelected.png';
 
 // Importing libraries related to Latex
@@ -53,9 +52,6 @@ const QuestionWidget = (question) => {
                     <p className='subtitle'> Suggested solution </p>
                     <p className='text'> <Latex>{question.suggested_solution}</Latex></p>
                 </div>
-            </div>
-            <div className="flex_end">
-                <div> <img className="small_icon cursor" src={delete_icon} alt="save" /> </div>
             </div>
         </div>        
     )
