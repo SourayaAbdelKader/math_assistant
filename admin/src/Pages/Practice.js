@@ -125,9 +125,7 @@ const Practice = () => {
             setTagNumber('');
         } else {componentRef.current.classList.remove('hide');
             setMessage(add_practice.data.data.description)
-    } 
-
-     };
+    };};
 
     return (
         <div>
@@ -171,11 +169,11 @@ const Practice = () => {
                     </Popup>
                 </div>
                 <div className='flex_between row_table'> 
-                        <div className='grow cell bold'> Title </div>
-                        <div className='cell bold'> Level </div>
-                        <div className='cell bold'> Points </div>
-                        <div className='cell bold'> Edit </div>
-                        <div className=' cell bold'> Delete </div>
+                        <div className='user_column bold'> Title </div>
+                        <div className='column_title bold'> Level </div>
+                        <div className='column_title bold'> Points </div>
+                        <div className='column_icon bold'> Edit </div>
+                        <div className='column_icon bold'> Delete </div>
                 </div>
                     { 
                             practice?.map((e) => {                            

@@ -21,7 +21,7 @@ class TagController extends Controller{
     // _____________ Adding a tag _____________
     public function addTag(Request $request){
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:5|max:70|unique:tags,name',
+            'title' => 'required|string|min:5|max:70|unique:tags,title',
             'description' => 'required|string|min:30',
         ]);
 
@@ -71,7 +71,7 @@ class TagController extends Controller{
             ]);
         }
         $validator = Validator::make($request->all(), [
-            'name' => 'string|min:5|max:70|unique:tags,name',
+            'title' => 'string|min:5|max:70|unique:tags,title',
             'description' => 'string|min:30',
         ]);
 
@@ -82,7 +82,7 @@ class TagController extends Controller{
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
         };
-        $tag->name = $request->name ? $request->name : $tag->name;
+        $tag->title = $request->title ? $request->title : $tag->title;
         $tag->description = $request->description? $request->description : $tag->description;
 
         if($tag->save()){
@@ -137,7 +137,7 @@ class TagController extends Controller{
 
     // _____________ Getting tag by name _____________
     public function getTagByName($name){
-        $tag = Tag::where('name', $name)->get();
+        $tag = Tag::where('title', $name)->get();
         if ($tag->isNotEmpty()) {
             return response()->json([
                 'data' => $tag,
