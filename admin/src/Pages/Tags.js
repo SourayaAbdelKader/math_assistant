@@ -16,7 +16,6 @@ import {checkInputIsNumber, checkInputIsLevel, checkEmptyInput, getBase64} from 
 import TagAPI from '../hooks/TagAPI';
 
 const Tags = () => {
-
     const componentRef = React.useRef();
 
     const [tags, setTags] = useState([]);
