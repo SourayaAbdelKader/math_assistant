@@ -17,11 +17,11 @@ const PracticeWidget = (props) => {
     
     return(
         <div key={props.id} id={props.id} className='flex_between row_table'> 
-            <div onClick={navigateSolutions} className='cell wide pointer grow'><p>{props.id}</p><p>{props.title}</p> </div>
-            <div className='cell'> {props.level} </div>
-            <div className='cell'> {props.points} </div>
-            <div className=' flex_end pointer'> <img className="icon_table" src={edit_icon} alt='edit'/> </div>
-            <div className=' flex_end pointer'> <img className="icon_table" src={delete_icon} alt='edit'/> </div>
+            <div onClick={navigateSolutions} className='user_column pointer'><p>{props.id} {props.title}</p> </div>
+            <div className='column_title'> {props.level} </div>
+            <div className='column_title'> {props.points} </div>
+            <div className='column_icon  pointer'> <img className="icon_table" src={edit_icon} alt='edit'/> </div>
+            <div className='column_icon  pointer'> <img className="icon_table" src={delete_icon} alt='edit'/> </div>
         </div>
     )
 }

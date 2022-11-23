@@ -67,13 +67,20 @@
 }
 
 .column {
-    min-width: 2vw;
-    max-width: 15vw;
+    width: 17vw;
 }
 
+.column_title {
+    width: 7vw;
+}
+
+.column_icon {
+    width: 3vw;
+}
+
+
 .user_column {
-    min-width: 5vw;
-    max-width: 10vw;
+    width: 10vw;
 }
 
 .flex_between {
@@ -245,4 +252,13 @@
     align-items: center;
     font-weight: 600;
     color: rgba(0, 128, 0, 0.664);
+}
+
+.popup_textarea_input {
+    height: 20vh;
+    background: #E8ECEB;
+    width: 300px;
+    padding: 1vw;
+    border-radius: 15px;
+    border: 0cm;
 }
