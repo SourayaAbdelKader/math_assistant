@@ -47,15 +47,15 @@ const AnswerWidget = (answer) => {
                 <div>
                     <img className="medium_icon cursor" src={image_source} alt="accept" />
                     <Popup open={openAccept} modal nested >
-                                        {close => (
-                                        <div className="modal">
-                                            <button className="close" onClick={close}>
-                                            &times;
-                                            </button>
-                                            <div> <h3>{message}</h3></div>
-                                        </div>
-                                        )}
-                        </Popup>
+                        {close => (
+                        <div className="modal">
+                            <button className="close" onClick={close}>
+                            &times;
+                            </button>
+                            <div> <h3>{message}</h3></div>
+                        </div>
+                        )}
+                    </Popup>
                 </div>
                 </div>
             </div>
@@ -63,9 +63,6 @@ const AnswerWidget = (answer) => {
                 <div className='part space'> 
                     <p className='text'> {answer.description} </p>
                 </div>
-            </div>
-            <div className="flex_end">
-                <div> <img className="small_icon cursor" src={delete_icon} alt="save" /> </div>
             </div>
         </div>        
     )

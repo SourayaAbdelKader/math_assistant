@@ -57,9 +57,6 @@ const ViewQuestionWidget = (question) => {
                     <p className='text'> <Latex>{question.suggested_solution}</Latex></p>
                 </div>
             </div>
-            <div className="flex_end">
-                <div> <img className="s_icon cursor" src={delete_icon} alt="save" /> </div>
-            </div>
         </div>        
     )
 }
