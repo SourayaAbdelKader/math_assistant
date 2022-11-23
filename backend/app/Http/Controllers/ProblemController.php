@@ -18,7 +18,6 @@ class ProblemController extends Controller{
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:70',
             'description' => 'required|string|min:10|max:1500',
-            'picture_url' => 'string|min:10|max:250',
             'user_id' => 'required|integer|exists:users,id',
             'tag_id' => 'required|integer|exists:tags,id',
             'level' => 'required|string|in:easy,medium,hard',
@@ -41,6 +40,18 @@ class ProblemController extends Controller{
                 'message' => 'User Not Found',
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR
             ]);
+        }
+
+        if ($request->picture_url) {
+            $folderPath = public_path("images\problems");
+            $base64Image = explode(";base64,", $request->picture_url);
+            $explodeImage = explode("image/", $base64Image[0]);
+            $imageType = $explodeImage[1];
+            $image_base64 = base64_decode($base64Image[1]);
+            $file_name = uniqid().'.'.$imageType;
+            $file = $folderPath.'\.'.$file_name ;
+            file_put_contents($file, $image_base64);
+            $request->picture_url = $file;
         }
 
         $data = $request->all();
