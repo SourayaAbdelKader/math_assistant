@@ -6,7 +6,7 @@ import '../App.css';
 
 // Importing components
 import LowerFooter from '../Components/LowerFooter';
-import ProfileHeader from '../Components/Headers/ProfileHeader';
+import Header from '../Components/Headers/Header';
 import ProfileNav from '../Components/Navbar/ProfileNav';
 import UserInfo from '../Components/Cards/UserInfo';
 
@@ -26,7 +26,7 @@ const Profile = () => {
 
     return (
         <div>
-            <ProfileHeader></ProfileHeader>
+            <Header></Header>
             <div className='page_content'> 
                 <ProfileNav></ProfileNav>
                 <div className='content'>

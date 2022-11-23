@@ -1,15 +1,20 @@
 .nav_container{
-    top: 7vw;
+    top: 15vh;
     position: fixed;
     width: 20vw;
     height: auto;
     padding: 1vw 4vw;
     background-color: white;
+    height: 85vh;
 }
 
 .part {
-    margin-bottom: 0.8vw;
+    margin-bottom: 0.5vw;
     padding: 1vw;
+}
+
+.signout {
+    margin-top: 2vw;
 }
 
 .choosen {

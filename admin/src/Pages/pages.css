@@ -52,7 +52,7 @@
 }
 
 .page_content {
-    width: 100%;
+    width: 100vw;
     background: #E8ECEB;
 }
 
@@ -63,12 +63,12 @@
 .content {
     min-height: 99vh;
     width: 100vw;
-    padding: 9vw 5vw 2vw 23vw;
+    padding: 18vh 5vw 2vw 23vw;
 }
 
 .column {
-    min-width: 13vw;
-    max-width: 25vw;
+    min-width: 2vw;
+    max-width: 15vw;
 }
 
 .user_column {

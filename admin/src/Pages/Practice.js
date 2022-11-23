@@ -134,8 +134,8 @@ const Practice = () => {
                         <div className='grow cell bold'> Title </div>
                         <div className='cell bold'> Level </div>
                         <div className='cell bold'> Points </div>
-                        <div className='small_cell bold'> Edit </div>
-                        <div className=' small_cell bold'> Delete </div>
+                        <div className='cell bold'> Edit </div>
+                        <div className=' cell bold'> Delete </div>
                 </div>
                     { 
                             practice?.map((e) => {                            
