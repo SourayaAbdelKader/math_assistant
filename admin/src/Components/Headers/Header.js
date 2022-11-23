@@ -20,8 +20,6 @@ const Header = () => {
                 <div> <h1 className="white_text pointer" onClick={navigateHome}> Math Assistant </h1> </div>
             </div>
             <div className="flex"> 
-                <div> <img className="icon cursor" src={notification} alt="notification"/> </div>
-                <div> <img className="icon cursor" onClick={navigateProfile} src={profile} alt="profile"/> </div>
             </div>
         </div>    
     )

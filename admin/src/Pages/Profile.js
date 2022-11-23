@@ -7,7 +7,7 @@ import '../App.css';
 // Importing components
 import LowerFooter from '../Components/LowerFooter';
 import ProfileHeader from '../Components/Headers/ProfileHeader';
-import NullNav from '../Components/Navbar/NullNav';
+import ProfileNav from '../Components/Navbar/ProfileNav';
 import UserInfo from '../Components/Cards/UserInfo';
 
 // Importing hooks
@@ -28,7 +28,7 @@ const Profile = () => {
         <div>
             <ProfileHeader></ProfileHeader>
             <div className='page_content'> 
-                <NullNav></NullNav>
+                <ProfileNav></ProfileNav>
                 <div className='content'>
                 <div> <h3 className='space'> My Profile </h3> </div>
                 <div> 

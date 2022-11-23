@@ -2,18 +2,18 @@ import React from "react";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 import dashboard from '../../images/dash.png';
-import user from '../../images/dash_users_selected.png';
+import user from '../../images/dash_users.png';
 import tags from '../../images/dash_tags.png';
 import editors from '../../images/dash_editors.png';
-import practice from '../../images/dash_practice.png';
+import practice from '../../images/dash_practice_selected.png';
 import questions from '../../images/dash_questions.png';
-import profile from '../../images/profile_dash.png'
+import profile from '../../images/profile.png';
 
 import Signout from "../Buttons/Signout";
 
 import './nav.css';
 
-const UserNav = () => {
+const ProfileNav = () => {
     
     const navigate = useNavigate();
     const navigateProfile = () => {navigate('/profile');};
@@ -30,9 +30,9 @@ const UserNav = () => {
                 <div> <img className="icon" src={dashboard} alt="" /> </div>
                 <div className="bold"> Dashboard </div>
             </div>
-            <div onClick={navigateUsers} className="flex part choosen cursor">
+            <div onClick={navigateUsers} className="flex part cursor">
                 <div> <img className="icon" src={user} alt="" /> </div>
-                <div className="bold white_text"> Users </div>
+                <div className="bold"> Users </div>
             </div>
             <div onClick={navigateEditors} className="flex part cursor">
                 <div> <img className="icon" src={editors} alt="" /> </div>
@@ -50,9 +50,9 @@ const UserNav = () => {
                 <div> <img className="icon" src={tags} alt="" /> </div>
                 <div className="bold"> Tags </div>
             </div>
-            <div onClick={navigateProfile} className="flex part cursor">
+            <div onClick={navigateProfile} className="flex choosen part cursor">
                 <div> <img className="icon" src={profile} alt="" /> </div>
-                <div className="bold"> Profile </div>
+                <div className="bold white_text"> Profile </div>
             </div>
             <div className="">
                 <Signout></Signout> 
@@ -61,4 +61,4 @@ const UserNav = () => {
     )
 }
 
-export default UserNav;
+export default ProfileNav;
