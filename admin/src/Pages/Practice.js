@@ -11,6 +11,8 @@ import PracticeNav from '../Components/Navbar/PracticeNav';
 import PracticeWidget from '../Widget/PracticeWidget';
 import PracticeAPI from '../hooks/PracticeAPI';
 
+import {checkInputIsNumber, checkInputIsLevel, checkEmptyInput} from '../Utils/Utils'
+
 const Practice = () => {
 
     const componentRef = React.useRef();
@@ -32,6 +34,52 @@ const Practice = () => {
                 setPractice(get);
             }
     }; getUsers();}, []);
+
+    const handleTitle = (event) => {
+        let string = event.target.value;
+        if (!checkEmptyInput(string)){
+            setTitle(string)
+        }
+    }
+
+    const handleDescription = (event) => {
+        let string = event.target.value;
+        if (!checkEmptyInput(string)){
+            setDescription(string)
+        }
+    }
+
+    const handleLevel = (event) => {
+        let string = event.target.value;
+        if (checkInputIsLevel(string)){
+            setLevel(string)
+        }
+    }
+
+    const handlePoints= (event) => {
+        let string = event.target.value;
+        if (checkInputIsNumber(string)){
+            setPoints(string)
+        }
+    }
+
+    const handleTag = (event) => {
+        let string = event.target.value;
+        if (checkInputIsNumber(string)){
+            setTagNumber(string)
+        }
+    }
+ 
+    const handleImage = (event) => {
+        let string = event.target.value;
+        if (checkInputIsNumber(string)){
+        }
+    }
+    
+
+    const validInputs = () => {
+
+    }
 
      // Calling the API
      const addPractice = async (title, description, points, level, picture_url, user_id, tag_id) => {
@@ -61,11 +109,11 @@ const Practice = () => {
                             <button className="close" onClick={close}>
                             &times;
                             </button>
-                                {/* <div className='modal_content'>
+                                <div className='modal_content'>
                                         <div className="header center space"> <h3> Add Practice </h3> </div>
                                         <div className="space row"> <input onChange={handleTitle} className="input"  type="text" placeholder="Title" /></div>
                                         <div className="space row"> <input onChange={handleDescription} className="input" type="text" placeholder="Description" /></div>
-                                        <div className="space row"> <input onChange={handlepoints} className="input"  type="text" placeholder="Points" /></div>
+                                        <div className="space row"> <input onChange={handlePoints} className="input"  type="text" placeholder="Points" /></div>
                                         <div className="space row"> <input onChange={handleLevel} className="input"  type="text" placeholder="Level" /></div>
                                         <div className="space row"> <input onChange={handleTag} className="input"  type="text" placeholder="Tag Number" /></div>
                                         <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>                                                
@@ -77,7 +125,7 @@ const Practice = () => {
                                         <button  className="login bold space_right"> Submit </button>
                                         <button className="login" onClick={() => {close();}}> Cancel </button>
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
                         )}
                     </Popup>
