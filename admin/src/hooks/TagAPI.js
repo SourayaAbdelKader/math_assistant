@@ -9,5 +9,9 @@ class TagAPI extends Base {
     async searchTags (data) {
         return await this.get('tag/search/'+data);
     }
+
+    async addTag (body) {
+        return await this.post('tag/add', body);
+    }
 }
 export default new  TagAPI();

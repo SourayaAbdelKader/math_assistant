@@ -13,10 +13,10 @@ const TableWidget = (props) => {
     
     return(
         <div key={props.id} id={props.id} className='flex_between row_table'> 
-            <div className='column'> {props.title} </div>
+            <div className='column_title'> {props.title} </div>
             <div className='column'> {props.description} </div>
-            <div className='column flex_end pointer'> <img className="icon_table" src={edit_icon} alt='edit'/> </div>
-            <div className='column flex_end pointer'> <img className="icon_table" src={delete_icon} alt='edit'/> </div>
+            <div className='column_icon flex_end pointer'> <img className="icon_table" src={edit_icon} alt='edit'/> </div>
+            <div className='column_icon flex_end pointer'> <img className="icon_table" src={delete_icon} alt='edit'/> </div>
         </div>
     )
 }

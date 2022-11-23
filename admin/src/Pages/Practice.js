@@ -125,9 +125,7 @@ const Practice = () => {
             setTagNumber('');
         } else {componentRef.current.classList.remove('hide');
             setMessage(add_practice.data.data.description)
-    } 
-
-     };
+    };};
 
     return (
         <div>
