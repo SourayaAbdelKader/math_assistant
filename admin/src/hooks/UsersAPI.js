@@ -22,5 +22,9 @@ class UserAPI extends Base {
         return await this.post('general/addEditor', body);
     }
 
+    async editProfile (id, body) {
+        return await this.post('general/userUpdate/'+id, body);
+    }
+
 }
 export default new  UserAPI();
