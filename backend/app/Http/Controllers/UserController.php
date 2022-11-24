@@ -511,7 +511,7 @@ class UserController extends Controller{
     // _____________ Updating a user _____________
     public function updateUser(Request $request, $id){
         $user = User::find($id);
-        $id= Auth::$id();
+        $id= Auth::id();
         $user = Auth::user();
 
         // to validate incoming data
