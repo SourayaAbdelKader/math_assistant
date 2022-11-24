@@ -33,7 +33,7 @@ const Questions = () => {
                     <div className=''>
                     { 
                         getQuestionsData?.map((e) => {
-                            return (<QuestionWidget key={e.id} id={e.id} name={e.name}  title={e.title} problem={e.problem} description={e.description} suggested_solution={e.suggested_solution}></QuestionWidget>)
+                            return (<QuestionWidget key={e.id} id={e.id} name={e.name} picture_url={e.picture_url}  title={e.title} problem={e.problem} description={e.description} suggested_solution={e.suggested_solution}></QuestionWidget>)
                         }) 
                     }
                     </div>

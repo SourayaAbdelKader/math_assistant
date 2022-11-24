@@ -49,7 +49,7 @@ const ViewQuestion = () => {
                 <div className='navbar'> <QuestionNav></QuestionNav></div>
                 <div className='content'>
                 <div> <h3 className='space'>Question</h3></div>
-                    <ViewQuestionWidget key={getQuestion.id} name={getQuestion.name} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
+                    <ViewQuestionWidget key={getQuestion.id} picture_url={getQuestion.picture_url} name={getQuestion.name} id={getQuestion.id} name={getQuestion.name}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>
                         <div className='page_break'> 
                             <h3> Answers </h3>
                         </div>
@@ -59,7 +59,7 @@ const ViewQuestion = () => {
                         }
                         { 
                             answers?.map((e) => {
-                                return (<AnswerWidget id={e.id} name={e.name} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
+                                return (<AnswerWidget id={e.id} picture_url={e.picture_url} name={e.name} description={e.description} accepted={e.accepted} ></AnswerWidget> )                            
                             }) 
                         }
                     </div> 

@@ -19,6 +19,16 @@ import AnswerAPI from '../hooks/AnswerAPI';
 
 const AnswerWidget = (answer) => {
 
+    // Handeling profile picture
+    const handlePicture = () => {
+        if (answer.picture_url == null){
+            return picture;
+        } 
+        return answer.picture_url;
+    }
+
+    const profile_picture = handlePicture()
+
     const componentRef = React.useRef();
     const [openAccept, setOpenAccept] = useState(false);
     const [message, setMessage] = useState('');
@@ -40,7 +50,7 @@ const AnswerWidget = (answer) => {
         <div onClick={handleClick} id={answer.id} className="answer_container">
             <div className="flex_between space">
                 <div className="flex">
-                    <div> <img className='profile_pic' src={picture} alt=''/> </div>
+                    <div> <img className='profile_pic' src={profile_picture} alt=''/> </div>
                     <div> <p className='name'> {answer.name} </p> </div>
                 </div>
                 <div>

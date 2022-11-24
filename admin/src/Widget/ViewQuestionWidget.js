@@ -20,6 +20,16 @@ import AnswerAPI from '../hooks/AnswerAPI';
 
 const ViewQuestionWidget = (question) => {
 
+    // Handeling profile picture
+    const handlePicture = () => {
+        if (question.picture_url == null){
+            return picture;
+        } 
+        return question.picture_url;
+    }
+
+    const profile_picture = handlePicture();
+
     const componentRef = React.useRef();
 
     const navigate = useNavigate();
@@ -36,7 +46,7 @@ const ViewQuestionWidget = (question) => {
         <div onClick={handleClick} id={question.id} className="view_question_container">
             <div className="flex_between space">
                 <div className="flex">
-                    <div> <img className='profile_pic' src={picture} alt=''/> </div>
+                    <div> <img className='profile_pic' src={profile_picture} alt=''/> </div>
                     <div> <p className='name'> {question.name}</p> </div>
                 </div>
                 <div>
