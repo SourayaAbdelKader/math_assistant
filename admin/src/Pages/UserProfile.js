@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // Importing style
 import '../App.css';
@@ -15,7 +14,6 @@ import tags_icon from '../images/tags_icon.png';
 import LowerFooter from '../Components/LowerFooter';
 import Header from '../Components/Headers/Header';
 import NullNav from '../Components/Navbar/NullNav';
-import UserInfo from '../Components/Cards/UserInfo';
 import DataCard from '../Components/Cards/DataCard';
 import ScoreCard from '../Components/Cards/ScoreCard';
 import FullMark from '../Components/Cards/FullMark';
@@ -39,13 +37,16 @@ const UserProfile = () => {
     const [tags, setTags] = useState(0);
     const [practice, setPractice] = useState(0);
 
-    
-
     useEffect(() =>{
+
         const getUserData  = async () =>{
+
+            // Getting the user information
             const user_data = await UserAPI.getUserById(localStorage.getItem('choosed_user'));
             const get = user_data.data.data[0];
             setDetails(get);
+            
+            // Getting the user related data
             const user_score = await ScoreAPI.getUSerScore(localStorage.getItem('choosed_user'));
             const user_answer_score = await ScoreAPI.getUserAnswersScore(localStorage.getItem('choosed_user'));
             const user_practice_score = await ScoreAPI.getUsePracticeScore(localStorage.getItem('choosed_user'));
@@ -63,6 +64,9 @@ const UserProfile = () => {
             setFullmarked(user_fullmarked.data.data);
             setQuestions(user_questions.data.data);
             setSaved(user_saved_questions.data.data);
+            setPractice(user_practice.data.data)
+
+            // Counting the tags used
             let count = 0;
             let ids = []
             for (let i=0; i<user_tags.data.data.length; i++) {
@@ -72,7 +76,6 @@ const UserProfile = () => {
                 }
             }
             setTags(count);
-            setPractice(user_practice.data.data)
     }; getUserData();}, []); 
 
     return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import empty_picture from '../images/no_answer.webp';
 
-// Importing styling
+// Importing styling and assets
 import '../App.css';
 import './pages.css';
+import empty_picture from '../images/no_answer.webp';
 
 // Importing components
 import LowerFooter from '../Components/LowerFooter';
@@ -25,16 +25,18 @@ const ViewQuestion = () => {
     const id = localStorage.getItem('choosed_question');
 
     useEffect(() =>{
+        // Getting the question data
         const getQuestion = async () =>{
             const question = await QuestionAPI.getQuestionById(id);
             if (question.data.message === 'Found'){
                 const get = question.data.data;
                 setQuestion(get[0])
             } 
-    }
+        }
+
+        // Getting the answers for this question
         const getAnswersQuestion = async () => {
             const getAnswersPerQuestion = await AnswerAPI.getAnswersPerQuestion(id);
-            console.log(getAnswersPerQuestion)
             if (getAnswersPerQuestion.data.message === 'Found'){
                 const answer_array = getAnswersPerQuestion.data.data;
                 
@@ -46,7 +48,7 @@ const ViewQuestion = () => {
         <div>
             <Header></Header>
             <div className='page_content'>
-                <div className='navbar'> <QuestionNav></QuestionNav></div>
+                <div className='navbar'><QuestionNav></QuestionNav></div>
                 <div className='content'>
                 <div> <h3 className='space'>Question</h3></div>
                     <ViewQuestionWidget key={getQuestion.id} picture_url={getQuestion.picture_url} name={getQuestion.name} id={getQuestion.id} name={getQuestion.name} user_id={getQuestion.user_id}  title={getQuestion.title} problem={getQuestion.problem} description={getQuestion.description} suggested_solution={getQuestion.suggested_solution}></ViewQuestionWidget>

@@ -1,15 +1,17 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 
+// Importing styling
 import './pages.css';
-import UsersAPI from '../hooks/UsersAPI';
-
 
 // Importing Components
 import LowerFooter from '../Components/LowerFooter';
 import Header from '../Components/Headers/Header';
 import UserNav from '../Components/Navbar/UserNav';
 import UserRow from '../Components/Cards/UserRow';
+
+// Importing hooks
+import UsersAPI from '../hooks/UsersAPI';
 
 const Users = () => {
 
@@ -41,11 +43,11 @@ const Users = () => {
                         <div className='user_column bold'> Degree </div>
                     </div>
                     { 
-                            users?.map((e) => {                            
-                                return (
-                                    <UserRow key={e.id} id={e.id} name={e.name} email={e.email} phone={e.phone} degree={e.degree}> </UserRow>
-                                )
-                            })  
+                        users?.map((e) => {                            
+                            return (
+                                <UserRow key={e.id} id={e.id} name={e.name} email={e.email} phone={e.phone} degree={e.degree}> </UserRow>
+                           )
+                        })  
                     }
                 </div> 
             </div>

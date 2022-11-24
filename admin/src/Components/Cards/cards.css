@@ -16,7 +16,7 @@
 .data_box {
     background: white;
     border-radius: 15px;
-    width: 15em;
+    width: 14em;
     padding: 2vw 2vw;
     position: relative;
     display: flex;
@@ -28,12 +28,14 @@
 
 .data_image {
     margin-right: 0cm;
+    height: 30px;
+    width: auto;
 }
 
 .data_numbers {
     font-family: 'Bangers';
     font-weight: bolder;
-    font-size: 3em;
+    font-size: 2em;
     font-style: italic;
     margin-bottom: 1vw;
     margin-top: 1vw;
