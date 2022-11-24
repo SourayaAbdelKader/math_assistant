@@ -18,6 +18,7 @@ import NullNav from '../Components/Navbar/NullNav';
 import UserInfo from '../Components/Cards/UserInfo';
 import DataCard from '../Components/Cards/DataCard';
 import ScoreCard from '../Components/Cards/ScoreCard';
+import FullMark from '../Components/Cards/FullMark';
 
 // Importing hooks
 import UserAPI from "../hooks/UsersAPI";
