@@ -23,9 +23,9 @@ const Tags = () => {
 
     useEffect(() =>{
         const getAllTags  = async () =>{
-            const get_users = await TagAPI.getTags();
-            if (get_users.data.message === 'Found'){
-                const get = get_users.data.data;
+            const get_tags = await TagAPI.getTags();
+            if (get_tags.data.message === 'Found'){
+                const get = get_tags.data.data;
                 setTags(get);
             }
     }; getAllTags();}, [])
