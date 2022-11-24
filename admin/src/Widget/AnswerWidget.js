@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // Importing styling and assets
 import './widget.css';
@@ -18,6 +19,23 @@ import AnswerAPI from '../hooks/AnswerAPI';
 
 
 const AnswerWidget = (answer) => {
+
+    const navigateUserProfile = (e) => {
+        e.preventDefault();
+        localStorage.setItem('choosed_user', answer.user_id);
+        navigate('/user/profile');
+    };
+    const navigate = useNavigate();
+
+    // Handeling profile picture
+    const handlePicture = () => {
+        if (answer.picture_url == null){
+            return picture;
+        } 
+        return answer.picture_url;
+    }
+
+    const profile_picture = handlePicture()
 
     const componentRef = React.useRef();
     const [openAccept, setOpenAccept] = useState(false);
@@ -40,8 +58,8 @@ const AnswerWidget = (answer) => {
         <div onClick={handleClick} id={answer.id} className="answer_container">
             <div className="flex_between space">
                 <div className="flex">
-                    <div> <img className='profile_pic' src={picture} alt=''/> </div>
-                    <div> <p className='name'> {answer.name} </p> </div>
+                    <div> <img className='profile_pic' src={profile_picture} alt=''/> </div>
+                    <div> <p onClick={navigateUserProfile} className='name pointer'> {answer.name} </p> </div>
                 </div>
                 <div>
                 <div>

@@ -88,7 +88,6 @@ const EditProfile = (props) => {
     const handleImage = (event) => {
         let file = event.target.files[0];
         if (file){
-            console.log(file)
             getBase64(file, (base64srting) => {
                 setImage(base64srting);
             })
@@ -113,7 +112,6 @@ const EditProfile = (props) => {
             "location":location,
             "picture_url":picture_url, 
         });
-        console.log(edit_profile)
         if (edit_profile.data.status == '200'){
             setOpen(true)
             componentRef.current.classList.add('hide');
