@@ -41,6 +41,7 @@ const Profile = () => {
                         birthdate={details.birthdate}
                         email={details.email}
                         phone={details.phone}
+                        picture_url={details.picture_url}
                     > 
                     </UserInfo> 
                 </div>

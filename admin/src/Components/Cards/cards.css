@@ -78,3 +78,37 @@
     font-size: 1.2em;
     font-weight: 600;
 }
+
+/* For the score card */
+.score_box {
+    border: 1px solid;
+    background: white;
+    border-radius: 25px;
+    height: 22vh;
+    width: 35vw;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 2px 3px 3px #797c7cd2, inset 0px 0px 4px rgb(232, 240, 243);
+}
+
+.space_right {
+    margin-right: 1vw;
+}
+
+.trapezoid {
+    height: 21.8vh;
+    width: auto;
+    margin-right: 0cm;
+}
+
+.content_box {
+    padding: 2vw;
+}
+
+.line_space {
+    margin-bottom: 1vw;
+}
+
+.small_line_space {
+    margin-bottom: 0.5vw;
+}

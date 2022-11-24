@@ -262,3 +262,31 @@
     border-radius: 15px;
     border: 0cm;
 }
+
+.flex_row {
+    display: flex;
+}
+
+.flex_inbetween {
+    justify-content: space-between;
+}
+
+.borders > div {
+    border: 1px solid;
+}
+
+.Profile_container {
+    padding: 0vw 0vw;
+}
+
+.Profile_container >div{
+    margin: 2vw 0vw;
+}
+
+.borders > div {
+    border: 1px solid;
+}
+
+.Profile_container > div {
+    margin-bottom: 2vw;
+}
