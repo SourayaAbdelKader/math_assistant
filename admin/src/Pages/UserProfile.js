@@ -80,8 +80,8 @@ const UserProfile = () => {
             <div className='page_content'> 
                 <NullNav></NullNav>
                 <div className='content'>
-                <div> <h3 className='space'> My Profile </h3> </div>
-                <div> 
+                <div> <h3 className='space'> Profile </h3> </div>
+                <div className='Profile_container'> 
                     <UserInfo 
                         id={details.id}    
                         name={details.name} 
@@ -94,8 +94,7 @@ const UserProfile = () => {
                         picture_url={details.picture_url}
                     > 
                     </UserInfo> 
-                </div>
-                <div className='flex_inbetween'>
+                <div className='flex_row flex_inbetween'>
                     <ScoreCard  total={answerScore+practiceScore} answers={answerScore} practice={practiceScore}></ScoreCard>
                     <FullMark  total={fullmarked}></FullMark>
                 </div>
@@ -105,7 +104,7 @@ const UserProfile = () => {
                     <DataCard pic={questions_icon} number={questions} type={'Questions'}></DataCard>
                     <DataCard pic={tags_icon} number={tags} type={'Tags Used'}></DataCard>
                 </div>
-
+                </div>
                 </div>
             </div>
         <LowerFooter></LowerFooter>

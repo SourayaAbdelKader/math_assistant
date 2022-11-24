@@ -10,7 +10,7 @@ import circle_box from '../../images/block_circle.png';
 const FullMark = (props) => {
     return(
         <div className="score_box"> 
-            <div className="content"> 
+            <div className="content_box"> 
                 <div className="line_space"> <img src={full_mark} alt='full_mark'/> </div>
                 <div className="flex small_line_space"> <h3 className="space_right">Full Marked Practice:</h3> <h3>{props.total}</h3></div>
             </div>
