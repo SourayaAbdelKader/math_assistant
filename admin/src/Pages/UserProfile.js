@@ -16,6 +16,8 @@ import LowerFooter from '../Components/LowerFooter';
 import Header from '../Components/Headers/Header';
 import NullNav from '../Components/Navbar/NullNav';
 import UserInfo from '../Components/Cards/UserInfo';
+import DataCard from '../Components/Cards/DataCard';
+import ScoreCard from '../Components/Cards/ScoreCard';
 
 // Importing hooks
 import UserAPI from "../hooks/UsersAPI";
