@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+
 import './pages.css';
 import UsersAPI from '../hooks/UsersAPI';
 
@@ -8,10 +9,12 @@ import UsersAPI from '../hooks/UsersAPI';
 import LowerFooter from '../Components/LowerFooter';
 import Header from '../Components/Headers/Header';
 import UserNav from '../Components/Navbar/UserNav';
+import UserRow from '../Components/Cards/UserRow';
 
 const Users = () => {
 
     const [users, setUsers] = useState([]);
+
     useEffect(() =>{
         const getUsers  = async () =>{
             const get_users = await UsersAPI.getUser();
@@ -40,12 +43,7 @@ const Users = () => {
                     { 
                             users?.map((e) => {                            
                                 return (
-                                    <div key={e.id} className='flex_between row_table'> 
-                                    <div className='user_column'> {e.name} </div>
-                                    <div className='user_column'> {e.email} </div>
-                                    <div className='user_column'> {e.phone}  </div>
-                                    <div className='user_column'> {e.degree}  </div>
-                                    </div>
+                                    <UserRow key={e.id} id={e.id} name={e.name} email={e.email} phone={e.phone} degree={e.degree}> </UserRow>
                                 )
                             })  
                     }
