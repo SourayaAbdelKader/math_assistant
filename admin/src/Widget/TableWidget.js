@@ -103,15 +103,15 @@ const TableWidget = (props) => {
             </div>
             <div className='column_icon flex_end pointer'> <img onClick={submitDelete} className="icon_table" src={delete_icon} alt='edit'/> </div>
             <Popup open={open} modal nested >
-                        {close => (
-                            <div className="modal flex">
-                                <button className="close space_right" onClick={close}>
-                                &times;
-                                </button>
-                                <div> <h3>Tag Edited</h3></div>
-                            </div>
-                        )}
-                </Popup>
+                {close => (
+                    <div className="modal flex">
+                        <button className="close space_right" onClick={close}>
+                        &times;
+                        </button>
+                        <div> <h3>Tag Edited</h3></div>
+                    </div>
+                )}
+            </Popup>
         </div>
     )
 }

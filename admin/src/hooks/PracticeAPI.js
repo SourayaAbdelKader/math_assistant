@@ -10,6 +10,14 @@ class PracticeAPI extends Base {
         return await this.get('/problem/id/'+id);
     }
 
+    async deletePractice (id) {
+        return await this.post('problem/delete/'+id);
+    }
+
+    async editPractice (id, body) {
+        return await this.post('problem/update/'+id, body);
+    }
+
     async getCheckedProblems (id) {
         return await this.get('solution/user/problem/checked/'+id);
     }
