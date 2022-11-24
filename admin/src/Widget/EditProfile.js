@@ -8,10 +8,12 @@ import './widget.css';
 
 // Importing images
 import messageSent from '../images/sent.png';
-import edit_icon from '../images/edit.png';
 
-import UserAPI from "../hooks/UsersAPI";
+// Importing utils
 import validEmail, {checkInputIsNumber, checkInputIsLevel, checkEmptyInput, getBase64} from '../Utils/Utils'
+
+// Importing hooks
+import UserAPI from "../hooks/UsersAPI";
 
 const EditProfile = (props) => {
 

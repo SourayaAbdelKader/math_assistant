@@ -1,6 +1,7 @@
 import React from "react";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import { useState } from "react";
+
 // Importing style and assets
 import './cards.css';
 import back from '../../images/back.png';
@@ -10,7 +11,8 @@ const QuestionForEx = (props) => {
     const [image, setImage] = useState(false)
     const navigate = useNavigate();
     const navigatePractice = () => {navigate('/practice');};
-    if (props.picture_url) { setImage(true)}
+    if (props.picture_url) { setImage(true)};
+
     return(
         <div className='question_section'>
             <div className='flex space'> 

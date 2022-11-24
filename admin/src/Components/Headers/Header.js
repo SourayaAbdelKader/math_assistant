@@ -4,13 +4,10 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 // Importing styling and assets
 import './headers.css';
 import logo from '../../images/logo.png';
-import notification from '../../images/notification.png';
-import profile from '../../images/profile.png';
 
 const Header = () => {
     
     const navigate = useNavigate();
-    const navigateProfile = () => {navigate('/profile');};
     const navigateHome = () => {navigate('/');};
 
     return(

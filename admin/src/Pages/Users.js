@@ -20,7 +20,6 @@ const Users = () => {
     useEffect(() =>{
         const getUsers  = async () =>{
             const get_users = await UsersAPI.getUser();
-            console.log(get_users)
             if (get_users.data.message === 'Found'){
                 const get = get_users.data.data;
                 setUsers(get);

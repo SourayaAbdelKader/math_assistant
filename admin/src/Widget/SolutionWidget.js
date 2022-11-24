@@ -1,10 +1,10 @@
 import React from "react";
-import {useState} from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // Importing style
 import './widget.css';
 
+// This is considered as widget for a future editing (giving the admin access to alter the user's solutions.
 const SolutionWidget = (props) => {
     const navigate = useNavigate();
 
