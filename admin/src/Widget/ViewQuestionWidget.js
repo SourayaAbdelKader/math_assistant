@@ -1,23 +1,15 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // Importing styling and assets
 import './widget.css';
-import delete_icon from '../images/delete.png';
 import picture from '../images/profileSelected.png';
 
 // Importing libraries related to Latex
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 
-// Importing API
-import QuestionAPI from '../hooks/QuestionAPI';
-import AnswerAPI from '../hooks/AnswerAPI';
-
-
+// This is considered as widget for a future editing (giving the admin access to alter the user's question.
 const ViewQuestionWidget = (question) => {
 
     const navigateUserProfile = (e) => {
@@ -35,8 +27,6 @@ const ViewQuestionWidget = (question) => {
     }
 
     const profile_picture = handlePicture();
-
-    const componentRef = React.useRef();
 
     const navigate = useNavigate();
 

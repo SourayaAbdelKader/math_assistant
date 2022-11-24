@@ -9,7 +9,6 @@ import './widget.css';
 
 // Importing images
 import delete_icon from '../images/delete.png';
-import edit_icon from '../images/edit.png';
 import EditPractice from "./EditPractice";
 import PracticeAPI from "../hooks/PracticeAPI";
 

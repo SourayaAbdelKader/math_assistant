@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 // Importing styling and assets
 import './widget.css';
@@ -8,15 +10,6 @@ import delete_icon from '../images/delete.png';
 import accept from '../images/accept.png';
 import accepted_image from '../images/accepted.png';
 import picture from '../images/profileSelected.png';
-
-// Importing popup
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-
-// Importing API
-import QuestionAPI from '../hooks/QuestionAPI';
-import AnswerAPI from '../hooks/AnswerAPI';
-
 
 const AnswerWidget = (answer) => {
 

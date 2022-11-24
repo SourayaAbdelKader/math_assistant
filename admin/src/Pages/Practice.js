@@ -2,7 +2,6 @@ import React from 'react';
 import './pages.css';
 import {useState, useEffect} from 'react';
 
-
 // Importing Components
 import LowerFooter from '../Components/LowerFooter';
 import Header from '../Components/Headers/Header';
@@ -10,6 +9,7 @@ import PracticeNav from '../Components/Navbar/PracticeNav';
 import PracticeWidget from '../Widget/PracticeWidget';
 import AddPractice from '../Widget/AddPractice';
 
+// Importing hooks
 import PracticeAPI from '../hooks/PracticeAPI';
 
 const Practice = () => {

@@ -8,10 +8,10 @@ import './widget.css';
 import messageSent from '../images/sent.png';
 
 // Importing utils function
+import {checkInputIsNumber, checkInputIsLevel, checkEmptyInput, getBase64} from '../Utils/Utils';
 
+// Importing hooks
 import PracticeAPI from '../hooks/PracticeAPI';
-
-import {checkInputIsNumber, checkInputIsLevel, checkEmptyInput, getBase64} from '../Utils/Utils'
 
 const AddPractice = (props) => {
 

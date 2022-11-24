@@ -40,7 +40,6 @@ const CheckSolution = () => {
     }
 
     function handleChange(event){
-        console.log(event.target.value);
         let description = event.target.value;
         if(description.length < 30){ 
             componentRef.current.classList.remove('hide');
@@ -59,17 +58,13 @@ const CheckSolution = () => {
     useEffect(() =>{
         const getPractice  = async () =>{
             const exercice = await PracticeAPI.getPracticeById(localStorage.getItem('choosed_practice'));
-            console.log(exercice)
             if (exercice.data.message === 'Found'){
                 const get = exercice.data.data[0];
-                console.log(get)
                 setPractice(get)
             } 
             const solution = await SolutionAPI.getAnswerById(localStorage.getItem('choosed_solution'));
-            console.log(solution)
             if (solution.data.message === 'Found'){
                 const get = solution.data.data
-                console.log(get)
                 setUserSolution(get)
             } 
     }; getPractice();}, []);
@@ -77,7 +72,6 @@ const CheckSolution = () => {
     const submitAnswer = (e) => {
         e.preventDefault();
         addFeedback(id, description, points, localStorage.getItem('user_id'));
-        console.log(points)
     }
 
     const addFeedback = async ( solution_id, feedback, score, editor_id) => {
@@ -101,7 +95,6 @@ const CheckSolution = () => {
             setMessage('There is an error submitting your feedback...')
         }
         setOpen(true)
-        console.log(add_solution.data.message)
     }
 
     return (
