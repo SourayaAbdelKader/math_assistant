@@ -1,7 +1,9 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import './pages.css';
 import Popup from 'reactjs-popup';
+
+// Importing styling
+import './pages.css';
 import 'reactjs-popup/dist/index.css';
 
 // Importing Components

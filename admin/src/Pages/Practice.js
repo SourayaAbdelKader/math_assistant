@@ -27,12 +27,11 @@ const Practice = () => {
     const [open, setOpen] = useState(false); 
     const [isImage, setIsImage] = useState(false);
     const [message, setMessage] = useState('');
-
     const [practice, setPractice] = useState([]);
+
     useEffect(() =>{
         const getUsers  = async () =>{
             const get_users = await PracticeAPI.getPractices();
-            console.log(get_users)
             if (get_users.data.message === 'Found'){
                 const get = get_users.data.data;
                 setPractice(get);
@@ -77,7 +76,6 @@ const Practice = () => {
     const handleImage = (event) => {
         let file = event.target.files[0];
         if (file){
-            console.log(file)
             getBase64(file, (base64srting) => {
                 setImage(base64srting);
             })
@@ -113,7 +111,6 @@ const Practice = () => {
             "user_id": user_id,
             "tag_id":tag_id, 
         });
-        console.log(add_practice)
         if (add_practice.data.message == 'Added Successfully'){
             setOpen(true)
             componentRef.current.classList.add('hide');
@@ -176,11 +173,11 @@ const Practice = () => {
                         <div className='column_icon bold'> Delete </div>
                 </div>
                     { 
-                            practice?.map((e) => {                            
-                                return (
-                                    <PracticeWidget key={e.id} id={e.id} title={e.name} description={e.description} level={e.level} points={e.points} tag_id={e.tag_id}></PracticeWidget>
-                                )
-                            })  
+                        practice?.map((e) => {                            
+                            return (
+                                <PracticeWidget key={e.id} id={e.id} title={e.name} description={e.description} level={e.level} points={e.points} tag_id={e.tag_id}></PracticeWidget>
+                            )
+                        })  
                     }
                 </div> 
             </div>

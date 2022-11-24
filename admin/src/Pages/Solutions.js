@@ -13,6 +13,7 @@ const Solutions = () => {
 
     const [solutions, setSolutions] = useState([]);
     const [checked, setChecked] = useState([]);
+    
     useEffect(() =>{
         const getQuestion = async () =>{
             const questions = await SolutionAPI.getUncheckedProblems();

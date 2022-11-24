@@ -1,35 +1,41 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import './pages.css';
 import Popup from 'reactjs-popup';
+
+// Importing stylings and assets
+import './pages.css';
 import 'reactjs-popup/dist/index.css';
+import messageSent from '../images/sent.png';
+
 // Importing Components
 import LowerFooter from '../Components/LowerFooter';
 import Header from '../Components/Headers/Header';
 import EditorNav from '../Components/Navbar/EditorNav';
-import UsersAPI from '../hooks/UsersAPI';
+
+// Importing utils
 import validEmail, {validName, validPassword} from '../Utils/Utils';
+
+// Importinh hooks
+import UsersAPI from '../hooks/UsersAPI';
 
 const Editors = () => {
 
     const [open, setOpen] = useState(false);
+    const [editors, setEditors] = useState([]);
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [name, setName] = useState();
 
     const componentRef = React.useRef();
 
-    const [editors, setEditors] = useState([]);
     useEffect(() =>{
         const getUsers  = async () =>{
             const get_users = await UsersAPI.getEditors();
-            console.log(get_users)
             if (get_users.data.message === 'Found'){
                 const get = get_users.data.data;
                 setEditors(get);
             }
     }; getUsers();}, [])
-
-    const [email, setEmail] = useState() // For input
-    const [password, setPassword] = useState();
-    const [name, setName] = useState();
 
     // Handeling the inputs
     function handleChange(event) {
@@ -111,34 +117,26 @@ const Editors = () => {
                     <div className='flex_between space'> 
                         <h3 className=''>Editors</h3>
                         <Popup trigger={<button className='login bold'>ADD EDITOR</button>} modal nested >
-                                        {close => (
-                                        <div className="modal">
-                                            <button className="close" onClick={close}>
-                                            &times;
-                                            </button>
-                                            <div className='modal_content'>
-                                                <div className="header center space"> <h3> Add Editor </h3> </div>
-                                                <div className="space row"> <input onChange={handleName} className="input"  type="text" placeholder="Name" /></div>
-                                                <div className="space row"> <input onChange={handleChange} className="input" type="email" placeholder="Email" /></div>
-                                                <div className="space row"> <input onChange={handlePassword} className="input"  type="password" placeholder="Password" /></div>
-                                                <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
-                                                {open && (
-                                                <div
-                                                        className="modal fade"
-                                                        tabIndex="-1"
-                                                        role="dialog"
-                                                        aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true"
-                                                        >
-                                                        ADDED
-                                                        </div>
-                                                    )}
-                                                <div className="actions flex_around">
-                                                <button onClick={onSubmit} className="login space_right"> Submit </button>
-                                                <button className="login" onClick={() => {close();}}> Cancel </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                            {close => (
+                                <div className="modal">
+                                    <button className="close" onClick={close}>
+                                    &times;
+                                    </button>
+                                    <div className='modal_content'>
+                                        <div className="header center space"> <h3> Add Editor </h3> </div>
+                                        <div className="space row"> <input onChange={handleName} className="input"  type="text" placeholder="Name" /></div>
+                                        <div className="space row"> <input onChange={handleChange} className="input" type="email" placeholder="Email" /></div>
+                                        <div className="space row"> <input onChange={handlePassword} className="input"  type="password" placeholder="Password" /></div>
+                                        <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>
+                                        {
+                                            open && (<div className='message_sent'> <img className='medium_icon' src={messageSent} alt='sent'/> Editor Added Successfully </div>)
+                                        }
+                                    <div className="actions flex_around">
+                                        <button onClick={onSubmit} className="login space_right"> Submit </button>
+                                        <button className="login" onClick={() => {close();}}> Cancel </button>
+                                    </div>
+                                </div>
+                            </div>
                         )}
                     </Popup>
                     </div>
@@ -149,16 +147,16 @@ const Editors = () => {
                         <div className='column bold'> Degree </div>
                     </div>
                     { 
-                            editors?.map((e) => {                            
-                                return (
-                                    <div key={e.id} className='flex_between row_table'> 
+                        editors?.map((e) => {                            
+                            return (
+                                <div key={e.id} className='flex_between row_table'> 
                                     <div className='column'> {e.name} </div>
                                     <div className='column'> {e.email} </div>
                                     <div className='column'> {e.phone}  </div>
                                     <div className='column'> {e.degree}  </div>
-                                    </div>
-                                )
-                            })  
+                                </div>
+                            )
+                        })  
                     }
                 </div> 
             </div>
