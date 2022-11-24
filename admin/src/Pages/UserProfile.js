@@ -19,6 +19,7 @@ import UserInfo from '../Components/Cards/UserInfo';
 import DataCard from '../Components/Cards/DataCard';
 import ScoreCard from '../Components/Cards/ScoreCard';
 import FullMark from '../Components/Cards/FullMark';
+import ViewUserCard from '../Components/Cards/ViewUserCard';
 
 // Importing hooks
 import UserAPI from "../hooks/UsersAPI";
@@ -82,7 +83,7 @@ const UserProfile = () => {
                 <div className='content'>
                 <div> <h3 className='space'> Profile </h3> </div>
                 <div className='Profile_container'> 
-                    <UserInfo 
+                    <ViewUserCard 
                         id={details.id}    
                         name={details.name} 
                         gender={details.gender}
@@ -93,7 +94,7 @@ const UserProfile = () => {
                         phone={details.phone}
                         picture_url={details.picture_url}
                     > 
-                    </UserInfo> 
+                    </ViewUserCard> 
                 <div className='flex_row flex_inbetween'>
                     <ScoreCard  total={answerScore+practiceScore} answers={answerScore} practice={practiceScore}></ScoreCard>
                     <FullMark  total={fullmarked}></FullMark>
