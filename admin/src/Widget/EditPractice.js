@@ -10,8 +10,11 @@ import './widget.css';
 import messageSent from '../images/sent.png';
 import edit_icon from '../images/edit.png';
 
-import PracticeAPI from "../hooks/PracticeAPI";
+// Importing utils
 import {checkInputIsNumber, checkInputIsLevel, checkEmptyInput, getBase64} from '../Utils/Utils'
+
+// Importing hooks
+import PracticeAPI from "../hooks/PracticeAPI";
 
 const EditPractice = (props) => {
 

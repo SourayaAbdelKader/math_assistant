@@ -10,10 +10,8 @@ const ViewUserCard = (details) => {
 
     const handleProfilePicture = () => {
         if (details.picture_url) {
-            console.log('yes');
-            console.log(details.picture_url)
             return details.picture_url;
-        } else { console.log("no");return profileSelected;}
+        } else {return profileSelected;}
     }
 
     const profile_picture = handleProfilePicture()
