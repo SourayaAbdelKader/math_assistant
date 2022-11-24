@@ -10,13 +10,12 @@ import './widget.css';
 // Importing images
 import delete_icon from '../images/delete.png';
 import edit_icon from '../images/edit.png';
-
+import EditPractice from "./EditPractice";
 import PracticeAPI from "../hooks/PracticeAPI";
 
 const PracticeWidget = (props) => {
 
     const [open, setOpen] = useState(false);
-
     // Deleting a practice
 
     const submitDelete = (e) => {
@@ -38,15 +37,15 @@ const PracticeWidget = (props) => {
             <div onClick={navigateSolutions} className='user_column pointer'><p>{props.id} {props.title}</p> </div>
             <div className='column_title'> {props.level} </div>
             <div className='column_title'> {props.points} </div>
-            <div className='column_icon  pointer'> <img className="icon_table" src={edit_icon} alt='edit'/> </div>
-            <div className='column_icon  pointer'> <img onClick={submitDelete} className="icon_table" src={delete_icon} alt='edit'/> </div>
+            <EditPractice key={props.id} data={props} ></EditPractice>
+            <div className='column_icon  pointer'> <img onClick={submitDelete} className="icon_table" src={delete_icon} alt='edit'/> </div>         
             <Popup open={open} modal nested >
                 {close => (
                     <div className="modal flex">
                         <button className="close space_right" onClick={close}>
                         &times;
                         </button>
-                        <div> <h3>Practice Deleted</h3></div>
+                        <div><h3>Practice Deleted</h3></div>
                     </div>
                 )}
             </Popup>

@@ -178,7 +178,7 @@ const Practice = () => {
                     { 
                             practice?.map((e) => {                            
                                 return (
-                                    <PracticeWidget id={e.id} title={e.name} description={e.description} level={e.level} points={e.points}></PracticeWidget>
+                                    <PracticeWidget key={e.id} id={e.id} title={e.name} description={e.description} level={e.level} points={e.points} tag_id={e.tag_id}></PracticeWidget>
                                 )
                             })  
                     }
