@@ -4,7 +4,7 @@ import React from "react";
 import './buttons.css';
 
 const EditProfile = () => {
-    return(<div> <button className="login"> EDIT PROFILE </button> </div>)
+    return(<div> <button className="login bold"> EDIT PROFILE </button> </div>)
 }
 
 export default EditProfile;
