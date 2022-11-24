@@ -77,7 +77,6 @@ const LoginWidget = () => {
             if (login_user.status !== 200 || login_user.data.status === 'Authorization Token not found') {
                 componentRef.current.classList.remove('hide');
             } else {
-                console.log(login_user.data.authorisation.token)
                 localStorage.setItem('user_id', login_user.data.user.id);
                 localStorage.setItem('user_name', login_user.data.user.name);
                 localStorage.setItem('user_email', login_user.data.user.email);

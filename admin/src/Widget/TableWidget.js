@@ -53,7 +53,6 @@ const TableWidget = (props) => {
             setMessage(edit_tag.data.message);
             componentRef.current.classList.remove('hide')
         }
-        console.log(edit_tag.data.status)   
     }
 
     const submitEdit = (e) => {

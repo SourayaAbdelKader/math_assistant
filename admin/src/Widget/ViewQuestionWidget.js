@@ -20,6 +20,12 @@ import AnswerAPI from '../hooks/AnswerAPI';
 
 const ViewQuestionWidget = (question) => {
 
+    const navigateUserProfile = (e) => {
+        e.preventDefault();
+        localStorage.setItem('choosed_user', question.user_id);
+        navigate('/user/profile');
+    };
+
     // Handeling profile picture
     const handlePicture = () => {
         if (question.picture_url == null){
@@ -34,8 +40,6 @@ const ViewQuestionWidget = (question) => {
 
     const navigate = useNavigate();
 
-    const [description, setDescription] = useState("");
-
     const navigateQuestion= () => {navigate('/question');};
     
     const handleClick = (e) => {
@@ -47,7 +51,7 @@ const ViewQuestionWidget = (question) => {
             <div className="flex_between space">
                 <div className="flex">
                     <div> <img className='profile_pic' src={profile_picture} alt=''/> </div>
-                    <div> <p className='name'> {question.name}</p> </div>
+                    <div> <p onClick={navigateUserProfile} className='name pointer'> {question.name}</p> </div>
                 </div>
                 <div>
                     <div className='tag_name'> {question.title} </div>

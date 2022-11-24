@@ -69,7 +69,6 @@ const EditPractice = (props) => {
     const handleImage = (event) => {
         let file = event.target.files[0];
         if (file){
-            console.log(file)
             getBase64(file, (base64srting) => {
                 setImage(base64srting);
             })
@@ -79,10 +78,8 @@ const EditPractice = (props) => {
 
     const validInputs = (title, description, points, level, tagNumber) => {
         if (title && description && points && level && tagNumber){
-            console.log("true")
             return true;
         } 
-        console.log("false")
         return false;
     }
 
