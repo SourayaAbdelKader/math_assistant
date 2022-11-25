@@ -9,5 +9,6 @@ class TagAPI extends Base {
     async searchTags (data) {
         return await this.get('tag/search/'+data);
     }
+    
 }
 export default new  TagAPI();
