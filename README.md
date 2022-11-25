@@ -91,6 +91,15 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ### Admin Panel
 
+<style>
+table th:first-of-type {
+    width: 50%;
+}
+table th:nth-of-type(2) {
+    width: 50%;
+}
+</style>
+
 | Landing                                          | Login                                    |
 | ------------------------------------------------ | ---------------------------------------- |
 | ![Landing](./readme/m_admin_home.png)            | ![login](./readme/admin_login_gif.gif)   |
