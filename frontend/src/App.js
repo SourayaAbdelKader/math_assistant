@@ -15,6 +15,7 @@ import ViewSolve from './Pages/ViewSolved';
 import ViewQuestion from './Pages/ViewQuestion';
 import Exercice from './Pages/Exercice';
 import Feedback from './Pages/Feedback';
+import UserProfile from './Pages/UserProfile';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
               <Route path='/practice/solved' element={<ViewSolve />} />
               <Route path='/question' element={<ViewQuestion />} />
               <Route path='/practice/feedback' element={<Feedback />} />
+              <Route path='/user/profile' element={<UserProfile />} />
             </Routes>
           </Router>
         </div>
