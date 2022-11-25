@@ -24,11 +24,9 @@ const ViewSolve = () => {
     useEffect(() =>{
         const getPractice  = async () =>{
             const checked = await PracticeAPI.getCheckedProblems(localStorage.getItem("user_id"));
-            console.log(checked.data.message)
             const unchecked = await PracticeAPI.getUncheckedProblems(localStorage.getItem("user_id"));
             if (checked.data.message === 'Found'){
                 const get = checked.data.data;
-                console.log(checked)
                 setChecked(get)} 
             if (unchecked.data.message === 'Found'){
                 const getUn = unchecked.data.data;

@@ -26,7 +26,6 @@ const Exercice = () => {
     const [message, setMessage] = useState("");
 
     function handleChange(event){
-        console.log(event.target.value);
         let description = event.target.value;
         if(description.length < 30){ 
             componentRef.current.classList.remove('hide');
@@ -45,10 +44,8 @@ const Exercice = () => {
     useEffect(() =>{
         const getPractice  = async () =>{
             const exercice = await PracticeAPI.getPracticeById(id);
-            console.log(exercice)
             if (exercice.data.message === 'Found'){
                 const get = exercice.data.data[0];
-                console.log(get)
                 setPractice(get)
             } 
     }; getPractice();}, []);
@@ -66,7 +63,6 @@ const Exercice = () => {
         });
         if (add_solution.data.message == 'Added Successfully'){ setOpen(true); setMessage('Solution Added Successfully')}
         else if (add_solution.data.message == 'Solution Already Submitted'){ setOpen(true); setMessage('Solution Already Submitted')}
-        console.log(add_solution.data.message)
     }
 
     return (     

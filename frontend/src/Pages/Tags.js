@@ -33,8 +33,6 @@ const Tags = () => {
         const getTag  = async () =>{
             setLoading(true);
             const tags = await tagsApi.getTags();
-            console.log(tags)
-            console.log(tags.data.message)
             if (tags.data.message === 'Found'){
                 const get = tags.data.data;
                 setTags(get);
@@ -57,7 +55,6 @@ const Tags = () => {
         if (search_tag.data.message == 'Tag Not Found'){
             setEmpty(true)
         } else {setSearchResult(search_tag.data.data)}
-        console.log(search_tag.data.message)
      };
 
     return (     

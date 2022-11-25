@@ -41,7 +41,6 @@ const SearchPage = () => {
     useEffect(() =>{
         const getTag  = async () =>{
             const tags = await tagsApi.getTags();
-            console.log(tags)
             if (tags.data.message === 'Found'){
                 const get = tags.data.data;
                 setTags(get);
@@ -51,7 +50,6 @@ const SearchPage = () => {
     // Handeling all the inputs
     function handleProblemChange(event){
         let problem = event.target.value;
-        console.log(event.target.value);
         if(problem.length < 15){ 
             componentRef.current.classList.remove('hide');
             event.target.classList.add('error_box');
@@ -73,7 +71,6 @@ const SearchPage = () => {
 
     function handleSuggestionChange(event){
         let suggestion = event.target.value;
-        console.log(event.target.value);
         if(suggestion.length < 15){ 
             componentRef.current.classList.remove('hide');
             event.target.classList.add('error_box');
@@ -115,6 +112,8 @@ const SearchPage = () => {
         let final_problem = '';
         let final_description = '';
         let final_solution = '';
+
+        // Handeling the inputs: Since for the problem and for the suggested sollution, we can combine the types text to the latex format comming from scaning an image 
         if (validInputs){
             const user_id = localStorage.getItem('user_id');
             const tag_id = localStorage.getItem('selected_tag');
@@ -186,8 +185,8 @@ const SearchPage = () => {
                                             <div className="header center space"> <h3> Insert an image </h3> </div>
                                             <div className='space'> <Previews></Previews> </div>
                                             <div className="actions flex_inbetween">
-                                            <button className="login" onClick={() => {close();}}> Submit </button>
-                                            <button className="login" onClick={() => {close();}}> Cancel </button>
+                                                <button className="login" onClick={() => {close();}}> Submit </button>
+                                                <button className="login" onClick={() => {close();}}> Cancel </button>
                                             </div>
                                         </div>
                                         )}
@@ -215,10 +214,9 @@ const SearchPage = () => {
                                             </button>
                                             <div className="header center space"> <h3> Insert an image </h3> </div>
                                             <div className='space'> <Previews2></Previews2> </div>
-                                            
                                             <div className="actions flex_inbetween">
-                                            <button className="login" onClick={() => {close();}}> Submit </button>
-                                            <button className="login" onClick={() => {close();}}> Cancel </button>
+                                                <button className="login" onClick={() => {close();}}> Submit </button>
+                                                <button className="login" onClick={() => {close();}}> Cancel </button>
                                             </div>
                                         </div>
                                         )}

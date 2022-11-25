@@ -265,17 +265,17 @@
     display: inline-block;
     position: relative;
     overflow: hidden;
-  }
+}
   
-  .parent-div input[type=file] {
+.parent-div input[type=file] {
     left: 0;
     top: 0;
     opacity: 0;
     position: absolute;
     font-size: 90px;
-  }
+}
   
-  .btn-upload {
+.btn-upload {
     background-color: #fff;
     border: 2px solid rgba(0, 0, 0, 0.548);
     padding: 1vw 2vw;    

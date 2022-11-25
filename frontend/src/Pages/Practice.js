@@ -19,10 +19,8 @@ const Practice = () => {
     useEffect(() =>{
         const getPractice  = async () =>{
             const practice = await PracticeAPI.getPractices();
-            console.log(practice)
             if (practice.data.message === 'Found'){
                 const get = practice.data.data;
-                console.log(get)
                 setPractice(get)
             } 
     }; getPractice();}, []);

@@ -19,7 +19,6 @@ export const getTokens = async (setTokenFound) => {
     return getToken(messaging, {vapidKey: 'BF5mtC6xP5t-gULLsVkzmV3Zu0BR6PmixRwCLezeNNOMxAHI9MIbchCx6aMWiz66ozsBkhNz83sUgCNqOJs6FJg'}).then((currentToken) => {
       if (currentToken) {
         localStorage.setItem('device_token', currentToken)
-        console.log(currentToken)
         setTokenFound(true);
         // Track the token -> client mapping, by sending to backend server
         // show on the UI that permission is secured
