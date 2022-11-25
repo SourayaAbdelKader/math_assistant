@@ -39,19 +39,19 @@
 
 ### User
 
-| Landing                                 | Login                              |
-| --------------------------------------- | ---------------------------------- |
-| ![Landing](./readme/user_home.png)      | ![Login](./readme/user_login.png)  |
-| Sign Up                                 | Tags                               |
-| ![Sign up](./readme/user_signup.png)    | ![Tags](./readme/tags.png)         |
-| Questions                               | View Question                      |
-| ![Questions](./readme/questions.png)    | ![Question](./readme/question.png) |
-| Ask Question                            | Profile                            |
-| ![Solved Practice](./readme/ask.png)    | ![Profile](./readme/profile.png)   |
-| Practice                                | Exercice                           |
-| ![Practice](./readme/practice.png)      | ![Exercice](./readme/exercice.png) |
-| Solved Practice                         |                                    |
-| ![Solved Practice](./readme/solved.png) |                                    |
+| Landing                                 | Login                                 |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/user_home.png)      | ![Login](./readme/user_login.png)     |
+| Sign Up                                 | Tags                                  |
+| ![Sign up](./readme/user_signup.png)    | ![Tags](./readme/tags.png)            |
+| Questions                               | View Question                         |
+| ![Questions](./readme/questions.png)    | ![Question](./readme/question.png)    |
+| Ask Question                            | Profile                               |
+| ![Ask Question](./readme/ask.png)       | ![Profile](./readme/user_profile.png) |
+| Practice                                | Exercice                              |
+| ![Practice](./readme/practice.png)      | ![Exercice](./readme/exercice.png)    |
+| Solved Practice                         |                                       |
+| ![Solved Practice](./readme/solved.png) |                                       |
 
 ### Admin Panel
 
