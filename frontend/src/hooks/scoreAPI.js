@@ -25,5 +25,6 @@ class ScoreAPI extends Base {
     async getQuestionsNumber (id) {
         return await this.get('question/countPerUser'+id);
     }
+    
 }
 export default new  ScoreAPI();

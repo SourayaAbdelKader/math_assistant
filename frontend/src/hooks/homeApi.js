@@ -17,6 +17,7 @@ class HomeAPI extends Base {
     async getQuestionsNumber() {
         return await this.get('countQuestions');
     } 
+    
 }
 
 export default new  HomeAPI();
