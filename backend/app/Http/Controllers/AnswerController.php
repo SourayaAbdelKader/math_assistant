@@ -16,6 +16,17 @@ use App\Models\Answer;
 use App\Models\Notification;
 use Carbon\Carbon;
 
+// _____________ Answers _____________
+// For the answer controller, when a user answer a question a 30 point will be added to the answer score and to the user's finale score.
+// When the user's answer is accepted, an additional 10 points will be added to his answer score and final score.
+// Only the user who asked the question can accept the answers to his question, he can accept multiple answers, even his answer.
+// After reaching a certain score (500 points), the user unlock a new feature : voting on answers.
+// The user can vote once on an answer, he can vote just 20 times per day, and he is not allowed to vote on his own answers.
+// Voting up an answer: 5 points will be added to the answer score and to the user's total score.
+// Voting downs an answer: 5 points will be subtracted from the answer score and from the user's total score.
+// Answers will always be displayed accorging to their scores and their status: accepted or not.
+// Answers which reached a score of 0 won't be displayed.
+
 class AnswerController extends Controller{
 
     // _____________ Adding an answer _____________
