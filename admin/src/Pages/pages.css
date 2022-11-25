@@ -57,7 +57,20 @@
 }
 
 .chart {
-    width: 40vw;
+    padding: 2vw;
+    background: white;
+    border-radius: 25px;
+    margin-bottom: 2vw;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.small_chart {
+    width: 35vw;
+}
+
+.flex_inbetween {
+    display: flex;
+    justify-content: space-between;
 }
 
 .content {
