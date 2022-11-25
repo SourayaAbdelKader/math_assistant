@@ -5,7 +5,7 @@ import './cards.css';
 
 // Importing images
 import profileSelected from '../../images/profileSelected.png';
-import EditProfile from "../Buttons/EditProfile";
+import EditProfile from '../../Widgets/EditProfile';
 
 const UserInfo = (details) => {
 
@@ -25,7 +25,7 @@ const UserInfo = (details) => {
                     <img className="user_profile_picture" src={selected} alt="" />
                     <div> <h4 className="user_name"> {details.name} </h4> </div>
                 </div>
-                <div> <EditProfile></EditProfile></div>
+                <div> <EditProfile data={details}></EditProfile></div>
             </div>
             <div className="details"> 
                 <div className="flex_between"> 

@@ -23,6 +23,7 @@ const NotificationWidget = (answer) => {
     const [messages, setMessages] = useState([]);
     const [isTokenFound, setTokenFound] = useState(false);
     const [empty, setEmpty] = useState(false);
+    const [sent, setSent] = useState(false);
 
     useEffect(() =>{
         const sendDeviceToken  = async () =>{
@@ -41,11 +42,15 @@ const NotificationWidget = (answer) => {
                 onMessageListener().then(payload => {
                         setNotification({title: payload.notification.title, body: payload.notification.body})
                 }).catch(err => console.log('failed: ', err));
-                const push_notification = await UserAPI.sendNotification({
+                if (!sent){
+                    const push_notification = await UserAPI.sendNotification({
                     "id": 15, // the id is hard coded because it's the device id on which i'm testing the push notification
                     "title": "Math Assistant",
                     "body": 'You got a new notification.',
                 });
+                setSent(true);
+                }
+
             } else {setEmpty(true)}
         };
     ; sendDeviceToken(); getNotifications();}, []);

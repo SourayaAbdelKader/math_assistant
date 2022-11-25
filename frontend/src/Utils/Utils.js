@@ -15,7 +15,7 @@ export default function validEmail(email) {
 export function validPassword(password){
     let valid = true;
     if (!regularExpression.test(password) || password.length < 6) {
-        valid= false
+        valid= false;
     }
     return valid;
 };
@@ -23,8 +23,34 @@ export function validPassword(password){
 export function validName(name){
     let valid = false;
     if (name.length > 3){
-        valid = true
+        valid = true;
     }
     return valid;
 };
 
+export function checkEmptyInput(input){
+    if (input.length < 3){
+        return true;
+    }; return false;
+};
+
+export function checkInputIsNumber(input){
+    if (input.length == 0 && isNaN(input)){
+        return false;
+    }; return true;
+};
+
+export function checkInputIsLevel(input){
+    if (input == 'hard' || input == 'easy' || input == 'medium'){
+        return true;
+    }; return false;
+};
+
+export function getBase64(file, cb){
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(){
+      cb(reader.result);
+    }
+    reader.onerror = function(err){ console.log(err);};
+};

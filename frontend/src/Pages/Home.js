@@ -11,8 +11,8 @@ import DataCard from '../Components/Cards/DataCard';
 // Importing images
 import main from '../images/main.png';
 import logo from '../images/logo.png';
-import left_chat from '../images/chat-left.png';
-import right_chat from '../images/chat-right1.png';
+import left_chat from '../images/chat_left.png';
+import right_chat from '../images/chat_right.png';
 import questions_pic from '../images/questions.png';
 import users_pic from '../images/users.png';
 import answers_pic from '../images/answers_numb.png';
@@ -54,9 +54,7 @@ const Home = () => {
                                         <div> <img className='main' src={main} alt="main"/> </div>
                                         <div>
                                                 <div> <h3> Why Math Assistant? </h3></div>
-                                                <div className='paragraph'> It's your place to get to share your problems by simply entering it or scaning it from images. The others will help by ansswering 
-                                                        your question. You can accept and vote answers for a better experience. Moreover, check our practice part, where you can solve math problems
-                                                        and get feedback from our editors to enhance your score. </div>
+                                                <div className='paragraph'> It's your place to get to share your problems by simply entering it or scanning it for images. The others will help by answering your question. You can accept and vote answers for a better experience. Moreover, check our practice part, where you can solve math problems and get feedback from our editors to enhance your score. </div>
                                         </div>
                                 </div>
                         </section>
@@ -79,7 +77,7 @@ const Home = () => {
                         </section>
                         <section>
                                 <div className='home_container'>
-                                        <div className='center space'> <h3> Scoring System </h3> </div>
+                                        <div className='center space'> <h1> Scoring System </h1> </div>
                                         <div className='flex_row flex_inbetween space'> 
                                                 <div className='description_box'> 
                                                         <div> <img className='description_image' src={box1} alt="shape"/> </div>

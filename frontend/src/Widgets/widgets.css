@@ -260,3 +260,41 @@
 .notification > p {
     margin-bottom: 0.5vw;
 }
+
+.parent-div {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .parent-div input[type=file] {
+    left: 0;
+    top: 0;
+    opacity: 0;
+    position: absolute;
+    font-size: 90px;
+  }
+  
+  .btn-upload {
+    background-color: #fff;
+    border: 2px solid rgba(0, 0, 0, 0.548);
+    padding: 1vw 2vw;    
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 1vw;
+}
+
+.flex_around {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal_content{
+    padding: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
