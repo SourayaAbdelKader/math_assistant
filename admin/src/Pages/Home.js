@@ -13,7 +13,7 @@ const Home = () => {
                 <section>
                    <div className='hero'> 
                         <h3 className=" space"> Math Assistant</h3>
-                        <p className='center_text'> Share your problem by scanning it. Help other by ansswering their questions, and voting for suitable solutions. You can also enhance your math knowledge by practicing and getting feedback. </p>
+                        <p className='center_text bold'> Share your problem by scanning it. Help other by ansswering their questions, and voting for suitable solutions. You can also enhance your math knowledge by practicing and getting feedback. </p>
                     </div>
                 </section>
             <LowerFooter></LowerFooter>
