@@ -35,7 +35,7 @@ export function checkEmptyInput(input){
 };
 
 export function checkInputIsNumber(input){
-    if (input.length == 0 && isNaN(input)){
+    if (input.length == 0  || isNaN(input)){
         return false;
     }; return true;
 };

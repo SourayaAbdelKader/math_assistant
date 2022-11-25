@@ -24,7 +24,6 @@ const Feedback = () => {
             const exercice = await PracticeAPI.getPracticeById(id);
             if (exercice.data.message === 'Found'){
                 const get = exercice.data.data[0];
-                console.log(get)
                 setPractice(get)
             } 
             setLoading(true);
@@ -33,7 +32,6 @@ const Feedback = () => {
                 'problem_id': id
             });;
             if (solutions.data.message === 'Found'){
-                console.log(solutions.data.data[0]);
                 setuserSolution(solutions.data.data[0]);
             if (solutions.data.data[0].checked == 1){setChecked(true); 
             } else if(solutions.data.data[0].checked == 0) {setLoading(false)}
@@ -63,8 +61,7 @@ const Feedback = () => {
                             <div className='feedback_empty'> <img src={empty} alt='empty'/> </div>
                         </div>
                         )
-                    }
-                                      
+                    }                   
                 </div>
             </div>
         </div>
