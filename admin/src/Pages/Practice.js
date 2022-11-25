@@ -18,9 +18,9 @@ const Practice = () => {
 
     useEffect(() =>{
         const getUsers  = async () =>{
-            const get_users = await PracticeAPI.getPractices();
-            if (get_users.data.message === 'Found'){
-                const get = get_users.data.data;
+            const get_practices = await PracticeAPI.getPractices();
+            if (get_practices.data.message === 'Found'){
+                const get = get_practices.data.data;
                 setPractice(get);
             }
     }; getUsers();}, []);

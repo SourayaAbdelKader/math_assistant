@@ -143,7 +143,7 @@ const EditPractice = (props) => {
                                 { isImage && (<div> <img className='space_left' src={image} alt='pic'/> </div>)}
                                 </div>
                                 {
-                                    open && (<div className='message_sent'> <img className='medium_icon' src={messageSent} alt='sent'/> Practice Added Successfully </div>)
+                                    open && (<div className='message_sent'> <img className='medium_icon' src={messageSent} alt='sent'/> Practice Edited Successfully </div>)
                                 }
                                 <div> <p ref={node => componentRef.current = node} className="error_text hide space"> Invalid Inputs </p> </div>                                                
                                 <div className="actions flex_around">
