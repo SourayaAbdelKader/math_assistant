@@ -89,6 +89,16 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -------------------- | ------------------------ |
 | ![Sign up](./)       | ![Tags](./)              |
 
+### Admin Panel
+
+| Landing                               | Login                                    |
+| ------------------------------------- | ---------------------------------------- |
+| ![Landing](./readme/m_admin_home.png) | ![login](./readme/admin_login_gif.gif)   |
+| Editors                               | Practice                                 |
+| ![Editors](./readme/editors.png)      | ![Practice](./readme/admin_practice.png) |
+| Feedback                              |                                          |
+| ![Questions](./readme/feedback.png)   |
+
 <br><br>
 <img src="./readme/title6.svg"/>
 
