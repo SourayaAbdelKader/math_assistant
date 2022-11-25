@@ -12,6 +12,10 @@ use App\Models\Solution;
 use App\Models\Answer;
 use Carbon\Carbon;
 
+// _____________ Scores _____________
+// The handeling of the scores is done while answering, voting and practicing math problems.
+// This controller is created to get the user score which is divided into two parts: answers score and practice score.
+
 class ScoreController extends Controller{
 
     //_____________ Getting the user's total score _____________
