@@ -82,21 +82,22 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Landing                              | Login/Signup                            |
-| ------------------------------------ | --------------------------------------- |
-| ![Landing](./readme/m_user_home.wmv) | ![Login](./readme/m_login_user_gif.gif) |
-| Sign Up                              | Tags                                    |
-| --------------------                 | ------------------------                |
-| ![Sign up](./)                       | ![Tags](./)                             |
+| Landing                                         | Login/Signup                                    |
+| ----------------------------------------------- | ----------------------------------------------- |
+| ![Landing](./readme/m_user_home.gif)            | ![Login/ Signup](./readme/m_login_user_gif.gif) |
+| Tags                                            | Profile                                         |
+| ![Dashboard](./readme/m_user_tags.gif)          | ![Pages](./readme/m_admin_panel_gif.gif)        |
+| Feedback and notification                       |                                                 |
+| ![Feedback](./readme/feedback_notification.gif) |
 
 ### Admin Panel
 
-| Landing                                          | Login                                    |
-| ------------------------------------------------ | ---------------------------------------- |
-| ![Landing](./readme/m_admin_home.png)            | ![login](./readme/admin_login_gif.gif)   |
-| Dashboard                                        | Admin Panel Pages                        |
-| ![Dashboard](./readme/m_dashboard_gif.gif)       | ![Pages](./readme/m_admin_panel_gif.gif) |
-| Feedback                                         |                                          |
+| Landing                                          | Login                                            |
+| ------------------------------------------------ | ------------------------------------------------ |
+| ![Landing](./readme/m_admin_home.png)            | ![login for admin](./readme/admin_login_gif.gif) |
+| Dashboard                                        | Admin Panel Pages                                |
+| ![Dashboard](./readme/m_dashboard_gif.gif)       | ![Pages](./readme/m_admin_panel_gif.gif)         |
+| Feedback                                         |                                                  |
 | ![Feedback](./readme/m_sending_feedback_gif.gif) |
 
 <br><br>
