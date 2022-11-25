@@ -20,8 +20,10 @@ const TableWidget = (props) => {
 
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
+    
 
     // Editing a tag
     const handleTitle = (event) => {
@@ -47,6 +49,7 @@ const TableWidget = (props) => {
             "title": title,
             "description": description
         });
+        console.log(edit_tag)
         if (edit_tag.data.status == '200'){
             setOpen(true)
         } else {
@@ -69,7 +72,7 @@ const TableWidget = (props) => {
 
     const deleteTag = async (id) => {
         const delete_tag = await TagAPI.deleteTag(id);
-        setOpen(true)
+        setOpenDelete(true)
     }
     
     return(
@@ -88,7 +91,7 @@ const TableWidget = (props) => {
                                         <div className="space row"> <input onChange={handleTitle} className="input"  type="text" placeholder={props.title}/></div>
                                         <div className="space row"> <input onChange={handleDesciption}  className="input"  type="text" placeholder={props.description}/></div>
                                         {
-                                            open && (<div className='message_sent'> <img className='medium_icon' src={messageSent} alt='sent'/> Tag Added Successfully </div>)
+                                            openDelete && (<div className='message_sent'> <img className='medium_icon' src={messageSent} alt='sent'/> Tag Deleted Successfully </div>)
                                         }
                                         <div> <p ref={node => componentRef.current = node} className="error_text hide space"> {message} </p> </div>                                                
                                         <div className="actions flex_around">
