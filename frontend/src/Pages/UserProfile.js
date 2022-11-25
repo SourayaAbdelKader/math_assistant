@@ -7,7 +7,7 @@ import '../App.css';
 // Importing components
 import LowerFooter from '../Components/Footers/LowerFooter';
 import UpperFooter from '../Components/Footers/UpperFooter';
-import ProfileHeader from '../Components/Headers/ProfileHeader';
+import Header from '../Components/Headers/Headers';
 import SubHeader from '../Components/Headers/SubHeader';
 import ScoreCard from '../Components/Cards/ScoreCard';
 import DataCard from '../Components/Cards/DataCard';
@@ -72,10 +72,10 @@ const UserProfile = () => {
     
     return (
         <div>
-            <ProfileHeader></ProfileHeader>
+            <Header></Header>
             <SubHeader></SubHeader>
             <div className='Profile_container'> 
-                <div> <h3> My Profile </h3> </div>
+                <div> <h3> Profile </h3> </div>
                 <div> 
                     <ViewUserInfo 
                         id={details.id}    

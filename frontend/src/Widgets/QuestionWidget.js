@@ -33,6 +33,16 @@ const QuestionWidget = (question) => {
         localStorage.setItem('choosed_question', question.id);
     }
 
+    const profile = () => {
+        console.log(question.user_id)
+        if (question.user_id == localStorage.getItem('user_id')){
+            navigate('/profile');
+        } else {
+            localStorage.setItem('choosed_user', question.user_id);
+            navigate('/user/profile');
+        }
+    }
+
     const [description, setDescription] = useState("");
     const [savedQuestions, setSavedQuestions] = useState([]);
     const [open, setOpen] = useState(false);
@@ -133,7 +143,7 @@ const QuestionWidget = (question) => {
             <div className="flex_between space">
                 <div className="flex">
                     <div> <img className='profile_pic' src={profile_picture} alt=''/> </div>
-                    <div> <p className='name'> {question.name}</p> </div>
+                    <div> <p onClick={profile} className='name pointer'> {question.name}</p> </div>
                 </div>
                 <div>
                     <div className='tag_name'> {question.title} </div>

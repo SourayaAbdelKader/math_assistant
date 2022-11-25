@@ -14,12 +14,22 @@ import voted_down from '../images/voted_down.png';
 // Importing popup
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-
+import {Routes, Route, useNavigate} from 'react-router-dom';
 // Importing API
 import AnswerAPI from '../hooks/answersApi';
 
 
 const AnswerWidget = (answer) => {
+    const navigate = useNavigate();
+    const profile = () => {
+        console.log(answer.user_id)
+        if (answer.user_id == localStorage.getItem('user_id')){
+            navigate('/profile');
+        } else {
+            localStorage.setItem('choosed_user', answer.user_id);
+            navigate('/user/profile');
+        }
+    }
 
     const componentRef = React.useRef();
 
@@ -130,7 +140,7 @@ const AnswerWidget = (answer) => {
             <div className="flex_between space">
                 <div className="flex">
                     <div> <img className='profile_pic' src={profile_picture} alt=''/> </div>
-                    <div> <p className='name'> {answer.name} </p> </div>
+                    <div> <p onClick={profile} className='name pointer'> {answer.name} </p> </div>
                 </div>
                 <div>
                 <div>
