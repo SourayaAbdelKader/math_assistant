@@ -12,21 +12,23 @@
 
 <img src="./readme/title2.svg"/>
 
-> Math Assistant is the place where math isn't your problem anymore. When you're stuck while solving a math problem you can post your question on the website by scanning the problem or typing it. Users, will help you with the answer and you can accept the answer and vote for the answers to keep a better experience. The user will get notified if changes are done. And the best part, users can practice math problems and get feedback from the editors.
+> Math Assistant is the place where math isn't your problem anymore :blue_book::triangular_ruler:.
+> Stuck while solving a math problem? Post your question on the website by scanning images of the problem or typing it. Other users will help you find the answer. Plus, you can accept answers and vote for the answers to have a better experience. Nevertheless, to unlock voting, you need to have a certain score. Yes, Math Assistant has a scoring system :chart_with_upwards_trend:. And the best part, you can practice solving math problems to enhance your score, get feedback from the editors and be notified when you receive a feedback.
 
 ### User Stories
 
 - As a user, I want to scan pictures, so that I can post a question quickly.
-- As a user, I want to post questions and answers.
-- As a user, I want to practice math by solving math problems and getting feedback.
+- As a user, I want to post questions and answer existing questions.
 - As a user, I want to accept suitable answers and vote for better answers.
 - As a user, I want to search for question.
+- As a user, I want to practice solving math problems and get feedback concerning my solution.
+- As a user, I want to be notified when I receive a feedback.
 
 ### Editor Stories
 
-- As a editor, I want to check the users and data related to the website.
-- As a editor, I want to add tags and practices.
-- As a editor, I want to check user's solutions for a practice problem.
+- As an editor, I want to check the users and data related to the website.
+- As an editor, I want to add tags and practices.
+- As an editor, I want to check users' solutions for a practical problem.
 
 <br><br>
 
@@ -57,7 +59,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 - To keep the database scalable for this project, the website uses MySQL database. MySQL is an open-source relational database management system (RDBMS).A relational database organizes data into one or more data tables in which data may be related to each other; and it facilitates testing database integrity and creation of backups.
 
-- This project uses also 2 third party APIs. The first is [Firebase](https://firebase.google.com/), integrated in this project for the notifications. The second is [Mathpix](https://mathpix.com/), its goal is to scan the pictures and extract math equations from it.
+- This project uses also 2 third party APIs:
+  - The first is [Firebase](https://firebase.google.com/), integrated in this project for the push notifications.
+  - The second is [Mathpix](https://mathpix.com/), its goal is to scan the pictures and extract math equations from it. Mathpix scan handwritten and printed images of math equations and convert them into [Latex](https://openbase.com/js/react-latex), which will help displaying math symbols and complex equations.
 
 <br><br>
 <img src="./readme/title5.svg"/>
@@ -90,24 +94,24 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app._
 
-1. Get a free API Key at [Firebase](https://firebase.google.com/)
-2. Clone the repo
+1. Get a free API Key at [Firebase](https://firebase.google.com/).
+2. Get an API Key at [Mathpix](https://mathpix.com/).
+3. Clone the repo
    ```sh
    git clone https://github.com/SourayaAbdelKader/math_assistant.git
    ```
-3. Install NPM packages
+4. Install NPM packages
    ```sh
    npm install
    ```
-   Some dependence may cause conflicts, for that reason you can run the following command to solve them.
+   :o: Some dependence may cause conflicts, for that reason you can run the following command to solve them.
    ```sh
    npm install --force
    ```
-4. Change the firebase configuration and mathpix App ID and App Key to match your configuration details in the frontend.
-5. In the backend, change the name of the file from .env.example to .env . And connect Laravel to your database.
-6. After finishing all the steps above, you can now run the project by entering the following command:
+5. Change the Firebase configuration and Mathpix App ID and App Key to match your configuration details in the frontend.
+6. In the backend, change the name of the file from .env.example to .env . Connect Laravel to your database. Also change the Firebase configuration (the configuration is in a file with the same name).
+7. After finishing all the steps above, you can now run the project by entering the following command:
    ```sh
    npm start
    ```
-
-Enjoy the experience!
+   Now you won't have problems with math aymore!
