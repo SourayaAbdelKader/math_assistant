@@ -22,6 +22,7 @@ class ProblemController extends Controller{
             'tag_id' => 'required|integer|exists:tags,id',
             'level' => 'required|string|in:easy,medium,hard',
             'points' => 'required|integer|min:1|max:15',
+            'picture_url' => 'string',
         ]);
 
         if ($validator->fails()) {
@@ -51,11 +52,13 @@ class ProblemController extends Controller{
             $file_name = uniqid().'.'.$imageType;
             $file = $folderPath.'\.'.$file_name ;
             file_put_contents($file, $image_base64);
-            $request->picture_url = $file;
+            $picture_path_url = $file;
         }
 
         $data = $request->all();
         $question = Problem::create($data);
+        $question->picture_url = $picture_path_url;
+        $question->save();
         return response()->json([
             'data' => $question,
             'message' => 'Added Successfully',
@@ -85,7 +88,7 @@ class ProblemController extends Controller{
         $validator = Validator::make($request->all(), [
             'name' => 'string|min:2|max:70',
             'description' => 'string|min:10|max:1500',
-            'picture_url' => 'string|min:10|max:250',
+            'picture_url' => 'string',
             'user_id' => 'integer|exists:users,id',
             'tag_id' => 'integer|exists:tags,id',
             'level' => 'string|in:easy,medium,hard',
@@ -131,7 +134,7 @@ class ProblemController extends Controller{
             $file_name = $problem->id.".".uniqid().'.'.$imageType;
             $file = $folderPath.'\.'.$file_name ;
             file_put_contents($file, $image_base64);
-            $user->picture_url = $file;
+            $problem->picture_url = $file;
         }
 
         if($problem->save()){

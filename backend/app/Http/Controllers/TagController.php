@@ -7,6 +7,11 @@ use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Tag;
 
+// _____________ Tags _____________
+// Tags indicate math domains, they're importance is in the admin side:
+// ->displaying the distribution of questions per tags: to see what do the users struggle with or what their interests are
+// ->displaying checked and unckecked solutions per practice: to see which type of domains the users like to practice
+
 class TagController extends Controller{
 
     // _____________ Counting tags _____________
