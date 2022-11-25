@@ -25,5 +25,9 @@ class UserAPI extends Base {
     async updateNotification (body) {
         return await this.post('general/update/notification',body);
     }
+
+    async editProfile (id, body) {
+        return await this.post('general/userUpdate/'+id, body);
+    }
 }
 export default new  UserAPI();
