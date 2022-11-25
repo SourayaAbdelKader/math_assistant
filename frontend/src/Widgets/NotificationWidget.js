@@ -2,6 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
+// ________________ Notification ________________
+// For the notification, their is a table in the backend to keep track of the checked and unchecked notifications.
+// For the push notification, a third party API is integrated (firebase)
+
 // Importing styling and assets
 import './widgets.css';
 import empty_notification from '../images/notification.png';

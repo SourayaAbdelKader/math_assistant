@@ -1,6 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+// ________________ Answer ________________
+// For this part of the website, each user will gain 30 points when answering a question.
+// If the user found suitable answers, he/she/they can accept it.
+// Only the user who asked the question can accept the answers of his/her/their questions.
+// The accepted answers will gain an additional 10 points.
+// Once the user has a score of 500 or higher, he/she/they can vote on answers.
+// Voting up will help the user who answered, gain 5 points.
+// Voting down will make the user who answered  loose 5 points.
+// The voting and scoring system is handled in the backend.
+// User can not vote on his answer, nor vote twice on an answer, nor vote more than 20 times per day.
+
 // Importing styling and assets
 import './widgets.css';
 import accept from '../images/accept.png';

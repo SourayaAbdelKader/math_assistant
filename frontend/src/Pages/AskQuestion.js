@@ -1,6 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
+// ________________ Asking a question ________________
+// The main feature of this website is to ask questions by scaning pictures and/or adding text.
+// For the scaning, mathpix (a third party API) is used to convert a base64 (of an image) to a Latex format
+// Than we Latex format is handeled to display correctly the math equations scanned
+
 import Latex from 'react-latex';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';

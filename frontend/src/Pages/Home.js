@@ -2,6 +2,10 @@ import React from 'react';
 import  {useState, useEffect} from 'react';
 import HomeAPI from '../hooks/homeApi';
 
+// ________________ Home ________________
+// It contains the important information of this website, it's parts and it's rule.
+// All the important details are displayed on this page.
+
 // Importing Components
 import LowerFooter from '../Components/Footers/LowerFooter';
 import LoginHeader from '../Components/Headers/LoginHeader';

@@ -1,6 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
+// ________________ Tags ________________
+// Tags are math domains, they are just diplayed on the website, and right now they don't play a major role in the user frontend.
+// It's importance is in the admin side, where we can see how questions and practices are distributed per tag.
+
 // Importing style
 import '../App.css';
 
