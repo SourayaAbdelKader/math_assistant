@@ -29,5 +29,6 @@ class PracticeAPI extends Base {
     async addSolution (body) {
         return await this.post('solution/add', body)
     }
+    
 }
 export default new  PracticeAPI();

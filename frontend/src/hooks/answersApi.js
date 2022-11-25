@@ -25,5 +25,6 @@ class AnswerAPI extends Base {
     async getUserVote (id) {
         return await this.get('answer/user/vote/'+id);
     } 
+    
 }
 export default new  AnswerAPI();
