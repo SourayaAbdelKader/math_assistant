@@ -61,7 +61,7 @@
 | Editors                             | Practice                                 |
 | ![Editors](./readme/editors.png)    | ![Practice](./readme/admin_practice.png) |
 | Feedback                            |                                          |
-| ![Questions](./readme/feedback.png) |                                          |
+| ![Feedback](./readme/feedback.png)  |                                          |
 
 <br><br>
 
@@ -91,13 +91,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ### Admin Panel
 
-| Landing                               | Login                                    |
-| ------------------------------------- | ---------------------------------------- |
-| ![Landing](./readme/m_admin_home.png) | ![login](./readme/admin_login_gif.gif)   |
-| Editors                               | Practice                                 |
-| ![Editors](./readme/editors.png)      | ![Practice](./readme/admin_practice.png) |
-| Feedback                              |                                          |
-| ![Questions](./readme/feedback.png)   |
+| Landing                                          | Login                                    |
+| ------------------------------------------------ | ---------------------------------------- |
+| ![Landing](./readme/m_admin_home.png)            | ![login](./readme/admin_login_gif.gif)   |
+| Dashboard                                        | Admin Panel Pages                        |
+| ![Dashboard](./readme/m_dashboard_gif.gif)       | ![Pages](./readme/m_admin_panel_gif.gif) |
+| Feedback                                         |                                          |
+| ![Feedback](./readme/m_sending_feedback_gif.gif) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
