@@ -60,7 +60,7 @@ const EditProfile = (props) => {
 
     const handleGender= (event) => {
         let string = event.target.value;
-        if (checkInputIsNumber(string)){
+        if (!checkEmptyInput(string)){
             setGender(string)
         } 
         if (string.length == 0){setGender(profile.gender)}
@@ -68,21 +68,21 @@ const EditProfile = (props) => {
 
     const handleBirthdate = (event) => {
         let string = event.target.value;
-        if (checkInputIsNumber(string)){
+        if (!checkEmptyInput(string)){
             setBirthdate(string)
         } if (string.length == 0){ setBirthdate(profile.birthdate)}
     }
 
     const handlePhone = (event) => {
         let string = event.target.value;
-        if (checkInputIsNumber(string)){
+        if (!checkEmptyInput(string)){
             setphone(string)
         } if (string.length == 0){setphone(profile.birthdate)}
     }
 
     const handleLocation = (event) => {
         let string = event.target.value;
-        if (checkInputIsNumber(string)){
+        if (!checkEmptyInput(string)){
             setLocation(string)
         } if (string.length == 0){setLocation(profile.birthdate)}
     }
