@@ -47,7 +47,7 @@
 | Questions                               | View Question                         |
 | ![Questions](./readme/questions.PNG)    | ![Question](./readme/question.png)    |
 | Ask Question                            | Profile                               |
-| ![Ask Question](./readme/ask.png)       | ![Profile](./readme/user_profile.png) |
+| ![Ask Question](./readme/ask.PNG)       | ![Profile](./readme/user_profile.png) |
 | Practice                                | Exercice                              |
 | ![Practice](./readme/practice.PNG)      | ![Exercice](./readme/exercice.PNG)    |
 | Solved Practice                         |                                       |
