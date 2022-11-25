@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route}
-	from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route}from 'react-router-dom';
+
+// ________________ Math Assistant ________________
+// ________________ Admin/Editor Frontend ________________
+// For now the admin and editor have the same features, the editor have just an aditional feature, he can check users solution on a practice exercice.
+// I kept them as two different user types to be abel in the future to distinguish more features for the admin and for the editor as well.
+// For now, they can check the data on the website (users info, editors info, tags, questions, practices, users solutions)
+// They can add an editor and send feedback for a user.
 
 import Home from './Pages/Home';
 import Login from './Pages/Login';

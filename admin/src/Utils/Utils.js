@@ -35,10 +35,10 @@ export function checkEmptyInput(input){
 }
 
 export function checkInputIsNumber(input){
-    if (input.length == 0 && isNaN(input)){
-        return false
+    if (input.length == 0  || isNaN(input)){
+        return false;
     }; return true;
-}
+};
 
 export function checkInputIsLevel(input){
     if (input == 'hard' || input == 'easy' || input == 'medium'){

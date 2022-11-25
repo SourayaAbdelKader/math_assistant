@@ -2,6 +2,13 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import { Chart } from "react-google-charts";
 
+// ________________ Admin/Editor Frontend ________________
+// The dashboard containes some data related to the website like:
+// -> the numbers of users, editors, questions, tags, practices 
+// -> the distributivity of questions and practices per tags
+// -> the number of checked and unchecked user's solutions
+// -> the number of checked and unchecked user's solution per practice
+
 // Importing styling
 import './pages.css';
 import questions_pic from '../images/dash_questions.png';
