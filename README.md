@@ -37,17 +37,31 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
+### User
+
 | Landing                                 | Login                              |
 | --------------------------------------- | ---------------------------------- |
-| ![Landing](./readme/hero.PNG)           | ![Login](./readme/login.PNG)       |
+| ![Landing](./readme/user_home.png)      | ![Login](./readme/user_login.png)  |
 | Sign Up                                 | Tags                               |
-| ![Sign up](./readme/sign_up.PNG)        | ![Tags](./readme/tags.PNG)         |
-| Question                                | Ask Question                       |
-| ![Question](./readme/questions.PNG)     | ![Ask Question](./readme/ask.PNG)  |
+| ![Sign up](./readme/user_signup.png)    | ![Tags](./readme/tags.png)         |
+| Questions                               | View Question                      |
+| ![Questions](./readme/questions.png)    | ![Question](./readme/question.png) |
+| Ask Question                            | Profile                            |
+| ![Solved Practice](./readme/ask.png)    | ![Profile](./readme/profile.png)   |
 | Practice                                | Exercice                           |
-| ![Practice](./readme/practice.PNG)      | ![Exercice](./readme/exercice.PNG) |
-| Solved Practice                         | Profile                            |
-| ![Solved Practice](./readme/solved.PNG) | ![Feedback](./readme/profile.PNG)  |
+| ![Practice](./readme/practice.png)      | ![Exercice](./readme/exercice.png) |
+| Solved Practice                         |                                    |
+| ![Solved Practice](./readme/solved.png) |                                    |
+
+### Admin Panel
+
+| Landing                             | Dashboard                                |
+| ----------------------------------- | ---------------------------------------- |
+| ![Landing](./readme/admin_home.png) | ![Dashboard](./readme/dashboard.png)     |
+| Editors                             | Practice                                 |
+| ![Editors](./readme/editors.png)    | ![Practice](./readme/admin_practice.png) |
+| Feedback                            |                                          |
+| ![Questions](./readme/feedback.png) |                                          |
 
 <br><br>
 
