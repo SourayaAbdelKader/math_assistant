@@ -23,9 +23,14 @@ import AnswerAPI from '../hooks/answersApi';
 
 
 const ViewQuestionWidget = (question) => {
+    
+    const componentRef = React.useRef();
 
+    const navigate = useNavigate();
+    const navigateQuestion= () => {navigate('/question');};
+
+    // Handeling the navigation to the suitable profile page
     const profile = () => {
-        console.log(question.user_id)
         if (question.user_id == localStorage.getItem('user_id')){
             navigate('/profile');
         } else {
@@ -33,11 +38,6 @@ const ViewQuestionWidget = (question) => {
             navigate('/user/profile');
         }
     }
-
-    const componentRef = React.useRef();
-
-    const navigate = useNavigate();
-    const navigateQuestion= () => {navigate('/question');};
     
     const handleClick = (e) => {
         localStorage.setItem('choosed_question', question.id);
@@ -51,7 +51,6 @@ const ViewQuestionWidget = (question) => {
     useEffect(() =>{
         const getSavedQuestions  = async () =>{
             const questions = await QuestionAPI.savedQuestions(localStorage.getItem('user_id'));
-            console.log(questions)
             if (questions.data.message === 'Found Successfully'){
                 const get = questions.data.data;
                 setSavedQuestions(get);

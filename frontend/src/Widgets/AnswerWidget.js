@@ -15,14 +15,16 @@ import voted_down from '../images/voted_down.png';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+
 // Importing API
 import AnswerAPI from '../hooks/answersApi';
 
-
 const AnswerWidget = (answer) => {
+
     const navigate = useNavigate();
+    
+    // To navigate to the suitable progfile page
     const profile = () => {
-        console.log(answer.user_id)
         if (answer.user_id == localStorage.getItem('user_id')){
             navigate('/profile');
         } else {
@@ -43,6 +45,7 @@ const AnswerWidget = (answer) => {
 
     const profile_picture = handlePicture()
 
+    // Handelong acceptance of an answe, voting up and voting down
     const [openVoteUp, setOpenVoteUp] = useState(false);
     const [openVoteDown, setOpenVoteDown] = useState(false);
     const [openAccept, setOpenAccept] = useState(false);
@@ -166,25 +169,25 @@ const AnswerWidget = (answer) => {
             <div className="flex_end">
                 <div> <img onClick={handleVoteDown}  className="medium_icon cursor" src={vote_up} alt="save" /> </div>
                 <Popup open={openVoteUp} modal nested >
-                        {close => (
-                            <div className="modal flex">
-                                <button className="close space_right" onClick={close}>
-                                &times;
-                                </button>
-                                <div> <h3>{voteUp}</h3></div>
-                            </div>
-                        )}
+                    {close => (
+                        <div className="modal flex">
+                            <button className="close space_right" onClick={close}>
+                            &times;
+                            </button>
+                            <div> <h3>{voteUp}</h3></div>
+                        </div>
+                    )}
                 </Popup>
                 <div> <img onClick={handleVote} className="medium_icon cursor space_left" src={vote_down} alt="save" /> </div>
                 <Popup open={openVoteDown} modal nested >
-                        {close => (
-                            <div className="modal flex">
-                                <button className="close space_right" onClick={close}>
-                                &times;
-                                </button>
-                                <div> <h3>{voteDown}</h3></div>
-                            </div>
-                        )}
+                    {close => (
+                        <div className="modal flex">
+                            <button className="close space_right" onClick={close}>
+                            &times;
+                            </button>
+                            <div> <h3>{voteDown}</h3></div>
+                        </div>
+                    )}
                 </Popup>
             </div>
         </div>        

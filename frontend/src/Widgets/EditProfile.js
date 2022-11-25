@@ -10,7 +10,7 @@ import './widgets.css';
 import messageSent from '../images/sent.png';
 
 // Importing utils
-import validEmail, {checkEmptyInput, getBase64} from '../Utils/Utils'
+import validEmail, {checkInputIsNumber, checkEmptyInput, getBase64} from '../Utils/Utils'
 
 // Importing hooks
 import UserAPI from "../hooks/userAPI";

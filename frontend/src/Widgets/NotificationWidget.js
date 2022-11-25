@@ -34,7 +34,6 @@ const NotificationWidget = (answer) => {
 
         const getNotifications  = async () =>{
             const notification = await UserAPI.getNotificationForUser(localStorage.getItem('user_id'));
-            console.log(notification.data.data)
             if (notification.data.message == 'Found' && notification.data.data.length > 0){
                 setMessages(notification.data.data);
                 setImage(full_notifiation);
