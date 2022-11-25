@@ -13,6 +13,10 @@ use App\Models\Score;
 use App\Models\Solution;
 use Carbon\Carbon;
 
+// _____________ Solutions _____________
+// This controller is dedicated to the user's solutions of math practices.
+// Plus, here the feedback is handeled as well and getting data per practice and per user (getting checked and unchecked solutions per user and per practice).
+
 class SolutionController extends Controller{
 
     // _____________ Adding a solution _____________
