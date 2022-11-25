@@ -20,7 +20,6 @@ import editors_pic from '../images/editors.png';
 import box1 from '../images/box1.png';
 import box2 from '../images/box2.png';
 import box3 from '../images/box3.png';
-import description_long_box from '../images/description_long_box.png';
 
 const Home = () => {
         // Getting the data for the home page
@@ -46,8 +45,8 @@ const Home = () => {
                         <LoginHeader></LoginHeader>
                         <section>
                                 <div className='hero'> 
-                                        <h3 className="white_text space"> Math Assistant </h3>
-                                        <p className='white_text center_text'> Share your problem by scanning it. Help other by ansswering their questions, and voting for suitable solutions. You can also enhance your math knowledge by practicing and getting feedback. </p>
+                                     <h1 className="white_text space"> Math Assistant </h1>
+                                     <h3 className='white_text center_text bold'> Share your problem by scanning it. Help others by answering their questions, and voting for suitable solutions. You can also enhance your math knowledge by practicing and getting feedback. </h3>
                                 </div>
                         </section>
                         <section>
