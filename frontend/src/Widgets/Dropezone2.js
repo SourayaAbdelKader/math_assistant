@@ -3,6 +3,7 @@ import Dropzone from 'react-dropzone';
 import Latex from 'react-latex';
 
 class Previews2 extends Component{
+
   constructor(props){
     super(props);
     this.accepted = this.accepted.bind(this);
@@ -14,6 +15,12 @@ class Previews2 extends Component{
     }
   }
 
+  // Getting the accepted file
+  async accepted(acceptedFile){
+    await this.fileUpload(acceptedFile[0])
+  }
+
+  // Converting the file to base 64
   async getBase64(file, cb){
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -23,6 +30,7 @@ class Previews2 extends Component{
     reader.onerror = function(err){ console.log(err)}
   }
 
+  // Sending the base 64 to the mathpix api and getting back the latex format of the image
   async fileUpload(file){
     try{
       await this.getBase64(file, (base64string) => {
@@ -48,17 +56,13 @@ class Previews2 extends Component{
         })
         .then((res) => res.json())
         .then((response) => {
-          console.log(response)
           localStorage.setItem('suggested_solution', response.data[1].value);
           this.state.problem = response.data[1].value;
         })
       })
     } catch(e){console.log(e.message)}
-  }
+  };
 
-  async accepted(acceptedFile){
-    await this.fileUpload(acceptedFile[0])
-  }
   render(){
     return(
       <div> 

@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route}
-	from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
+// ________________ Math Assistant ________________
+// ________________ User Frontend ________________
+// Math assistant is a website where people can share their math problems by scaning the problem or typing it.
+// Users can answer other users questions.
+// Plus, users can practice solving math problems.
+// I added some comments to the important pages and parts (widgets) of this website, to explain more how things work.
+
 import Home from './Pages/Home';
 import Tags from './Pages/Tags';
 import Login from './Pages/Login';

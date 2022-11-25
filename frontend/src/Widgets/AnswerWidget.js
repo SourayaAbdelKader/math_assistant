@@ -1,6 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+// ________________ Answer ________________
+// For this part of the website, each user will gain 30 points when answering a question.
+// If the user found suitable answers, he/she/they can accept it.
+// Only the user who asked the question can accept the answers of his/her/their questions.
+// The accepted answers will gain an additional 10 points.
+// Once the user has a score of 500 or higher, he/she/they can vote on answers.
+// Voting up will help the user who answered, gain 5 points.
+// Voting down will make the user who answered  loose 5 points.
+// The voting and scoring system is handled in the backend.
+// User can not vote on his answer, nor vote twice on an answer, nor vote more than 20 times per day.
+
 // Importing styling and assets
 import './widgets.css';
 import accept from '../images/accept.png';
@@ -15,14 +26,16 @@ import voted_down from '../images/voted_down.png';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+
 // Importing API
 import AnswerAPI from '../hooks/answersApi';
 
-
 const AnswerWidget = (answer) => {
+
     const navigate = useNavigate();
+    
+    // To navigate to the suitable progfile page
     const profile = () => {
-        console.log(answer.user_id)
         if (answer.user_id == localStorage.getItem('user_id')){
             navigate('/profile');
         } else {
@@ -43,6 +56,7 @@ const AnswerWidget = (answer) => {
 
     const profile_picture = handlePicture()
 
+    // Handelong acceptance of an answe, voting up and voting down
     const [openVoteUp, setOpenVoteUp] = useState(false);
     const [openVoteDown, setOpenVoteDown] = useState(false);
     const [openAccept, setOpenAccept] = useState(false);
@@ -166,25 +180,25 @@ const AnswerWidget = (answer) => {
             <div className="flex_end">
                 <div> <img onClick={handleVoteDown}  className="medium_icon cursor" src={vote_up} alt="save" /> </div>
                 <Popup open={openVoteUp} modal nested >
-                        {close => (
-                            <div className="modal flex">
-                                <button className="close space_right" onClick={close}>
-                                &times;
-                                </button>
-                                <div> <h3>{voteUp}</h3></div>
-                            </div>
-                        )}
+                    {close => (
+                        <div className="modal flex">
+                            <button className="close space_right" onClick={close}>
+                            &times;
+                            </button>
+                            <div> <h3>{voteUp}</h3></div>
+                        </div>
+                    )}
                 </Popup>
                 <div> <img onClick={handleVote} className="medium_icon cursor space_left" src={vote_down} alt="save" /> </div>
                 <Popup open={openVoteDown} modal nested >
-                        {close => (
-                            <div className="modal flex">
-                                <button className="close space_right" onClick={close}>
-                                &times;
-                                </button>
-                                <div> <h3>{voteDown}</h3></div>
-                            </div>
-                        )}
+                    {close => (
+                        <div className="modal flex">
+                            <button className="close space_right" onClick={close}>
+                            &times;
+                            </button>
+                            <div> <h3>{voteDown}</h3></div>
+                        </div>
+                    )}
                 </Popup>
             </div>
         </div>        

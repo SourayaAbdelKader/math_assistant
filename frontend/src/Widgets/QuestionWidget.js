@@ -33,8 +33,8 @@ const QuestionWidget = (question) => {
         localStorage.setItem('choosed_question', question.id);
     }
 
+    // Handeling the navigation to the suitable profile page
     const profile = () => {
-        console.log(question.user_id)
         if (question.user_id == localStorage.getItem('user_id')){
             navigate('/profile');
         } else {

@@ -12,12 +12,10 @@ const NotificationItem = (props) => {
     const navigatePractice = () => {navigate('/practice/feedback');};
     
     const seeFeedback = async () => {
-        console.log(props.body);
         localStorage.setItem('selected_practice', props.body.split('/')[2]);
         const update_notification = await UserAPI.updateNotification({
             "id": props.id,
         }); 
-        console.log(update_notification)       
     }
 
     return(

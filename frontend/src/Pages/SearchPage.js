@@ -19,24 +19,22 @@ const SearchPage = () => {
     const [searchResult, setSearchResult] = useState([])
     const [search, setSearch] = useState('')
 
-        // Handeling the search
-        function handleSearch(event){
-            let search_word = event.target.value;
-            if (search_word.length > 2){
-                setIsSearching(true)
-                setSearch(search_word);
-                searching(search)
-            } else {setIsSearching(false); setEmpty(false) }
-            if (search_word.length == 0){ setEmpty(true)}
-        } 
+    // Handeling the search
+    function handleSearch(event){
+        let search_word = event.target.value;
+        if (search_word.length > 2){
+            setIsSearching(true)
+            setSearch(search_word);
+            searching(search)
+        } else {setIsSearching(false); setEmpty(false) }
+        if (search_word.length == 0){ setEmpty(true)}
+    } 
     
         const searching = async(search) => {
             const search_question = await QuestionAPI.searchQuestion(search);
-            console.log(search_question)
             if (search_question.data.message == 'Question Not Found'){
                 setEmpty(true)
             } else {setSearchResult(search_question.data.data)}
-            console.log(search_question)
          };
          
     return (
@@ -55,9 +53,8 @@ const SearchPage = () => {
                         { 
                           !empty &&searchResult?.map((e) => {
                             return (<QuestionWidget key={e.id} id={e.id} picture_url={e.picture_url} name={e.name}  title={e.title} problem={e.problem} description={e.description} suggested_solution={e.suggested_solution}></QuestionWidget>)
-                        }) 
-                    }
-    
+                            }) 
+                        }
                         </div>
                     </div>
                 </div>

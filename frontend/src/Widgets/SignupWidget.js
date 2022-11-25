@@ -2,7 +2,8 @@ import React from "react";
 import {useState} from 'react';
 import { useNavigate} from 'react-router-dom';
 import validEmail, {validPassword, validName} from "../Utils/Utils";
-// Importing base url
+
+// Importing hooks
 import SetUser from "../hooks/setUser";
 import  secureLocalStorage  from  "react-secure-storage";
 

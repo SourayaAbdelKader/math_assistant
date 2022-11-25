@@ -1,6 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
+// ________________ Tags ________________
+// Tags are math domains, they are just diplayed on the website, and right now they don't play a major role in the user frontend.
+// It's importance is in the admin side, where we can see how questions and practices are distributed per tag.
+
 // Importing style
 import '../App.css';
 
@@ -33,8 +37,6 @@ const Tags = () => {
         const getTag  = async () =>{
             setLoading(true);
             const tags = await tagsApi.getTags();
-            console.log(tags)
-            console.log(tags.data.message)
             if (tags.data.message === 'Found'){
                 const get = tags.data.data;
                 setTags(get);
@@ -57,7 +59,6 @@ const Tags = () => {
         if (search_tag.data.message == 'Tag Not Found'){
             setEmpty(true)
         } else {setSearchResult(search_tag.data.data)}
-        console.log(search_tag.data.message)
      };
 
     return (     
