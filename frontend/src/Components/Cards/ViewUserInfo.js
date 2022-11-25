@@ -7,7 +7,7 @@ import './cards.css';
 import profileSelected from '../../images/profileSelected.png';
 import EditProfile from '../../Widgets/EditProfile';
 
-const UserInfo = (details) => {
+const ViewUserInfo = (details) => {
 
     const handleProfilePic = () => {
         if (details.picture_url){
@@ -25,7 +25,7 @@ const UserInfo = (details) => {
                     <img className="user_profile_picture" src={selected} alt="" />
                     <div> <h4 className="user_name"> {details.name} </h4> </div>
                 </div>
-                <div> <EditProfile data={details}></EditProfile></div>
+                <div></div>
             </div>
             <div className="details"> 
                 <div className="flex_between"> 
@@ -45,4 +45,4 @@ const UserInfo = (details) => {
     )
 }
 
-export default UserInfo;
+export default ViewUserInfo;

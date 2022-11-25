@@ -33,6 +33,7 @@ const Tags = () => {
         const getTag  = async () =>{
             setLoading(true);
             const tags = await tagsApi.getTags();
+            console.log(tags)
             console.log(tags.data.message)
             if (tags.data.message === 'Found'){
                 const get = tags.data.data;
