@@ -48,6 +48,7 @@ const Exercice = () => {
                 const get = exercice.data.data[0];
                 setPractice(get)
             } 
+            console.log(exercice)
     }; getPractice();}, []);
 
     const submitAnswer = (e) => {

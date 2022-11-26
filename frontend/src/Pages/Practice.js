@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 // Importing style
 import '../App.css';
 
+// ________________ Practice ________________
+// In this part of the website, the user can practice math by solving math problems, the correction is done by editors who will send feedback.
+
 // Importing Components
 import LowerFooter from '../Components/Footers/LowerFooter';
 import UpperFooter from '../Components/Footers/UpperFooter';
