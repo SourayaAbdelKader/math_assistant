@@ -1,13 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getMessaging, onMessage, getToken } from "firebase/messaging";
 const firebaseConfig = {
-    apiKey: "AIzaSyCAPlvZzyytzGDBT6bwboWwNwKbCDESE0U",
-    authDomain: "math-assistant-ac72e.firebaseapp.com",
-    projectId: "math-assistant-ac72e",
-    storageBucket: "math-assistant-ac72e.appspot.com",
-    messagingSenderId: "386046678237",
-    appId: "1:386046678237:web:f67a69706ccb1c6da5f734",
-    measurementId: "G-R26G2XBC86"
+    // Add your config here
   };
 
 initializeApp(firebaseConfig);

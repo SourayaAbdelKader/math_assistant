@@ -41,8 +41,8 @@ class Previews2 extends Component{
         fetch('https://api.mathpix.com/v3/text', {
           method: 'POST',
           headers: {
-              "app_id": "sourayaabdelkader_gmail_com_4cedcd_a3d246",
-              "app_key": "22141cd5a3437fbc618f29f0a8e39b914a56e80750616a549a39f59b0391acf2",
+              "app_id": "",
+              "app_key": "",
               "content-type": "application/json"
           },
           body: JSON.stringify({
