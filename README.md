@@ -96,13 +96,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | ------------------------------ |
 | ![Ask](./readme/m_ask_gif.gif) |
 
-<div style="margin-left: auto;
-            margin-right: auto;
-            width: 70%">
 | Feedback and notification                       |
 | ----------------------------------------------- |
 | ![Feedback](./readme/feedback_notification.gif) |
-</div>
 
 ### Admin Panel
 
