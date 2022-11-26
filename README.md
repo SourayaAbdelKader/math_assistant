@@ -88,7 +88,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | ---------------------------------------------- | ----------------------------------------------- |
 | ![Landing](./readme/m_user_home.gif)           | ![Login/ Signup](./readme/m_login_user_gif.gif) |
 | Tags                                           | Profile                                         |
-| ![Dashboard](./readme/m_user_tags.gif)         | ![Pages](./readme/m_admin_panel_gif.gif)        |
+| ![Dashboard](./readme/m_user_tags.gif)         | ![Pages](./readme/m_user_profile.gif)           |
 | Practice                                       | Questions                                       |
 | ![Practice](./readme/m_practice_gif.gif)       | ![Questions](./readme/m_questions_gif.gif)      |
 | Answers                                        | Search                                          |
