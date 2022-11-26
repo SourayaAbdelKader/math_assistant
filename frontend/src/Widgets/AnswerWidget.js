@@ -19,7 +19,7 @@ import accepted_image from '../images/accepted.png';
 import picture from '../images/profileSelected.png';
 import vote_up from '../images/vote_up.png';
 import vote_down from '../images/vote_down.png';
-import voted_up from '../images/voted_up.png';
+import voted_up_image from '../images/voted_up.png';
 import voted_down from '../images/voted_down.png';
 
 // Importing popup
@@ -111,7 +111,7 @@ const AnswerWidget = (answer) => {
         });
         setVoteUp(accept_answer.data.message);  
         if (accept_answer.data.message === 'Added Successfully'){
-            e.target.src = voted_up;
+            e.target.src = voted_up_image;
             setOpenVoteUp(true);
             setVoteUp('Voted Successfully');
         } else if (accept_answer.data.message ==='User Already Voted') {
@@ -122,7 +122,7 @@ const AnswerWidget = (answer) => {
             setVoteUp('You can not vote more than 20 times per day.');
         } else {
             setOpenVoteUp(true);
-            setVoteUp('You Can Not Voted');
+            setVoteUp('You Can Not Vote On Your Answer');
         }
     }
 
@@ -145,7 +145,7 @@ const AnswerWidget = (answer) => {
             setVoteDown('You can not vote more than 20 times per day.');
         } else {
             setOpenVoteDown(true);
-            setVoteDown('You Can Not Vote');
+            setVoteDown('You Can Not Vote On Your Answer');
         }
     }
     
@@ -178,7 +178,7 @@ const AnswerWidget = (answer) => {
                 </div>
             </div>
             <div className="flex_end">
-                <div> <img onClick={handleVoteDown}  className="medium_icon cursor" src={vote_up} alt="save" /> </div>
+                <div> <img onClick={handleVote}  className="medium_icon cursor" src={vote_up} alt="save" /> </div>
                 <Popup open={openVoteUp} modal nested >
                     {close => (
                         <div className="modal flex">
@@ -189,7 +189,7 @@ const AnswerWidget = (answer) => {
                         </div>
                     )}
                 </Popup>
-                <div> <img onClick={handleVote} className="medium_icon cursor space_left" src={vote_down} alt="save" /> </div>
+                <div> <img onClick={handleVoteDown} className="medium_icon cursor space_left" src={vote_down} alt="save" /> </div>
                 <Popup open={openVoteDown} modal nested >
                     {close => (
                         <div className="modal flex">
