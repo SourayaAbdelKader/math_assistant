@@ -94,14 +94,16 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | Answers                                        | Search                                          |
 | ![Practice](./readme/question_answers_gif.gif) | ![Questions](./readme/m_search.gif)             |
 
-                                 | Asking A Question              |
-                                 | ------------------------------ |
-                                 | ![Ask](./readme/m_ask_gif.gif) |
+<center>
+| Asking A Question              |
+| ------------------------------ |
+| ![Ask](./readme/m_ask_gif.gif) |
 
-                        | Feedback and notification                       |
-                        | ----------------------------------------------- |
-                        | ![Feedback](./readme/feedback_notification.gif) |
+| Feedback and notification                       |
+| ----------------------------------------------- |
+| ![Feedback](./readme/feedback_notification.gif) |
 
+</center>
 ### Admin Panel
 
 | Landing                                          | Login                                            |
