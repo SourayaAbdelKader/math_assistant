@@ -82,6 +82,8 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
+### User
+
 | Landing                                        | Login/Signup                                    |
 | ---------------------------------------------- | ----------------------------------------------- |
 | ![Landing](./readme/m_user_home.gif)           | ![Login/ Signup](./readme/m_login_user_gif.gif) |
@@ -92,13 +94,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | Answers                                        | Search                                          |
 | ![Practice](./readme/question_answers_gif.gif) | ![Questions](./readme/m_search.gif)             |
 
-| Asking A Question              |
-| ------------------------------ |
-| ![Ask](./readme/m_ask_gif.gif) |
+                                 | Asking A Question              |
+                                 | ------------------------------ |
+                                 | ![Ask](./readme/m_ask_gif.gif) |
 
-| Feedback and notification                       |
-| ----------------------------------------------- |
-| ![Feedback](./readme/feedback_notification.gif) |
+                        | Feedback and notification                       |
+                        | ----------------------------------------------- |
+                        | ![Feedback](./readme/feedback_notification.gif) |
 
 ### Admin Panel
 
